@@ -1,6 +1,8 @@
 package com.codeup.kappa.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -25,11 +27,16 @@ public class User {
     @Column(nullable = false)
     private boolean isAdmin;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL)
     private UserDetails userDetails;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Followers followers;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "user_followers",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "follower_id")}
+    )
+    private List<Followers> followers = new ArrayList<>();
 
     public User(){}
 
@@ -39,16 +46,6 @@ public class User {
         this.password = password;
     }
 
-    public User(long id, String username, String email, String password, boolean isBlocked, boolean isAdmin, UserDetails userDetails, Followers followers) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.isBlocked = isBlocked;
-        this.isAdmin = isAdmin;
-        this.userDetails = userDetails;
-        this.followers = followers;
-    }
 
     public long getId() {
         return id;
@@ -106,11 +103,11 @@ public class User {
         this.userDetails = userDetails;
     }
 
-    public Followers getFollowers() {
+    public List<Followers> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(Followers followers) {
+    public void setFollowers(List<Followers> followers) {
         this.followers = followers;
     }
 }

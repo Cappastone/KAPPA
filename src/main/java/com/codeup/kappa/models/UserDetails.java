@@ -30,7 +30,7 @@ public class UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private PlatformLinks links;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user_details")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userDetails")
     private List<FavoriteGames> favoriteGames = new ArrayList<>();
 
     public UserDetails(){}

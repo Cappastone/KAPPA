@@ -14,21 +14,21 @@ public class Followers {
     @Column
     private long user_id;
 
-    @ManyToMany(mappedBy = "users")
-    private List<Followers> follower_id;
+    @ManyToMany(mappedBy = "followers")
+    private List<User> users;
 
 
     public Followers(){}
 
-    public Followers(long user_id, List<Followers> follower_id) {
-        this.user_id = user_id;
-        this.follower_id = follower_id;
-    }
-
-    public Followers(long id, long user_id, List<Followers> follower_id) {
+    public Followers(long id, long user_id, List<User> users) {
         this.id = id;
         this.user_id = user_id;
-        this.follower_id = follower_id;
+        this.users = users;
+    }
+
+    public Followers(long user_id, List<User> users) {
+        this.user_id = user_id;
+        this.users = users;
     }
 
     public long getId() {
@@ -47,13 +47,11 @@ public class Followers {
         this.user_id = user_id;
     }
 
-    public List<Followers> getFollower_id() {
-        return follower_id;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setFollower_id(List<Followers> follower_id) {
-        this.follower_id = follower_id;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
-
-
 }
