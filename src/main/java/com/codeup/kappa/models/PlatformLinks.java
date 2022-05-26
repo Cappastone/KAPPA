@@ -85,4 +85,5 @@ public class PlatformLinks {
     public void setYoutube(String youtube) {
         this.youtube = youtube;
     }
+
 }

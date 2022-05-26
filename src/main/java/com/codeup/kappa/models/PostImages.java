@@ -58,4 +58,5 @@ public class PostImages {
     public void setPost(Posts post) {
         this.post = post;
     }
+
 }

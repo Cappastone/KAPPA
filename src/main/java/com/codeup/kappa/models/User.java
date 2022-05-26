@@ -45,26 +45,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<FavoriteGames> favoriteGames = new ArrayList<>();
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private UserDetails userDetails;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Posts> posts;
-
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Followers> followers = new ArrayList<>();
-
-//    @ManyToOne
-//    @JoinColumn(name = "follower_id")
-//    private Followers follower;
-
-//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinTable(
-//            name = "user_followers",
-//            joinColumns = {@JoinColumn(name = "user_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "follower_id")}
-//    )
-//    private List<Followers> followers = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -130,4 +112,67 @@ public class User {
         isAdmin = admin;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public PlatformLinks getLinks() {
+        return links;
+    }
+
+    public void setLinks(PlatformLinks links) {
+        this.links = links;
+    }
+
+    public List<FavoriteGames> getFavoriteGames() {
+        return favoriteGames;
+    }
+
+    public void setFavoriteGames(List<FavoriteGames> favoriteGames) {
+        this.favoriteGames = favoriteGames;
+    }
+
+    public List<Posts> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Posts> posts) {
+        this.posts = posts;
+    }
+
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
 }
