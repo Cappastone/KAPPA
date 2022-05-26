@@ -30,6 +30,9 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private UserDetails userDetails;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Posts> posts;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "user_followers",
