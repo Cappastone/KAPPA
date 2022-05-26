@@ -12,20 +12,80 @@ public class Posts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(columnDefinition = "boolean int 1")
     private String body;
+
+    @Column()
+    private int likes;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "post_genre",
-            joinColumns = {@JoinColumn(name = "post_id")},
-            inverseJoinColumns = {@JoinColumn(name = "genre_id")}
-    )
-    private List<Genres> genres = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostImages> postImages = new ArrayList<>();
+
+    public Posts() {}
+
+    public Posts(String title, String body, User user, List<PostImages> postImages) {
+        this.title = title;
+        this.body = body;
+        this.user = user;
+        this.postImages = postImages;
+    }
+
+    public Posts(String title, String body, List<PostImages> postImages) {
+        this.title = title;
+        this.body = body;
+        this.postImages = postImages;
+    }
+
+    public Posts(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<PostImages> getPostImages() {
+        return postImages;
+    }
+
+    public void setPostImages(List<PostImages> postImages) {
+        this.postImages = postImages;
+    }
 
 }

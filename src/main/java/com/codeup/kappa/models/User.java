@@ -21,17 +21,50 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isBlocked;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isAdmin;
 
+    @Column(length = 50)
+    private String firstName;
+
+    @Column(length = 50)
+    private String lastName;
+
+    @Column(length = 1000)
+    private String profilePicture;
+
+    @Column(columnDefinition = "TEXT")
+    private String bio;
+
     @OneToOne(cascade = CascadeType.ALL)
-    private UserDetails userDetails;
+    private PlatformLinks links;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<FavoriteGames> favoriteGames = new ArrayList<>();
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private UserDetails userDetails;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Posts> posts;
+
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    private List<Followers> followers = new ArrayList<>();
+
+//    @ManyToOne
+//    @JoinColumn(name = "follower_id")
+//    private Followers follower;
+
+//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @JoinTable(
+//            name = "user_followers",
+//            joinColumns = {@JoinColumn(name = "user_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "follower_id")}
+//    )
+//    private List<Followers> followers = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -39,7 +72,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "follower_id")}
     )
-    private List<Followers> followers = new ArrayList<>();
+    private List<User> followers = new ArrayList<>();
 
     public User(){}
 
@@ -48,7 +81,6 @@ public class User {
         this.email = email;
         this.password = password;
     }
-
 
     public long getId() {
         return id;
@@ -98,19 +130,4 @@ public class User {
         isAdmin = admin;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
-    }
-
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
-    }
-
-    public List<Followers> getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(List<Followers> followers) {
-        this.followers = followers;
-    }
 }
