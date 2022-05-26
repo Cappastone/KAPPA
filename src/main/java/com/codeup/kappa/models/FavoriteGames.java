@@ -3,7 +3,7 @@ package com.codeup.kappa.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "favorite_game")
+@Table(name = "favorite_games")
 public class FavoriteGames {
 
     @Id
@@ -14,15 +14,15 @@ public class FavoriteGames {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "user_details")
-    private UserDetails userDetails;
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public FavoriteGames(){}
 
     public FavoriteGames(long id, String title) {
         this.id = id;
         this.title = title;
     }
-
-    public FavoriteGames(){}
 
     public FavoriteGames(String title) {
         this.title = title;
@@ -42,13 +42,5 @@ public class FavoriteGames {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public UserDetails getUserDetails() {
-        return userDetails;
-    }
-
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
     }
 }
