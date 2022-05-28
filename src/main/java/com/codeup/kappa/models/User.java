@@ -10,7 +10,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false, length = 50)
@@ -187,5 +187,13 @@ public class User {
 
     public void setFollowers(List<User> followers) {
         this.followers = followers;
+    }
+
+    public Set<LikesAndComments> getLikesAndComments() {
+        return likesAndComments;
+    }
+
+    public void setLikesAndComments(Set<LikesAndComments> likesAndComments) {
+        this.likesAndComments = likesAndComments;
     }
 }

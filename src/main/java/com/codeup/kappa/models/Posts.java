@@ -92,4 +92,12 @@ public class Posts {
     public void setPostImages(List<PostImages> postImages) {
         this.postImages = postImages;
     }
+
+    public Set<LikesAndComments> getLikesAndComments() {
+        return likesAndComments;
+    }
+
+    public void setLikesAndComments(Set<LikesAndComments> likesAndComments) {
+        this.likesAndComments = likesAndComments;
+    }
 }
