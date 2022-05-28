@@ -9,7 +9,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false, length = 50)
@@ -45,26 +45,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<FavoriteGames> favoriteGames = new ArrayList<>();
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private UserDetails userDetails;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Posts> posts;
-
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Followers> followers = new ArrayList<>();
-
-//    @ManyToOne
-//    @JoinColumn(name = "follower_id")
-//    private Followers follower;
-
-//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinTable(
-//            name = "user_followers",
-//            joinColumns = {@JoinColumn(name = "user_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "follower_id")}
-//    )
-//    private List<Followers> followers = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -74,7 +56,7 @@ public class User {
     )
     private List<User> followers = new ArrayList<>();
 
-    public User(){}
+    public User() {}
 
     public User(String username, String email, String password) {
         this.username = username;
