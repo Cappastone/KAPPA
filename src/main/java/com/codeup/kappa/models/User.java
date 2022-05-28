@@ -3,6 +3,7 @@ package com.codeup.kappa.models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -55,6 +56,18 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "follower_id")}
     )
     private List<User> followers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    Set<LikesAndComments> likesAndComments;
+
+    // this is if we just want to track likes and not comments =>
+//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @JoinTable(
+//            name = "liked_posts",
+//            joinColumns = {@JoinColumn(name = "user_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "post_id")}
+//    )
+//    private List<Posts> likedPosts = new ArrayList<>();
 
     public User(){}
 
