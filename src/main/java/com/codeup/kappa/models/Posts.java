@@ -15,7 +15,7 @@ public class Posts {
     @Column(nullable = false)
     private String title;
 
-    @Column(columnDefinition = "boolean int 1")
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     @Column()
