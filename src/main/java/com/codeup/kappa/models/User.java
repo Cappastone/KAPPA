@@ -44,10 +44,18 @@ public class User {
     private PlatformLinks links;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<FavoriteGames> favoriteGames = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Posts> posts;
+
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    private List<FavoriteGames> favoriteGames = new ArrayList<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "games_users",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "game_id")}
+    )
+    private List<FavoriteGames> favoriteGames = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(

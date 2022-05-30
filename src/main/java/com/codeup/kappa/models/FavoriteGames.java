@@ -1,6 +1,7 @@
 package com.codeup.kappa.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "favorite_games")
@@ -13,9 +14,12 @@ public class FavoriteGames {
     @Column(nullable = false)
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
+
+    @ManyToMany(mappedBy="favoriteGames")
+    private List<User> users;
 
     public FavoriteGames(){}
 
@@ -44,12 +48,5 @@ public class FavoriteGames {
         this.title = title;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 }
