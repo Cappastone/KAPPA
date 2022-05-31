@@ -27,11 +27,11 @@ public class Posts {
     private List<PostImages> postImages = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
-    Set<LikesAndComments> likesAndComments;
+    Set<Comments> comments;
 
-//    this is if we just want to track likes and not comments =>
-//    @ManyToMany(mappedBy="likedPosts")
-//    private List<User> usersThatLiked;
+//    this is if we just want to track likes =>
+    @ManyToMany(mappedBy="likedPosts")
+    private List<User> usersThatLiked;
 
     public Posts() {}
 
@@ -93,11 +93,4 @@ public class Posts {
         this.postImages = postImages;
     }
 
-    public Set<LikesAndComments> getLikesAndComments() {
-        return likesAndComments;
-    }
-
-    public void setLikesAndComments(Set<LikesAndComments> likesAndComments) {
-        this.likesAndComments = likesAndComments;
-    }
 }

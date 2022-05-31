@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 //this class is needed to add the comment row to the join table =>
 @Embeddable
-public class LikesAndCommentsKey implements Serializable {
+public class CommentsKey implements Serializable {
 
     @Column(name = "user_id")
     long userId;
@@ -14,9 +14,9 @@ public class LikesAndCommentsKey implements Serializable {
     @Column(name = "post_id")
     long postId;
 
-    public LikesAndCommentsKey(){}
+    public CommentsKey(){}
 
-    public LikesAndCommentsKey(long userId, long postId) {
+    public CommentsKey(long userId, long postId) {
         this.userId = userId;
         this.postId = postId;
     }

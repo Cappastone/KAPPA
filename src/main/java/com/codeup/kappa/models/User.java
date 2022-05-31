@@ -66,16 +66,16 @@ public class User {
     private List<User> followers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    Set<LikesAndComments> likesAndComments;
+    Set<Comments> likesAndComments;
 
-    // this is if we just want to track likes and not comments =>
-//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinTable(
-//            name = "liked_posts",
-//            joinColumns = {@JoinColumn(name = "user_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "post_id")}
-//    )
-//    private List<Posts> likedPosts = new ArrayList<>();
+    // this is if we just want to track likes =>
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "liked_posts",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "post_id")}
+    )
+    private List<Posts> likedPosts = new ArrayList<>();
 
     public User(){}
 
@@ -195,13 +195,5 @@ public class User {
 
     public void setFollowers(List<User> followers) {
         this.followers = followers;
-    }
-
-    public Set<LikesAndComments> getLikesAndComments() {
-        return likesAndComments;
-    }
-
-    public void setLikesAndComments(Set<LikesAndComments> likesAndComments) {
-        this.likesAndComments = likesAndComments;
     }
 }
