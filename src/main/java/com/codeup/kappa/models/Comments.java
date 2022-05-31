@@ -9,8 +9,12 @@ import java.util.Date;
 @Table(name = "Comments")
 public class Comments {
 
-    @EmbeddedId
-    CommentsKey id;
+//    @EmbeddedId
+//    CommentsKey id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
 
     @Column(columnDefinition = "TEXT")
     private String comment;
@@ -19,14 +23,14 @@ public class Comments {
     private Date timestamp;
 
     @ManyToOne
-    @MapsId("userId")
+//    @MapsId("userId")
     @JoinColumn(name = "user_id")
-    User user;
+    private User user;
 
     @ManyToOne
-    @MapsId("postId")
+//    @MapsId("postId")
     @JoinColumn(name = "post_id")
-    Posts post;
+    private Posts post;
 
     public Comments(){}
 

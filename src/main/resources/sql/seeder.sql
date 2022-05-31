@@ -20,22 +20,30 @@ VALUES (1, 2),
        (1, 3),
        (3, 2);
 
-INSERT INTO favorite_games(title)
-VALUES ('Halo'),
-       ('Call of Duty'),
-       ('Minecraft'),
-       ('Fortnite'),
-       ('Super Smash Bros'),
-       ('Apex Legends');
+# INSERT INTO favorite_games(api_id, title, user_id)
+# VALUES (123, 'Halo', 1),
+#        (124, 'Call of Duty', 1),
+#        (125, 'Minecraft', 1),
+#        (126, 'Fortnite', 1),
+#        (127, 'Super Smash Bros', 1),
+#        (128, 'Apex Legends', 1);
+#
+# INSERT INTO favorite_games(title)
+# VALUES ('Halo'),
+#        ('Call of Duty'),
+#        ('Minecraft'),
+#        ('Fortnite'),
+#        ('Super Smash Bros'),
+#        ('Apex Legends');
 
-INSERT INTO games_users(user_id, game_id)
-VALUES (1, 1),
-       (1, 2),
-       (1, 3),
-       (1, 6),
-       (2, 3),
-       (2, 5),
-       (3, 6);
+# INSERT INTO games_users(user_id, game_id)
+# VALUES (1, 1),
+#        (1, 2),
+#        (1, 3),
+#        (1, 6),
+#        (2, 3),
+#        (2, 5),
+#        (3, 6);
 
 INSERT INTO posts(body, title, user_id)
 VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games! Check out these screenshots and clips.', 'Apex Predator', 1),

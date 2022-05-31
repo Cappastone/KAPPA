@@ -65,8 +65,8 @@ public class User {
     )
     private List<User> followers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    Set<Comments> likesAndComments;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Comments> comments = new ArrayList<>();
 
     // this is if we just want to track likes =>
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
