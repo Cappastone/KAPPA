@@ -49,12 +49,12 @@ VALUES ('Apex Clip', 'filler url for video clip', 1),
        ('Apex Screenshot 2', 'filler url for screen shot', 1),
        ('Minecraft Secret', 'filler url for screenshot', 3);
 
-INSERT INTO likes_and_comments (post_id, user_id, comment, is_liked)
-VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?', true),
-       (1, 3, 'I can do that in my sleep...', false),
-       (2, 2, 'I really like Yoshi', false),
-       (2, 3, 'Link', false),
-       (3, 2, 'Super cool', true),
-       (3, 3, 'Old news', false),
-       (3, 1, 'I can show you some tips and tricks. Feel free to add me on any platform!', false),
-       (4, 3, 'Git gud', false);
+INSERT INTO comments (post_id, user_id, comment)
+VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?'),
+       (1, 3, 'I can do that in my sleep...'),
+       (2, 2, 'I really like Yoshi'),
+       (2, 3, 'Link'),
+       (3, 2, 'Super cool'),
+       (3, 3, 'Old news'),
+       (3, 1, 'I can show you some tips and tricks. Feel free to add me on any platform!'),
+       (4, 3, 'Git gud');

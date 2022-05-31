@@ -11,6 +11,9 @@ public class FavoriteGames {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column
+    private long apiId;
+
     @Column(nullable = false)
     private String title;
 
