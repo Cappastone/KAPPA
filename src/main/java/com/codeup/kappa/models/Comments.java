@@ -1,6 +1,7 @@
 package com.codeup.kappa.models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 //this class/entity is needed to add the comment row to the join table =>
@@ -13,6 +14,9 @@ public class Comments {
 
     @Column(columnDefinition = "TEXT")
     private String comment;
+
+    @Column
+    private Date timestamp;
 
     @ManyToOne
     @MapsId("userId")
