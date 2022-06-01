@@ -55,7 +55,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "game_id")}
     )
-    private List<FavoriteGames> favoriteGames = new ArrayList<>();
+    private List<Games> favoriteGames = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -65,8 +65,8 @@ public class User {
     )
     private List<User> followers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    Set<Comments> likesAndComments;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Comments> postComments = new ArrayList<>();
 
     // this is if we just want to track likes =>
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -171,14 +171,6 @@ public class User {
 
     public void setLinks(PlatformLinks links) {
         this.links = links;
-    }
-
-    public List<FavoriteGames> getFavoriteGames() {
-        return favoriteGames;
-    }
-
-    public void setFavoriteGames(List<FavoriteGames> favoriteGames) {
-        this.favoriteGames = favoriteGames;
     }
 
     public List<Posts> getPosts() {
