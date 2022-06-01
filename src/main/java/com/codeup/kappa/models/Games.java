@@ -13,27 +13,36 @@ public class Games {
     @Column
     private long GamesApiId;
 
-    @Column
+    @Column(length = 50)
     private String title;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String body;
 
-    @Column
-    private String image;
+    @Column(columnDefinition = "TEXT")
+    private String imageUrl;
 
     @Column
     private String platforms;
+
+    @Column
+    private String ageRating;
+
+    @Column
+    private String genre;
+
+    @Column
+    private String developer;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "favoriteGames")
     private List<User> users;
 
     public Games(){}
 
-    public Games(String title, String body, String image, String platforms) {
+    public Games(String title, String body, String imageUrl, String platforms) {
         this.title = title;
         this.body = body;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.platforms = platforms;
     }
 
@@ -78,11 +87,11 @@ public class Games {
     }
 
     public String getImage() {
-        return image;
+        return imageUrl;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.imageUrl = image;
     }
 
 }

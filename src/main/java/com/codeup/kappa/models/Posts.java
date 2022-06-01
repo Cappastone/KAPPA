@@ -26,8 +26,11 @@ public class Posts {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<PostImages> postImages = new ArrayList<>();
 
+//    @OneToMany(mappedBy = "post")
+//    Set<Comments> comments;
+
     @OneToMany(mappedBy = "post")
-    Set<Comments> comments;
+   private List<Comments> comments;
 
 //    this is if we just want to track likes =>
     @ManyToMany(mappedBy="likedPosts")
