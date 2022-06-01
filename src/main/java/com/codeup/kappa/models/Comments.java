@@ -6,7 +6,7 @@ import java.util.Date;
 
 //this class/entity is needed to add the comment row to the join table =>
 @Entity
-@Table(name = "Comments")
+@Table(name = "post_comments")
 public class Comments {
 
 //    @EmbeddedId

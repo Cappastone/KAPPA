@@ -35,7 +35,7 @@ public class User {
     private String lastName;
 
     @Column(length = 1000)
-    private String profilePicture;
+    private String profilePictureUrl;
 
     @Column(columnDefinition = "TEXT")
     private String bio;
@@ -51,11 +51,13 @@ public class User {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "games_users",
+            name = "user_games",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "game_id")}
     )
     private List<Games> favoriteGames = new ArrayList<>();
+
+
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -65,17 +67,23 @@ public class User {
     )
     private List<User> followers = new ArrayList<>();
 
+
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Comments> postComments = new ArrayList<>();
+
+
 
     // this is if we just want to track likes =>
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "liked_posts",
+            name = "post_likes",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "post_id")}
     )
     private List<Posts> likedPosts = new ArrayList<>();
+
+
 
     public User(){}
 
@@ -149,12 +157,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
     }
 
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
+    public void setProfilePictureUrl(String profilePicture) {
+        this.profilePictureUrl = profilePicture;
     }
 
     public String getBio() {

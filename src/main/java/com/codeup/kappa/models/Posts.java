@@ -2,6 +2,7 @@ package com.codeup.kappa.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -13,11 +14,12 @@ public class Posts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
-    private String title;
 
     @Column(columnDefinition = "TEXT")
     private String body;
+
+    @Column
+    private Date timestamp;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -38,22 +40,14 @@ public class Posts {
 
     public Posts() {}
 
-    public Posts(String title, String body, User user, List<PostImages> postImages) {
-        this.title = title;
+    public Posts(long id, String body, Date timestamp, User user, List<PostImages> postImages, List<Comments> comments, List<User> usersThatLiked) {
+        this.id = id;
         this.body = body;
+        this.timestamp = timestamp;
         this.user = user;
         this.postImages = postImages;
-    }
-
-    public Posts(String title, String body, List<PostImages> postImages) {
-        this.title = title;
-        this.body = body;
-        this.postImages = postImages;
-    }
-
-    public Posts(String title, String body) {
-        this.title = title;
-        this.body = body;
+        this.comments = comments;
+        this.usersThatLiked = usersThatLiked;
     }
 
     public long getId() {
@@ -62,14 +56,6 @@ public class Posts {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getBody() {
