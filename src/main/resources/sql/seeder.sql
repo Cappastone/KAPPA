@@ -66,3 +66,11 @@ VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?'),
        (3, 3, 'Old news'),
        (3, 1, 'I can show you some tips and tricks. Feel free to add me on any platform!'),
        (4, 3, 'Git gud');
+
+INSERT INTO games(games_api_id, age_rating, description, developer, genre, image_url, platforms, title)
+VALUES (1, 'E', 'Jump into the free-to-play team-based shooter with an ever-expanding roster of historical vehicles, stunning graphics, spectacular locales, and orchestral scores. Show your mastery and face other players in thrilling PvP clashes. A unique mix of strategy and action awaits!', 'Wargaming Group Limited', 'Action', 'https://cdn.akamai.steamstatic.com/steamcommunity/public/images/clans/39263509/bf9b969ec4acf760a0134bd0f5821bef482a7541.jpg', 'PlayStation 4, Android, Xbox One, Microsoft Windows, Nintendo Switch, macOS, PlayStation 5, iOS, Xbox 360', 'World Of Tanks'),
+       (2, 'T', 'War Thunder is the most comprehensive free-to-play, cross-platform, MMO military game dedicated to aviation, armoured vehicles, and naval craft, from the early 20th century to the most advanced modern combat units. Join now and take part in major battles on land, in the air, and at sea.', 'Gaijin Entertainment', 'Action', 'https://static-cdn.jtvnw.net/ttv-boxart/War%20Thunder.jpg', 'Windows, Linux, Mac, PlayStation®4, PlayStation®5, Xbox One and Xbox Series X|S', 'War Thunder'),
+       (3, 'T', 'A brutal exploration and survival game for 1-10 players, set in a procedurally-generated purgatory inspired by viking culture. Battle, build, and conquer your way to a saga worthy of Odin’s patronage!', '
+Iron Gate AB', 'Adventure', 'https://assets-prd.ignimgs.com/2022/01/14/valheim-sq-1642187529813.jpg', 'Windows, Linux', 'Valheim'),
+       (4, 'T', 'A 5v5 character based competitive shooter from Riot Games. Available worldwide. Master dozens of different weapons and abilties and show your skill. Esports. New Maps. Competitive FPS.', 'Riot Games', 'Shooter', 'https://cdn.pocket-lint.com/r/s/970x/assets/images/152432-games-feature-what-is-valorant-a-guide-to-the-free-to-play-fps-with-tips-on-how-to-win-image3-muha6tfgev-jpg.webp', 'Windows, Linux', 'Valorant'),
+       (5, 'E', )

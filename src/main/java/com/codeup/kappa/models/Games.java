@@ -23,13 +23,13 @@ public class Games {
     private String imageUrl;
 
     @Column
-    private String platforms;
+    private String platforms; //long string of genres seperated by commas.
 
     @Column
     private String ageRating;
 
     @Column(length = 500)
-    private String genre;
+    private String genre; //long string of genres seperated by commas.
 
     @Column
     private String developer;
