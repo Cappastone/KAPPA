@@ -3,7 +3,6 @@ package com.codeup.kappa.models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -41,10 +40,10 @@ public class User {
     private String bio;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private PlatformLinks links;
+    private PlatformLink links;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Posts> posts;
+    private List<Post> posts;
 
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 //    private List<FavoriteGames> favoriteGames = new ArrayList<>();
@@ -55,7 +54,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "game_id")}
     )
-    private List<Games> favoriteGames = new ArrayList<>();
+    private List<Game> favoriteGames = new ArrayList<>();
 
 
 
@@ -70,7 +69,7 @@ public class User {
 
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Comments> postComments = new ArrayList<>();
+    private List<Comment> postComments = new ArrayList<>();
 
 
 
@@ -81,7 +80,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "post_id")}
     )
-    private List<Posts> likedPosts = new ArrayList<>();
+    private List<Post> likedPosts = new ArrayList<>();
 
 
 
@@ -173,19 +172,19 @@ public class User {
         this.bio = bio;
     }
 
-    public PlatformLinks getLinks() {
+    public PlatformLink getLinks() {
         return links;
     }
 
-    public void setLinks(PlatformLinks links) {
+    public void setLinks(PlatformLink links) {
         this.links = links;
     }
 
-    public List<Posts> getPosts() {
+    public List<Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<Posts> posts) {
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
 

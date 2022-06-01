@@ -4,11 +4,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "posts")
-public class Posts {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,21 +25,21 @@ public class Posts {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<PostImages> postImages = new ArrayList<>();
+    private List<PostImage> postImages = new ArrayList<>();
 
 //    @OneToMany(mappedBy = "post")
 //    Set<Comments> comments;
 
     @OneToMany(mappedBy = "post")
-   private List<Comments> comments;
+   private List<Comment> comments;
 
 //    this is if we just want to track likes =>
     @ManyToMany(mappedBy="likedPosts")
     private List<User> usersThatLiked;
 
-    public Posts() {}
+    public Post() {}
 
-    public Posts(long id, String body, Date timestamp, User user, List<PostImages> postImages, List<Comments> comments, List<User> usersThatLiked) {
+    public Post(long id, String body, Date timestamp, User user, List<PostImage> postImages, List<Comment> comments, List<User> usersThatLiked) {
         this.id = id;
         this.body = body;
         this.timestamp = timestamp;
@@ -74,11 +73,11 @@ public class Posts {
         this.user = user;
     }
 
-    public List<PostImages> getPostImages() {
+    public List<PostImage> getPostImages() {
         return postImages;
     }
 
-    public void setPostImages(List<PostImages> postImages) {
+    public void setPostImages(List<PostImage> postImages) {
         this.postImages = postImages;
     }
 
