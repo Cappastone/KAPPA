@@ -25,8 +25,8 @@ public class Games {
     @Column
     private String platforms;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "favoriteGame")
-    private List<FavoriteGames> games;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "favoriteGames")
+    private List<User> users;
 
     public Games(){}
 
@@ -85,11 +85,4 @@ public class Games {
         this.image = image;
     }
 
-    public List<FavoriteGames> getGames() {
-        return games;
-    }
-
-    public void setGames(List<FavoriteGames> games) {
-        this.games = games;
-    }
 }
