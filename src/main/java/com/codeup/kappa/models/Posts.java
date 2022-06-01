@@ -2,6 +2,7 @@ package com.codeup.kappa.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +19,9 @@ public class Posts {
 
     @Column(columnDefinition = "TEXT")
     private String body;
+
+    @Column
+    private Date timestamp;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
