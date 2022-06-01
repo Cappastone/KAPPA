@@ -13,7 +13,7 @@ public class Games {
     @Column
     private long GamesApiId;
 
-    @Column(length = 50)
+    @Column(length = 100)
     private String title;
 
     @Column(columnDefinition = "TEXT")
