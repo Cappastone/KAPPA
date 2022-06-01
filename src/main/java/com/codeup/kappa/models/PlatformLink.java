@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "platform_links")
-public class PlatformLinks {
+public class PlatformLink {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class PlatformLinks {
     @Column
     private String youtube;
 
-    public PlatformLinks() {}
+    public PlatformLink() {}
 
     public long getId() {
         return id;

@@ -7,7 +7,7 @@ import java.util.Date;
 //this class/entity is needed to add the comment row to the join table =>
 @Entity
 @Table(name = "post_comments")
-public class Comments {
+public class Comment {
 
 //    @EmbeddedId
 //    CommentsKey id;
@@ -30,9 +30,9 @@ public class Comments {
     @ManyToOne
 //    @MapsId("postId")
     @JoinColumn(name = "post_id")
-    private Posts post;
+    private Post post;
 
-    public Comments(){}
+    public Comment(){}
 
     public String getComment() {
         return comment;
@@ -50,11 +50,11 @@ public class Comments {
         this.user = user;
     }
 
-    public Posts getPost() {
+    public Post getPost() {
         return post;
     }
 
-    public void setPost(Posts post) {
+    public void setPost(Post post) {
         this.post = post;
     }
 

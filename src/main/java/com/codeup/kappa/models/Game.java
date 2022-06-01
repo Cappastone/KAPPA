@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Games {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,10 +37,10 @@ public class Games {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "favoriteGames")
     private List<User> users;
 
-    public Games() {
+    public Game() {
     }
 
-    public Games(String title, String description, String imageUrl, String platforms) {
+    public Game(String title, String description, String imageUrl, String platforms) {
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
