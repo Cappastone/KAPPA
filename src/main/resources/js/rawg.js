@@ -58,6 +58,13 @@ const mapElementToDiv = (game) => `<div>
                 <div><img src="${game.BackgroundImageUrl}"></div>
             </div>`;
 
+const mapElementToForm = (game) => `<form method="post" action="/games">
+                <input type="hidden" name="title" value="${game.Name}">
+                <input type="hidden" name="description" value="${game.Description}">
+                <input type="hidden" name="background-url" value="${game.BackgroundImageUrl}">
+                <button></button>
+            </form>`;
+
 
 
 
