@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head th:fragment="head (title)">
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
@@ -8,6 +10,16 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
+
+
+<div th:fragment="scripts">
+    <script src="/js/keys.js"></script>
+    <script src="/js/rawg.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</div>
+
+
 <!--NAVBAR-->
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -176,9 +188,11 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <script src="/js/main.js"></script>
+    <script src="/static/js/main.js"></script>
 
 </footer>
+
+
 <!--FOOTER-->
 </body>
 </html>
