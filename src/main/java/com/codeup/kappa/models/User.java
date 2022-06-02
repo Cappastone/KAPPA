@@ -3,7 +3,6 @@ package com.codeup.kappa.models;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -55,7 +54,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "game_id")}
     )
-    private List<Games> favoriteGames = new ArrayList<>();
+    private List<Game> favoriteGames = new ArrayList<>();
 
 
 
