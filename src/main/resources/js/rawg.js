@@ -52,12 +52,13 @@ function stringSearch(GameString) {
 }
 
 
-const mapElementToDiv = (game) => `<div ${game.id}>
-                <div>Title: ${game.name}</div>
-                <div>Title: ${game.description}</div>
+const mapElementToDiv = (game) => `<div>
+                <div>${game.Name}</div>
+                <div>${game.Description}</div>
+                <div><img src="${game.BackgroundImageUrl}"></div>
             </div>`;
 
-// <div><img src="${game.background_image}"></div>
+
 
 
 function searcher(GameID) {
@@ -74,19 +75,20 @@ function searcher(GameID) {
     };
     $.ajax(search).done(function (data) {
         console.log(data);
-        const games = {
+        const games = [
+            {
             Name: data.name,
             Description: data.description,
-            // BackgroundImageUrl: data.background_image
-        };
+            BackgroundImageUrl: data.background_image
+            }
+        ];
 
-        const gameJ = JSON.stringify(games)
 
-        console.log(gameJ)
-
-        gameJ.map(mapElementToDiv);
-        $('#testing').html(games);
+        const test = games.map(mapElementToDiv);
+        $('#testing').html(test);
 
     });
 
 }
+
+
