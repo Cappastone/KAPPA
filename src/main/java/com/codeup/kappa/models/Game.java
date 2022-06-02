@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Games {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,13 +23,19 @@ public class Games {
     private String imageUrl;
 
     @Column
-    private String platforms;
+
+    private String platforms; //long string of genres seperated by commas.
+
 
     @Column
     private String ageRating;
 
     @Column(length = 500)
-    private String genre;
+
+    private String genre; //long string of genres seperated by commas.
+
+
+
 
     @Column
     private String developer;
@@ -37,15 +43,18 @@ public class Games {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "favoriteGames")
     private List<User> users;
 
-    public Games() {
+    public Game() {
     }
 
-    public Games(String title, String description, String imageUrl, String platforms) {
+    public Game(String title, String description, String imageUrl, String platforms) {
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
         this.platforms = platforms;
     }
+
+
+
 
 
 
