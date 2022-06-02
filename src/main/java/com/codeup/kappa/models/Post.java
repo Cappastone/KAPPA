@@ -49,7 +49,7 @@ public class Post {
         this.usersThatLiked = usersThatLiked;
     }
 
-    public Posts(String body, String date, User user) {
+    public Post(String body, String date, User user) {
         this.body = body;
         this.date = date;
         this.user = user;
