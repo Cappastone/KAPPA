@@ -7,7 +7,7 @@ const settings = {
     "url": "https://rawg-video-games-database.p.rapidapi.com/games?key="+ token,
     "method": "GET",
     "headers": {
-        "x-rapidapi-key": "e6ef05302emsh9c46dd59d7ac5d1p13a2d8jsneb37aae7d452",
+        "x-rapidapi-key": RAPID_API_TOKEN,
         "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
     }
 };
@@ -24,7 +24,7 @@ $.ajax(settings).done(function (response) {
 //         "url": "https://rawg-video-games-database.p.rapidapi.com/games/" + GameID + "?key=" + token,
 //         "method": "GET",
 //         "headers": {
-//             "x-rapidapi-key": "e6ef05302emsh9c46dd59d7ac5d1p13a2d8jsneb37aae7d452",
+//             "x-rapidapi-key": RAPID_API_TOKEN,
 //             "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
 //         }
 //     };
@@ -42,7 +42,7 @@ function stringSearch(GameString) {
         "url": "https://rawg-video-games-database.p.rapidapi.com/games?key=" + token + "&search="+ GameString,
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "e6ef05302emsh9c46dd59d7ac5d1p13a2d8jsneb37aae7d452",
+            "x-rapidapi-key": RAPID_API_TOKEN,
             "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
         }
     };
@@ -69,7 +69,7 @@ function searcher(GameID) {
         "url": "https://rawg-video-games-database.p.rapidapi.com/games/" + GameID + "?key=" + token,
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "e6ef05302emsh9c46dd59d7ac5d1p13a2d8jsneb37aae7d452",
+            "x-rapidapi-key": RAPID_API_TOKEN,
             "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
         }
     };
