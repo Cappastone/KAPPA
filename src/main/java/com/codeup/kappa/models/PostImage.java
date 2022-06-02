@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "post_images")
-public class PostImages {
+public class PostImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -17,11 +17,11 @@ public class PostImages {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-    private Posts post;
+    private Post post;
 
-    public PostImages(){}
+    public PostImage(){}
 
-    public PostImages(String title, String url, Posts post) {
+    public PostImage(String title, String url, Post post) {
         this.title = title;
         this.url = url;
         this.post = post;
@@ -51,11 +51,11 @@ public class PostImages {
         this.url = url;
     }
 
-    public Posts getPost() {
+    public Post getPost() {
         return post;
     }
 
-    public void setPost(Posts post) {
+    public void setPost(Post post) {
         this.post = post;
     }
 
