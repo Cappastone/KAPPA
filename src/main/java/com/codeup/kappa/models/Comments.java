@@ -20,7 +20,7 @@ public class Comments {
     private String comment;
 
     @Column
-    private Date timestamp;
+    private String date;
 
     @ManyToOne
 //    @MapsId("userId")

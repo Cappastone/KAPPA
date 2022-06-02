@@ -19,7 +19,7 @@ public class Posts {
     private String body;
 
     @Column
-    private Date timestamp;
+    private String date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -43,11 +43,17 @@ public class Posts {
     public Posts(long id, String body, Date timestamp, User user, List<PostImages> postImages, List<Comments> comments, List<User> usersThatLiked) {
         this.id = id;
         this.body = body;
-        this.timestamp = timestamp;
+        this.date = date;
         this.user = user;
         this.postImages = postImages;
         this.comments = comments;
         this.usersThatLiked = usersThatLiked;
+    }
+
+    public Posts(String body, String date, User user) {
+        this.body = body;
+        this.date = date;
+        this.user = user;
     }
 
     public long getId() {
