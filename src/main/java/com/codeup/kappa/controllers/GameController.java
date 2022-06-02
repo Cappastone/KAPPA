@@ -27,7 +27,7 @@ public class GameController {
 
     @PostMapping
     public String SaveGames(
-            @RequestParam(name = "game-id") long id,
+            @RequestParam(name = "game-id") String id,
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String description,
             @RequestParam(name = "background-url") String backgroundUrl,
@@ -36,7 +36,9 @@ public class GameController {
             @RequestParam(name = "platforms") String platforms,
             @RequestParam(name = "genres") String genres) {
 
-        Game game = new Game(id, title, description, backgroundUrl, platforms, rating, genres, developer);
+        long parsedId = Long.parseLong(id);
+
+        Game game = new Game(parsedId, title, description, backgroundUrl, platforms, rating, genres, developer);
         GameDao.save(game);
         return "games/rawg";
     }
