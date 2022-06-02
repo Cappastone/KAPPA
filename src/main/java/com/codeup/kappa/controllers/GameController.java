@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class GameController {
 
     private final GameRepository GameDao;
-
     public GameController(GameRepository GameDao) {
         this.GameDao = GameDao;
     }
@@ -40,7 +39,5 @@ public class GameController {
         GameDao.save(game);
         return "games/rawg";
     }
-
-
 
 }

@@ -5,28 +5,32 @@ CREATE DATABASE IF NOT EXISTS gamer_haven_db;
 # run this code AFTER =>
 USE gamer_haven_db;
 
-INSERT INTO platform_links(discord, nintendo, playstation, twitch, xbox, youtube)
+INSERT INTO platform_links (discord, nintendo, playstation, twitch, xbox, youtube)
 VALUES ('Gamer#1337', 'Gamer', 'Gamer-Man', 'GamerTTV', 'Gamer Man', 'Gamer-YT'),
        ('Noob#4269', 'Nooby', 'Nooby-Doo', 'Noobydoo42', 'Nooby Doo', 'Noobydoooo'),
-       ('Random#0987', 'Rando', 'Random-1', 'random123', 'Rando Calrissian', 'Random1-YT');
+       ('Random#0987', 'Rando', 'Random-1', 'random123', 'Rando Calrissian', 'Random1-YT'),
+       ('Bigboss#1257', 'Boss', 'Big-Boss10', 'bigboss10', 'Big Boss10', 'BigBossman');
 
 INSERT INTO users (bio, email, first_name, last_name, password, profile_picture_url, username, links_id)
 VALUES ('I am a gamer who loves to game. Catch me on all major platforms pwning n00bs.', 'gamer@email.com', 'Bob', 'Gamerson', 'password', 'https://nypost.com/wp-content/uploads/sites/2/2021/08/gaming-73.jpg?quality=75&strip=all', 'gamer', 1),
        ('I am new to video games and am looking for some cool people to game with!', 'n00b@email.com', 'Joe', 'Scrub', 'password', 'https://metagameguides.com/wp-content/uploads/2022/02/Roblox-noob.png', 'nooby-doo', 2),
-       ('I''m your neighborhood random that you love to hate!', 'random@email.com', 'Randall', 'Blueberry', 'password', 'https://static1.squarespace.com/static/5ac589eb8ab722aa77be2eeb/5b479b056d2a73336ed80ffe/5b50d290562fa7d2dabe2955/1532023444871/random_interactive_share.jpg', 'random', 3);
+       ('I''m your neighborhood random that you love to hate!', 'random@email.com', 'Randall', 'Blueberry', 'password', 'https://static1.squarespace.com/static/5ac589eb8ab722aa77be2eeb/5b479b056d2a73336ed80ffe/5b50d290562fa7d2dabe2955/1532023444871/random_interactive_share.jpg', 'random', 3),
+       ('I am the big Boss man.', 'biggestboss@email.com', 'Solid', 'Snake', 'password', 'https://static.tvtropes.org/pmwiki/pub/images/big_boss_1_877.jpg', 'bigboss', '4');
 
 INSERT INTO user_followers (user_id, follower_id)
 VALUES (1, 2),
        (1, 3),
-       (3, 2);
+       (1, 4),
+       (3, 2),
+       (4, 2);
 
-INSERT INTO posts(body, user_id, date)
+INSERT INTO posts (body, user_id, date)
 VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games! Check out these screenshots and clips.', 1, '2022-01-01'),
        ('I am pretty bad at Super Smash Bros but discovered a new character that I can see becoming my new main. What are your main characters?', 1, '2022-01-21'),
        ('I was watching my little brother play Minecraft today and he accidentally found a super secret item! Check out these screenshots.', 1, '2022-02-15'),
        ('I am new to Fortnite and looking for some cool people who can show me the ropes!', 2, '2022-03-05');
 
-INSERT INTO post_images(title, url, post_id)
+INSERT INTO post_images (title, url, post_id)
 VALUES ('Apex Clip', 'filler url for video clip', 1),
        ('Apex Screenshot', 'filler url for screen shot', 1),
        ('Apex Screenshot 2', 'filler url for screen shot', 1),
@@ -40,17 +44,20 @@ VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?', '2022-01-01'),
        (3, 2, 'Super cool', '2022-02-15'),
        (3, 3, 'Old news', '2022-02-17'),
        (4, 1, 'I can show you some tips and tricks. Feel free to add me on any platform!', '2022-03-05'),
-       (4, 3, 'Git gud', '2022-03-07');
+       (4, 3, 'Git gud', '2022-03-07'),
+       (4, 4, 'Solid!', '2022-03-08');
 
-INSERT INTO post_likes(user_id, post_id)
+INSERT INTO post_likes (user_id, post_id)
 VALUES (1, 3),
        (1, 4),
        (2, 1),
        (2, 2),
        (2, 3),
-       (2, 4);
+       (2, 4),
+       (3, 1),
+       (4, 1);
 
-INSERT INTO games(games_api_id, age_rating, description, developer, genre, image_url, platforms, title)
+INSERT INTO games (games_api_id, age_rating, description, developer, genre, image_url, platforms, title)
 VALUES (3678, 'Teen', 'War Thunder is a free-to-play cross-platform vehicular combat MMO with more than 1000 playable aircraft, helicopters, tanks or ships sprawled over huge maps that feature real-life locations and battles that transpired over the course of 20th century, most notably during WWII.', 'Wargaming Group Limited', 'Action', 'https://media.rawg.io/media/games/d07/d0790809a13027251b6d0f4dc7538c58.jpg', 'PlayStation 4, Android, Xbox One, Microsoft Windows, Nintendo Switch, macOS, PlayStation 5, iOS, Xbox 360', 'War Thunder'),
 
        (722, 'Teen', 'World of Tanks - is a massively multiplayer game that revolves around the mid-20s century war machines. The gameplay is quite simple: the player takes control of one tank and joins others to participate in six basic types of battles. Gamers can choose from military vehicles from 1930-60s, the developers regularly update the fleet of vehicles. All combat units can be customized to your taste.', 'Gaijin Entertainment', 'Action', 'https://media.rawg.io/media/games/c3b/c3be1d5f55cb9324c97ccb7aaaf42ad4.jpg', 'PlayStation 4, Android, Xbox One, Microsoft Windows, Nintendo Switch, macOS, PlayStation 5, iOS, Xbox 360', 'World Of Tanks'),
@@ -60,7 +67,7 @@ VALUES (3678, 'Teen', 'War Thunder is a free-to-play cross-platform vehicular co
        (41571, 'Teen', 'A 5v5 character based competitive shooter from Riot Games. Available worldwide. Master dozens of different weapons and abilties and show your skill. Esports. New Maps. Competitive FPS.', 'Riot Games', 'Shooter', 'https://media.rawg.io/media/screenshots/3e0/3e0afea4771cd21aa3fb16f02e1ca108.jpg', 'Windows, Linux', 'Valorant'),
 
        (356714, 'Everyone', 'Join your crewmates in a multiplayer game of teamwork and betrayal!</p>
-<p>Play online or over local wifi with 4-10 players as you attempt to hold your spaceship together and return back to civilization. But beware...as there may be an alien impostor aboard!', 'innersloth', 'casual', 'https://media.rawg.io/media/games/e74/e74458058b35e01c1ae3feeb39a3f724.jpg', 'Android, iOS, PC, PS5, PS4, Xbox Series X|S, Xbox One, Nintendo Switch', 'Among Us'),
+<p>Play online or over local wifi with 4-10 players as you attempt to hold your spaceship together and return back to civilization. But beware...as there may be an alien impostor aboard!', 'Innersloth', 'casual', 'https://media.rawg.io/media/games/e74/e74458058b35e01c1ae3feeb39a3f724.jpg', 'Android, iOS, PC, PS5, PS4, Xbox Series X|S, Xbox One, Nintendo Switch', 'Among Us'),
 
        (32, 'Teen', 'Destiny 2 is an online multiplayer first-person shooter. You take on the role of a Guardian that needs to protect the last city on Earth from alien invaders. The game follows its predecessor, Destiny. The goal of the game is to return the Light that was stolen from the Guardians by the aliens.', 'Bungie', 'Shooter', 'https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg', 'PlayStation 4, Xbox Series X and Series S, Google Stadia, Xbox One, PlayStation 5, Microsoft Windows', 'Destiny 2'),
 
@@ -89,7 +96,7 @@ Overwatch is a multiplayer first-person shooter from the company that gave playe
 
        (42336, 'Mature', 'Grand Theft Auto Online is a dynamic and persistent open world for 16 players that begins by sharing content and mechanics with Grand Theft Auto V, but continues to expand and evolve with content created by Rockstar and other players. Taking the fundamental concepts of open-world freedom, ambient activity and mission-based gameplay and making them available to multiple players in an incredibly dynamic online world, we offer players the freedom to explore alone or work cooperatively with friends to complete missions. Residents of Los Santos band together to participate in activities and ambient events, or compete in traditional game modes with the entire community, all with the personality and refined mechanics of Grand Theft Auto V.', 'Rockstar', 'Action', 'https://media.rawg.io/media/games/bbd/bbd7af2d6dab31e0b3bbfb5f63575ab8.jpg', 'PlayStation 4, Xbox One, Xbox Series X and Series S, PlayStation 5, PlayStation 3, Microsoft Windows, Xbox 360', 'Grand Theft Auto Online');
 
-INSERT INTO user_games(user_id, game_id)
+INSERT INTO user_games (user_id, game_id)
 VALUES (1, 10),
        (1, 18),
        (1, 11),
