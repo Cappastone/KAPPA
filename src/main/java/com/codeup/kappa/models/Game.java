@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "games")
 public class Game {
 
     @Id
@@ -46,6 +47,17 @@ public class Game {
     public Game() {
     }
 
+    public Game(long gamesApiId, String title, String description, String imageUrl, String platforms, String ageRating, String genre, String developer) {
+        GamesApiId = gamesApiId;
+        this.title = title;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.platforms = platforms;
+        this.ageRating = ageRating;
+        this.genre = genre;
+        this.developer = developer;
+    }
+
     public Game(String title, String description, String imageUrl, String platforms) {
         this.title = title;
         this.description = description;
@@ -53,12 +65,90 @@ public class Game {
         this.platforms = platforms;
     }
 
+    public Game(String title, String description, String imageUrl) {
+        this.title = title;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public long getGamesApiId() {
+        return GamesApiId;
+    }
 
+    public void setGamesApiId(long gamesApiId) {
+        GamesApiId = gamesApiId;
+    }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getPlatforms() {
+        return platforms;
+    }
+
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
+    }
+
+    public String getAgeRating() {
+        return ageRating;
+    }
+
+    public void setAgeRating(String ageRating) {
+        this.ageRating = ageRating;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }
 
