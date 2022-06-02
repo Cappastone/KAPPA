@@ -67,7 +67,7 @@ const mapElementToForm = (game) => `<form method="post" action="/games">
                 <input type="hidden" name="title" value="${game.Name}">
                 <input type="hidden" name="description" value="${game.Description}">
                 <input type="hidden" name="background-url" value="${game.BackgroundImageUrl}">
-                <input type="hidden" name="game-id" value="${game.Id}">
+                <input type="hidden" name="game-id" value="${game.id}">
                 <input type="hidden" name="developer" value="${game.Developer}">
                 <input type="hidden" name="platforms" value="${game.Platforms}">
                 <input type="hidden" name="rating" value="${game.Rating}">
@@ -123,11 +123,11 @@ function searcher(GameID) {
         console.log(games)
 
 
-        // const test = games.map(mapElementToDiv);
-        // $('#testing').html(test);
+        const test = games.map(mapElementToDiv);
+        $('#testing').html(test);
 
-        // const save = games.map(mapElementToForm);
-        // $('#save').html(save);
+        const save = games.map(mapElementToForm);
+        $('#save').html(save);
 
     });
 
