@@ -145,10 +145,6 @@ const mapEleToDiv = (results) => `<div>
 
 
 
-
-
-
-
 function stringSearch(GameString) {
     const searchString = {
         "async": true,
@@ -162,15 +158,27 @@ function stringSearch(GameString) {
         }
     };
     $.ajax(searchString).done(function (data) {
-        console.log(data);
-        const gameResults = [
-            {
-            Id: data.results[0].id,
-            Name: data.results[0].name,
-            BackgroundImageUrl: data.results[0].background_image,
-            }
-        ]
-        console.log(gameResults)
+        // console.log(data);
+        for (var i = 0; i < 10; i++) {
+            const gameResults = [
+                {
+                    Id: data.results[i].id,
+                    Name: data.results[i].name,
+                    BackgroundImageUrl: data.results[i].background_image,
+                }
+            ]
+            console.log(gameResults)
 
+            // for (var i = 0; i < gameResults.length; i++) {
+            //     const test = gameResults[i].map(mapEleToDiv);
+            //     $('#search-results').html(test);
+            // }
+
+
+
+        }
+
+        // const test = gameResults.map(mapElementToDiv);
+        // $('#testing').html(test);
     });
 }
