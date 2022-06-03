@@ -138,9 +138,9 @@ function searcher(GameID) {
 
 
 const mapEleToDiv = (results) => `<div>
-                <div>${results.Id}</div>
-                <div>${results.Name}</div>
-                <div><img src="${results.BackgroundImageUrl}"></div>
+                <div>${results.id}</div>
+                <div>${results.name}</div>
+                <div><img src="${results.background_image}"></div>
             </div>`;
 
 
@@ -158,27 +158,9 @@ function stringSearch(GameString) {
         }
     };
     $.ajax(searchString).done(function (data) {
-        // console.log(data);
-        for (var i = 0; i < 10; i++) {
-            const gameResults = [
-                {
-                    Id: data.results[i].id,
-                    Name: data.results[i].name,
-                    BackgroundImageUrl: data.results[i].background_image,
-                }
-            ]
-            console.log(gameResults)
+        console.log(data);
+            const test = data.results.map(mapEleToDiv);
+            $('#testing').html(test);
 
-            // for (var i = 0; i < gameResults.length; i++) {
-            //     const test = gameResults[i].map(mapEleToDiv);
-            //     $('#search-results').html(test);
-            // }
-
-
-
-        }
-
-        // const test = gameResults.map(mapElementToDiv);
-        // $('#testing').html(test);
     });
 }
