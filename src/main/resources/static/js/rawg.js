@@ -34,22 +34,22 @@
 // }
 
 // this is a search function that shows a result of 20 games based on a string you enter
-function stringSearch(GameString) {
-    const searchString = {
-        "async": true,
-        "crossDomain": true,
-        // the token variable must be imported from keys.js THIS IS IMPORTANT!!
-        "url": "https://rawg-video-games-database.p.rapidapi.com/games?key=" + token + "&search="+ GameString,
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-key": RAPID_API_TOKEN,
-            "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
-        }
-    };
-    $.ajax(searchString).done(function (response) {
-        console.log(response);
-    });
-}
+// function stringSearch(GameString) {
+//     const searchString = {
+//         "async": true,
+//         "crossDomain": true,
+//         // the token variable must be imported from keys.js THIS IS IMPORTANT!!
+//         "url": "https://rawg-video-games-database.p.rapidapi.com/games?key=" + token + "&search="+ GameString,
+//         "method": "GET",
+//         "headers": {
+//             "x-rapidapi-key": RAPID_API_TOKEN,
+//             "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
+//         }
+//     };
+//     $.ajax(searchString).done(function (response) {
+//         console.log(response);
+//     });
+// }
 
 
 const mapElementToDiv = (game) => `<div>
@@ -134,3 +134,40 @@ function searcher(GameID) {
 }
 
 
+
+
+
+const mapEleToDiv = (results) => `<div>
+                <div>${results.Id}</div>
+                <div>${results.Name}</div>
+                <div><img src="${results.BackgroundImageUrl}"></div>
+            </div>`;
+
+
+
+
+
+
+
+function stringSearch(GameString) {
+    const searchString = {
+        "async": true,
+        "crossDomain": true,
+        // the token variable must be imported from keys.js THIS IS IMPORTANT!!
+        "url": "https://rawg-video-games-database.p.rapidapi.com/games?key=" + token + "&search="+ GameString,
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": RAPID_API_TOKEN,
+            "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com"
+        }
+    };
+    $.ajax(searchString).done(function (data) {
+        console.log(data);
+        const gameResults = [{
+            Id: data.id,
+            Name: data.name,
+            BackgroundImageUrl: data.background_image,
+        }]
+
+    });
+}
