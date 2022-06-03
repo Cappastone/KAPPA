@@ -163,11 +163,14 @@ function stringSearch(GameString) {
     };
     $.ajax(searchString).done(function (data) {
         console.log(data);
-        const gameResults = [{
-            Id: data.id,
-            Name: data.name,
-            BackgroundImageUrl: data.background_image,
-        }]
+        const gameResults = [
+            {
+            Id: data.results[0].id,
+            Name: data.results[0].name,
+            BackgroundImageUrl: data.results[0].background_image,
+            }
+        ]
+        console.log(gameResults)
 
     });
 }
