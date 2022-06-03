@@ -28,13 +28,12 @@ public class UserController {
         return "/users/profile";
     }
 
-//    @GetMapping("/profile")
-//    public long viewUserProfile(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        long userId = user.getId();
-//        model.addAttribute("user", userId);
-//        return userId;
-//    }
+    @GetMapping("/profile")
+    public String viewProfile(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        return "redirect:/user/" + id;
+    }
 
     @GetMapping("/register")
     public String createUser(Model model){
