@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>RAWG API</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link th:replace="partials/partials.html :: search-style">
 </head>
 <body>
-hello
-<div id="testing">
-</div>
-<div id="save"></div>
-<div id="search-results"></div>
+    <div class=" d-flex justify-content-around">
+        <h1 class="text-center">NO KAPPA GAME SEARCH!!!!</h1>
+        <img src="https://cdn.betterttv.net/emote/5f6f7a58239b210b0de68134/1x">
+    </div>
+    <div class="row height d-flex justify-content-center align-items-center">
 
-<div th:replace="partials/partials.html :: scripts">
-</div>
+        <div class="d-flex justify-content-center">
 
+            <div class="search d-flex">
+                <i class="fa fa-search"></i>
+                <input id="search" type="text" class="form-control" placeholder="SEARCH GAMES LUL">
+                <button id="submit" class="btn btn-primary">Search</button>
+            </div>
 
-
+        </div>
+    </div>
+    <div id="testing"></div>
+    <div id="save"></div>
+    <!--this code is to display the search results and the styling for the card is on the rawg.js file-->
+    <div class="container-fluid">
+        <div id="search-results" class="d-flex flex-row flex-wrap justify-content-center"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <div th:replace="partials/partials.html :: scripts"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -137,10 +137,14 @@ function searcher(GameID) {
 
 
 
-const mapEleToDiv = (results) => `<div>
-                <div>${results.id}</div>
-                <div>${results.name}</div>
-                <div><img src="${results.background_image}"></div>
+const mapEleToDiv = (results) => `
+            <div class="game-card">
+                <div class="card" style="width: 18rem">
+                    <img class="img-sz card-img-top" src="${results.background_image}">
+                <div class="card-body">
+                    <p>${results.name}</p>
+                </div>
+                </div>
             </div>`;
 
 
@@ -160,7 +164,17 @@ function stringSearch(GameString) {
     $.ajax(searchString).done(function (data) {
         console.log(data);
             const test = data.results.map(mapEleToDiv);
-            $('#testing').html(test);
+            $('#search-results').html(test);
 
     });
 }
+
+
+
+
+
+$("#submit").click( function() {
+    var searchQuery = $("#search").val();
+    stringSearch(searchQuery);
+    console.log(searchQuery);
+});
