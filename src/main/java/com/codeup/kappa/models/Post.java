@@ -87,4 +87,29 @@ public class Post {
         this.postImages = postImages;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<User> getUsersThatLiked() {
+        return usersThatLiked;
+    }
+
+    public void setUsersThatLiked(List<User> usersThatLiked) {
+        this.usersThatLiked = usersThatLiked;
+    }
+
+
 }

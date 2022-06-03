@@ -5,6 +5,24 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 Hello
 
+
+    <p th:text="${top1.body}"></p>
+    <h3>Post Id:<span th:text="${top1.id}"></span></h3>
+    <p th:text="${top1.date}"></p>
+    <br>
+<p th:text="${top2.body}"></p>
+<h3>Post Id:<span th:text="${top2.id}"></span></h3>
+<p th:text="${top2.date}"></p>
+<br>
+<p th:text="${top3.body}"></p>
+<h3>Post Id:<span th:text="${top3.id}"></span></h3>
+<p th:text="${top3.date}"></p>
+<br>
+<p th:text="${top4.body}"></p>
+<h3>Post Id:<span th:text="${top4.id}"></span></h3>
+<p th:text="${top4.date}"></p>
+
+
 <footer th:replace="partials/partials.html :: footer"></footer>
 </body>
 </html>
