@@ -28,9 +28,16 @@ public class PostController {
         List<String> mostLiked = postDao.findByMostLiked();
 
         long id1 = Long.parseLong(mostLiked.get(0));
+
+        long postId = postDao.getPostById(id1).getId();
+
+        long likes = postDao.numberOfLikes(postId);
+
+        model.addAttribute("likes1", likes);
         model.addAttribute("top1", postDao.getPostById(id1));
 
         long id2 = Long.parseLong(mostLiked.get(1));
+        model.addAttribute("likes2", likes);
         model.addAttribute("top2", postDao.getPostById(id2));
         Post bob = postDao.getPostById(id2);
         System.out.println("yoooooooooooo" + bob);
@@ -39,9 +46,11 @@ public class PostController {
 
 
         long id3 = Long.parseLong(mostLiked.get(2));
+        model.addAttribute("likes3", likes);
         model.addAttribute("top3", postDao.getPostById(id3));
 
         long id4 = Long.parseLong(mostLiked.get(3));
+        model.addAttribute("likes4", likes);
         model.addAttribute("top4", postDao.getPostById(id4));
 
         return "games/index";
