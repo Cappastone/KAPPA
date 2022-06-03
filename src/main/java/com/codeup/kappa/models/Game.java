@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "games")
+@Table(name = "games", uniqueConstraints = @UniqueConstraint(columnNames = {"games_api_id"}))
 public class Game {
 
     @Id
