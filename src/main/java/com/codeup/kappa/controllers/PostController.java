@@ -1,5 +1,6 @@
 package com.codeup.kappa.controllers;
 
+import com.codeup.kappa.models.Post;
 import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/posts")
+@RequestMapping("/index")
 public class PostController {
 
     private final PostRepository postDao;
@@ -23,21 +24,36 @@ public class PostController {
 
     @GetMapping
     public String topPosts(Model model) {
+
         List<String> mostLiked = postDao.findByMostLiked();
 
         long id1 = Long.parseLong(mostLiked.get(0));
+
+        long postId = postDao.getPostById(id1).getId();
+
+        long likes = postDao.numberOfLikes(postId);
+
+        model.addAttribute("likes1", likes);
         model.addAttribute("top1", postDao.getPostById(id1));
 
-//        long id2 = Long.parseLong(mostLiked.get(1));
-//        model.addAttribute("top2", postDao.findById(id2));
-//
-//        long id3 = Long.parseLong(mostLiked.get(2));
-//        model.addAttribute("top3", postDao.findById(id3));
-//
-//        long id4 = Long.parseLong(mostLiked.get(3));
-//        model.addAttribute("top4", postDao.findById(id4));
+        long id2 = Long.parseLong(mostLiked.get(1));
+        model.addAttribute("likes2", likes);
+        model.addAttribute("top2", postDao.getPostById(id2));
+        Post bob = postDao.getPostById(id2);
+        System.out.println("yoooooooooooo" + bob);
+        System.out.println("yoooooooooooo" + bob.getBody());
 
-        return "posts/post";
+
+
+        long id3 = Long.parseLong(mostLiked.get(2));
+        model.addAttribute("likes3", likes);
+        model.addAttribute("top3", postDao.getPostById(id3));
+
+        long id4 = Long.parseLong(mostLiked.get(3));
+        model.addAttribute("likes4", likes);
+        model.addAttribute("top4", postDao.getPostById(id4));
+
+        return "games/index";
     }
 
 }
