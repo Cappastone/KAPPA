@@ -12,10 +12,10 @@ VALUES ('Gamer#1337', 'Gamer', 'Gamer-Man', 'GamerTTV', 'Gamer Man', 'Gamer-YT')
        ('Bigboss#1257', 'Boss', 'Big-Boss10', 'bigboss10', 'Big Boss10', 'BigBossman');
 
 INSERT INTO users (bio, email, first_name, last_name, password, profile_picture_url, username, links_id)
-VALUES ('I am a gamer who loves to game. Catch me on all major platforms pwning n00bs.', 'gamer@email.com', 'Bob', 'Gamerson', 'password', 'https://nypost.com/wp-content/uploads/sites/2/2021/08/gaming-73.jpg?quality=75&strip=all', 'gamer', 1),
-       ('I am new to video games and am looking for some cool people to game with!', 'n00b@email.com', 'Joe', 'Scrub', 'password', 'https://metagameguides.com/wp-content/uploads/2022/02/Roblox-noob.png', 'nooby-doo', 2),
-       ('I''m your neighborhood random that you love to hate!', 'random@email.com', 'Randall', 'Blueberry', 'password', 'https://static1.squarespace.com/static/5ac589eb8ab722aa77be2eeb/5b479b056d2a73336ed80ffe/5b50d290562fa7d2dabe2955/1532023444871/random_interactive_share.jpg', 'random', 3),
-       ('I am the big Boss man.', 'biggestboss@email.com', 'Solid', 'Snake', 'password', 'https://static.tvtropes.org/pmwiki/pub/images/big_boss_1_877.jpg', 'bigboss', '4');
+VALUES ('I am a gamer who loves to game. Catch me on all major platforms pwning n00bs.', 'gamer@email.com', 'Bob', 'Gamerson', '$2a$10$Ll3qy8mo.g/D7xhCccotjetzJnubnArXG7yfjzlIV.BJmQsK4NXuG', 'https://nypost.com/wp-content/uploads/sites/2/2021/08/gaming-73.jpg?quality=75&strip=all', 'gamer', 1),
+       ('I am new to video games and am looking for some cool people to game with!', 'n00b@email.com', 'Joe', 'Scrub', '$2a$10$8G6.ypWelMMS4pSOG.S.uuPvUGLEEaS3o5hKfEGD4aup8vZf8GlHy', 'https://metagameguides.com/wp-content/uploads/2022/02/Roblox-noob.png', 'nooby-doo', 2),
+       ('I''m your neighborhood random that you love to hate!', 'random@email.com', 'Randall', 'Blueberry', '$2a$10$XRzqJmIR6bBWcFaGEzE0p.vaG/imhCTFfS4MYW5qJZB2xZk2bk5KW', 'https://static1.squarespace.com/static/5ac589eb8ab722aa77be2eeb/5b479b056d2a73336ed80ffe/5b50d290562fa7d2dabe2955/1532023444871/random_interactive_share.jpg', 'random', 3),
+       ('I am the big Boss man.', 'biggestboss@email.com', 'Solid', 'Snake', '$2a$10$aYRSt091hnRo.ZTu8uwLqO/rK8pee4OTQ2kCGBN0/aQnna06p7aQK', 'https://static.tvtropes.org/pmwiki/pub/images/big_boss_1_877.jpg', 'bigboss', '4');
 
 INSERT INTO user_followers (user_id, follower_id)
 VALUES (1, 2),
