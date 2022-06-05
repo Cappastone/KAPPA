@@ -2,6 +2,14 @@ body{
     /*background-color: red;*/
 }
 
-.img-sz{
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
 
+.card-txt-bottom {
+    width: 100%;
+    height: 5vw;
+    object-fit: cover;
 }

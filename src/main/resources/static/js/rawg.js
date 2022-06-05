@@ -140,15 +140,15 @@ function searcher(GameID) {
 const mapEleToDiv = (results) => `
             <div class="game-card">
                 <div class="card" style="width: 18rem">
-                    <img class="img-sz card-img-top" src="${results.background_image}">
-                <div class="card-body">
+                    <img class="card-img-top card-img-top" src="${results.background_image}">
+                <div class="card-body card-txt-bottom">
                     <p>${results.name}</p>
                 </div>
                 </div>
             </div>`;
 
 
-
+// this function populates the screen based on the searchstring that the user types
 function stringSearch(GameString) {
     const searchString = {
         "async": true,
@@ -172,7 +172,7 @@ function stringSearch(GameString) {
 
 
 
-
+// this function is for the search bar to populate the screen based on there search
 $("#submit").click( function() {
     var searchQuery = $("#search").val();
     stringSearch(searchQuery);
