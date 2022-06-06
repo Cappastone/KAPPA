@@ -5,7 +5,40 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<div th:text="${user.username}">
+<div th:if="${user}">
+    <p th:text="${user.username} + ' is logged in'"></p>
+
+    <div>
+        <img th:src="${user.profilePictureUrl}" alt="profile-picture">
+    </div>
+
+<!--    <div th:text="${user.followers}"></div>-->
+
+    <div>
+        <p>Followers:</p>
+        <div th:each="follower : ${user.followers}">
+            <p th:text="${follower.username}"></p>
+        </div>
+    </div>
+
+    <p th:text="'Discord: ' + ${user.getLinks().getDiscord()}"></p>
+    <p th:text="'Nintendo: ' + ${user.getLinks().getNintendo()}"></p>
+    <p th:text="'Playstation: ' + ${user.getLinks().getPlaystation()}"></p>
+    <p th:text="'Twitch: ' + ${user.getLinks().getTwitch()}"></p>
+    <p th:text="'Xbox: ' + ${user.getLinks().getXbox()}"></p>
+    <p th:text="'YouTube: ' + ${user.getLinks().getYoutube()}"></p>
+
+    <div th:each="post : ${post}">
+        <p th:text="'Post #' + ${post.id}"></p>
+        <p th:text="${post.date}"></p>
+        <p th:text="${post.body}"></p>
+
+        <div th:each="image : ${post.postImages}">
+<!--            <div th:text="${image.title}"></div>-->
+            <p th:text="${image.url}"></p>
+        </div>
+
+    </div>
 
 </div>
 
