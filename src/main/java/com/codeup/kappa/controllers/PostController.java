@@ -53,7 +53,7 @@ public class PostController {
         model.addAttribute("likes4", likes);
         model.addAttribute("top4", postDao.getPostById(id4));
 
-        return "games/index";
+        return "/games/index";
     }
 
 }
