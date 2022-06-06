@@ -173,8 +173,15 @@ function stringSearch(GameString) {
 
 
 // this function is for the search bar to populate the screen based on there search
-$("#submit").click( function() {
+//     $('#submit-btn').on('click', function() {
+//         var searchQuery = $("#search").val();
+//         stringSearch(searchQuery);
+//         console.log(searchQuery);
+//     });
+
+
+document.querySelector('#submit-btn').addEventListener('click', function () {
     var searchQuery = $("#search").val();
     stringSearch(searchQuery);
     console.log(searchQuery);
-});
+    });
