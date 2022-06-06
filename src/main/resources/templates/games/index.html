@@ -3,30 +3,18 @@
 <head th:replace="partials/partials.html :: head ('Landing Page')">
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
-Hello
+
 <div class="container-fluid">
     <div id="search-results" class="d-flex flex-row flex-wrap justify-content-center"></div>
 </div>
-<div th:if="${top1}">
-<p th:text="${top1.body}"></p>
-<h3>Post Id:<span th:text="${top1.id}"></span></h3>
-<p th:text="${top1.date}"></p>
-<p th:text="${likes1}"></p>
-<br>
-<p th:text="${top2.body}"></p>
-<h3>Post Id:<span th:text="${top2.id}"></span></h3>
-<p th:text="${top2.date}"></p>
-<p th:text="${likes2}"></p>
-<br>
-<p th:text="${top3.body}"></p>
-<h3>Post Id:<span th:text="${top3.id}"></span></h3>
-<p th:text="${top3.date}"></p>
-<p th:text="${likes3}"></p>
-<br>
-<p th:text="${top4.body}"></p>
-<h3>Post Id:<span th:text="${top4.id}"></span></h3>
-<p th:text="${top4.date}"></p>
-<p th:text="${likes4}"></p>
+
+<div th:each="post : ${post}">
+    <div th:each="image : ${post.postImages}">
+    <h3 th:text="${image.title}"></h3>
+    <p th:text="${image.url}"></p>
+    <p th:text="${post.body}"></p>
+    <p th:text="${post.date}"></p>
+    </div>
 </div>
 
 <div th:replace="partials/partials.html :: scripts">
