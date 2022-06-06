@@ -142,7 +142,7 @@ const mapEleToDiv = (results) => `
                 <div class="card" style="width: 18rem">
                     <img class="card-img-top card-img-top" src="${results.background_image}">
                 <div class="card-body card-txt-bottom">
-                    <p>${results.name}</p>
+                    <h4 class="game-title" onclick="searcher(${results.id})">${results.name}</h4>
                 </div>
                 </div>
             </div>`;
@@ -182,6 +182,13 @@ function stringSearch(GameString) {
 
 document.querySelector('#submit-btn').addEventListener('click', function () {
     var searchQuery = $("#search").val();
-    stringSearch(searchQuery);
+    // stringSearch(searchQuery);
+    // console.log(searchQuery);
+    window.location=("/results");
     console.log(searchQuery);
-    });
+    stringSearch(searchQuery);
+});
+
+
+
+
