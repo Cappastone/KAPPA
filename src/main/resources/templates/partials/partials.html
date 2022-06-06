@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5c1e7c5892.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/searchResults.css}">
 </head>
 <body>
 
@@ -73,11 +74,17 @@
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex" th:action="@{/posts/search}" method="POST">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                <!--                <input type="hidden" value="" name="title">-->
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+<!--            this is our search bar that utilizes the rawg.js file and keys.js this search bar will only work if those 2 files are linked-->
+<!--            <form class="d-flex" >-->
+<!--                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">-->
+<!--                &lt;!&ndash;                <input type="hidden" value="" name="title">&ndash;&gt;-->
+<!--                <button id="submit-btn" class="btn btn-outline-light" type="submit">Search</button>-->
+<!--            </form>-->
+            <div class="search d-flex">
+                <i class="fa fa-search"></i>
+                <input id="search" type="text" class="form-control" placeholder="SEARCH GAMES LUL">
+                <button id="submit-btn" class="btn btn-outline-light">Search</button>
+            </div>
         </div>
     </div>
 </nav>

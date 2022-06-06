@@ -4,7 +4,9 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 Hello
-
+<div class="container-fluid">
+    <div id="search-results" class="d-flex flex-row flex-wrap justify-content-center"></div>
+</div>
 <div th:if="${top1}">
 <p th:text="${top1.body}"></p>
 <h3>Post Id:<span th:text="${top1.id}"></span></h3>
@@ -27,7 +29,7 @@ Hello
 <p th:text="${likes4}"></p>
 </div>
 
-
+<div th:replace="partials/partials.html :: scripts">
 <footer th:replace="partials/partials.html :: footer"></footer>
 </body>
 </html>
