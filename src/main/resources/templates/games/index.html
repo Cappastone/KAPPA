@@ -7,26 +7,88 @@ Hello
 <div class="container-fluid">
     <div id="search-results" class="d-flex flex-row flex-wrap justify-content-center"></div>
 </div>
-<div th:if="${top1}">
-<p th:text="${top1.body}"></p>
-<h3>Post Id:<span th:text="${top1.id}"></span></h3>
-<p th:text="${top1.date}"></p>
-<p th:text="${likes1}"></p>
+
+<!--<div th:each="postimage : ${top1.postImages}">-->
+<!--    <p th:text="${postimage.url}"></p>-->
+<!--    <p th:text="${postimage.title}">-->
+<!--    </p>-->
+
+<!--<div th:if="${top1}">-->
+<!--        <h3>Post Id:<span th:text="${top1.id}"></span></h3>-->
+<!--        <p th:text="${top1.body}"></p>-->
+<!--        <p th:text="${top1.date}"></p>-->
+<!--        <p th:text="${postimage.url}"></p>-->
+<!--        <p th:text="${postimage.title}"></p>-->
+<!--        <br>-->
+<!--        <h3>Post Id:<span th:text="${top2.id}"></span></h3>-->
+<!--        <p th:text="${top2.body}"></p>-->
+<!--        <p th:text="${top2.date}"></p>-->
+<!--        <p th:text="${postimage.url}"></p>-->
+<!--        <p th:text="${postimage.title}"></p>-->
+<!--        <br>-->
+<!--        <h3>Post Id:<span th:text="${top3.id}"></span></h3>-->
+<!--        <p th:text="${top3.body}"></p>-->
+<!--        <p th:text="${top3.date}"></p>-->
+<!--        <p th:text="${postimage.url}"></p>-->
+<!--        <p th:text="${postimage.title}"></p>-->
+<!--        <br>-->
+<!--        <h3>Post Id:<span th:text="${top4.id}"></span></h3>-->
+<!--        <p th:text="${top4.body}"></p>-->
+<!--        <p th:text="${top4.date}"></p>-->
+<!--        <p th:text="${postimage.url}"></p>-->
+<!--        <p th:text="${postimage.title}"></p>-->
+<!--    </div>-->
+
+<div th:each="images : ${images}">
+    <p th:text="${images.title}"></p>
+    <p th:text="${images.url}"></p>
+</div>
+
+<div th:each="post : ${post}">
+    <p th:text="${post.body}"></p>
+    <p th:text="${post.date}"></p>
+</div>
+
+<!--<p th:text="${top1.body}"></p>-->
+<!--<h3>Post Id:<span th:text="${top1.id}"></span></h3>-->
+<!--<p th:text="${top1.date}"></p>-->
+<!--<p th:text="${likes1}"></p>-->
 <br>
-<p th:text="${top2.body}"></p>
-<h3>Post Id:<span th:text="${top2.id}"></span></h3>
-<p th:text="${top2.date}"></p>
-<p th:text="${likes2}"></p>
+<!--    <div th:each="postimage : ${top1.postImages}">-->
+<!--&lt;!&ndash;        <h3>Post Id:<span th:text="${top2.id}"></span></h3>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p th:text="${top2.body}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p th:text="${top2.date}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p th:text="${postimage.url}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p th:text="${postimage.title}"></p>&ndash;&gt;-->
+<!--    </div>-->
+<!--<p th:text="${top2.body}"></p>-->
+<!--<h3>Post Id:<span th:text="${top2.id}"></span></h3>-->
+<!--<p th:text="${top2.date}"></p>-->
+<!--<p th:text="${likes2}"></p>-->
 <br>
-<p th:text="${top3.body}"></p>
-<h3>Post Id:<span th:text="${top3.id}"></span></h3>
-<p th:text="${top3.date}"></p>
-<p th:text="${likes3}"></p>
+<!--<p th:text="${top3.body}"></p>-->
+<!--<h3>Post Id:<span th:text="${top3.id}"></span></h3>-->
+<!--<p th:text="${top3.date}"></p>-->
+<!--<p th:text="${likes3}"></p>-->
+<!--    <div th:each="postimage : ${top1.postImages}">-->
+<!--        <h3>Post Id:<span th:text="${top3.id}"></span></h3>-->
+<!--        <p th:text="${top3.body}"></p>-->
+<!--        <p th:text="${top3.date}"></p>-->
+<!--        <p th:text="${postimage.url}"></p>-->
+<!--        <p th:text="${postimage.title}"></p>-->
+<!--    </div>-->
 <br>
-<p th:text="${top4.body}"></p>
-<h3>Post Id:<span th:text="${top4.id}"></span></h3>
-<p th:text="${top4.date}"></p>
-<p th:text="${likes4}"></p>
+<!--<p th:text="${top4.body}"></p>-->
+<!--<h3>Post Id:<span th:text="${top4.id}"></span></h3>-->
+<!--<p th:text="${top4.date}"></p>-->
+<!--<p th:text="${likes4}"></p>-->
+<!--    <div th:each="postimage : ${top1.postImages}">-->
+<!--        <h3>Post Id:<span th:text="${top4.id}"></span></h3>-->
+<!--        <p th:text="${top4.body}"></p>-->
+<!--        <p th:text="${top4.date}"></p>-->
+<!--        <p th:text="${postimage.url}"></p>-->
+<!--        <p th:text="${postimage.title}"></p>-->
+<!--    </div>-->
 </div>
 
 <div th:replace="partials/partials.html :: scripts">
