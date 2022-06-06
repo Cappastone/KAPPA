@@ -135,8 +135,6 @@ function searcher(GameID) {
 
 
 
-
-
 const mapEleToDiv = (results) => `<div>
                 <div>${results.id}</div>
                 <div>${results.name}</div>
