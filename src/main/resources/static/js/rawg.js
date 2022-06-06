@@ -182,11 +182,13 @@ function stringSearch(GameString) {
 
 document.querySelector('#submit-btn').addEventListener('click', function () {
     var searchQuery = $("#search").val();
-    stringSearch(searchQuery);
+    // stringSearch(searchQuery);
+    // console.log(searchQuery);
+    window.location=("/results");
     console.log(searchQuery);
-    });
+    stringSearch(searchQuery);
+});
 
 
-// document.querySelector('.game-title').addEventListener('click' , function (){
-//     searcher(${results.id})
-// })
+
+
