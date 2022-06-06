@@ -142,7 +142,7 @@ const mapEleToDiv = (results) => `
                 <div class="card" style="width: 18rem">
                     <img class="card-img-top card-img-top" src="${results.background_image}">
                 <div class="card-body card-txt-bottom">
-                    <p>${results.name}</p>
+                    <h4 class="game-title" onclick="searcher(${results.id})">${results.name}</h4>
                 </div>
                 </div>
             </div>`;
@@ -185,3 +185,8 @@ document.querySelector('#submit-btn').addEventListener('click', function () {
     stringSearch(searchQuery);
     console.log(searchQuery);
     });
+
+
+// document.querySelector('.game-title').addEventListener('click' , function (){
+//     searcher(${results.id})
+// })
