@@ -182,13 +182,8 @@ function stringSearch(GameString) {
 
 document.querySelector('#submit-btn').addEventListener('click', function () {
     var searchQuery = $("#search").val();
-    // stringSearch(searchQuery);
-    // console.log(searchQuery);
-    window.location=("/results");
-    console.log(searchQuery);
-    stringSearch(searchQuery);
+    window.location=("/results?search=" + searchQuery);
 });
-
 
 
 

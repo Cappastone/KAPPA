@@ -8,8 +8,13 @@ this page is for the search results..... :)
 <div class="container-fluid">
     <div id="search-results" class="d-flex flex-row flex-wrap justify-content-center"></div>
 </div>
-
-
 <div th:replace="partials/partials.html :: scripts"></div>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('search');
+    stringSearch(myParam);
+</script>
+
+
 </body>
 </html>
