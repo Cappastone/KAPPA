@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/games")
+@RequestMapping("/game")
 public class GameController {
 
     private final GameRepository gameDao;
@@ -27,7 +27,9 @@ public class GameController {
     @GetMapping
     public String gamesIndex(){
 
-        return "games/rawg";
+        return "games/game";
+
+
     }
 
     public List<Game> convert(List<String> list){
@@ -70,8 +72,11 @@ public class GameController {
         long parsedId = Long.parseLong(id);
 
         Game game = new Game(parsedId, title, description, backgroundUrl, platforms, rating, genres, developer);
+
+        GameDao.save(game);
+        return "games/game";
         gameDao.save(game);
-        return "games/rawg";
+
     }
 
 }
