@@ -68,7 +68,30 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @GetMapping("/user/{id}")
+    public String editUser(@PathVariable long id, Model model) {
 
+        model.addAttribute("user", userDao.getById(id));
+
+        return "/users/profile";
+    }
+
+
+
+    @PostMapping("/edit-user")
+    public String editUser(@RequestParam(name="username")String username, @RequestParam(name="email")String email, @RequestParam(name="id")long id) {
+        User user = userDao.getById(id);
+        user.setUsername(username);
+        user.setEmail(email);
+
+        userDao.save(user);
+//        User existingUser = userDao.getById(user.getId());
+//        existingUser.setUsername(user.getUsername());
+//        existingUser.setEmail(user.getEmail());
+//        userDao.save(user);
+
+        return "redirect:/user/" + user.getId();
+    }
 
 
 }

@@ -19,7 +19,7 @@
 <!--</form>-->
 <h1>Create Account</h1>
 
-<form th:action="@{/user/register}" method="POST" th:object="${user}">
+<form th:action="@{/users/edit-user}" method="POST" th:object="${user}">
     <div class="mb-3 w-25">
         <label for="username" class="form-label"></label>
         <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}">
