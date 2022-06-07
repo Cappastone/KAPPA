@@ -12,34 +12,49 @@
         <img th:src="${user.profilePictureUrl}" alt="profile-picture">
     </div>
 
-<!--    <div th:text="${user.followers}"></div>-->
+    <hr>
 
     <div>
-        <p>Followers:</p>
+        <p th:text="'Followers: ' + ${user.followers.size()}"></p>
         <div th:each="follower : ${user.followers}">
             <p th:text="${follower.username}"></p>
         </div>
     </div>
 
-    <p th:text="'Discord: ' + ${user.getLinks().getDiscord()}"></p>
-    <p th:text="'Nintendo: ' + ${user.getLinks().getNintendo()}"></p>
-    <p th:text="'Playstation: ' + ${user.getLinks().getPlaystation()}"></p>
-    <p th:text="'Twitch: ' + ${user.getLinks().getTwitch()}"></p>
-    <p th:text="'Xbox: ' + ${user.getLinks().getXbox()}"></p>
-    <p th:text="'YouTube: ' + ${user.getLinks().getYoutube()}"></p>
+    <hr>
+
+    <div>
+        <p th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
+        <div th:each="game : ${user.favoriteGames}">
+            <div th:text="${game.title}"></div>
+        </div>
+    </div>
+
+    <hr>
+
+    <p th:text="'Discord: ' + ${user.links.discord}"></p>
+    <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
+    <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
+    <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
+    <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
+    <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
+
+    <hr>
 
     <div th:each="post : ${post}">
         <p th:text="'Post #' + ${post.id}"></p>
         <p th:text="${post.date}"></p>
         <p th:text="${post.body}"></p>
+        <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
 
         <div th:each="image : ${post.postImages}">
 <!--            <div th:text="${image.title}"></div>-->
             <p th:text="${image.url}"></p>
         </div>
 
-    </div>
+        <hr>
 
+    </div>
 </div>
 
 <footer th:replace="partials/partials.html :: footer"></footer>

@@ -204,4 +204,28 @@ public class User {
     public void setFollowers(List<User> followers) {
         this.followers = followers;
     }
+
+    public List<Game> getFavoriteGames() {
+        return favoriteGames;
+    }
+
+    public void setFavoriteGames(List<Game> favoriteGames) {
+        this.favoriteGames = favoriteGames;
+    }
+
+    public List<Comment> getPostComments() {
+        return postComments;
+    }
+
+    public void setPostComments(List<Comment> postComments) {
+        this.postComments = postComments;
+    }
+
+    public List<Post> getLikedPosts() {
+        return likedPosts;
+    }
+
+    public void setLikedPosts(List<Post> likedPosts) {
+        this.likedPosts = likedPosts;
+    }
 }
