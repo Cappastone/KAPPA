@@ -142,7 +142,7 @@ const mapEleToDiv = (results) => `
                 <div class="card" style="width: 18rem">
                     <img class="card-img-top card-img-top" src="${results.background_image}">
                 <div class="card-body card-txt-bottom">
-                    <h4 class="game-title" onclick="gameRedirect()" data-id="${results.id}">${results.name}</h4>
+                    <h4 class="game-title" id="game-title" onclick="gameRedirect()" data-id="${results.id}">${results.name}</h4>
                 </div>
                 </div>
             </div>`;
@@ -186,6 +186,7 @@ document.querySelector('#submit-btn').addEventListener('click', function () {
 });
 
  function gameRedirect () {
-     var gameData = $(".game-title").attr("data-id")
-     window.location = ("/game?gameID=" + gameData);
+     var dataID = $(this).attr("data-id")
+     console.log(dataID)
+     window.location = ("/game?gameID=" + dataID);
  }
