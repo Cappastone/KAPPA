@@ -45,10 +45,15 @@
         </div>
     </div>
 
-    <p>Following:</p>
-    <div th:each="followed : ${following}">
-        <p th:text="${followed.username}"></p>
+
+<!--    HELP-->
+    <div th:if="${following}">
+        <p>Following:</p>
+        <div th:each="followed : ${following}">
+            <p th:text="${followed.username}"></p>
+        </div>
     </div>
+<!--    HELP-->
 
     <hr>
 
