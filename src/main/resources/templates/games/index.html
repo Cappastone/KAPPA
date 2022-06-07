@@ -10,11 +10,20 @@
 
 <div th:each="post : ${post}">
     <div th:each="image : ${post.postImages}">
-    <h3 th:text="${image.title}"></h3>
-    <p th:text="${image.url}"></p>
-    <p th:text="${post.body}"></p>
-    <p th:text="${post.date}"></p>
+        <h3 th:text="${image.title}"></h3>
+        <p th:text="${image.url}"></p>
+        <p th:text="${post.body}"></p>
+        <p th:text="${post.date}"></p>
+        <label>Likes</label>
+        <p th:text="${post.usersThatLiked.size()}"></p>
+        <div th:each="comment : ${post.comments}">
+            <p th:text="${comment.user.username} + ' said ' + ${comment.comment}"></p>
+        </div>
     </div>
+</div>
+
+<div>
+    <div></div>
 </div>
 
 <div th:replace="partials/partials.html :: scripts">
