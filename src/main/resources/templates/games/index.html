@@ -8,25 +8,53 @@
     <div id="search-results" class="d-flex flex-row flex-wrap justify-content-center"></div>
 </div>
 
-<div th:each="post : ${post}">
+<!--<div th:each="posts : ${post}">-->
+<!--    <div th:each="image : ${posts.postImages}">-->
+<!--        <h3 th:text="${image.title}"></h3>-->
+<!--        <p th:text="${image.url}"></p>-->
+<!--        <p th:text="${posts.body}"></p>-->
+<!--        <p th:text="${posts.date}"></p>-->
+<!--        <label>Likes</label>-->
+<!--        <p th:text="${posts.usersThatLiked.size()}"></p>-->
+<!--        <div th:each="comment : ${posts.comments}">-->
+<!--            <p th:text="${comment.user.username} + ' said ' + ${comment.comment}"></p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div th:each="post : ${posts}">
+    <p th:text="'Post #' + ${post.id}"></p>
+    <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+    <p th:text="${post.date}"></p>
+
     <div th:each="image : ${post.postImages}">
-        <h3 th:text="${image.title}"></h3>
-        <p th:text="${image.url}"></p>
-        <p th:text="${post.body}"></p>
-        <p th:text="${post.date}"></p>
-        <label>Likes</label>
-        <p th:text="${post.usersThatLiked.size()}"></p>
-        <div th:each="comment : ${post.comments}">
-            <p th:text="${comment.user.username} + ' said ' + ${comment.comment}"></p>
-        </div>
+        <img th:src="${image.url}">
     </div>
+
+    <p th:text="${post.body}"></p>
+
+    <div th:each="comment : ${post.comments}">
+        <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>
+    </div>
+
+    <hr>
 </div>
 
-<div>
-    <div></div>
+<p>Top Games:</p>
+
+<hr>
+
+<div th:each="game : ${games}">
+    <p th:text="'Likes: ' + ${game.users.size()}"></p>
+    <p th:text="${game.title}"></p>
+    <img th:src="${game.imageUrl}">
+    <p th:text="${game.genre}"></p>
+    <p th:text="${game.description}"></p>
+
+    <hr>
 </div>
 
-<div th:replace="partials/partials.html :: scripts">
+<div th:replace="partials/partials.html :: scripts"></div>
 <footer th:replace="partials/partials.html :: footer"></footer>
 </body>
 </html>

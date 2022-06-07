@@ -15,10 +15,10 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 //    Long numberOfLikes(long id);
 
     @Query(value = "SELECT post_id FROM gamer_haven_db.post_likes t GROUP BY t.post_id ORDER BY COUNT(*) DESC;", nativeQuery = true)
-    List<String> findByMostLiked();
+    List<String> findPostByMostLiked();
 
-    @Query(value = "SELECT COUNT(*) FROM gamer_haven_db.post_likes t WHERE t.post_id = :id ;", nativeQuery = true)
-    Long numberOfLikes(long id);
+//    @Query(value = "SELECT COUNT(*) FROM gamer_haven_db.post_likes t WHERE t.post_id = :id ;", nativeQuery = true)
+//    Long numberOfLikes(long id);
 
     Post getPostById(long id);
 

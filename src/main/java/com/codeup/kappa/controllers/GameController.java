@@ -30,32 +30,6 @@ public class GameController {
         return "games/rawg";
     }
 
-    public List<Game> convert(List<String> list){
-
-        List<Game> games = new ArrayList<>();
-
-        for(int i = 0; i < list.size(); i++){
-
-            games.add(gameDao.getGameById(Long.parseLong(list.get(i))));
-        }
-        return games;
-
-    }
-
-    @GetMapping
-    public String topPosts(Model model) {
-
-        List<String> mostLiked = gameDao.findByMostLiked();
-        List<Game> mostLiked2 = convert(mostLiked);
-
-
-        model.addAttribute("game", (mostLiked2));
-//        model.addAttribute("images", postImageDao.findAll());
-
-        return "/games/index";
-    }
-
-
     @PostMapping
     public String SaveGames(
             @RequestParam(name = "game-id") String id,
