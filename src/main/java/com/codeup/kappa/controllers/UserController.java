@@ -30,12 +30,15 @@ public class UserController {
     public String viewUserProfile(
             @PathVariable long id, Model model){
 
-//        long likes = postDao.numberOfLikes(postId);
+//        HELP
+
+//        System.out.println("Hi Justin :]" + userDao.followingList(id));
+//        model.addAttribute("following", userDao.followingList(id));
+
+//        HELP
 
         model.addAttribute("user", userDao.getById(id));
         model.addAttribute("post", postDao.getPostByUserId(id));
-//        model.addAttribute("image", postImageDao.findAll());
-//        model.addAttribute("likes", likes);
 
         return "/users/profile";
     }

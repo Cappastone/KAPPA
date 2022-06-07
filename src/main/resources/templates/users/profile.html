@@ -6,10 +6,11 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
 <div th:if="${user}">
-    <p th:text="${user.username} + ' is logged in'"></p>
+    <p th:text="${user.username}"></p>
 
     <div th:if="${user.profilePictureUrl}">
         <img th:src="${user.profilePictureUrl}" alt="profile-picture">
+        <p th:text="${user.bio}"></p>
     </div>
 
 
@@ -29,6 +30,7 @@
 
     <div th:if="!${user.profilePictureUrl}">
         <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+        <p th:text="${user.bio}"></p>
     </div>
 
 
@@ -38,7 +40,14 @@
         <p th:text="'Followers: ' + ${user.followers.size()}"></p>
         <div th:each="follower : ${user.followers}">
             <p th:text="${follower.username}"></p>
+            <p th:text="'User Id: ' + ${follower.id}"></p>
+            <img th:src="${follower.profilePictureUrl}">
         </div>
+    </div>
+
+    <p>Following:</p>
+    <div th:each="followed : ${following}">
+        <p th:text="${followed.username}"></p>
     </div>
 
     <hr>
