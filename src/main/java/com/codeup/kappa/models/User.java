@@ -93,6 +93,12 @@ public class User {
         this.password = password;
     }
 
+    public User(Long id, String username, String email) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+    }
+
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
         email = copy.email;
