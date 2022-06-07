@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/index")
+@RequestMapping()
 public class PostController {
 
     private final PostRepository postDao;
@@ -38,17 +38,16 @@ public class PostController {
 
     }
 
-    @GetMapping
-    public String topPosts(Model model) {
-
-        List<String> mostLiked = postDao.findByMostLiked();
-        List<Post> mostLiked2 = convert(mostLiked);
-
-
-        model.addAttribute("post", (mostLiked2));
-//        model.addAttribute("images", postImageDao.findAll());
-
-        return "/games/index";
-    }
+//    @GetMapping
+//    public String topPosts(Model model) {
+//
+//        List<String> mostLiked = postDao.findPostByMostLiked();
+//        List<Post> mostLiked2 = convert(mostLiked);
+//
+//
+//        model.addAttribute("post", (mostLiked2));
+//
+//        return "/games/index";
+//    }
 
 }
