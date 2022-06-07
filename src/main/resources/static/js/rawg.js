@@ -59,7 +59,7 @@ const mapElementToDiv = (game) => `<div>
                 <div><img src="${game.BackgroundImageUrl}"></div>
                 <div>${game.Developer}</div>
                 <div>${game.Platforms}</div>
-                <div>${game.Rating}</div>
+<!--                <div>${game.Rating}</div>-->
                 <div>${game.Genres}</div>
             </div>`;
 
@@ -70,7 +70,7 @@ const mapElementToForm = (game) => `<form method="post" action="/games">
                 <input type="hidden" name="game-id" value="${game.Id}">
                 <input type="hidden" name="developer" value="${game.Developer}">
                 <input type="hidden" name="platforms" value="${game.Platforms}">
-                <input type="hidden" name="rating" value="${game.Rating}">
+<!--                <input type="hidden" name="rating" value="${game.Rating}">-->
                 <input type="hidden" name="genres" value="${game.Genres}">
                 <button>Save To Database</button>
             </form>`;
@@ -112,7 +112,7 @@ function searcher(GameID) {
             Name: data.name,
             Description: data.description,
             BackgroundImageUrl: data.background_image,
-            Rating: data.esrb_rating.name,
+            // Rating: data.esrb_rating.name,
             Genres: getGenres(data.genres),
             Developer: data.developers[0].name,
             Platforms: getPlatforms(data.platforms)

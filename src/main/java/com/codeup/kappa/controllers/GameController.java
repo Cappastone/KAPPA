@@ -1,34 +1,29 @@
 package com.codeup.kappa.controllers;
 
 import com.codeup.kappa.models.Game;
-import com.codeup.kappa.models.Post;
 import com.codeup.kappa.repositories.GameRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
 @RequestMapping("/game")
 public class GameController {
 
-    private final GameRepository gameDao;
+    private final GameRepository GameDao;
 
     public GameController(GameRepository GameDao) {
-        this.gameDao = GameDao;
+        this.GameDao = GameDao;
     }
 
     @GetMapping
     public String gamesIndex(){
-
         return "games/game";
     }
+
 
     @PostMapping
     public String SaveGames(
@@ -44,9 +39,10 @@ public class GameController {
         long parsedId = Long.parseLong(id);
 
         Game game = new Game(parsedId, title, description, backgroundUrl, platforms, rating, genres, developer);
-
-        gameDao.save(game);
+        GameDao.save(game);
         return "games/game";
     }
+
+
 
 }
