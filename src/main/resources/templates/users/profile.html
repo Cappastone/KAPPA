@@ -8,9 +8,10 @@
 <div th:if="${user}">
     <p th:text="${user.username} + ' is logged in'"></p>
 
-    <div>
+    <div th:if="${user.profilePictureUrl}">
         <img th:src="${user.profilePictureUrl}" alt="profile-picture">
     </div>
+
 
 <!--    edit form-->
     <form action="/user/edit-user" method="POST">
@@ -25,11 +26,15 @@
         <input type="hidden" name="id" th:value="${user.id}">
         <input type="submit" value="Update Info" class="btn btn-dark w-25">
     </form>
-<!--    end edit form-->
+
+    <div th:if="!${user.profilePictureUrl}">
+        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+    </div>
+
 
     <hr>
 
-    <div>
+    <div th:if="${user.followers}">
         <p th:text="'Followers: ' + ${user.followers.size()}"></p>
         <div th:each="follower : ${user.followers}">
             <p th:text="${follower.username}"></p>
@@ -38,38 +43,48 @@
 
     <hr>
 
-    <div>
+    <div th:if="${user.favoriteGames}">
         <p th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
         <div th:each="game : ${user.favoriteGames}">
-            <div th:text="${game.title}"></div>
+            <p th:text="${game.title}"></p>
         </div>
     </div>
 
     <hr>
 
-    <p th:text="'Discord: ' + ${user.links.discord}"></p>
-    <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
-    <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
-    <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
-    <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
-    <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
+    <div th:if="${user.links}">
+        <p>Platform Links:</p>
+        <p th:text="'Discord: ' + ${user.links.discord}"></p>
+        <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
+        <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
+        <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
+        <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
+        <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
+    </div>
 
     <hr>
 
-    <div th:each="post : ${post}">
-        <p th:text="'Post #' + ${post.id}"></p>
-        <p th:text="${post.date}"></p>
-        <p th:text="${post.body}"></p>
-        <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+    <div th:if="${post}">
+        <div th:each="post : ${post}">
+            <p th:text="'Post #' + ${post.id}"></p>
+            <p th:text="${post.date}"></p>
+            <p th:text="${post.body}"></p>
+            <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+            <p>Comments:</p>
+            <div th:each="comment : ${post.comments}">
+                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>
+            </div>
 
-        <div th:each="image : ${post.postImages}">
-<!--            <div th:text="${image.title}"></div>-->
-            <p th:text="${image.url}"></p>
+            <div th:each="image : ${post.postImages}">
+    <!--            <p th:text="${image.title}"></p>-->
+                <p th:text="${image.url}"></p>
+            </div>
+
+            <hr>
+
         </div>
-
-        <hr>
-
     </div>
+
 </div>
 
 <footer th:replace="partials/partials.html :: footer"></footer>

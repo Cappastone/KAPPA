@@ -59,7 +59,7 @@ const mapElementToDiv = (game) => `<div>
                 <div><img src="${game.BackgroundImageUrl}"></div>
                 <div>${game.Developer}</div>
                 <div>${game.Platforms}</div>
-                <div>${game.Rating}</div>
+<!--                <div>${game.Rating}</div>-->
                 <div>${game.Genres}</div>
             </div>`;
 
@@ -70,7 +70,7 @@ const mapElementToForm = (game) => `<form method="post" action="/games">
                 <input type="hidden" name="game-id" value="${game.Id}">
                 <input type="hidden" name="developer" value="${game.Developer}">
                 <input type="hidden" name="platforms" value="${game.Platforms}">
-                <input type="hidden" name="rating" value="${game.Rating}">
+<!--                <input type="hidden" name="rating" value="${game.Rating}">-->
                 <input type="hidden" name="genres" value="${game.Genres}">
                 <button>Save To Database</button>
             </form>`;
@@ -112,7 +112,7 @@ function searcher(GameID) {
             Name: data.name,
             Description: data.description,
             BackgroundImageUrl: data.background_image,
-            Rating: data.esrb_rating.name,
+            // Rating: data.esrb_rating.name,
             Genres: getGenres(data.genres),
             Developer: data.developers[0].name,
             Platforms: getPlatforms(data.platforms)
@@ -142,7 +142,7 @@ const mapEleToDiv = (results) => `
                 <div class="card" style="width: 18rem">
                     <img class="card-img-top card-img-top" src="${results.background_image}">
                 <div class="card-body card-txt-bottom">
-                    <h4 class="game-title" onclick="searcher(${results.id})">${results.name}</h4>
+                    <h4 class="game-title" id="game-title" onclick="gameRedirect()" data-id="${results.id}">${results.name}</h4>
                 </div>
                 </div>
             </div>`;
@@ -185,5 +185,8 @@ document.querySelector('#submit-btn').addEventListener('click', function () {
     window.location=("/results?search=" + searchQuery);
 });
 
-
-
+ function gameRedirect () {
+     var dataID = $(this).attr("data-id")
+     console.log(dataID)
+     window.location = ("/game?gameID=" + dataID);
+ }
