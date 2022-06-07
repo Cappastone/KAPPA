@@ -28,8 +28,6 @@ public class GameController {
     public String gamesIndex(){
 
         return "games/game";
-
-
     }
 
     @PostMapping
@@ -47,10 +45,8 @@ public class GameController {
 
         Game game = new Game(parsedId, title, description, backgroundUrl, platforms, rating, genres, developer);
 
-        GameDao.save(game);
-        return "games/game";
         gameDao.save(game);
-
+        return "games/game";
     }
 
 }
