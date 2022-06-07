@@ -6,14 +6,16 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
 <div th:if="${user}">
-    <p th:text="${user.username} + ' is logged in'"></p>
+    <p th:text="${user.username}"></p>
 
     <div th:if="${user.profilePictureUrl}">
         <img th:src="${user.profilePictureUrl}" alt="profile-picture">
+        <p th:text="${user.bio}"></p>
     </div>
 
     <div th:if="!${user.profilePictureUrl}">
         <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+        <p th:text="${user.bio}"></p>
     </div>
 
     <hr>
