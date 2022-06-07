@@ -24,7 +24,14 @@
         <p th:text="'Followers: ' + ${user.followers.size()}"></p>
         <div th:each="follower : ${user.followers}">
             <p th:text="${follower.username}"></p>
+            <p th:text="'User Id: ' + ${follower.id}"></p>
+            <img th:src="${follower.profilePictureUrl}">
         </div>
+    </div>
+
+    <p>Following:</p>
+    <div th:each="followed : ${following}">
+        <p th:text="${followed.username}"></p>
     </div>
 
     <hr>

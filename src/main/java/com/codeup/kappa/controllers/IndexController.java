@@ -2,6 +2,7 @@ package com.codeup.kappa.controllers;
 
 import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.Post;
+import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.GameRepository;
 import com.codeup.kappa.repositories.PostImageRepository;
 import com.codeup.kappa.repositories.PostRepository;
