@@ -8,6 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -100,6 +105,27 @@ public class UserController {
 //        existingUser.setUsername(user.getUsername());
 //        existingUser.setEmail(user.getEmail());
 //        userDao.save(user);
+
+        return "redirect:/user/" + user.getId();
+    }
+
+//    Change Password //
+    @PostMapping("edit-password")
+    public String editPassword(@RequestParam(name="oldPassword")String oldPassword, @RequestParam(name="newPassword")String newPassword, @RequestParam(name="id")long id, HttpSession session) {
+        String message;
+        message = "Please enter correct current password";
+        User user = userDao.getById(id);
+
+//        String hash = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(hash);
+
+        if(this.passwordEncoder.matches(oldPassword, user.getPassword()))
+        {
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userDao.save(user);
+        } else {
+            session.setAttribute("message", message);
+        }
 
         return "redirect:/user/" + user.getId();
     }
