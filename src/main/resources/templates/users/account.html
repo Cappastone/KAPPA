@@ -5,7 +5,7 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<!--    edit form-->
+<!--    edit username/email form-->
 <form action="/user/edit-user" method="POST">
     <div class="mb-3 w-25">
         <label for="edit-username" class="form-label"></label>
@@ -18,7 +18,7 @@
     <input type="hidden" name="id" th:value="${user.id}">
     <input type="submit" value="Update Info" class="btn btn-dark w-25">
 </form>
-<!--    end edit form-->
+<!--    end edit username/email form-->
 
 <footer th:replace="partials/partials.html :: footer"></footer>
 </body>
