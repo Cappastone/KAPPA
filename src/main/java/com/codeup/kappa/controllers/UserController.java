@@ -40,7 +40,7 @@ public class UserController {
         model.addAttribute("user", userDao.getById(id));
         model.addAttribute("post", postDao.getPostByUserId(id));
 
-        return "/users/profile";
+        return "users/profile";
     }
 
     @GetMapping("/profile")
@@ -57,7 +57,7 @@ public class UserController {
 
         model.addAttribute("user", new User());
 
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -76,7 +76,7 @@ public class UserController {
 
         model.addAttribute("user", userDao.getById(id));
 
-        return "/users/profile";
+        return "users/profile";
     }
 
 

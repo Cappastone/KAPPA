@@ -42,7 +42,7 @@ public class IndexController {
         model.addAttribute("posts", mostLikedPosts2);
         model.addAttribute("games", (mostLikedGames2));
 
-        return "/games/index";
+        return "games/index";
     }
 
     public List<Post> convertPosts(List<String> list){
