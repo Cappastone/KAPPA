@@ -13,19 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import com.codeup.kappa.controllers.UserController;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsLoader usersLoader;
-//    private final UserRepository userDao;
 
-    public SecurityConfiguration(UserDetailsLoader usersLoader
-//                                 ,UserRepository userDao
-    ) {
+    public SecurityConfiguration(UserDetailsLoader usersLoader) {
         this.usersLoader = usersLoader;
-//        this.userDao = userDao;
     }
 
     @Bean
@@ -57,14 +52,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     /* Pages that can be viewed without having to log in */
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/posts") // anyone can see the home and the posts pages
+                    .antMatchers("/", "/discover", "/") // anyone can see the home and the posts pages
                     .permitAll()
                     /* Pages that require authentication */
                     .and()
                     .authorizeRequests()
                     .antMatchers(
-                            "/posts/create", // only authenticated users can create posts
-                            "/posts/show" // only authenticated users can edit posts
+                            "/index" // only authenticated users can create posts
+//                            "/posts/show" // only authenticated users can edit posts
                     )
                     .authenticated()
                     .and().httpBasic()
@@ -80,11 +75,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                and().httpBasic(); //allows anyone to go to any page
 
         }
-
-//    public long viewUserProfile(){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        long userId = user.getId();
-//        return userId;
-//    }
 
 }

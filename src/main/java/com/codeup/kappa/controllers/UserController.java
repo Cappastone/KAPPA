@@ -90,7 +90,6 @@ public class UserController {
         return "/users/account";
     }
 
-
     @PostMapping("/edit-user")
     public String editUser(@RequestParam(name="username")String username, @RequestParam(name="email")String email, @RequestParam(name="id")long id) {
         User user = userDao.getById(id);

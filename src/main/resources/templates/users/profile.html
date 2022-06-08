@@ -20,7 +20,6 @@
         <p th:text="${user.bio}"></p>
     </div>
 
-
     <hr>
 
     <div th:if="${user.followers}">
@@ -89,5 +88,7 @@
 </div>
 
 <footer th:replace="partials/partials.html :: footer"></footer>
+<div th:replace="partials/partials.html :: scripts"></div>
+
 </body>
 </html>
