@@ -13,7 +13,6 @@
         <p th:text="${user.bio}"></p>
     </div>
 
-
 <!--    edit form-->
     <form action="/user/edit-user" method="POST">
         <div class="mb-3 w-25">
@@ -33,6 +32,7 @@
         <p th:text="${user.bio}"></p>
     </div>
 
+>>>>>>> 9d878bb3d0b9606814d2b61ec2d3051d55a2c4a3
 
     <hr>
 
@@ -45,15 +45,15 @@
         </div>
     </div>
 
+    <hr>
 
-<!--    HELP-->
     <div th:if="${following}">
-        <p>Following:</p>
+        <p th:text="'Following: ' + ${following.size()}"></p>
         <div th:each="followed : ${following}">
             <p th:text="${followed.username}"></p>
+            <img th:src="${followed.profilePictureUrl}">
         </div>
     </div>
-<!--    HELP-->
 
     <hr>
 

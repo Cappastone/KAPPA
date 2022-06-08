@@ -2,7 +2,6 @@ package com.codeup.kappa.controllers;
 
 import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.Post;
-import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.GameRepository;
 import com.codeup.kappa.repositories.PostImageRepository;
 import com.codeup.kappa.repositories.PostRepository;
@@ -17,13 +16,13 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/index")
-public class IndexController {
+public class DiscoverController {
     private final PostRepository postDao;
     private final UserRepository userDao;
     private final PostImageRepository postImageDao;
     private final GameRepository gameDao;
 
-    public IndexController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao, GameRepository gameDao) {
+    public DiscoverController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao, GameRepository gameDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postImageDao = postImageDao;
