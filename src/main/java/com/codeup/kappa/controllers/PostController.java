@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,12 @@ public class PostController {
         }
         return posts;
 
+    }
+
+    public static void main(String[] args) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, uuuu HH:mm");
+        ZonedDateTime date = ZonedDateTime.now();
+        System.out.println(format.format(date));
     }
 
 //    @GetMapping
