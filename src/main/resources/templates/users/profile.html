@@ -6,12 +6,14 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
 <div th:if="${user}">
-    <p th:text="${user.username} + ' is logged in'"></p>
+    <p th:text="${user.username}"></p>
 
-    <div>
+    <div th:if="${user.profilePictureUrl}">
         <img th:src="${user.profilePictureUrl}" alt="profile-picture">
+        <p th:text="${user.bio}"></p>
     </div>
 
+<<<<<<< HEAD
 <!--&lt;!&ndash;    edit form&ndash;&gt;-->
 <!--    <form action="/user/edit-user" method="POST">-->
 <!--        <div class="mb-3 w-25">-->
@@ -26,50 +28,94 @@
 <!--        <input type="submit" value="Update Info" class="btn btn-dark w-25">-->
 <!--    </form>-->
 <!--&lt;!&ndash;    end edit form&ndash;&gt;-->
+=======
+
+<!--    edit form-->
+    <form action="/user/edit-user" method="POST">
+        <div class="mb-3 w-25">
+            <label for="edit-username" class="form-label"></label>
+            <input type="text" class="form-control" id="edit-username" placeholder="Username" name="username" th:value="${user.username}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="edit-email" class="form-label"></label>
+            <input type="email" class="form-control" id="edit-email" placeholder="Email Address" name="email" th:value="${user.email}">
+        </div>
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" value="Update Info" class="btn btn-dark w-25">
+    </form>
+
+    <div th:if="!${user.profilePictureUrl}">
+        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+        <p th:text="${user.bio}"></p>
+    </div>
+
+>>>>>>> 9d878bb3d0b9606814d2b61ec2d3051d55a2c4a3
 
     <hr>
 
-    <div>
+    <div th:if="${user.followers}">
         <p th:text="'Followers: ' + ${user.followers.size()}"></p>
         <div th:each="follower : ${user.followers}">
             <p th:text="${follower.username}"></p>
+            <p th:text="'User Id: ' + ${follower.id}"></p>
+            <img th:src="${follower.profilePictureUrl}">
         </div>
     </div>
 
     <hr>
 
-    <div>
+    <div th:if="${following}">
+        <p th:text="'Following: ' + ${following.size()}"></p>
+        <div th:each="followed : ${following}">
+            <p th:text="${followed.username}"></p>
+            <img th:src="${followed.profilePictureUrl}">
+        </div>
+    </div>
+
+    <hr>
+
+    <div th:if="${user.favoriteGames}">
         <p th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
         <div th:each="game : ${user.favoriteGames}">
-            <div th:text="${game.title}"></div>
+            <p th:text="${game.title}"></p>
         </div>
     </div>
 
     <hr>
 
-    <p th:text="'Discord: ' + ${user.links.discord}"></p>
-    <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
-    <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
-    <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
-    <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
-    <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
+    <div th:if="${user.links}">
+        <p>Platform Links:</p>
+        <p th:text="'Discord: ' + ${user.links.discord}"></p>
+        <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
+        <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
+        <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
+        <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
+        <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
+    </div>
 
     <hr>
 
-    <div th:each="post : ${post}">
-        <p th:text="'Post #' + ${post.id}"></p>
-        <p th:text="${post.date}"></p>
-        <p th:text="${post.body}"></p>
-        <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+    <div th:if="${post}">
+        <div th:each="post : ${post}">
+            <p th:text="'Post #' + ${post.id}"></p>
+            <p th:text="${post.date}"></p>
+            <p th:text="${post.body}"></p>
+            <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+            <p>Comments:</p>
+            <div th:each="comment : ${post.comments}">
+                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>
+            </div>
 
-        <div th:each="image : ${post.postImages}">
-<!--            <div th:text="${image.title}"></div>-->
-            <p th:text="${image.url}"></p>
+            <div th:each="image : ${post.postImages}">
+    <!--            <p th:text="${image.title}"></p>-->
+                <p th:text="${image.url}"></p>
+            </div>
+
+            <hr>
+
         </div>
-
-        <hr>
-
     </div>
+
 </div>
 
 <footer th:replace="partials/partials.html :: footer"></footer>

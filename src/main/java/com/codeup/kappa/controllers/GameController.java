@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("/games")
+@RequestMapping("/game")
 public class GameController {
 
     private final GameRepository GameDao;
@@ -21,7 +21,7 @@ public class GameController {
 
     @GetMapping
     public String gamesIndex(){
-        return "games/rawg";
+        return "games/game";
     }
 
 
@@ -40,7 +40,7 @@ public class GameController {
 
         Game game = new Game(parsedId, title, description, backgroundUrl, platforms, rating, genres, developer);
         GameDao.save(game);
-        return "games/rawg";
+        return "games/game";
     }
 
 
