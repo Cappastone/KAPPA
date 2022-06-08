@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -26,19 +28,16 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{user_id}")
     public String viewUserProfile(
-            @PathVariable long id, Model model){
+            @PathVariable long user_id, Model model){
 
-//        HELP
+//        System.out.println("Hellooooooooooooo! " + userDao.followingList(user_id));
+        List<Long> followingIds = userDao.followingList(user_id);
 
-//        System.out.println("Hi Justin :]" + userDao.followingList(id));
-//        model.addAttribute("following", userDao.followingList(id));
-
-//        HELP
-
-        model.addAttribute("user", userDao.getById(id));
-        model.addAttribute("post", postDao.getPostByUserId(id));
+        model.addAttribute("following", userDao.findAllById(followingIds));
+        model.addAttribute("user", userDao.getById(user_id));
+        model.addAttribute("post", postDao.getPostByUserId(user_id));
 
         return "/users/profile";
     }

@@ -11,11 +11,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 
-//    HELP
-
-//    @Query(value = "SELECT user_id FROM gamer_haven_db.user_followers WHERE follower_id = :id GROUP BY user_id ORDER BY COUNT(*) DESC;", nativeQuery = true)
-//    List<User> followingList(@Param("id") long id);
-
-//    HELP
+    @Query(value = "SELECT t.user_id FROM gamer_haven_db.user_followers t WHERE t.follower_id = :user_id GROUP BY t.user_id", nativeQuery = true)
+    List<Long> followingList(long user_id);
 
 }
