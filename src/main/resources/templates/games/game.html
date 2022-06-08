@@ -2,15 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials.html :: head (GamerHaven)"></head>
 <body>
-    <div th:replace="partials/partials.html :: navbar"></div>
-    this is the game view :)
-    <div id="testing"></div>
-    <div id="save"></div>
-    <div th:replace="partials/partials.html :: scripts"></div>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const myParam = urlParams.get('gameID');
-        searcher(myParam);
-    </script>
+<div th:replace="partials/partials.html :: navbar"></div>
+
+this is the game view :)
+
+<div th:if="!${game}" id="testing"></div>
+
+<div th:if="!${game}" id="save"></div>
+
+
+<div th:if="${game}">
+    TEST
+    <h1 th:text="${game.title}"></h1>
+</div>
+
+<div th:replace="partials/partials.html :: scripts"></div>
+
+<script
+        th:if="!${game}">
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('gameID');
+    searcher(myParam);
+</script>
 </body>
 </html>

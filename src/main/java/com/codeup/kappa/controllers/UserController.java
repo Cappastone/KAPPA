@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -28,21 +26,23 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/{user_id}")
+    @GetMapping("/{id}")
     public String viewUserProfile(
-            @PathVariable long user_id, Model model){
+            @PathVariable long id, Model model){
 
-//        System.out.println("Hellooooooooooooo! " + userDao.followingList(user_id));
-        List<Long> followingIds = userDao.followingList(user_id);
+//        HELP
 
-        model.addAttribute("following", userDao.findAllById(followingIds));
-        model.addAttribute("user", userDao.getById(user_id));
-        model.addAttribute("post", postDao.getPostByUserId(user_id));
+//        System.out.println("Hi Justin :]" + userDao.followingList(id));
+//        model.addAttribute("following", userDao.followingList(id));
 
-        return "/users/profile";
+//        HELP
+
+        model.addAttribute("user", userDao.getById(id));
+        model.addAttribute("post", postDao.getPostByUserId(id));
+
+        return "users/profile";
     }
 
-    // For redirect upon login only =>
     @GetMapping("/profile")
     public String viewProfile(){
 
@@ -57,7 +57,7 @@ public class UserController {
 
         model.addAttribute("user", new User());
 
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -76,9 +76,8 @@ public class UserController {
 
         model.addAttribute("user", userDao.getById(id));
 
-        return "/users/account";
+        return "users/profile";
     }
-
 
     @GetMapping("/account")
     public String editAccount(Model model){
@@ -97,6 +96,10 @@ public class UserController {
         user.setEmail(email);
 
         userDao.save(user);
+//        User existingUser = userDao.getById(user.getId());
+//        existingUser.setUsername(user.getUsername());
+//        existingUser.setEmail(user.getEmail());
+//        userDao.save(user);
 
         return "redirect:/user/" + user.getId();
     }
