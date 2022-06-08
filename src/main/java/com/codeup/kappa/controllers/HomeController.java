@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/")
@@ -13,7 +12,7 @@ public class HomeController {
 
     @GetMapping
     public String home() {
-        return "/games/index";
+        return "games/discover";
     }
 
 
