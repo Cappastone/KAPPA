@@ -13,26 +13,12 @@
         <p th:text="${user.bio}"></p>
     </div>
 
-<!--    edit form-->
-    <form action="/user/edit-user" method="POST">
-        <div class="mb-3 w-25">
-            <label for="edit-username" class="form-label"></label>
-            <input type="text" class="form-control" id="edit-username" placeholder="Username" name="username" th:value="${user.username}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="edit-email" class="form-label"></label>
-            <input type="email" class="form-control" id="edit-email" placeholder="Email Address" name="email" th:value="${user.email}">
-        </div>
-        <input type="hidden" name="id" th:value="${user.id}">
-        <input type="submit" value="Update Info" class="btn btn-dark w-25">
-    </form>
+
 
     <div th:if="!${user.profilePictureUrl}">
         <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
         <p th:text="${user.bio}"></p>
     </div>
-
->>>>>>> 9d878bb3d0b9606814d2b61ec2d3051d55a2c4a3
 
     <hr>
 
@@ -102,5 +88,7 @@
 </div>
 
 <footer th:replace="partials/partials.html :: footer"></footer>
+<div th:replace="partials/partials.html :: scripts"></div>
+
 </body>
 </html>

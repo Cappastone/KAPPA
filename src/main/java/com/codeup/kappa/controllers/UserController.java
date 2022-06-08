@@ -79,7 +79,15 @@ public class UserController {
         return "users/profile";
     }
 
+    @GetMapping("/account")
+    public String editAccount(Model model){
 
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        model.addAttribute("user", userDao.getById(id));
+
+        return "/users/account";
+    }
 
     @PostMapping("/edit-user")
     public String editUser(@RequestParam(name="username")String username, @RequestParam(name="email")String email, @RequestParam(name="id")long id) {

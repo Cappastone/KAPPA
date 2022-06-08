@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/discover")
 public class DiscoverController {
     private final PostRepository postDao;
     private final UserRepository userDao;
@@ -41,7 +41,7 @@ public class DiscoverController {
         model.addAttribute("posts", mostLikedPosts2);
         model.addAttribute("games", (mostLikedGames2));
 
-        return "games/index";
+        return "games/discover";
     }
 
     public List<Post> convertPosts(List<String> list){
