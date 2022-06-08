@@ -107,6 +107,11 @@ public class User {
         password = copy.password;
     }
 
+    public User(Long id, String password) {
+        this.id = id;
+        this.password = password;
+    }
+
     public long getId() {
         return id;
     }
