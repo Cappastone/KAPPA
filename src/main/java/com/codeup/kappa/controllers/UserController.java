@@ -42,6 +42,7 @@ public class UserController {
         return "/users/profile";
     }
 
+    // For redirect upon login only =>
     @GetMapping("/profile")
     public String viewProfile(){
 
@@ -75,9 +76,19 @@ public class UserController {
 
         model.addAttribute("user", userDao.getById(id));
 
-        return "/users/profile";
+        return "/users/account";
     }
 
+
+    @GetMapping("/account")
+    public String editAccount(Model model){
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        model.addAttribute("user", userDao.getById(id));
+
+        return "/users/account";
+    }
 
 
     @PostMapping("/edit-user")
@@ -87,10 +98,6 @@ public class UserController {
         user.setEmail(email);
 
         userDao.save(user);
-//        User existingUser = userDao.getById(user.getId());
-//        existingUser.setUsername(user.getUsername());
-//        existingUser.setEmail(user.getEmail());
-//        userDao.save(user);
 
         return "redirect:/user/" + user.getId();
     }
