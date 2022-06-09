@@ -48,6 +48,16 @@ public class Game {
     public Game() {
     }
 
+    public Game(long gamesApiId, String title, String description, String imageUrl, String platforms, String genre, String developer) {
+        GamesApiId = gamesApiId;
+        this.title = title;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.platforms = platforms;
+        this.genre = genre;
+        this.developer = developer;
+    }
+
     public Game(long gamesApiId, String title, String description, String imageUrl, String platforms, String ageRating, String genre, String developer) {
         GamesApiId = gamesApiId;
         this.title = title;

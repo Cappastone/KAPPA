@@ -28,9 +28,12 @@
 
 <script
         th:if="!${game}">
+
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('gameID');
     searcher(myParam);
+    // const myForm = document.getElementById("myForm");
+    // myForm.submit();
 </script>
 </body>
 </html>

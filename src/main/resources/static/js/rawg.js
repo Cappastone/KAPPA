@@ -63,20 +63,23 @@ const mapElementToDiv = (game) => `<div>
                 <div>${game.Genres}</div>
             </div>`;
 
-const mapElementToForm = (game) => `<form method="post" action="/games">
-                <input type="hidden" name="title" value="${game.Name}">
-                <input type="hidden" name="description" value="${game.Description}">
-                <input type="hidden" name="background-url" value="${game.BackgroundImageUrl}">
-                <input type="hidden" name="game-id" value="${game.Id}">
-                <input type="hidden" name="developer" value="${game.Developer}">
-                <input type="hidden" name="platforms" value="${game.Platforms}">
-<!--                <input type="hidden" name="rating" value="${game.Rating}">-->
-                <input type="hidden" name="genres" value="${game.Genres}">
-                <button>Save To Database</button>
-            </form>`;
+
+const mapElementToForm = (game) => `<form id="myForm" method="post" action="/game">
+          <input type="hidden" name="title" value="${game.Name}">
+          <input type="hidden" name="background-url" value="${game.BackgroundImageUrl}">
+          <input type="hidden" name="description" value="${game.Description}">
+          <input type="hidden" name="game-id" value="${game.Id}">
+          <input type="hidden" name="developer" value="${game.Developer}">
+          <input type="hidden" name="platforms" value="${game.Platforms}">
+          <input type="hidden" name="genres" value="${game.Genres}">
+    </form>`;
+
+
+
 
 
 function getPlatforms (array) {
+
     let platforms = "";
     for (let i = 0; i < array.length; i++) {
         platforms += array[i].platform.name + ", ";
@@ -108,26 +111,28 @@ function searcher(GameID) {
         console.log(data);
         const games = [
             {
-            Id: data.id,
-            Name: data.name,
-            Description: data.description,
-            BackgroundImageUrl: data.background_image,
-            // Rating: data.esrb_rating.name,
-            Genres: getGenres(data.genres),
-            Developer: data.developers[0].name,
-            Platforms: getPlatforms(data.platforms)
 
+                Id: data.id,
+                Name: data.name,
+                Description: data.description_raw,
+                BackgroundImageUrl: data.background_image,
+                // Rating: data.esrb_rating.name,
+                Genres: getGenres(data.genres),
+                Developer: data.developers[0].name,
+                Platforms: getPlatforms(data.platforms)
             }
         ];
 
         console.log(games)
 
 
-        const test = games.map(mapElementToDiv);
-        $('#testing').html(test);
+        // const test = games.map(mapElementToDiv);
+        // $('#testing').html(test);
 
         const save = games.map(mapElementToForm);
         $('#save').html(save);
+        const myForm = document.getElementById("myForm");
+        myForm.submit();
 
     });
 

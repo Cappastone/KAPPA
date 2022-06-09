@@ -49,15 +49,14 @@ public class GameController {
             @RequestParam(name = "description") String description,
             @RequestParam(name = "background-url") String backgroundUrl,
             @RequestParam(name = "developer") String developer,
-            @RequestParam(name = "rating") String rating,
             @RequestParam(name = "platforms") String platforms,
             @RequestParam(name = "genres") String genres) {
 
         long parsedId = Long.parseLong(id);
 
-        Game game = new Game(parsedId, title, description, backgroundUrl, platforms, rating, genres, developer);
+        Game game = new Game(parsedId, title, description, backgroundUrl, platforms, genres, developer);
         gameDao.save(game);
-        return "games/game";
+        return "redirect:game?gameID=" + id;
     }
 
 
