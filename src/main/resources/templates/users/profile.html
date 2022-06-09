@@ -32,7 +32,6 @@
         <p th:text="${user.bio}"></p>
     </div>
 
->>>>>>> 9d878bb3d0b9606814d2b61ec2d3051d55a2c4a3
 
     <hr>
 
@@ -79,6 +78,7 @@
     <hr>
 
     <div th:if="${post}">
+<!--        <form id="like-post" action="/user/like" method="post"></form>-->
         <div th:each="post : ${post}">
             <p th:text="'Post #' + ${post.id}"></p>
             <p th:text="${post.date}"></p>
@@ -95,12 +95,14 @@
             </div>
 
             <hr>
-
+<!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
+            <button th:data="${post.id} + ',' + ${user.id}" class="like-btn btn btn-secondary">Like Post</button>
         </div>
     </div>
 
 </div>
 
 <footer th:replace="partials/partials.html :: footer"></footer>
+<div th:replace="partials/partials.html :: scripts"></div>
 </body>
 </html>

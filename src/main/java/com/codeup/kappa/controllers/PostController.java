@@ -26,17 +26,21 @@ public class PostController {
         this.postImageDao = postImageDao;
     }
 
-    public List<Post> convert(List<String> list){
 
-        List<Post> posts = new ArrayList<>();
 
-        for(int i = 0; i < list.size(); i++){
 
-            posts.add(postDao.getPostById(Long.parseLong(list.get(i))));
-        }
-        return posts;
 
-    }
+//    public List<Post> convert(List<String> list){
+//
+//        List<Post> posts = new ArrayList<>();
+//
+//        for(int i = 0; i < list.size(); i++){
+//
+//            posts.add(postDao.getPostById(Long.parseLong(list.get(i))));
+//        }
+//        return posts;
+//
+//    }
 
 //    @GetMapping
 //    public String topPosts(Model model) {

@@ -194,3 +194,75 @@ document.querySelector('#submit-btn').addEventListener('click', function () {
  }
 
 
+function likePost(values){
+    const data = {
+        user_id: values[1],
+        post_id: values[0]
+    }
+    const url = 'http://localhost:8080/ajax/like-post';
+    const readOption = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    fetch(url, readOption)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((e) => {
+            console.log('Error!!', e)
+        });
+}
+
+
+function unlikePost(values){
+    const data = {
+        user_id: values[1],
+        post_id: values[0]
+    }
+    const url = 'http://localhost:8080/ajax/unlike-post';
+    const readOption = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    fetch(url, readOption)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((e) => {
+            console.log('Error!!', e)
+        });
+}
+
+function getBtnValue(target){
+    return target[0].attributes[0].value.split(',');
+}
+
+
+$('.like-btn').on('click', function (e) {
+    e.preventDefault();
+    let array = getBtnValue($(this));
+
+    if (array[1] !== -1) {
+        if ($(this).hasClass('btn-secondary')) {
+            $(this).removeClass('btn-secondary').addClass('btn-primary')
+            likePost(array);
+        } else if ($(this).hasClass('btn-primary')) {
+            $(this).removeClass('btn-primary').addClass('btn-secondary')
+            unlikePost(array)
+            }
+    }
+});
+
+
+
+
