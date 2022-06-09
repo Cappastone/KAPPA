@@ -41,7 +41,7 @@ public class DiscoverController {
         model.addAttribute("posts", mostLikedPosts2);
         model.addAttribute("games", (mostLikedGames2));
 
-        return "games/discover";
+        return "index/discover";
     }
 
     public List<Post> convertPosts(List<String> list){

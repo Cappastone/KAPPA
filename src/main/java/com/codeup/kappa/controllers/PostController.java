@@ -28,38 +28,10 @@ public class PostController {
         this.postImageDao = postImageDao;
     }
 
-
-
-
-
-//    public List<Post> convert(List<String> list){
-//
-//        List<Post> posts = new ArrayList<>();
-//
-//        for(int i = 0; i < list.size(); i++){
-//
-//            posts.add(postDao.getPostById(Long.parseLong(list.get(i))));
-//        }
-//        return posts;
-//
-//    }
-
     public static void main(String[] args) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, uuuu HH:mm");
         ZonedDateTime date = ZonedDateTime.now();
         System.out.println(format.format(date));
     }
-
-//    @GetMapping
-//    public String topPosts(Model model) {
-//
-//        List<String> mostLiked = postDao.findPostByMostLiked();
-//        List<Post> mostLiked2 = convert(mostLiked);
-//
-//
-//        model.addAttribute("post", (mostLiked2));
-//
-//        return "/games/index";
-//    }
 
 }
