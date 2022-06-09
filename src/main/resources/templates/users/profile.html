@@ -83,7 +83,7 @@
 
             <hr>
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
-            <button th:data="${post.id} + ',' + ${user.id}" class="like-btn btn btn-secondary">Like Post</button>
+            <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
         </div>
     </div>
 
