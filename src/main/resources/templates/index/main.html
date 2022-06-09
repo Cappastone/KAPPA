@@ -15,35 +15,67 @@
 
 <div th:if="${user}">
     <div th:text="${user.username}"></div>
-</div>
 
-<div th:if="${followingPosts}">
-    <!--        <form id="like-post" action="/user/like" method="post"></form>-->
-    <div th:each="post : ${followingPosts}">
-        <p th:text="'Post #' + ${post.id}"></p>
-        <p th:text="${post.user.username}"></p>
-        <p th:text="${post.creationDate}"></p>
-        <p th:text="${post.body}"></p>
-        <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
-        <p>Comments:</p>
-        <div th:each="comment : ${post.comments}">
-            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>
+    <div th:if="${followingPosts}">
+
+        <div th:each="user : ${followingPosts}">
+            <p th:text="'User: ' + ${user.username}"></p>
+<!--            <p th:text="${user.posts[0]}"></p>-->
+
+            <div th:each="post : ${user.posts}">
+                <p th:text="'Post #' + ${post.id}"></p>
+                <div th:text="${post.body}"></div>
+                <div th:text="${post.creationDate}"></div>
+            </div>
+
+
+<!--            <p th:text="${post.creationDate}"></p>-->
+<!--            <p th:text="${post.body}"></p>-->
+<!--            <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>-->
+<!--            -->
+<!--            <p>Comments:</p>-->
+<!--            <div th:each="comment : ${post.comments}">-->
+<!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
+<!--            </div>-->
+
+<!--            <div th:each="image : ${post.postImages}">-->
+<!--                <p th:text="${image.url}"></p>-->
+<!--            </div>-->
+
+<!--            <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>-->
+
+            <hr>
         </div>
+        <!--        <form id="like-post" action="/user/like" method="post"></form>-->
+<!--        <div th:each="post : ${followingPosts}">-->
+<!--            <p th:text="'Post #' + ${post.id}"></p>-->
+<!--            <p th:text="${post.user.username}"></p>-->
+<!--            <p th:text="${post.creationDate}"></p>-->
+<!--            <p th:text="${post.body}"></p>-->
+<!--            <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>-->
+<!--            <p>Comments:</p>-->
+<!--            <div th:each="comment : ${post.comments}">-->
+<!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
+<!--            </div>-->
 
-        <div th:each="image : ${post.postImages}">
-            <p th:text="${image.url}"></p>
-        </div>
+<!--            <div th:each="image : ${post.postImages}">-->
+<!--                <p th:text="${image.url}"></p>-->
+<!--            </div>-->
 
-        <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+<!--            <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>-->
 
-        <hr>
+<!--            <hr>-->
+<!--        </div>-->
     </div>
-</div>
 
-<!--<div th:each="following : ${following}">-->
-<!--    <p th:text="${following.username}"></p>-->
-<!--    <p th:each="followerPost : ${following.}"></p>-->
-<!--</div>-->
+    <div th:if="${following.size() > 0}">
+        <div th:text="'Following: ' + ${following.size()}"></div>
+        <div th:each="following : ${following}">
+            <p th:text="${following.username}"></p>
+        </div>
+    </div>
+
+</div>
 
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>

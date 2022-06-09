@@ -8,7 +8,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "posts")
-public class Post {
+public class Post
+//        implements Comparable<Post>
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -107,5 +109,11 @@ public class Post {
         this.usersThatLiked = usersThatLiked;
     }
 
+//    @Override
+//    public int compareTo(Post o) {
+//        if (getCreationDate() == null || o.getCreationDate() == null)
+//            return 0;
+//        return getCreationDate().compareTo(o.getCreationDate());
+//    }
 
 }

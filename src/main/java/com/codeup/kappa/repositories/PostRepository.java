@@ -25,6 +25,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> getPostByUserId(long id);
 
+    Post findPostByUserId(long id);
 
+//    List<Post> findAllByUserId(List <Long> ids);
+
+//    @Query(value = "SELECT * FROM gamer_haven_db.posts g WHERE g.id = :ids ORDER BY g.creation_date", nativeQuery = true)
+//    List<Post>findPostsByIds(List<Long> ids);
 
 }
