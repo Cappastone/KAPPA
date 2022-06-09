@@ -127,5 +127,17 @@ public class UserController {
         return "redirect:/user/" + user.getId();
     }
 
+//    @PostMapping("/like")
+//    public void likePost() {
+//
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        long id = user.getId();
+//        System.out.println(id);
+//    }
+
+
+
+
+
 
 }

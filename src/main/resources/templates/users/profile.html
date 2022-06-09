@@ -65,6 +65,7 @@
     <hr>
 
     <div th:if="${post}">
+<!--        <form id="like-post" action="/user/like" method="post"></form>-->
         <div th:each="post : ${post}">
             <p th:text="'Post #' + ${post.id}"></p>
             <p th:text="${post.date}"></p>
@@ -81,7 +82,8 @@
             </div>
 
             <hr>
-
+<!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
+            <button th:data="${post.id} + ',' + ${user.id}" class="like-btn btn btn-secondary">Like Post</button>
         </div>
     </div>
 
