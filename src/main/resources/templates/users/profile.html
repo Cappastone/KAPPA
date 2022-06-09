@@ -20,6 +20,17 @@
         <p th:text="${user.bio}"></p>
     </div>
 
+<!--    edit bio-->
+    <form action="/user/edit-bio" method="POST">
+        <div class="mb-3">
+            <input type="hidden" name="id" th:value="${user.id}">
+            <label for="bio" class="form-label">Edit Bio</label>
+            <textarea class="form-control" id="bio" name="bio" rows="3" th:value="${user.bio}"></textarea>
+    </div>
+        <input type="submit" value="Update" class="btn btn-dark w-25">
+    </form>
+<!--    end edit bio-->
+
     <hr>
 
     <div th:if="${user.followers}">
