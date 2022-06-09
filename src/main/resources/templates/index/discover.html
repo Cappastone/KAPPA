@@ -24,6 +24,8 @@
             <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>
         </div>
 
+        <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+
         <hr>
     </div>
 </div>
