@@ -55,6 +55,7 @@ public class UserController {
         long id = user.getId();
 
         return "redirect:/user/" + id;
+
     }
 
     @GetMapping("/register")
@@ -129,18 +130,5 @@ public class UserController {
 
         return "redirect:/user/" + user.getId();
     }
-
-//    @PostMapping("/like")
-//    public void likePost() {
-//
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        long id = user.getId();
-//        System.out.println(id);
-//    }
-
-
-
-
-
 
 }
