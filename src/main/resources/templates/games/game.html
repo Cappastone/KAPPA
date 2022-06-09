@@ -4,16 +4,24 @@
 <body>
 <div th:replace="partials/partials.html :: navbar"></div>
 
-this is the game view :)
 
 <div th:if="!${game}" id="testing"></div>
 
 <div th:if="!${game}" id="save"></div>
 
+<div th:if="${game}" class="justify-content-center d-flex mt-1">
+    <div class="w-50">
+        <h1 th:text="${game.title}" class="text-center"></h1>
+        <img th:src="${game.imageUrl}">
+    </div>
+    <div class="w-50">
+        <p th:text="${game.developer}"></p>
+        <p th:text="${game.description}"></p>
+        <p th:text="${game.genre}"></p>
+        <p th:text="${game.platforms}"></p>
+        <p></p>
+    </div>
 
-<div th:if="${game}">
-    TEST
-    <h1 th:text="${game.title}"></h1>
 </div>
 
 <div th:replace="partials/partials.html :: scripts"></div>
