@@ -112,6 +112,11 @@ public class User {
         this.password = password;
     }
 
+    public User(String bio, Long id) {
+        this.id = id;
+        this.bio = bio;
+    }
+
     public long getId() {
         return id;
     }

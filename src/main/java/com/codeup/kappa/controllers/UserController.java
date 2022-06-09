@@ -106,10 +106,6 @@ public class UserController {
         user.setEmail(email);
 
         userDao.save(user);
-//        User existingUser = userDao.getById(user.getId());
-//        existingUser.setUsername(user.getUsername());
-//        existingUser.setEmail(user.getEmail());
-//        userDao.save(user);
 
         return "redirect:/user/" + user.getId();
     }
@@ -120,9 +116,6 @@ public class UserController {
         String message;
         message = "Please enter correct current password";
         User user = userDao.getById(id);
-
-//        String hash = passwordEncoder.encode(user.getPassword());
-//        user.setPassword(hash);
 
         if(this.passwordEncoder.matches(oldPassword, user.getPassword()))
         {
@@ -135,4 +128,13 @@ public class UserController {
         return "redirect:/user/" + user.getId();
     }
 
+    @PostMapping("/edit-bio")
+    public String editBio(@RequestParam(name="bio")String bio, @RequestParam(name="id")long id) {
+        User user = userDao.getById(id);
+        user.setBio(bio);
+
+        userDao.save(user);
+
+        return "redirect:/user/" + user.getId();
+    }
 }

@@ -1,3 +1,4 @@
+
 // this is the code to make an api req to RAWG this gets the top 20 games
 // const settings = {
 //     "async": true,
@@ -58,29 +59,24 @@ const mapElementToDiv = (game) => `<div>
                 <div><img src="${game.BackgroundImageUrl}"></div>
                 <div>${game.Developer}</div>
                 <div>${game.Platforms}</div>
+<!--                <div>${game.Rating}</div>-->
                 <div>${game.Genres}</div>
             </div>`;
 
-const mapElementToForm = (game) => `
-<div class="justify-content-center d-flex">
-    <form method="post" action="/games">
-       <div>
-          <input class="text-center" type="hidden" name="title" value="${game.Name}"></h1>
-          <input type="hidden" name="background-url" value="${game.BackgroundImageUrl}">
-       </div>
-       <div>
-          <input type="hidden" name="description" value="${game.Description}">
-          <input type="hidden" name="game-id" value="${game.Id}">
-          <input type="hidden" name="developer" value="${game.Developer}">
-          <input type="hidden" name="platforms" value="${game.Platforms}">
-          <input type="hidden" name="genres" value="${game.Genres}">
-          <button>Save To Database</button>
-        </div>    
-    </form>
-</div>`;
+const mapElementToForm = (game) => `<form method="post" action="/games">
+                <input type="hidden" name="title" value="${game.Name}">
+                <input type="hidden" name="description" value="${game.Description}">
+                <input type="hidden" name="background-url" value="${game.BackgroundImageUrl}">
+                <input type="hidden" name="game-id" value="${game.Id}">
+                <input type="hidden" name="developer" value="${game.Developer}">
+                <input type="hidden" name="platforms" value="${game.Platforms}">
+<!--                <input type="hidden" name="rating" value="${game.Rating}">-->
+                <input type="hidden" name="genres" value="${game.Genres}">
+                <button>Save To Database</button>
+            </form>`;
 
 
-function getPlatforms(array) {
+function getPlatforms (array) {
     let platforms = "";
     for (let i = 0; i < array.length; i++) {
         platforms += array[i].platform.name + ", ";
@@ -88,7 +84,7 @@ function getPlatforms(array) {
     return platforms;
 }
 
-function getGenres(array) {
+function getGenres (array) {
     let genres = "";
     for (let i = 0; i < array.length; i++) {
         genres += array[i].name + ", ";
@@ -112,14 +108,14 @@ function searcher(GameID) {
         console.log(data);
         const games = [
             {
-                Id: data.id,
-                Name: data.name,
-                Description: data.description,
-                BackgroundImageUrl: data.background_image,
-                // Rating: data.esrb_rating.name,
-                Genres: getGenres(data.genres),
-                Developer: data.developers[0].name,
-                Platforms: getPlatforms(data.platforms)
+            Id: data.id,
+            Name: data.name,
+            Description: data.description,
+            BackgroundImageUrl: data.background_image,
+            // Rating: data.esrb_rating.name,
+            Genres: getGenres(data.genres),
+            Developer: data.developers[0].name,
+            Platforms: getPlatforms(data.platforms)
 
             }
         ];
@@ -136,6 +132,9 @@ function searcher(GameID) {
     });
 
 }
+
+
+
 
 
 const mapEleToDiv = (results) => `
@@ -155,7 +154,7 @@ function stringSearch(GameString) {
         "async": true,
         "crossDomain": true,
         // the token variable must be imported from keys.js THIS IS IMPORTANT!!
-        "url": "https://rawg-video-games-database.p.rapidapi.com/games?key=" + token + "&search=" + GameString,
+        "url": "https://rawg-video-games-database.p.rapidapi.com/games?key=" + token + "&search="+ GameString,
         "method": "GET",
         "headers": {
             "x-rapidapi-key": RAPID_API_TOKEN,
@@ -164,11 +163,13 @@ function stringSearch(GameString) {
     };
     $.ajax(searchString).done(function (data) {
         console.log(data);
-        const test = data.results.map(mapEleToDiv);
-        $('#search-results').html(test);
+            const test = data.results.map(mapEleToDiv);
+            $('#search-results').html(test);
 
     });
 }
+
+
 
 
 // this function is for the search bar to populate the screen based on there search
@@ -181,19 +182,19 @@ function stringSearch(GameString) {
 
 document.querySelector('#submit-btn').addEventListener('click', function () {
     var searchQuery = $("#search").val();
-    window.location = ("/results?search=" + searchQuery);
+    window.location=("/results?search=" + searchQuery);
 });
 
-function gameRedirect(elem) {
-    // var dataID = $(this).attr("data-id")
-    var dataId = $(elem).data("id");
-    console.log(dataId)
-    // alert(dataId);
-    window.location = ("/game?gameID=" + dataId);
-}
+ function gameRedirect (elem) {
+     // var dataID = $(this).attr("data-id")
+     var dataId = $(elem).data("id");
+     console.log(dataId)
+     // alert(dataId);
+     window.location = ("/game?gameID=" + dataId);
+ }
 
 
-function likePost(values) {
+function likePost(values){
     const data = {
         user_id: values[1],
         post_id: values[0]
@@ -218,7 +219,7 @@ function likePost(values) {
 }
 
 
-function unlikePost(values) {
+function unlikePost(values){
     const data = {
         user_id: values[1],
         post_id: values[0]
@@ -242,7 +243,7 @@ function unlikePost(values) {
         });
 }
 
-function getBtnValue(target) {
+function getBtnValue(target){
     return target[0].attributes[0].value.split(',');
 }
 
@@ -270,7 +271,7 @@ $('.like-btn').on('click', function (e) {
         } else if ($(this).hasClass('btn-primary')) {
             $(this).removeClass('btn-primary').addClass('btn-secondary')
             unlikePost(array)
-        }
+            }
     }
 });
 
