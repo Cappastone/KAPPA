@@ -13,8 +13,6 @@
         <p th:text="${user.bio}"></p>
     </div>
 
-
-
     <div th:if="!${user.profilePictureUrl}">
         <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
         <p th:text="${user.bio}"></p>
@@ -46,9 +44,9 @@
 
     <div th:if="${following}">
         <p th:text="'Following: ' + ${following.size()}"></p>
-        <div th:each="followed : ${following}">
-            <p th:text="${followed.username}"></p>
-            <img th:src="${followed.profilePictureUrl}">
+        <div th:each="following : ${following}">
+            <p th:text="${following.username}"></p>
+            <img th:src="${following.profilePictureUrl}">
         </div>
     </div>
 
