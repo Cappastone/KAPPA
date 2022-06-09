@@ -1,8 +1,10 @@
 package com.codeup.kappa.controllers;
 
+import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
+import com.sun.mail.imap.protocol.ID;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/")
@@ -43,10 +47,20 @@ public class MainIndexController {
         model.addAttribute("user", user);
         model.addAttribute("following", userDao.findAllById(followingIds));
         model.addAttribute("posts", postDao.findAll());
-        model.addAttribute("followingPosts", postDao.findAllById(followingIds));
+        model.addAttribute("followingPosts", postDao.findPostsByUserIds(followingIds));
 
         return "index/main";
     }
+
+//    public List<Post> findAllById(List<Long> ids) {
+//            List<Post> results = new ArrayList<>();
+//            for (Long id : ids) {
+//                postDao.findPostByUserId(id);
+//            }
+//            return results;
+//        }
+
+
 
     public static void main(String[] args) {
             LocalDate date = LocalDate.now();
