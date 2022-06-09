@@ -38,7 +38,7 @@ public class MainIndexController {
 
         List<Long> followingIds = userDao.followingList(userId);
 
-        List<User> following = userDao.findAllById(followingIds);
+//        List<User> following = userDao.findAllById(followingIds);
 
         model.addAttribute("user", user);
         model.addAttribute("following", userDao.findAllById(followingIds));
