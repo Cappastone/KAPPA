@@ -61,23 +61,15 @@ const mapElementToDiv = (game) => `<div>
                 <div>${game.Genres}</div>
             </div>`;
 
-const mapElementToForm = (game) => `
-<div class="justify-content-center d-flex">
-    <form method="post" action="/games">
-       <div>
-          <input class="text-center" type="hidden" name="title" value="${game.Name}"></h1>
+const mapElementToForm = (game) => `<form id="myForm" method="post" action="/game">
+          <input type="hidden" name="title" value="${game.Name}">
           <input type="hidden" name="background-url" value="${game.BackgroundImageUrl}">
-       </div>
-       <div>
           <input type="hidden" name="description" value="${game.Description}">
           <input type="hidden" name="game-id" value="${game.Id}">
           <input type="hidden" name="developer" value="${game.Developer}">
           <input type="hidden" name="platforms" value="${game.Platforms}">
           <input type="hidden" name="genres" value="${game.Genres}">
-          <button>Save To Database</button>
-        </div>    
-    </form>
-</div>`;
+    </form>`;
 
 
 function getPlatforms(array) {
@@ -114,7 +106,7 @@ function searcher(GameID) {
             {
                 Id: data.id,
                 Name: data.name,
-                Description: data.description,
+                Description: data.description_raw,
                 BackgroundImageUrl: data.background_image,
                 // Rating: data.esrb_rating.name,
                 Genres: getGenres(data.genres),
@@ -127,11 +119,13 @@ function searcher(GameID) {
         console.log(games)
 
 
-        const test = games.map(mapElementToDiv);
-        $('#testing').html(test);
+        // const test = games.map(mapElementToDiv);
+        // $('#testing').html(test);
 
         const save = games.map(mapElementToForm);
         $('#save').html(save);
+        const myForm = document.getElementById("myForm");
+        myForm.submit();
 
     });
 
