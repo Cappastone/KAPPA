@@ -3,24 +3,41 @@ package com.codeup.kappa.controllers;
 import com.codeup.kappa.models.Game;
 import com.codeup.kappa.repositories.GameRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 
 @Controller
 @RequestMapping("/game")
 public class GameController {
 
-    private final GameRepository GameDao;
+    private final GameRepository gameDao;
 
     public GameController(GameRepository GameDao) {
-        this.GameDao = GameDao;
+        this.gameDao = GameDao;
     }
 
     @GetMapping
-    public String gamesIndex(){
+    public String gamesIndex(Model model, @RequestParam("gameID")long api_id){
+
+        List<Long> allApiIds = gameDao.findAllApiIds();
+
+
+        if (allApiIds.contains(api_id)) {
+            model.addAttribute("game", gameDao.findGameByGamesApiId(api_id));
+        }
+
+
+//        long game = gameDao.findGameByGamesApiId(api_id);
+//        System.out.println("YOOOOOOOOOOOOOOOO!!!!!!! " + game);
+//
+//        model.addAttribute("game", gameDao.getGameById(game));
+
         return "games/game";
     }
 
@@ -39,7 +56,7 @@ public class GameController {
         long parsedId = Long.parseLong(id);
 
         Game game = new Game(parsedId, title, description, backgroundUrl, platforms, rating, genres, developer);
-        GameDao.save(game);
+        gameDao.save(game);
         return "games/game";
     }
 

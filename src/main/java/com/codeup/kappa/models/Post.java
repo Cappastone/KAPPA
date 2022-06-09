@@ -17,8 +17,9 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @Column
-    private String date;
+    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -49,7 +50,7 @@ public class Post {
         this.usersThatLiked = usersThatLiked;
     }
 
-    public Post(String body, String date, User user) {
+    public Post(String body, Date date, User user) {
         this.body = body;
         this.date = date;
         this.user = user;
@@ -87,11 +88,11 @@ public class Post {
         this.postImages = postImages;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

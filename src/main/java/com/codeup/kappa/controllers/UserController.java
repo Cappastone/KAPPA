@@ -8,7 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.servlet.http.HttpSession;
 import java.util.List;
+
 
 @Controller
 @RequestMapping("/user")
@@ -42,7 +45,6 @@ public class UserController {
         return "/users/profile";
     }
 
-    // For redirect upon login only =>
     @GetMapping("/profile")
     public String viewProfile(){
 
@@ -57,7 +59,7 @@ public class UserController {
 
         model.addAttribute("user", new User());
 
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -76,9 +78,8 @@ public class UserController {
 
         model.addAttribute("user", userDao.getById(id));
 
-        return "/users/account";
+        return "users/profile";
     }
-
 
     @GetMapping("/account")
     public String editAccount(Model model){
@@ -90,7 +91,6 @@ public class UserController {
         return "/users/account";
     }
 
-
     @PostMapping("/edit-user")
     public String editUser(@RequestParam(name="username")String username, @RequestParam(name="email")String email, @RequestParam(name="id")long id) {
         User user = userDao.getById(id);
@@ -98,6 +98,31 @@ public class UserController {
         user.setEmail(email);
 
         userDao.save(user);
+//        User existingUser = userDao.getById(user.getId());
+//        existingUser.setUsername(user.getUsername());
+//        existingUser.setEmail(user.getEmail());
+//        userDao.save(user);
+
+        return "redirect:/user/" + user.getId();
+    }
+
+//    Change Password //
+    @PostMapping("edit-password")
+    public String editPassword(@RequestParam(name="oldPassword")String oldPassword, @RequestParam(name="newPassword")String newPassword, @RequestParam(name="id")long id, HttpSession session) {
+        String message;
+        message = "Please enter correct current password";
+        User user = userDao.getById(id);
+
+//        String hash = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(hash);
+
+        if(this.passwordEncoder.matches(oldPassword, user.getPassword()))
+        {
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userDao.save(user);
+        } else {
+            session.setAttribute("message", message);
+        }
 
         return "redirect:/user/" + user.getId();
     }
