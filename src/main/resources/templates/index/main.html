@@ -34,8 +34,9 @@
             <p th:text="${image.url}"></p>
         </div>
 
-        <hr>
         <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+
+        <hr>
     </div>
 </div>
 
@@ -43,6 +44,9 @@
 <!--    <p th:text="${following.username}"></p>-->
 <!--    <p th:each="followerPost : ${following.}"></p>-->
 <!--</div>-->
+
+<footer th:replace="partials/partials.html :: footer"></footer>
+<div th:replace="partials/partials.html :: scripts"></div>
 
 </body>
 </html>
