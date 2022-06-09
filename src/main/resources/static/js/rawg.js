@@ -247,7 +247,19 @@ function getBtnValue(target){
     return target[0].attributes[0].value.split(',');
 }
 
-
+// document.querySelector('.like-btn').addEventListener('click', function (e) {
+//     let array = getBtnValue($(this));
+//
+//     // if (array[1] !== -1) {
+//         if ($(this).hasClass('btn-secondary')) {
+//             $(this).removeClass('btn-secondary').addClass('btn-primary')
+//             likePost(array);
+//         } else if ($(this).hasClass('btn-primary')) {
+//             $(this).removeClass('btn-primary').addClass('btn-secondary')
+//             unlikePost(array)
+//         }
+//     // }
+// });
 $('.like-btn').on('click', function (e) {
     e.preventDefault();
     let array = getBtnValue($(this));

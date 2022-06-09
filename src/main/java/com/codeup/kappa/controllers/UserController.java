@@ -42,6 +42,9 @@ public class UserController {
         model.addAttribute("user", userDao.getById(user_id));
         model.addAttribute("post", postDao.getPostByUserId(user_id));
 
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("sessionUserId", user.getId());
+
         return "/users/profile";
     }
 
