@@ -1,6 +1,7 @@
 package com.codeup.kappa.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,9 +18,20 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @Basic
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+//    @Basic
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date date;//
+
+    @Column(columnDefinition = "timestamp default current_timestamp")
+    private Date creationDate;
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -40,19 +52,17 @@ public class Post {
 
     public Post() {}
 
-    public Post(long id, String body, Date timestamp, User user, List<PostImage> postImages, List<Comment> comments, List<User> usersThatLiked) {
+    public Post(long id, String body, User user, List<PostImage> postImages, List<Comment> comments, List<User> usersThatLiked) {
         this.id = id;
         this.body = body;
-        this.date = date;
         this.user = user;
         this.postImages = postImages;
         this.comments = comments;
         this.usersThatLiked = usersThatLiked;
     }
 
-    public Post(String body, Date date, User user) {
+    public Post(String body, User user) {
         this.body = body;
-        this.date = date;
         this.user = user;
     }
 
@@ -88,13 +98,6 @@ public class Post {
         this.postImages = postImages;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public List<Comment> getComments() {
         return comments;

@@ -24,11 +24,11 @@ VALUES (1, 2),
        (3, 2),
        (4, 2);
 
-INSERT INTO posts (body, user_id, date)
-VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games! Check out these screenshots and clips.', 1, now()),
-       ('I am pretty bad at Super Smash Bros but discovered a new character that I can see becoming my new main. What are your main characters?', 1, now()),
-       ('I was watching my little brother play Minecraft today and he accidentally found a super secret item! Check out these screenshots.', 1, now()),
-       ('I am new to Fortnite and looking for some cool people who can show me the ropes!', 2, now());
+INSERT INTO posts (body, user_id)
+VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games! Check out these screenshots and clips.', 1),
+       ('I am pretty bad at Super Smash Bros but discovered a new character that I can see becoming my new main. What are your main characters?', 1),
+       ('I was watching my little brother play Minecraft today and he accidentally found a super secret item! Check out these screenshots.', 1),
+       ('I am new to Fortnite and looking for some cool people who can show me the ropes!', 2);
 
 INSERT INTO post_images (title, url, post_id)
 VALUES ('Apex Clip', 'filler url for video clip', 1),
