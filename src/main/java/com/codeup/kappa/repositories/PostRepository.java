@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Set;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
@@ -27,4 +28,14 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 
 
+    @Query(value = "SELECT * FROM gamer_haven_db.posts g WHERE g.user_id IN :ids ORDER BY g.creation_date DESC", nativeQuery = true)
+    List<Post>findPostsByUserIds(List<Long> ids);
+
+
+
+
+
+
+
 }
+
