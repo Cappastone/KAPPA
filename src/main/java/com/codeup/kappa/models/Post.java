@@ -14,24 +14,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     @Column(columnDefinition = "TEXT")
     private String body;
 
-//    @Basic
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date date;//
-
     @Column(columnDefinition = "timestamp default current_timestamp")
     private Date creationDate;
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -39,9 +26,6 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<PostImage> postImages = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "post")
-//    Set<Comments> comments;
 
     @OneToMany(mappedBy = "post")
    private List<Comment> comments;
@@ -64,6 +48,14 @@ public class Post {
     public Post(String body, User user) {
         this.body = body;
         this.user = user;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public long getId() {
