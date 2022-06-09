@@ -31,16 +31,20 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/{user_id}")
+    @GetMapping("/{id}")
     public String viewUserProfile(
-            @PathVariable long user_id, Model model){
+            @PathVariable long id, Model model){
+
+        if(id == 0){
+            return "redirect:/discover";
+        }
 
 //        System.out.println("Hellooooooooooooo! " + userDao.followingList(user_id));
-        List<Long> followingIds = userDao.followingList(user_id);
+        List<Long> followingIds = userDao.followingList(id);
 
         model.addAttribute("following", userDao.findAllById(followingIds));
-        model.addAttribute("user", userDao.getById(user_id));
-        model.addAttribute("post", postDao.getPostByUserId(user_id));
+        model.addAttribute("user", userDao.getById(id));
+        model.addAttribute("post", postDao.getPostByUserId(id));
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("sessionUserId", user.getId());

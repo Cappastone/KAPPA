@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="partials/partials.html :: head ('Main')">
 <body>
+<nav th:replace="partials/partials.html :: navbar"></nav>
+</head>
+
+<!--<div th:each="post : ${posts}">-->
+<!--    <p th:text="${post.body}"></p>-->
+<!--</div>-->
+
+<!--<div th>-->
+<!--    <div></div>-->
+<!--</div>-->
+
+<div th:if="${user}">
+    <div th:text="${user.username}"></div>
+</div>
+
+<div th:if="${followingPosts}">
+    <!--        <form id="like-post" action="/user/like" method="post"></form>-->
+    <div th:each="post : ${followingPosts}">
+        <p th:text="'Post #' + ${post.id}"></p>
+        <p th:text="${post.user.username}"></p>
+        <p th:text="${post.creationDate}"></p>
+        <p th:text="${post.body}"></p>
+        <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+        <p>Comments:</p>
+        <div th:each="comment : ${post.comments}">
+            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>
+        </div>
+
+        <div th:each="image : ${post.postImages}">
+            <p th:text="${image.url}"></p>
+        </div>
+
+        <hr>
+        <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+    </div>
+</div>
+
+<!--<div th:each="following : ${following}">-->
+<!--    <p th:text="${following.username}"></p>-->
+<!--    <p th:each="followerPost : ${following.}"></p>-->
+<!--</div>-->
 
 </body>
 </html>
