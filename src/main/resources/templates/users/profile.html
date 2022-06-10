@@ -103,9 +103,9 @@
     <hr>
 
 <!--    display all the Posts that the logged-in user has created-->
-    <div th:if="${post}">
+    <div th:if="${posts}">
 <!--        <form id="like-post" action="/user/like" method="post"></form>-->
-        <div th:each="post : ${post}">
+        <div th:each="post : ${posts}">
             <p th:text="'Post #' + ${post.id}"></p>
             <p th:text="${post.creationDate}"></p>
             <p th:text="${post.body}"></p>
@@ -122,7 +122,34 @@
 
 <!--            JavaScript listener to Like a Post using an Ajax request-->
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
-            <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+
+
+
+            <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
+                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
+            </div>
+
+            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
+                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+            </div>
+
+
+<!--            <div th:each="likePostId : ${ListPostIdLikedByUserId}">-->
+
+<!--                <div th:with="condition=${post.id == likePostId}">-->
+
+<!--                    <button th:if="${post.id == likePostId}" th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>-->
+<!--                    <button th:if="${post.id != likePostId}" th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>-->
+<!--                </div>-->
+<!--                <div th:unless="${post.id == likePostId}">-->
+<!--                    <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>-->
+<!--                </div>-->
+<!--                    <button class="like-btn btn btn-secondary" th:classappend="${post.id == likePostId} ? btn-primary : btn-secondary  " th:data="${post.id} + ',' + ${sessionUserId}">Like Post</button>-->
+<!--                <a href="" class="baseclass" th:classappend="${isAdmin} ? adminclass : userclass"></a>-->
+
+
+<!--            </div>-->
+
 
             <hr>
         </div>
