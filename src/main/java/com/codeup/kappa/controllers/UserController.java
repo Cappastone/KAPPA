@@ -31,11 +31,12 @@ public class UserController {
     @GetMapping("/{id}")
     public String viewUserProfile(
             @PathVariable long id, Model model){
-
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication == null) {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        long user_id = user.getId();
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
 
         if(id == 0){
             return "redirect:/login";
@@ -50,14 +51,14 @@ public class UserController {
         model.addAttribute("user", userDao.getById(id));
         model.addAttribute("posts", postDao.findPostsByUserId(id));
 
-        if (!(authentication.isAuthenticated())) {
+
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             long user_id = user.getId();
             model.addAttribute("sessionUserId", user_id);
             model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
-        } else {
-            return "redirect:/login";
-        }
+//        } else {
+//            return "redirect:/login";
+//        }
 
 
 
