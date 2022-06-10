@@ -3,21 +3,20 @@
 <head th:replace="partials/partials.html :: head ('Main')">
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
-</head>
+<!--header-->
 
 <!--<div th:each="post : ${posts}">-->
 <!--    <p th:text="${post.body}"></p>-->
 <!--</div>-->
 
-<!--<div th>-->
-<!--    <div></div>-->
-<!--</div>-->
-
+<!--display logged-in username-->
 <div th:if="${user}">
-    <div th:text="${user.username}"></div>
+    <p th:text="${user.username}"></p>
 </div>
 
+<!--display Posts from users that the logged-in user is Following-->
 <div th:if="${followingPosts}">
+    <hr>
     <!--        <form id="like-post" action="/user/like" method="post"></form>-->
     <div th:each="post : ${followingPosts}">
         <p th:text="'Post #' + ${post.id}"></p>
@@ -34,19 +33,15 @@
             <p th:text="${image.url}"></p>
         </div>
 
+<!--        JavaScript listener used to Like a Post -->
         <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
 
         <hr>
     </div>
 </div>
 
-<!--<div th:each="following : ${following}">-->
-<!--    <p th:text="${following.username}"></p>-->
-<!--    <p th:each="followerPost : ${following.}"></p>-->
-<!--</div>-->
-
+<!--footer and JS partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>
-
 </body>
 </html>
