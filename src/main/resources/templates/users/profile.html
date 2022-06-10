@@ -113,6 +113,8 @@
             <p>Comments:</p>
             <div th:each="comment : ${post.comments}">
                 <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>
+<!--                <a th:text="${comment.user.username}" th:href="'user/' + ${comment.user.id}"></a>-->
+<!--                <p th:text="${comment.comment}"></p>-->
             </div>
 
             <div th:each="image : ${post.postImages}">
@@ -122,7 +124,7 @@
 
 <!--            JavaScript listener to Like a Post using an Ajax request-->
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
-            <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
 
             <hr>
         </div>

@@ -58,8 +58,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .and()
                     .authorizeRequests()
                     .antMatchers(
-                            "/main", // only authenticated users
-                           "/user/profile" // only authenticated users
+                            "/main" // only authenticated users
+//                           "/user/profile" // only authenticated users
                     )
                     .authenticated()
                     .and().httpBasic()
