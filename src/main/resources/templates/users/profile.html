@@ -4,7 +4,9 @@
 <head th:replace="partials/partials.html :: head ('View Profile')">
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
+<!--header -->
 
+<!--display logged-in user's profile info-->
 <div th:if="${user}">
     <p th:text="${user.username}"></p>
 
@@ -20,7 +22,7 @@
 
 
 
-    <!-- Button trigger modal -->
+    <!-- Button trigger modal for Edit Bio-->
     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Edit Bio
     </button>
@@ -54,6 +56,7 @@
 
     <hr>
 
+<!--    display logged-in user's Follower info-->
     <div th:if="${user.followers}">
         <p th:text="'Followers: ' + ${user.followers.size()}"></p>
         <div th:each="follower : ${user.followers}">
@@ -65,6 +68,7 @@
 
     <hr>
 
+<!--    display users that a logged-in user is Following-->
     <div th:if="${following}">
         <p th:text="'Following: ' + ${following.size()}"></p>
         <div th:each="following : ${following}">
@@ -75,6 +79,7 @@
 
     <hr>
 
+<!--    display the logged-in user's Favorite Games info-->
     <div th:if="${user.favoriteGames}">
         <p th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
         <div th:each="game : ${user.favoriteGames}">
@@ -84,6 +89,7 @@
 
     <hr>
 
+<!--    display the Platform Links of a logged-in user-->
     <div th:if="${user.links}">
         <p>Platform Links:</p>
         <p th:text="'Discord: ' + ${user.links.discord}"></p>
@@ -96,6 +102,7 @@
 
     <hr>
 
+<!--    display all the Posts that the logged-in user has created-->
     <div th:if="${post}">
 <!--        <form id="like-post" action="/user/like" method="post"></form>-->
         <div th:each="post : ${post}">
@@ -113,14 +120,17 @@
                 <p th:text="${image.url}"></p>
             </div>
 
-            <hr>
+<!--            JavaScript listener to Like a Post using an Ajax request-->
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
             <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+
+            <hr>
         </div>
     </div>
 
 </div>
 
+<!--partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>
 

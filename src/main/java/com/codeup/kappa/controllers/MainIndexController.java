@@ -40,6 +40,10 @@ public class MainIndexController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long userId = user.getId();
 
+        if(userId == 0){
+            return "redirect:/discover";
+        }
+
         List<Long> followingIds = userDao.followingList(userId);
 
 //        List<User> following = userDao.findAllById(followingIds);
@@ -51,16 +55,6 @@ public class MainIndexController {
 
         return "index/main";
     }
-
-//    public List<Post> findAllById(List<Long> ids) {
-//            List<Post> results = new ArrayList<>();
-//            for (Long id : ids) {
-//                postDao.findPostByUserId(id);
-//            }
-//            return results;
-//        }
-
-
 
     public static void main(String[] args) {
             LocalDate date = LocalDate.now();

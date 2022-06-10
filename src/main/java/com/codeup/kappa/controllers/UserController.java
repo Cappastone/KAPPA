@@ -19,15 +19,11 @@ public class UserController {
 
     private final UserRepository userDao;
     private final PostRepository postDao;
-    private final PostImageRepository postImageDao;
-    private final GameRepository gameDao;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao, PostRepository postDao, PostImageRepository postImageDao, GameRepository gameDao, PasswordEncoder passwordEncoder){
+    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder){
         this.userDao = userDao;
         this.postDao = postDao;
-        this.postImageDao = postImageDao;
-        this.gameDao = gameDao;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -36,10 +32,9 @@ public class UserController {
             @PathVariable long id, Model model){
 
         if(id == 0){
-            return "redirect:/discover";
+            return "redirect:/login";
         }
 
-//        System.out.println("Hellooooooooooooo! " + userDao.followingList(user_id));
         List<Long> followingIds = userDao.followingList(id);
 
         model.addAttribute("following", userDao.findAllById(followingIds));
@@ -55,11 +50,14 @@ public class UserController {
     @GetMapping("/profile")
     public String viewProfile(){
 
+
+        if ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() == null){
+            return "redirect:/login";
+        }
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
 
-        return "redirect:/user/" + id;
-
+            return "redirect:/user/" + id;
     }
 
     @GetMapping("/register")

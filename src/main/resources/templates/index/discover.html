@@ -3,27 +3,32 @@
 <head th:replace="partials/partials.html :: head ('Landing Page')">
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
+<!--header-->
 
 <div class="container-fluid">
     <div id="search-results" class="d-flex flex-row flex-wrap justify-content-center"></div>
 </div>
 
+<!--display all Posts info-->
 <div th:if="${posts}">
     <div th:each="post : ${posts}">
         <p th:text="'Post #' + ${post.id}"></p>
         <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
         <p th:text="${post.creationDate}"></p>
 
+<!--        loop through list of media for a single Post-->
         <div th:each="image : ${post.postImages}">
             <img th:src="${image.url}">
         </div>
 
         <p th:text="${post.body}"></p>
 
+<!--        loop through list of comments belonging to a single Post-->
         <div th:each="comment : ${post.comments}">
             <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>
         </div>
 
+<!--        JS button to Like a Post-->
         <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
 
         <hr>
@@ -32,6 +37,7 @@
 
 <hr>
 
+<!--display all Games info-->
 <div th:if="${games}">
     <p>Top Games:</p>
     <div th:each="game : ${games}">
@@ -45,8 +51,8 @@
     </div>
 </div>
 
+<!--footer and JS partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>
-
 </body>
 </html>
