@@ -32,8 +32,8 @@ public class UserController {
     public String viewUserProfile(
             @PathVariable long id, Model model){
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long user_id = user.getId();
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        long user_id = user.getId();
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -43,15 +43,20 @@ public class UserController {
 
         List<Long> followingIds = userDao.followingList(id);
 
-        List<Long> postIdLikedByUserId = userDao.findPostIdLikedByUserId(user_id);
+//        List<Long> postIdLikedByUserId = userDao.findPostIdLikedByUserId(user_id);
 
 
         model.addAttribute("following", userDao.findAllById(followingIds));
         model.addAttribute("user", userDao.getById(id));
         model.addAttribute("posts", postDao.findPostsByUserId(id));
-        model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
-        if (authentication.isAuthenticated()) {
+
+        if (!(authentication.isAuthenticated())) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            long user_id = user.getId();
             model.addAttribute("sessionUserId", user_id);
+            model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
+        } else {
+            return "redirect:/login";
         }
 
 
