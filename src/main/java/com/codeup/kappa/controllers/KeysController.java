@@ -22,7 +22,7 @@ public class KeysController {
         return rawg;
     }
 
-    @GetMapping(path = "/keys", produces = "application/javascript")
+    @GetMapping(path = "/key", produces = "application/javascript")
     @ResponseBody
     public String key() {
         String rapidApiToken = "const RAPID_API_TOKEN=" + RAPID_API_TOKEN;
