@@ -22,6 +22,12 @@
         <p></p>
     </div>
 
+    <div th:each="user : ${game.users}">
+        <img th:src="${user.profilePictureUrl}" style="width: 30px; height: 30px" alt="profile-pic">
+        <a th:text="${user.username}" th:href="'user/' + ${user.id}"></a>
+
+        <hr>
+    </div>
 </div>
 
 <div th:replace="partials/partials.html :: scripts"></div>
