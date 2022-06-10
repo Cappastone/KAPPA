@@ -112,6 +112,13 @@
             <p th:text="${post.creationDate}"></p>
             <p th:text="${post.body}"></p>
             <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+
+<!--            NEEDS WORK-->
+<!--            <form action="/user/delete-post" method="POST">-->
+<!--                <input type="hidden" th:value="${post.id}" name="post-id">-->
+<!--                <button type="submit" class="btn btn-danger">Delete Post</button>-->
+<!--            </form>-->
+
             <p>Comments:</p>
             <div th:each="comment : ${post.comments}">
 <!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->

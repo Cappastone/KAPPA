@@ -30,7 +30,6 @@ public class Post {
     @OneToMany(mappedBy = "post")
    private List<Comment> comments;
 
-//    this is if we just want to track likes =>
     @ManyToMany(mappedBy="likedPosts")
     private List<User> usersThatLiked;
 
