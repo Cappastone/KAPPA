@@ -44,7 +44,8 @@
     <p>Top Games:</p>
     <div th:each="game : ${games}">
         <p th:text="'Likes: ' + ${game.users.size()}"></p>
-        <p th:text="${game.title}"></p>
+<!--        <p th:text="${game.title}"></p>-->
+        <a th:text="${game.title}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
         <img th:src="${game.imageUrl}">
         <p th:text="${game.genre}"></p>
         <p th:text="${game.description}"></p>

@@ -27,7 +27,9 @@
         <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
         <p>Comments:</p>
         <div th:each="comment : ${post.comments}">
-            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>
+<!--            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
+            <a th:text="${comment.user.username}" th:href="'user/' + ${comment.user.id}"></a>
+            <p th:text="${comment.comment}"></p>
         </div>
 
         <div th:each="image : ${post.postImages}">
