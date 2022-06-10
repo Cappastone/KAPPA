@@ -36,9 +36,6 @@ public class Game {
 
     private String genre; //long string of genres seperated by commas.
 
-
-
-
     @Column
     private String developer;
 
