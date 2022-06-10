@@ -20,13 +20,16 @@
     <!--        <form id="like-post" action="/user/like" method="post"></form>-->
     <div th:each="post : ${followingPosts}">
         <p th:text="'Post #' + ${post.id}"></p>
-        <p th:text="${post.user.username}"></p>
+<!--        <p th:text="${post.user.username}"></p>-->
+        <a th:text="${post.user.username}" th:href="'user/' + ${post.user.id}"></a>
         <p th:text="${post.creationDate}"></p>
         <p th:text="${post.body}"></p>
         <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
         <p>Comments:</p>
         <div th:each="comment : ${post.comments}">
-            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>
+<!--            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
+            <a th:text="${comment.user.username}" th:href="'user/' + ${comment.user.id}"></a>
+            <p th:text="${comment.comment}"></p>
         </div>
 
         <div th:each="image : ${post.postImages}">

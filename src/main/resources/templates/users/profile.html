@@ -72,7 +72,8 @@
     <div th:if="${following}">
         <p th:text="'Following: ' + ${following.size()}"></p>
         <div th:each="following : ${following}">
-            <p th:text="${following.username}"></p>
+<!--            <p th:text="${following.username}"></p>-->
+            <a th:text="${following.username}" th:href="'user/' + ${following.id}"></a>
             <img th:src="${following.profilePictureUrl}">
         </div>
     </div>
@@ -83,7 +84,8 @@
     <div th:if="${user.favoriteGames}">
         <p th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
         <div th:each="game : ${user.favoriteGames}">
-            <p th:text="${game.title}"></p>
+<!--            <p th:text="${game.title}"></p>-->
+            <a th:text="${game.title}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
         </div>
     </div>
 
@@ -112,7 +114,9 @@
             <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
             <p>Comments:</p>
             <div th:each="comment : ${post.comments}">
-                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>
+<!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
+                <a th:text="${comment.user.username}" th:href="'user/' + ${comment.user.id}"></a>
+                <p th:text="${comment.comment}"></p>
             </div>
 
             <div th:each="image : ${post.postImages}">
@@ -122,7 +126,7 @@
 
 <!--            JavaScript listener to Like a Post using an Ajax request-->
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
-            <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
 
             <hr>
         </div>

@@ -25,7 +25,9 @@
 
 <!--        loop through list of comments belonging to a single Post-->
         <div th:each="comment : ${post.comments}">
-            <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>
+<!--            <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>-->
+            <a th:text="${comment.user.username}" th:href="'user/' + ${comment.user.id}"></a>
+            <p th:text="${comment.comment}"></p>
         </div>
 
 <!--        JS button to Like a Post-->
@@ -42,7 +44,8 @@
     <p>Top Games:</p>
     <div th:each="game : ${games}">
         <p th:text="'Likes: ' + ${game.users.size()}"></p>
-        <p th:text="${game.title}"></p>
+<!--        <p th:text="${game.title}"></p>-->
+        <a th:text="${game.title}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
         <img th:src="${game.imageUrl}">
         <p th:text="${game.genre}"></p>
         <p th:text="${game.description}"></p>
