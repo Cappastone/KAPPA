@@ -14,10 +14,75 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+//@Configuration
+//public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//
+//    private final UserDetailsLoader usersLoader;
+//
+//    public SecurityConfiguration(UserDetailsLoader usersLoader) {
+//        this.usersLoader = usersLoader;
+//    }
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .userDetailsService(usersLoader) // How to find users by their username
+//                .passwordEncoder(passwordEncoder()) // How to encode and verify passwords
+//        ;
+//    }
+//
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//
+//            http
+//                    /* Login configuration */
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .defaultSuccessUrl("/user/profile") // user's home page, it can be any URL
+//                    .permitAll() // Anyone can go to the login page
+//                    /* Logout configuration */
+//                    .and()
+//                    .logout()
+//                    .logoutSuccessUrl("/login?logout") // append a query string value
+//                    /* Pages that can be viewed without having to log in */
+//                    .and()
+//                    .authorizeRequests()
+//                    .antMatchers("/", "/discover") // anyone can see this page
+//                    .permitAll()
+//                    /* Pages that require authentication */
+//                    .and()
+//                    .authorizeRequests()
+//                    .antMatchers(
+//                            "/main", // only authenticated users
+//                           "/user/profile" // only authenticated users
+//                    )
+//                    .authenticated()
+//                    .and().httpBasic()
+//                    .and().csrf().disable();
+//            ;
+//
+////        http.authorizeRequests().anyRequest().authenticated()
+////                .and().formLogin()
+////                .and().httpBasic(); //forces user to login page
+//
+////        http.authorizeRequests().anyRequest().permitAll().
+////                and().formLogin().
+////                and().httpBasic(); //allows anyone to go to any page
+//
+//        }
+//
+//}
+
+
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsLoader usersLoader;
+    private UserDetailsLoader usersLoader;
 
     public SecurityConfiguration(UserDetailsLoader usersLoader) {
         this.usersLoader = usersLoader;
@@ -38,42 +103,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-            http
-                    /* Login configuration */
-                    .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/user/profile") // user's home page, it can be any URL
-                    .permitAll() // Anyone can go to the login page
-                    /* Logout configuration */
-                    .and()
-                    .logout()
-                    .logoutSuccessUrl("/login?logout") // append a query string value
-                    /* Pages that can be viewed without having to log in */
-                    .and()
-                    .authorizeRequests()
-                    .antMatchers("/", "/discover") // anyone can see this page
-                    .permitAll()
-                    /* Pages that require authentication */
-                    .and()
-                    .authorizeRequests()
-                    .antMatchers(
-                            "/main", // only authenticated users
-                           "/user/profile" // only authenticated users
-                    )
-                    .authenticated()
-                    .and().httpBasic()
-                    .and().csrf().disable();
-            ;
-
-//        http.authorizeRequests().anyRequest().authenticated()
-//                .and().formLogin()
-//                .and().httpBasic(); //forces user to login page
-
-//        http.authorizeRequests().anyRequest().permitAll().
-//                and().formLogin().
-//                and().httpBasic(); //allows anyone to go to any page
-
-        }
-
+        http
+                /* Login configuration */
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/main") // user's home page, it can be any URL
+                .permitAll() // Anyone can go to the login page
+                /* Logout configuration */
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login?logout") // append a query string value
+                /* Pages that can be viewed without having to log in */
+                .and()
+                .authorizeRequests()
+                .antMatchers("/", "/discover") // anyone can see the home and the ads pages
+                .permitAll()
+                /* Pages that require authentication */
+                .and()
+                .authorizeRequests()
+                .antMatchers(
+                        "/user/profile",
+                        "/main",// only authenticated users can create ads
+                        "/user/{id}" // only authenticated users can edit ads
+                )
+                .authenticated()
+                .and().httpBasic().and().csrf().disable();
+        ;
+    }
 }
