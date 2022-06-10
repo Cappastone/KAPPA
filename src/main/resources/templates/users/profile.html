@@ -60,7 +60,8 @@
     <div th:if="${user.followers}">
         <p th:text="'Followers: ' + ${user.followers.size()}"></p>
         <div th:each="follower : ${user.followers}">
-            <p th:text="${follower.username}"></p>
+<!--            <p th:text="${follower.username}"></p>-->
+            <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>
             <p th:text="'User Id: ' + ${follower.id}"></p>
             <img th:src="${follower.profilePictureUrl}">
         </div>
@@ -73,7 +74,7 @@
         <p th:text="'Following: ' + ${following.size()}"></p>
         <div th:each="following : ${following}">
 <!--            <p th:text="${following.username}"></p>-->
-            <a th:text="${following.username}" th:href="'user/' + ${following.id}"></a>
+            <a th:text="${following.username}" th:href="'/user/' + ${following.id}"></a>
             <img th:src="${following.profilePictureUrl}">
         </div>
     </div>
@@ -115,7 +116,7 @@
             <p>Comments:</p>
             <div th:each="comment : ${post.comments}">
 <!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
-                <a th:text="${comment.user.username}" th:href="'user/' + ${comment.user.id}"></a>
+                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
                 <p th:text="${comment.comment}"></p>
             </div>
 
