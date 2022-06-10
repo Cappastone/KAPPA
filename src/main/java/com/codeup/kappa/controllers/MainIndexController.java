@@ -38,20 +38,22 @@ public class MainIndexController {
     public String index(Model model){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long userId = user.getId();
+        long user_id = user.getId();
 
-        if(userId == 0){
+        if(user_id == 0){
             return "redirect:/discover";
         }
 
-        List<Long> followingIds = userDao.followingList(userId);
+        List<Long> followingIds = userDao.followingList(user_id);
 
 //        List<User> following = userDao.findAllById(followingIds);
 
         model.addAttribute("user", user);
         model.addAttribute("following", userDao.findAllById(followingIds));
-        model.addAttribute("posts", postDao.findAll());
+//        model.addAttribute("posts", postDao.findAll());
         model.addAttribute("followingPosts", postDao.findPostsByUserIds(followingIds));
+        model.addAttribute("sessionUserId", user_id);
+        model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
 
         return "index/main";
     }
