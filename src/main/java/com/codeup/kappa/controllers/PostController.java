@@ -38,17 +38,16 @@ public class PostController {
         return "posts/post";
     }
 
+    //    FORM-MODEL BINDING NEEDS WORK BECAUSE OF DATE FORMAT COMPLICATION
     @PostMapping("/edit-post")
-    public String UpdatePost(@ModelAttribute Post post
-                             , @RequestParam(name = "date") Date creationDate
-//            , @ModelAttribute PostImages images
-    ) {
+    public String UpdatePost(@RequestParam("postId") long id, @RequestParam("body") String body) {
 
+        Post post = postDao.getPostById(id);
+        post.setBody(body);
 
-        post.setCreationDate(creationDate);
         postDao.save(post);
 
-        return "redirect:/posts/post";
+        return "redirect:/post/" + id;
     }
 
     public static void main(String[] args) {

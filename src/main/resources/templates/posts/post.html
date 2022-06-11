@@ -10,17 +10,27 @@
 </div>
 
 <div th:if="${post}">
+
     <fieldset>
-        <form th:action="@{/post/edit-post}" th:method="POST" th:object="${post}">
-            <input th:field="*{body}">
-<!--            <input type="hidden" th:field="">-->
-<!--            <input type="hidden" th:field="">-->
-            <input type="hidden" th:field="*{id}">
-            <input type="hidden" th:field="*{user.id}">
-            <input type="hidden" th:value="*{creationDate}" name="date">
+        <form th:action="@{/post/edit-post}" method="POST">
+            <input th:value="${post.body}" name="body">
+                        <input type="hidden" th:value="*{post.id}" name="postId">
+<!--                        <input type="hidden" th:value="${post.user.id}">-->
             <input type="submit" class="btn-primary">
         </form>
     </fieldset>
+
+<!--    <fieldset>-->
+<!--        <form th:action="@{/post/edit-post}" th:method="POST" th:object="${post}">-->
+<!--            <input th:field="*{body}">-->
+<!--&lt;!&ndash;            <input type="hidden" th:field="">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="hidden" th:field="">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="hidden" th:field="*{id}">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="hidden" th:field="*{user.id}">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="hidden" th:field="*{creationDate}" name="date">&ndash;&gt;-->
+<!--            <input type="submit" class="btn-primary">-->
+<!--        </form>-->
+<!--    </fieldset>-->
 </div>
 
 
