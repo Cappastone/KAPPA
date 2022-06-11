@@ -16,8 +16,6 @@
         <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
         <p th:text="${post.creationDate}"></p>
 
-        <button name="edit" th:data-id="${post.id}" class="btn btn-primary edit btn2">Edit Post</button>
-
 <!--        loop through list of media for a single Post-->
         <div th:each="image : ${post.postImages}">
             <img th:src="${image.url}">
@@ -31,6 +29,9 @@
             <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
             <p th:text="${comment.comment}"></p>
         </div>
+
+<!--        JS button to Edit a Post-->
+        <button name="edit" th:data-id="${post.id}" class="btn btn-primary edit btn2">Edit Post</button>
 
 <!--        JS button to Like a Post-->
         <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>

@@ -31,10 +31,10 @@ VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games!
        ('I am new to Fortnite and looking for some cool people who can show me the ropes!', 2);
 
 INSERT INTO post_images (title, url, post_id)
-VALUES ('Apex Clip', 'filler url for video clip', 1),
-       ('Apex Screenshot', 'filler url for screen shot', 1),
-       ('Apex Screenshot 2', 'filler url for screen shot', 1),
-       ('Minecraft Secret', 'filler url for screenshot', 3);
+VALUES ('Apex Clip', 'https://static1.srcdn.com/wordpress/wp-content/uploads/2022/01/Apex-Legends-combines-battle-royale-and-hero-shooters.jpg', 1),
+       ('Apex Screenshot', 'https://assets2.rockpapershotgun.com/apex%20legends%20attachments.jpg/BROK/resize/1920x1920%3E/format/jpg/quality/80/apex%20legends%20attachments.jpg', 1),
+       ('Apex Screenshot 2', 'https://cdn1.dotesports.com/wp-content/uploads/2021/01/26113248/fuse-30-30-bangalore-lifeline.png', 1),
+       ('Minecraft Secret', 'https://img.redbull.com/images/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/redbullcom/2020/4/28/bjoyslzjb3uxqyg82uz2/minecraft', 3);
 
 INSERT INTO post_comments (post_id, user_id, comment   # ,date
 )

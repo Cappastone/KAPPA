@@ -5,7 +5,7 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
 <div th:if="${post}">
-    <p th:text="${post.id}"></p>
+    <p th:text="'Post ID: '${post.id}"></p>
     <p th:text="${post.body}"></p>
 </div>
 
@@ -16,19 +16,44 @@
             <input th:value="${post.body}" name="body">
                         <input type="hidden" th:value="*{post.id}" name="postId">
 <!--                        <input type="hidden" th:value="${post.user.id}">-->
-            <input type="submit" class="btn-primary">
+            <input type="submit" class="btn-primary" value="Edit">
         </form>
     </fieldset>
 
+    <fieldset>
+        <legend>Delete Image From Post</legend>
+        <form th:action="@{/post/delete-image}" method="POST">
+            <div th:each="image: ${post.postImages}">
+                <p th:text="${image.title}"></p>
+                <img th:src="${image.url}" alt="post-image">
+                <input type="hidden" th:value="${image.id}" name="image-id">
+                <input type="hidden" th:value="${post.id}" name="post-id">
+                <input type="submit" class="btn-danger" value="Delete">
+            </div>
+        </form>
+    </fieldset>
+
+    <fieldset>
+        <legend>Add Image to Post</legend>
+        <form th:action="@{/post/add-image}" method="POST">
+            <label for="img-title">Image Title:</label>
+            <input type="text" id="img-title" name="img-title">
+            <label for="url" class="form-label">URL:</label>
+            <input type="text" id="url" name="url">
+            <input type="hidden" th:value="${post.id}" name="post-id">
+            <input type="submit" value="Submit" class="btn-primary">
+        </form>
+    </fieldset>
+
+<!--    EDIT IMAGE NEEDS WORK-->
 <!--    <fieldset>-->
-<!--        <form th:action="@{/post/edit-post}" th:method="POST" th:object="${post}">-->
-<!--            <input th:field="*{body}">-->
-<!--&lt;!&ndash;            <input type="hidden" th:field="">&ndash;&gt;-->
-<!--&lt;!&ndash;            <input type="hidden" th:field="">&ndash;&gt;-->
-<!--&lt;!&ndash;            <input type="hidden" th:field="*{id}">&ndash;&gt;-->
-<!--&lt;!&ndash;            <input type="hidden" th:field="*{user.id}">&ndash;&gt;-->
-<!--&lt;!&ndash;            <input type="hidden" th:field="*{creationDate}" name="date">&ndash;&gt;-->
-<!--            <input type="submit" class="btn-primary">-->
+<!--        <form th:action="@{/post/edit-image}" method="POST">-->
+<!--           <div th:each="image: ${post.postImages}">-->
+<!--               <input th:value="${image.title}" name="title">-->
+<!--               <input th:value="${image.url}" name="url">-->
+<!--               <input type="hidden" th:value="${image.id}" name="imageId">-->
+<!--               <input type="submit" class="btn-primary">-->
+<!--           </div>-->
 <!--        </form>-->
 <!--    </fieldset>-->
 </div>
