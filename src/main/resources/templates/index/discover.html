@@ -31,7 +31,21 @@
         </div>
 
 <!--        JS button to Like a Post-->
-        <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+
+        <div sec:authorize="isAuthenticated()">
+            <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
+                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
+            </div>
+
+            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
+                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+            </div>
+        </div>
+
+
+        <div sec:authorize="!isAuthenticated()">
+            <button onclick="redirectToLogin()" class="btn btn-danger">Like Post</button>
+        </div>
 
         <hr>
     </div>
