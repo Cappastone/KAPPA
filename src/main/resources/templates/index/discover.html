@@ -30,6 +30,9 @@
             <p th:text="${comment.comment}"></p>
         </div>
 
+<!--        JS button to Edit a Post-->
+        <button name="edit" th:data-id="${post.id}" class="btn btn-primary edit btn2">Edit Post</button>
+
 <!--        JS button to Like a Post-->
 
         <div sec:authorize="isAuthenticated()">
