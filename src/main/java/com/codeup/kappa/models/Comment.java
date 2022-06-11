@@ -19,8 +19,8 @@ public class Comment {
     @Column(columnDefinition = "TEXT")
     private String comment;
 
-    @Column
-    private String date;
+    @Column(columnDefinition = "timestamp default current_timestamp")
+    private Date creationDate;
 
     @ManyToOne
 //    @MapsId("userId")
@@ -33,6 +33,22 @@ public class Comment {
     private Post post;
 
     public Comment(){}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
     public String getComment() {
         return comment;

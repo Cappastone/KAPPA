@@ -1,16 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Posts</title>
-</head>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="partials/partials.html :: head ('Edit Post')"></head>
 <body>
+<nav th:replace="partials/partials.html :: navbar"></nav>
 
-<!--    <p th:text="${top1.body}"></p>-->
-<!--   <h3>Post Id:<span th:text="${top1.id}"></span></h3>-->
-<!--    <p th:text="${top1.date}"></p>-->
+<div th:if="${post}">
+    <p th:text="'Post ID: ' + ${post.id}"></p>
+    <p th:text="${post.body}"></p>
+</div>
+
+<div th:if="${post}">
+
+    <fieldset>
+        <form th:action="@{/post/edit-post}" method="POST">
+            <input th:value="${post.body}" name="body">
+                        <input type="hidden" th:value="*{post.id}" name="postId">
+<!--                        <input type="hidden" th:value="${post.user.id}">-->
+            <input type="submit" class="btn-primary" value="Edit">
+        </form>
+    </fieldset>
+
+    <fieldset>
+        <legend>Delete Image From Post</legend>
+        <form th:action="@{/post/delete-image}" method="POST">
+            <div th:each="image: ${post.postImages}">
+                <p th:text="${image.title}"></p>
+                <img th:src="${image.url}" alt="post-image">
+                <input type="hidden" th:value="${image.id}" name="image-id">
+                <input type="hidden" th:value="${post.id}" name="post-id">
+                <input type="submit" class="btn-danger" value="Delete">
+            </div>
+        </form>
+    </fieldset>
+
+    <fieldset>
+        <legend>Add Image to Post</legend>
+        <form th:action="@{/post/add-image}" method="POST">
+            <label for="img-title">Image Title:</label>
+            <input type="text" id="img-title" name="img-title">
+            <label for="url" class="form-label">URL:</label>
+            <input type="text" id="url" name="url">
+            <input type="hidden" th:value="${post.id}" name="post-id">
+            <input type="submit" value="Submit" class="btn-primary">
+        </form>
+    </fieldset>
+
+<!--    EDIT IMAGE NEEDS WORK-->
+<!--    <fieldset>-->
+<!--        <form th:action="@{/post/edit-image}" method="POST">-->
+<!--           <div th:each="image: ${post.postImages}">-->
+<!--               <input th:value="${image.title}" name="title">-->
+<!--               <input th:value="${image.url}" name="url">-->
+<!--               <input type="hidden" th:value="${image.id}" name="imageId">-->
+<!--               <input type="submit" class="btn-primary">-->
+<!--           </div>-->
+<!--        </form>-->
+<!--    </fieldset>-->
+</div>
 
 
-
+<!--partials needed on every page-->
+<footer th:replace="partials/partials.html :: footer"></footer>
+<div th:replace="partials/partials.html :: scripts"></div>
 </body>
 </html>

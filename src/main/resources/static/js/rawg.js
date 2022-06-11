@@ -275,10 +275,12 @@ document.querySelector('#submit-btn').addEventListener('click', function () {
 // });
 
 
+// redirect view to edit post =>
+$(".edit").on("click", function (){
+    let postId = $(this).attr("data-id")
+    window.location = "/post/" + postId
+});
+
  function redirectToLogin() {
      document.location.href = "http://localhost:8080/login"
  }
-
-
-
-
