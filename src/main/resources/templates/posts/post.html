@@ -5,7 +5,7 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
 <div th:if="${post}">
-    <p th:text="'Post ID: '${post.id}"></p>
+    <p th:text="'Post ID: ' + ${post.id}"></p>
     <p th:text="${post.body}"></p>
 </div>
 
