@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/partials.html :: head (GamerHaven)"></head>
 <body>
 <div th:replace="partials/partials.html :: navbar"></div>
@@ -19,8 +19,23 @@
         <p th:text="${game.description}"></p>
         <p th:text="${game.genre}"></p>
         <p th:text="${game.platforms}"></p>
-        <p></p>
+
+        <div sec:authorize="isAuthenticated()">
+            <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
+                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">Favorite Game</button>
+            </div>
+
+            <div th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">
+                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">Favorite Game</button>
+            </div>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <button onclick="redirectToLogin()" class="btn btn-danger">Favorite Game</button>
+        </div>
+
     </div>
+
+
 
     <div th:each="user : ${game.users}">
         <img th:src="${user.profilePictureUrl}" style="width: 30px; height: 30px" alt="profile-pic">

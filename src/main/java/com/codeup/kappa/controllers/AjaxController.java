@@ -1,6 +1,7 @@
 package com.codeup.kappa.controllers;
 
 
+import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.GameRepository;
@@ -95,6 +96,56 @@ public class AjaxController {
 
         }
         return new Post();
+    }
+
+
+    @PostMapping("/favorite-game")
+    public Object FavoriteGame(@RequestBody String data) throws IOException {
+
+        JsonNode actualObj = stringToJsonNode(data);
+
+        long user_id = actualObj.get("user_id").asLong();
+        long game_id = actualObj.get("game_id").asLong();
+
+        User user = userDao.getById(user_id);
+        Game game = gameDao.getById(game_id);
+        List<Game> favoriteGames = user.getFavoriteGames();
+
+        if (favoriteGames.contains(game)) {
+            System.out.println("Game already favorited");
+        } else {
+            System.out.println("Game FAVORITED!");
+            favoriteGames.add(game);
+            user.setFavoriteGames(favoriteGames);
+            userDao.save(user);
+
+
+        }
+        return new Game();
+    }
+
+    @PostMapping("/unfavorite-game")
+    public Object unFavoriteGame(@RequestBody String data) throws IOException {
+
+        JsonNode actualObj = stringToJsonNode(data);
+
+        long user_id = actualObj.get("user_id").asLong();
+        long game_id = actualObj.get("game_id").asLong();
+
+        User user = userDao.getById(user_id);
+        Game game = gameDao.getById(game_id);
+        List<Game> favoriteGames = user.getFavoriteGames();
+
+        if (favoriteGames.contains(game)) {
+            favoriteGames.remove(game);
+            user.setFavoriteGames(favoriteGames);
+            userDao.save(user);
+            System.out.println("Game UNFAVORITED!");
+        } else {
+            System.out.println("Game already unfavorited");
+
+        }
+        return new Game();
     }
 
 

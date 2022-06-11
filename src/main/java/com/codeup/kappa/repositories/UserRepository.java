@@ -18,5 +18,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT post_id FROM gamer_haven_db.post_likes t WHERE t.user_id = :id", nativeQuery = true)
     List<Long> findPostIdLikedByUserId(long id);
 
+    @Query(value = "SELECT game_id FROM gamer_haven_db.user_games t WHERE t.user_id = :id", nativeQuery = true)
+    List<Long> findGameIdFavoriteByUserId(long id);
+
 
 }
