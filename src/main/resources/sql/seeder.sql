@@ -36,16 +36,35 @@ VALUES ('Apex Clip', 'filler url for video clip', 1),
        ('Apex Screenshot 2', 'filler url for screen shot', 1),
        ('Minecraft Secret', 'filler url for screenshot', 3);
 
-INSERT INTO post_comments (post_id, user_id, comment, date)
-VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?', '2022-01-01'),
-       (1, 3, 'I can do that in my sleep...', '2022-01-02'),
-       (2, 2, 'I really like Yoshi', '2022-01-21'),
-       (2, 3, 'Link', '2022-01-22'),
-       (3, 2, 'Super cool', '2022-02-15'),
-       (3, 3, 'Old news', '2022-02-17'),
-       (4, 1, 'I can show you some tips and tricks. Feel free to add me on any platform!', '2022-03-05'),
-       (4, 3, 'Git gud', '2022-03-07'),
-       (4, 4, 'Solid!', '2022-03-08');
+INSERT INTO post_comments (post_id, user_id, comment   # ,date
+)
+VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?'
+#, '2022-01-01'
+),
+       (1, 3, 'I can do that in my sleep...'
+      # , '2022-01-02'
+       ),
+       (2, 2, 'I really like Yoshi'
+       #, '2022-01-21'
+       ),
+       (2, 3, 'Link'
+       #, '2022-01-22'
+       ),
+       (3, 2, 'Super cool'
+       #, '2022-02-15'
+       ),
+       (3, 3, 'Old news'
+       #, '2022-02-17'
+       ),
+       (4, 1, 'I can show you some tips and tricks. Feel free to add me on any platform!'
+       #, '2022-03-05'
+       ),
+       (4, 3, 'Git gud'
+       #, '2022-03-07'
+       ),
+       (4, 4, 'Solid!'
+       #, '2022-03-08'
+       );
 
 INSERT INTO post_likes (user_id, post_id)
 VALUES (1, 3),

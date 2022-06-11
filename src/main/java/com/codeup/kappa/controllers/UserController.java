@@ -134,8 +134,7 @@ public class UserController {
         message = "Please enter correct current password";
         User user = userDao.getById(id);
 
-        if(this.passwordEncoder.matches(oldPassword, user.getPassword()))
-        {
+        if(this.passwordEncoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(passwordEncoder.encode(newPassword));
             userDao.save(user);
         } else {

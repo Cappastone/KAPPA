@@ -278,15 +278,16 @@ $('.like-btn').on('click', function (e) {
             unlikePost(array)
             }
     }
-
-    // redirect view to user profile on click
-    $(".view-profile").on("click", function (){
-        let userId = $(this).attr("data-id")
-        window.location = "/user/" + userId
-    });
-
 });
 
+// redirect view to user profile on click
+// $(".view-profile").on("click", function (){
+//     let userId = $(this).attr("data-id")
+//     window.location = "/user/" + userId
+// });
 
-
-
+// redirect view to edit post =>
+$(".edit").on("click", function (){
+    let postId = $(this).attr("data-id")
+    window.location = "/post/" + postId
+});

@@ -6,16 +6,18 @@ import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.DateFormatter;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping()
+@RequestMapping("/post")
 public class PostController {
 
     private final PostRepository postDao;
@@ -26,6 +28,27 @@ public class PostController {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postImageDao = postImageDao;
+    }
+
+    @GetMapping("/{postId}")
+    public String editPost(@PathVariable long postId, Model model) {
+
+        model.addAttribute("post", postDao.getById(postId));
+
+        return "posts/post";
+    }
+
+    @PostMapping("/edit-post")
+    public String UpdatePost(@ModelAttribute Post post
+                             , @RequestParam(name = "date") Date creationDate
+//            , @ModelAttribute PostImages images
+    ) {
+
+
+        post.setCreationDate(creationDate);
+        postDao.save(post);
+
+        return "redirect:/posts/post";
     }
 
     public static void main(String[] args) {

@@ -1,16 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Posts</title>
-</head>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="partials/partials.html :: head ('Edit Post')"></head>
 <body>
+<nav th:replace="partials/partials.html :: navbar"></nav>
 
-<!--    <p th:text="${top1.body}"></p>-->
-<!--   <h3>Post Id:<span th:text="${top1.id}"></span></h3>-->
-<!--    <p th:text="${top1.date}"></p>-->
+<div th:if="${post}">
+    <p th:text="${post.id}"></p>
+    <p th:text="${post.body}"></p>
+</div>
+
+<div th:if="${post}">
+    <fieldset>
+        <form th:action="@{/post/edit-post}" th:method="POST" th:object="${post}">
+            <input th:field="*{body}">
+<!--            <input type="hidden" th:field="">-->
+<!--            <input type="hidden" th:field="">-->
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{user.id}">
+            <input type="hidden" th:value="*{creationDate}" name="date">
+            <input type="submit" class="btn-primary">
+        </form>
+    </fieldset>
+</div>
 
 
-
+<!--partials needed on every page-->
+<footer th:replace="partials/partials.html :: footer"></footer>
+<div th:replace="partials/partials.html :: scripts"></div>
 </body>
 </html>
