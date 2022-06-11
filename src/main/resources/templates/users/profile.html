@@ -20,8 +20,6 @@
         <p th:text="${user.bio}"></p>
     </div>
 
-
-
     <!-- Button trigger modal for Edit Bio-->
     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Edit Bio
@@ -122,8 +120,11 @@
 
             <div th:each="image : ${post.postImages}">
     <!--            <p th:text="${image.title}"></p>-->
-                <p th:text="${image.url}"></p>
+                <img th:src="${image.url}">
             </div>
+
+            <!--        JS button to Edit a Post-->
+            <button name="edit" th:data-id="${post.id}" class="edit btn btn-primary">Edit Post</button>
 
 <!--            JavaScript listener to Like a Post using an Ajax request-->
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
@@ -131,7 +132,6 @@
             <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
                 <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
             </div>
-
             <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
                 <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
             </div>
