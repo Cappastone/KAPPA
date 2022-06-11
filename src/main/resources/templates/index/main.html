@@ -9,9 +9,22 @@
 <!--    <p th:text="${post.body}"></p>-->
 <!--</div>-->
 
-<!--display logged-in username-->
+<!--display logged-in user-->
 <div th:if="${user}">
-    <p th:text="${user.username}"></p>
+
+    <p th:text="${user.username} + ' is logged in'"></p>
+    <div th:if="${user.profilePictureUrl}">
+        <img th:src="${user.profilePictureUrl}">
+    </div>
+    <div th:if="!${user.profilePictureUrl}">
+        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+        <p th:text="${user.bio}"></p>
+    </div>
+
+<!--    for some reason this does not display-->
+    <div th:if="!${following}">
+        <p>You are not following anyone :[</p>
+    </div>
 </div>
 
 <!--display Posts from users that the logged-in user is Following-->
@@ -28,21 +41,25 @@
 
 <!--        <button name="edit" th:data-id="${post.id}" class="btn btn-primary edit btn2">Edit Post</button>-->
 
-        <p>Comments:</p>
-        <div th:each="comment : ${post.comments}">
-<!--            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
-            <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
-            <p th:text="${comment.comment}"></p>
+        <div th:if="${post.comments}">
+            <p>Comments:</p>
+            <div th:each="comment : ${post.comments}">
+    <!--            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
+                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
+                <p th:text="${comment.comment}"></p>
+            </div>
+        </div>
+        <div th:if="!${post.comments}">
+            <p>No comments yet, be the first!</p>
         </div>
 
         <div th:each="image : ${post.postImages}">
-            <p th:text="${image.url}"></p>
+            <img th:crs="${image.url}">
         </div>
 
         <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
             <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
         </div>
-
         <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
             <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
         </div>
