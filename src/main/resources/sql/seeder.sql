@@ -18,11 +18,18 @@ VALUES ('I am a gamer who loves to game. Catch me on all major platforms pwning 
        ('I am the big Boss man.', 'biggestboss@email.com', 'Solid', 'Snake', '$2a$10$aYRSt091hnRo.ZTu8uwLqO/rK8pee4OTQ2kCGBN0/aQnna06p7aQK', 'https://static.tvtropes.org/pmwiki/pub/images/big_boss_1_877.jpg', 'bigboss', '4');
 
 INSERT INTO user_followers (user_id, follower_id)
-VALUES (1, 2),
-       (1, 3),
-       (1, 4),
-       (3, 2),
-       (4, 2);
+VALUES (1, 1),
+       (2, 1),
+       (3, 1),
+       (4, 1);
+
+
+# INSERT INTO user_followers (user_id, follower_id)
+# VALUES (1, 2),
+#        (1, 3),
+#        (1, 4),
+#        (3, 2),
+#        (4, 2);
 
 INSERT INTO posts (body, user_id)
 VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games! Check out these screenshots and clips.', 1),

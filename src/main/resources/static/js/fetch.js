@@ -147,3 +147,74 @@ $('.fav-btn').on('click', function (e) {
         }
     }
 });
+
+
+
+/////////////////////////////  Follow User Functionality  /////////////////////////////////
+
+
+function followUser(values){
+
+    const data = {
+        user_id: values[0],
+        follower_id: values[1]
+    }
+    const url = 'http://localhost:8080/ajax/follow-user';
+    const readOption = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    fetch(url, readOption)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((e) => {
+            console.log('Error!!', e)
+        });
+}
+
+
+function unFollowUser(values){
+    const data = {
+        user_id: values[0],
+        follower_id: values[1]
+    }
+    const url = 'http://localhost:8080/ajax/unfollow-user';
+    const readOption = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    fetch(url, readOption)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((e) => {
+            console.log('Error!!', e)
+        });
+}
+
+
+$('.follow-btn').on('click', function (e) {
+    e.preventDefault();
+    let array = getBtnValue($(this));
+
+    if (array[1] !== -1) {
+        if ($(this).hasClass('btn-secondary')) {
+            $(this).removeClass('btn-secondary').addClass('btn-primary')
+            followUser(array);
+        } else if ($(this).hasClass('btn-primary')) {
+            $(this).removeClass('btn-primary').addClass('btn-secondary')
+            unFollowUser(array)
+        }
+    }
+});
