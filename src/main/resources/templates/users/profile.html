@@ -137,7 +137,11 @@
             </div>
 
             <!--        JS button to Edit a Post-->
-            <button name="edit" th:data-id="${post.id}" class="edit btn btn-primary">Edit Post</button>
+            <div sec:authorize="isAuthenticated()">
+                <div th:if="${post.getUser().id == sessionUserId}">
+                <button name="edit" th:data-id="${post.id}" class="edit btn btn-primary">Edit Post</button>
+                </div>
+            </div>
 
 <!--            JavaScript listener to Like a Post using an Ajax request-->
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
