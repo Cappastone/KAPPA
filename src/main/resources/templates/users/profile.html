@@ -52,6 +52,19 @@
 
     <input type="submit" value="Edit Profile Picture" class="btn btn-dark">
 
+    <div sec:authorize="isAuthenticated()">
+        <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">
+            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Follow</button>
+        </div>
+
+        <div th:if="${!ListUserIdsByFollowerId.contains(user.id)}">
+            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>
+        </div>
+    </div>
+    <div sec:authorize="!isAuthenticated()">
+        <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>
+    </div>
+
     <hr>
 
 <!--    display logged-in user's Follower info-->
@@ -128,12 +141,16 @@
 
 <!--            JavaScript listener to Like a Post using an Ajax request-->
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
-
-            <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
+            <div sec:authorize="isAuthenticated()">
+                <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
+                    <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
+                </div>
+                <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
+                    <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+                </div>
             </div>
-            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+            <div sec:authorize="!isAuthenticated()">
+                <button onclick="redirectToLogin()" class="btn btn-danger">Like Post</button>
             </div>
 
 

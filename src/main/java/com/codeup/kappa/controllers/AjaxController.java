@@ -149,6 +149,57 @@ public class AjaxController {
     }
 
 
+    @PostMapping("/follow-user")
+    public Object FollowUser(@RequestBody String data) throws IOException {
+
+        JsonNode actualObj = stringToJsonNode(data);
+
+        long user_id = actualObj.get("user_id").asLong();
+        long follower_id = actualObj.get("follower_id").asLong();
+
+        User user = userDao.getById(user_id);
+        User follower = userDao.getById(follower_id);
+        List<User> followers = user.getFollowers();
+
+
+        if (followers.contains(follower)) {
+            System.out.println("User already followed");
+        } else {
+            System.out.println("FOLLOWING user!");
+            followers.add(follower);
+            user.setFollowers(followers);
+            userDao.save(user);
+
+
+        }
+        return new User();
+    }
+
+    @PostMapping("/unfollow-user")
+    public Object unFollowUser(@RequestBody String data) throws IOException {
+
+        JsonNode actualObj = stringToJsonNode(data);
+
+        long user_id = actualObj.get("user_id").asLong();
+        long follower_id = actualObj.get("follower_id").asLong();
+
+        User user = userDao.getById(user_id);
+        User follower = userDao.getById(follower_id);
+        List<User> followers = user.getFollowers();
+
+        if (followers.contains(follower)) {
+            followers.remove(follower);
+            user.setFollowers(followers);
+            userDao.save(user);
+            System.out.println("User UNFOLLOWED!");
+        } else {
+            System.out.println("User already unfollowed");
+
+        }
+        return new User();
+    }
+
+
 
 
 

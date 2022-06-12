@@ -21,5 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT game_id FROM gamer_haven_db.user_games t WHERE t.user_id = :id", nativeQuery = true)
     List<Long> findGameIdFavoriteByUserId(long id);
 
+    @Query(value = "SELECT user_id FROM gamer_haven_db.user_followers t WHERE t.follower_id = :id", nativeQuery = true)
+    List<Long> findUserIdsByFollowerId(long id);
+
 
 }

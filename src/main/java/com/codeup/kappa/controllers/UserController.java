@@ -4,6 +4,7 @@ import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ public class UserController {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        long user_id = user.getId();
 
+        System.out.println(userDao.getById(4L).getFollowers().get(0).getUsername() + "testing!!!!!!!!!!!");
 
 
         if(id == 0){
@@ -52,13 +54,14 @@ public class UserController {
         model.addAttribute("posts", postDao.findPostsByUserId(id));
 
 
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             long user_id = user.getId();
             model.addAttribute("sessionUserId", user_id);
             model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
-//        } else {
-//            return "redirect:/login";
-//        }
+            model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(user_id));
+        }
 
 
 
