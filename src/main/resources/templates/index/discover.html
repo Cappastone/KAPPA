@@ -35,7 +35,17 @@
         <div th:each="comment : ${post.comments}">
 <!--            <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>-->
             <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
-            <p th:text="${comment.comment}"></p>
+            <p th:text="${comment.body}"></p>
+        </div>
+
+        <div>
+            <fieldset>
+                <form th:action="@{/discover/comment}" th:method="POST" th:object="${newComment}">
+                    <input th:field="*{body}" name="body">
+                    <input type="hidden" th:value="${post.id}" name="postId">
+                    <input type="submit" value="Comment">
+                </form>
+            </fieldset>
         </div>
 
 <!--        JS button to Like a Post-->
