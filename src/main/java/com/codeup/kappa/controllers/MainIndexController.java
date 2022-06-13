@@ -73,22 +73,25 @@ public class MainIndexController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        PostImage postImages = new PostImage("hello", postImageUrl, post);
+        if(!postImageUrl.isBlank()) {
+
+            PostImage postImages = new PostImage("hello", postImageUrl, post);
 
 
-        List<PostImage> postImages1 = new ArrayList<>();
-        postImages1.add(postImages);
+            List<PostImage> postImages1 = new ArrayList<>();
+            postImages1.add(postImages);
+            post.setPostImages(postImages1);
 
+        }
 
-        post.setPostImages(postImages1);
         post.setUser(user);
 
 
-        Date date = new Date();
+//        Date date = new Date();
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
 //        Date newDate = sdf.format(date);
 
-        post.setCreationDate(date);
+//        post.setCreationDate(date);
 
         postDao.save(post);
 
