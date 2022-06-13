@@ -37,7 +37,7 @@ public class UserController {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        long user_id = user.getId();
 
-        System.out.println(userDao.getById(4L).getFollowers().get(0).getUsername() + "testing!!!!!!!!!!!");
+//        System.out.println(userDao.getById(4L).getFollowers().get(0).getUsername() + "testing!!!!!!!!!!!");
 
 
         if(id == 0){
