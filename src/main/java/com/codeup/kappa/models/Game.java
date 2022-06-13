@@ -29,7 +29,7 @@ public class Game {
     private String platforms; //long string of genres seperated by commas.
 
 
-    @Column
+    @Column(columnDefinition = "varchar(50) default 'N/A'")
     private String ageRating;
 
     @Column(length = 500)
@@ -45,7 +45,7 @@ public class Game {
     public Game() {
     }
 
-    public Game(long gamesApiId, String title, String description, String imageUrl, String platforms, String genre, String developer) {
+    public Game(long gamesApiId, String title, String description, String imageUrl, String platforms, String genre, String developer, String ageRating) {
         GamesApiId = gamesApiId;
         this.title = title;
         this.description = description;
@@ -53,15 +53,15 @@ public class Game {
         this.platforms = platforms;
         this.genre = genre;
         this.developer = developer;
+        this.ageRating = ageRating;
     }
 
-    public Game(long gamesApiId, String title, String description, String imageUrl, String platforms, String ageRating, String genre, String developer) {
+    public Game(long gamesApiId, String title, String description, String imageUrl, String platforms, String genre, String developer) {
         GamesApiId = gamesApiId;
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
         this.platforms = platforms;
-        this.ageRating = ageRating;
         this.genre = genre;
         this.developer = developer;
     }
