@@ -9,10 +9,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -30,12 +34,12 @@ public class MainIndexController {
 
     @GetMapping
     public String home() {
-      
+
         return "index/discover";
     }
 
     @GetMapping("main")
-    public String index(Model model){
+    public String mainIndex(Model model){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long user_id = user.getId();
@@ -55,7 +59,27 @@ public class MainIndexController {
         model.addAttribute("sessionUserId", user_id);
         model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
 
+        model.addAttribute("newPost", new Post());
+
         return "index/main";
+    }
+
+    @PostMapping("main/create-post")
+    public String addPost(@ModelAttribute Post post){
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        post.setUser(user);
+
+        Date date = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
+//        Date newDate = sdf.format(date);
+
+        post.setCreationDate(date);
+
+        postDao.save(post);
+
+        return "redirect:/index/main";
     }
 
     public static void main(String[] args) {
