@@ -84,7 +84,7 @@ const mapElementToDiv = (game) => `<div>
                 <div><img src="${game.BackgroundImageUrl}"></div>
                 <div>${game.Developer}</div>
                 <div>${game.Platforms}</div>
-<!--                <div>${game.Rating}</div>-->
+                <div>${game.Rating}</div>
                 <div>${game.Genres}</div>
             </div>`;
 
@@ -97,6 +97,7 @@ const mapElementToForm = (game) => `<form id="myForm" method="post" action="/gam
           <input type="hidden" name="developer" value="${game.Developer}">
           <input type="hidden" name="platforms" value="${game.Platforms}">
           <input type="hidden" name="genres" value="${game.Genres}">
+          <input type="hidden" name="rating" value="${game.Rating}">
     </form>`;
 
 
@@ -134,6 +135,16 @@ function searcher(GameID) {
     };
     $.ajax(search).done(function (data) {
         console.log(data);
+
+        const rating2 = data.esrb_rating;
+        function checkRating () {
+            if(rating2 == null) {
+                return "N/A"
+            } else {
+                return data.esrb_rating.name
+            }
+        }
+
         const games = [
             {
 
@@ -141,7 +152,7 @@ function searcher(GameID) {
                 Name: data.name,
                 Description: data.description_raw,
                 BackgroundImageUrl: data.background_image,
-                // Rating: data.esrb_rating.name,
+                Rating: checkRating(),
                 Genres: getGenres(data.genres),
                 Developer: data.developers[0].name,
                 Platforms: getPlatforms(data.platforms)
