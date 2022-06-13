@@ -1,27 +1,24 @@
 /////////////  FileStack API   ///////////////////////
 
-const mapImgToDiv = (post) => `<img src="${post.Url}" style="width: 148px; height: 98px">`;
-const client = filestack.init(FS_API_KEY);
-
-const options = {
-    fromSources: ["local_file_system","instagram","facebook"],
-    onUploadDone:
-        function (res){
-        const url = res.filesUploaded[0].url
-            $(".post-image-upload").val(url);
-            const postImg = [ { Url: url } ];
-            const postImages = postImg.map(mapImgToDiv)
-            $('#img-output').html(postImages)
-
-        }
-};
-
-$(".upload-picture").on("click", function () {
-    client.picker(options).open()
-});
-
-
-
+// const mapImgToDiv = (post) => `<img src="${post.Url}" style="width: 148px; height: 98px">`;
+// const client = filestack.init(FS_API_KEY);
+//
+// const options = {
+//     fromSources: ["local_file_system","instagram","facebook"],
+//     onUploadDone:
+//         function (res){
+//         const url = res.filesUploaded[0].url
+//             $(".post-image-upload").val(url);
+//             const postImg = [ { Url: url } ];
+//             const postImages = postImg.map(mapImgToDiv)
+//             $('#img-output').html(postImages)
+//
+//         }
+// };
+//
+// $(".upload-picture").on("click", function () {
+//     client.picker(options).open()
+// });
 
 
 // this is the code to make an api req to RAWG this gets the top 20 games
@@ -100,10 +97,7 @@ const mapElementToForm = (game) => `<form id="myForm" method="post" action="/gam
     </form>`;
 
 
-
-
-
-function getPlatforms (array) {
+function getPlatforms(array) {
 
     let platforms = "";
     for (let i = 0; i < array.length; i++) {
@@ -112,7 +106,7 @@ function getPlatforms (array) {
     return platforms;
 }
 
-function getGenres (array) {
+function getGenres(array) {
     let genres = "";
     for (let i = 0; i < array.length; i++) {
         genres += array[i].name + ", ";
@@ -164,9 +158,6 @@ function searcher(GameID) {
 }
 
 
-
-
-
 const mapEleToDiv = (results) => `
             <div class="game-card">
                 <div class="card" style="width: 18rem">
@@ -184,7 +175,7 @@ function stringSearch(GameString) {
         "async": true,
         "crossDomain": true,
         // the token variable must be imported from keys.js THIS IS IMPORTANT!!
-        "url": "https://rawg-video-games-database.p.rapidapi.com/games?key=" + token + "&search="+ GameString,
+        "url": "https://rawg-video-games-database.p.rapidapi.com/games?key=" + token + "&search=" + GameString,
         "method": "GET",
         "headers": {
             "x-rapidapi-key": RAPID_API_TOKEN,
@@ -193,13 +184,11 @@ function stringSearch(GameString) {
     };
     $.ajax(searchString).done(function (data) {
         console.log(data);
-            const test = data.results.map(mapEleToDiv);
-            $('#search-results').html(test);
+        const test = data.results.map(mapEleToDiv);
+        $('#search-results').html(test);
 
     });
 }
-
-
 
 
 // this function is for the search bar to populate the screen based on there search
@@ -212,16 +201,16 @@ function stringSearch(GameString) {
 
 document.querySelector('#submit-btn').addEventListener('click', function () {
     var searchQuery = $("#search").val();
-    window.location=("/results?search=" + searchQuery);
+    window.location = ("/results?search=" + searchQuery);
 });
 
- function gameRedirect (elem) {
-     // var dataID = $(this).attr("data-id")
-     var dataId = $(elem).data("id");
-     console.log(dataId)
-     // alert(dataId);
-     window.location = ("/game?gameID=" + dataId);
- }
+function gameRedirect(elem) {
+    // var dataID = $(this).attr("data-id")
+    var dataId = $(elem).data("id");
+    console.log(dataId)
+    // alert(dataId);
+    window.location = ("/game?gameID=" + dataId);
+}
 
 
 // function likePost(values){
@@ -301,11 +290,11 @@ document.querySelector('#submit-btn').addEventListener('click', function () {
 
 
 // redirect view to edit post =>
-$(".edit").on("click", function (){
+$(".edit").on("click", function () {
     let postId = $(this).attr("data-id")
     window.location = "/post/" + postId
 });
 
- function redirectToLogin() {
-     document.location.href = "http://localhost:8080/login"
- }
+function redirectToLogin() {
+    document.location.href = "http://localhost:8080/login"
+}
