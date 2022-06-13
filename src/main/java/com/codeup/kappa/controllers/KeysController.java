@@ -23,7 +23,7 @@ public class KeysController {
     public String keys() {
         String rawg = "const token =" + token + ";";
         rawg += "const RAPID_API_TOKEN=" + RAPID_API_TOKEN + ";";
-        rawg += "const FS_API_TOKEN" + FS_API_TOKEN + ";";
+        rawg += "const FS_API_TOKEN=" + FS_API_TOKEN + ";";
         return rawg;
     }
 
