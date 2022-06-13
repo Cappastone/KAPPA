@@ -1,8 +1,10 @@
 package com.codeup.kappa.controllers;
 
+import com.codeup.kappa.models.Comment;
 import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.PostImage;
 import com.codeup.kappa.models.User;
+import com.codeup.kappa.repositories.CommentRepository;
 import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
 import com.sun.mail.imap.protocol.ID;
@@ -24,10 +26,12 @@ public class MainIndexController {
 
     private final UserRepository userDao;
     private final PostRepository postDao;
+    private final CommentRepository commentDao;
 
-    public MainIndexController(UserRepository userDao, PostRepository postDao){
+    public MainIndexController(UserRepository userDao, PostRepository postDao, CommentRepository commentDao){
         this.userDao = userDao;
         this.postDao = postDao;
+        this.commentDao = commentDao;
     }
 
     @GetMapping
@@ -59,6 +63,8 @@ public class MainIndexController {
 
         model.addAttribute("newPost", new Post());
 
+        model.addAttribute("newComment", new Comment());
+
         return "index/main";
     }
 
@@ -78,13 +84,35 @@ public class MainIndexController {
         post.setUser(user);
 
 
-//        Date date = new Date();
+        Date date = new Date();
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
 //        Date newDate = sdf.format(date);
 
-//        post.setCreationDate(date);
+        post.setCreationDate(date);
 
         postDao.save(post);
+
+        return "redirect:/main";
+    }
+
+    @PostMapping("main/comment")
+    public String comment(
+            @ModelAttribute Comment newComment,
+//            @RequestParam("commentBody") String body,
+            @RequestParam("postId") long postId){
+
+//        Comment comment = new Comment();
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        newComment.setUser(user);
+        newComment.setPost(postDao.getPostById(postId));
+//        comment.setComment(body);
+
+        Date date = new Date();
+        newComment.setCreationDate(date);
+
+        commentDao.save(newComment);
 
         return "redirect:/main";
     }

@@ -1,23 +1,21 @@
 package com.codeup.kappa.controllers;
 
+import com.codeup.kappa.models.Comment;
 import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.User;
-import com.codeup.kappa.repositories.GameRepository;
-import com.codeup.kappa.repositories.PostImageRepository;
-import com.codeup.kappa.repositories.PostRepository;
-import com.codeup.kappa.repositories.UserRepository;
+import com.codeup.kappa.repositories.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,11 +25,13 @@ public class DiscoverController {
     private final PostRepository postDao;
     private final GameRepository gameDao;
     private final UserRepository userDao;
+    private final CommentRepository commentDao;
 
-    public DiscoverController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao, GameRepository gameDao) {
+    public DiscoverController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao, GameRepository gameDao, CommentRepository commentDao) {
         this.postDao = postDao;
         this.gameDao = gameDao;
         this.userDao = userDao;
+        this.commentDao = commentDao;
     }
 
 //    HttpServletRequest session;
@@ -74,6 +74,8 @@ public class DiscoverController {
             long user_id = user.getId();
             model.addAttribute("sessionUserId", user_id);
             model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
+
+            model.addAttribute("newComment", new Comment());
         }
         return "index/discover";
     }
@@ -99,6 +101,28 @@ public class DiscoverController {
             games.add(gameDao.getGameById(Long.parseLong(s)));
         }
         return games;
+    }
+
+    @PostMapping("/comment")
+    public String comment(
+            @ModelAttribute Comment newComment,
+//            @RequestParam("commentBody") String body,
+            @RequestParam("postId") long postId){
+
+//        Comment comment = new Comment();
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        newComment.setUser(user);
+        newComment.setPost(postDao.getPostById(postId));
+//        comment.setComment(body);
+
+        Date date = new Date();
+        newComment.setCreationDate(date);
+
+        commentDao.save(newComment);
+
+        return "redirect:/discover";
     }
 
 }

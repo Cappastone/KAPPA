@@ -17,7 +17,7 @@ public class Comment {
     long id;
 
     @Column(columnDefinition = "TEXT")
-    private String comment;
+    private String body;
 
     @Column(columnDefinition = "timestamp default current_timestamp")
     private Date creationDate;
@@ -33,6 +33,13 @@ public class Comment {
     private Post post;
 
     public Comment(){}
+
+    public Comment(String comment, Date creationDate, User user, Post post) {
+        this.body = comment;
+        this.creationDate = creationDate;
+        this.user = user;
+        this.post = post;
+    }
 
     public long getId() {
         return id;
@@ -50,12 +57,12 @@ public class Comment {
         this.creationDate = creationDate;
     }
 
-    public String getComment() {
-        return comment;
+    public String getBody() {
+        return body;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public User getUser() {

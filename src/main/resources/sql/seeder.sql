@@ -17,19 +17,19 @@ VALUES ('I am a gamer who loves to game. Catch me on all major platforms pwning 
        ('I''m your neighborhood random that you love to hate!', 'random@email.com', 'Randall', 'Blueberry', '$2a$10$XRzqJmIR6bBWcFaGEzE0p.vaG/imhCTFfS4MYW5qJZB2xZk2bk5KW', 'https://static1.squarespace.com/static/5ac589eb8ab722aa77be2eeb/5b479b056d2a73336ed80ffe/5b50d290562fa7d2dabe2955/1532023444871/random_interactive_share.jpg', 'random', 3),
        ('I am the big Boss man.', 'biggestboss@email.com', 'Solid', 'Snake', '$2a$10$aYRSt091hnRo.ZTu8uwLqO/rK8pee4OTQ2kCGBN0/aQnna06p7aQK', 'https://static.tvtropes.org/pmwiki/pub/images/big_boss_1_877.jpg', 'bigboss', '4');
 
-INSERT INTO user_followers (user_id, follower_id)
-VALUES (1, 1),
-       (2, 1),
-       (3, 1),
-       (4, 1);
-
-
 # INSERT INTO user_followers (user_id, follower_id)
-# VALUES (1, 2),
-#        (1, 3),
-#        (1, 4),
-#        (3, 2),
-#        (4, 2);
+# VALUES (1, 1),
+#        (2, 1),
+#        (3, 1),
+#        (4, 1);
+
+
+INSERT INTO user_followers (user_id, follower_id)
+VALUES (1, 2),
+       (1, 3),
+       (1, 4),
+       (3, 2),
+       (4, 2);
 
 INSERT INTO posts (body, user_id)
 VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games! Check out these screenshots and clips.', 1),
@@ -43,7 +43,7 @@ VALUES ('Apex Clip', 'https://static1.srcdn.com/wordpress/wp-content/uploads/202
        ('Apex Screenshot 2', 'https://cdn1.dotesports.com/wp-content/uploads/2021/01/26113248/fuse-30-30-bangalore-lifeline.png', 1),
        ('Minecraft Secret', 'https://img.redbull.com/images/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/redbullcom/2020/4/28/bjoyslzjb3uxqyg82uz2/minecraft', 3);
 
-INSERT INTO post_comments (post_id, user_id, comment   # ,date
+INSERT INTO post_comments (post_id, user_id, body   # ,date
 )
 VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?'
 #, '2022-01-01'
