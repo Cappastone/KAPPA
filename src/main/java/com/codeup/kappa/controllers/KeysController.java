@@ -9,10 +9,10 @@ import javax.print.attribute.standard.Media;
 
 @Controller
 public class KeysController {
-    @Value("token")
+    @Value("${token}")
     private String token;
 
-    @Value("RAPID_API_TOKEN")
+    @Value("${RAPID_API_TOKEN}")
     private String RAPID_API_TOKEN;
 
     @GetMapping(path = "/keys", produces = "application/javascript")
