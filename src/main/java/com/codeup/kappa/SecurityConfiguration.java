@@ -125,7 +125,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/user/profile",
                         "/main",// only authenticated users can create ads
 //                        "/user/{id}", // only authenticated users can edit ads
-                        "/ajax"
+                        "/ajax", "/connections"
                 )
                 .authenticated()
                 .and().httpBasic().and().csrf().disable();

@@ -44,22 +44,22 @@ public class MainIndexController {
     public String mainIndex(Model model){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long user_id = user.getId();
+        long userId = user.getId();
 
-        if(user_id == 0){
+        if(userId == 0){
             return "redirect:/discover";
         }
 
-        List<Long> followingIds = userDao.followingList(user_id);
+        List<Long> followingIds = userDao.followingList(userId);
 
 //        List<User> following = userDao.findAllById(followingIds);
 
-        model.addAttribute("user", userDao.getById(user_id));
+        model.addAttribute("user", userDao.getById(userId));
         model.addAttribute("following", userDao.findAllById(followingIds));
 //        model.addAttribute("posts", postDao.findAll());
         model.addAttribute("followingPosts", postDao.findPostsByUserIds(followingIds));
-        model.addAttribute("sessionUserId", user_id);
-        model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
+        model.addAttribute("sessionUserId", userId);
+        model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(userId));
 
         model.addAttribute("newPost", new Post());
 
@@ -75,14 +75,11 @@ public class MainIndexController {
 
         PostImage postImages = new PostImage("hello", postImageUrl, post);
 
-
         List<PostImage> postImages1 = new ArrayList<>();
         postImages1.add(postImages);
 
-
         post.setPostImages(postImages1);
         post.setUser(user);
-
 
         Date date = new Date();
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
@@ -96,18 +93,12 @@ public class MainIndexController {
     }
 
     @PostMapping("main/comment")
-    public String comment(
-            @ModelAttribute Comment newComment,
-//            @RequestParam("commentBody") String body,
-            @RequestParam("postId") long postId){
-
-//        Comment comment = new Comment();
+    public String comment(@ModelAttribute Comment newComment, @RequestParam("postId") long postId){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         newComment.setUser(user);
         newComment.setPost(postDao.getPostById(postId));
-//        comment.setComment(body);
 
         Date date = new Date();
         newComment.setCreationDate(date);

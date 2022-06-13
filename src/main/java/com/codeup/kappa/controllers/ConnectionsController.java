@@ -6,6 +6,7 @@ import com.codeup.kappa.repositories.GameRepository;
 import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,18 +32,22 @@ public class ConnectionsController {
     @GetMapping()
     public String connections(Model model){
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long userId = user.getId();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        List<Long> followingIds = userDao.followingList(userId);
-        model.addAttribute("following", userDao.findAllById(followingIds));
+        if (principal instanceof UserDetails) {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            long userId = user.getId();
 
-        model.addAttribute("user", userDao.getById(userId));
+            List<Long> followingIds = userDao.followingList(userId);
+            model.addAttribute("following", userDao.findAllById(followingIds));
+
+            model.addAttribute("user", userDao.getById(userId));
 
 
-        model.addAttribute("sessionUserId", userId);
-        model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(userId));
-        model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(userId));
+            model.addAttribute("sessionUserId", userId);
+            model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(userId));
+            model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(userId));
+        }
 
         return "/users/connections";
     }

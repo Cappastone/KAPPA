@@ -48,13 +48,13 @@
                 <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/user/profile">Profile</a>
                 </li>
-                <!--CREATE-->
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link" href="/posts/create">Create</a>-->
-                <!--                </li>-->
                 <!--DISCOVER-->
                 <li class="nav-item">
                     <a class="nav-link" href="/discover">Discover</a>
+                </li>
+                <!--CONNECTIONS-->
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/connections">Connections</a>
                 </li>
                 <!--DROPDOWN-->
                 <li class="nav-item dropdown">
