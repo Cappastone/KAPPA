@@ -28,6 +28,23 @@ public class GameController {
         this.userDao = userDao;
     }
 
+    @GetMapping("/favorites")
+    public String myFavoriteGames(Model model) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long user_id = user.getId();
+
+        List <Long> ids = userDao.findGameIdFavoriteByUserId(user_id);
+        List <Game> games = gameDao.findGamesByIds(ids);
+
+        model.addAttribute("games", games);
+        model.addAttribute("sessionUserId", user_id);
+        model.addAttribute("ListGameIdFavoriteByUserId", userDao.findGameIdFavoriteByUserId(user_id));
+
+
+        return "games/fav-games";
+    }
+
     @GetMapping
     public String gamesIndex(Model model, @RequestParam("gameID")long api_id){
 
