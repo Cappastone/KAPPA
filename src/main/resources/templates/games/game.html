@@ -19,6 +19,7 @@
         <p th:text="${game.description}"></p>
         <p th:text="${game.genre}"></p>
         <p th:text="${game.platforms}"></p>
+        <p th:text="${game.ageRating}"></p>
 
         <div sec:authorize="isAuthenticated()">
             <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
