@@ -22,8 +22,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="/js/keys.js"></script>
-<!--    <script src="/keys"></script>-->
-<!--    <script src="/key"></script>-->
+    <script src="/keys"></script>
+    <!--    <script src="/key"></script>-->
     <script src="/js/fetch.js"></script>
     <script src="/js/rawg.js"></script>
     <!--    <script src="/js/main.js"></script>-->
@@ -68,9 +68,9 @@
                         </li>
                         <!--                        <li><hr class="dropdown-divider"></li>-->
                         <li sec:authorize="!isAuthenticated()">
-<!--                            <form th:action="@{/login}" th:method="POST">-->
-<!--                                <button class="btn-link dropdown-item" style="margin-top: 8px">Login</button>-->
-<!--                            </form>-->
+                            <!--                            <form th:action="@{/login}" th:method="POST">-->
+                            <!--                                <button class="btn-link dropdown-item" style="margin-top: 8px">Login</button>-->
+                            <!--                            </form>-->
                             <a class="dropdown-item" href="/login">Login</a>
                         </li>
                         <li sec:authorize="isAuthenticated()">
@@ -80,9 +80,9 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li sec:authorize="isAuthenticated()">
-<!--                            <form th:action="@{/logout}" th:method="POST">-->
-<!--                                <button class="btn-link dropdown-item" style="margin-top: 8px">Logout</button>-->
-<!--                            </form>-->
+                            <!--                            <form th:action="@{/logout}" th:method="POST">-->
+                            <!--                                <button class="btn-link dropdown-item" style="margin-top: 8px">Logout</button>-->
+                            <!--                            </form>-->
                             <form th:action="@{/logout}" th:method="post" id="logout-form">
                                 <a onclick="document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
                             </form>
