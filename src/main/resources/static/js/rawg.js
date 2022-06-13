@@ -1,20 +1,26 @@
 /////////////  FileStack API   ///////////////////////
 
-
+const mapImgToDiv = (post) => `<img src="${post.Url}" style="width: 148px; height: 98px">`;
 const client = filestack.init(FS_API_KEY);
 
 const options = {
     fromSources: ["local_file_system","instagram","facebook"],
     onUploadDone:
         function (res){
-            $(".post-image-upload").val(res.filesUploaded[0].url);
-            console.log(res.filesUploaded[0].url.toString())
+        const url = res.filesUploaded[0].url
+            $(".post-image-upload").val(url);
+            const postImg = [ { Url: url } ];
+            const postImages = postImg.map(mapImgToDiv)
+            $('#img-output').html(postImages)
+
         }
-}
+};
 
 $(".upload-picture").on("click", function () {
     client.picker(options).open()
 });
+
+
 
 
 
