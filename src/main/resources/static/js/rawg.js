@@ -9,6 +9,7 @@ const options = {
         function (res) {
             const url = res.filesUploaded[0].url
             $(".post-image-upload").val(url);
+            $(".change-profile-pic").val(url);
             const postImg = [{Url: url}];
             const postImages = postImg.map(mapImgToDiv)
             $('#img-output').html(postImages)
@@ -16,10 +17,15 @@ const options = {
         }
 };
 
+// Upload Post Image//
 $(".upload-picture").on("click", function () {
     client.picker(options).open()
 });
 
+// Upload Profile Image//
+$(".change-profile-pic").on("click", function () {
+    client.picker(options).open()
+});
 
 // this is the code to make an api req to RAWG this gets the top 20 games
 // const settings = {

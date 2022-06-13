@@ -156,4 +156,23 @@ public class UserController {
 
         return "redirect:/user/" + user.getId();
     }
+
+    @PostMapping("/edit-profile-pic")
+    public String editProfilePic(@RequestParam(name="profile-picture-url")String profilePictureUrl, @RequestParam(name="id")long id) {
+        User user = userDao.getById(id);
+        user.setProfilePictureUrl(profilePictureUrl);
+
+        userDao.save(user);
+        return "redirect:/user/" + user.getId();
+    }
+
+//    @PostMapping("/edit-profile-pic")
+//    public String editProfilePic(
+//            @ModelAttribute User user,
+//
+//            @RequestParam(name="id")long id){
+//            user = userDao.getById(id);
+//            user.setProfilePictureUrl();
+//
+//    }
 }
