@@ -50,7 +50,7 @@ public class MainIndexController {
 
 //        List<User> following = userDao.findAllById(followingIds);
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", userDao.getById(user_id));
         model.addAttribute("following", userDao.findAllById(followingIds));
 //        model.addAttribute("posts", postDao.findAll());
         model.addAttribute("followingPosts", postDao.findPostsByUserIds(followingIds));
