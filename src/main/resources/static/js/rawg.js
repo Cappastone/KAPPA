@@ -1,3 +1,22 @@
+/////////////  FileStack API   ///////////////////////
+
+
+const client = filestack.init(FS_API_KEY);
+
+const options = {
+    fromSources: ["local_file_system","instagram","facebook"],
+    onUploadDone:
+        function (res){
+            $(".post-image-upload").val(res.filesUploaded[0].url);
+            console.log(res.filesUploaded[0].url.toString())
+        }
+}
+
+$(".upload-picture").on("click", function () {
+    client.picker(options).open()
+});
+
+
 
 // this is the code to make an api req to RAWG this gets the top 20 games
 // const settings = {

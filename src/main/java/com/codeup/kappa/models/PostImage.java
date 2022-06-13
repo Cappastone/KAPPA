@@ -27,6 +27,15 @@ public class PostImage {
         this.post = post;
     }
 
+    public PostImage(String title, Post post) {
+        this.title = title;
+        this.post = post;
+    }
+
+    public PostImage(String url) {
+        this.url = url;
+    }
+
     public long getId() {
         return id;
     }
