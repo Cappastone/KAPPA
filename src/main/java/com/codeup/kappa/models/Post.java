@@ -1,5 +1,8 @@
 package com.codeup.kappa.models;
 
+import jdk.jfr.Timestamp;
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,7 +20,10 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @Column(columnDefinition = "timestamp default current_timestamp")
+//    @Column(columnDefinition = "timestamp default current_timestamp")
+
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
     private Date creationDate;
 
     @ManyToOne
