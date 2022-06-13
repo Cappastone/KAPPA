@@ -53,12 +53,11 @@
             <!--END EDIT BIO MODAL-->
 
             <!--EDIT PROFILE PIC FORM-->
-            <form action="/user/edit-profile-pic" method="POST">
+            <form id="profile-pic" action="/user/edit-profile-pic" method="POST">
                 <input type="hidden" name="id" th:value="${user.id}">
                 <input type="hidden" class="change-profile-pic" name="profile-picture-url">
-                <button type="button" class="change-profile-pic btn-primary" value="Change Profile Pic">Change Profile Pic</button>
-                <input type="submit" value="Update" class="btn btn-dark
-">
+                <button type="button" class="change-profile-pic btn btn-primary">Change Profile Pic</button>
+
             </form>
             <!--END EDIT PROFILE PIC FORM-->
         </div>
