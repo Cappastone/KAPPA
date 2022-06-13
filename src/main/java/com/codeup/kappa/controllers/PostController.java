@@ -2,10 +2,14 @@ package com.codeup.kappa.controllers;
 
 import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.PostImage;
+import com.codeup.kappa.models.User;
+import com.codeup.kappa.repositories.CommentRepository;
 import com.codeup.kappa.repositories.PostImageRepository;
 import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,16 +23,19 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/post")
+@Transactional
 public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
     private final PostImageRepository postImageDao;
+    private final CommentRepository postCommentDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao, CommentRepository postCommentDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postImageDao = postImageDao;
+        this.postCommentDao = postCommentDao;
     }
 
     @GetMapping("/{postId}")
@@ -48,7 +55,26 @@ public class PostController {
 
         postDao.save(post);
 
+
         return "redirect:/post/" + id;
+    }
+
+
+    @PostMapping("/delete-post")
+    public String deletePost(@RequestParam("postId") long id) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Post post = postDao.getPostById(id);
+
+        postCommentDao.deleteAllByPost(post);
+        postImageDao.deleteAllByPost(post);
+        postDao.deletePostLikeByPostId(id);
+
+
+        postDao.deleteById(id);
+
+        return "redirect:/user/" + user.getId();
     }
 
     @PostMapping("delete-image")

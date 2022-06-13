@@ -3,6 +3,7 @@ package com.codeup.kappa.repositories;
 import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -34,6 +35,12 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query(value = "SELECT * FROM gamer_haven_db.posts g WHERE g.user_id IN :ids ORDER BY g.creation_date DESC", nativeQuery = true)
     List<Post>findPostsByUserIds(List<Long> ids);
+
+    @Modifying
+    @Query(value = "DELETE FROM gamer_haven_db.post_likes g WHERE g.post_id = :id", nativeQuery = true)
+    void deletePostLikeByPostId(long id);
+
+
 
 
 

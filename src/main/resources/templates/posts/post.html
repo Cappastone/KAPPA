@@ -12,12 +12,15 @@
 <div th:if="${post}">
 
     <fieldset>
+        <form id="delete-post" action="/post/delete-post" method="post"></form>
         <form th:action="@{/post/edit-post}" method="POST">
             <input th:value="${post.body}" name="body">
                         <input type="hidden" th:value="*{post.id}" name="postId">
 <!--                        <input type="hidden" th:value="${post.user.id}">-->
             <input type="submit" class="btn-primary" value="Edit">
         </form>
+        <input type="hidden" form="delete-post" th:value="${post.id}" name="postId">
+        <button type="submit" form="delete-post">Delete Post</button>
     </fieldset>
 
     <fieldset>
