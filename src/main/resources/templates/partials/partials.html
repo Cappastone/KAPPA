@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="/js/keys.js"></script>
-    <script src="/keys"></script>
+<!--    <script src="/keys"></script>-->
     <!--    <script src="/key"></script>-->
     <script src="/js/fetch.js"></script>
     <script src="/js/rawg.js"></script>
@@ -47,6 +47,9 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/user/profile">Profile</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/game/favorites">My Favorite Games</a>
                 </li>
                 <!--CREATE-->
                 <!--                <li class="nav-item">-->
