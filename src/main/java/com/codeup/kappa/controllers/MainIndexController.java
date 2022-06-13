@@ -1,6 +1,7 @@
 package com.codeup.kappa.controllers;
 
 import com.codeup.kappa.models.Post;
+import com.codeup.kappa.models.PostImage;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
@@ -8,10 +9,7 @@ import com.sun.mail.imap.protocol.ID;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -65,21 +63,30 @@ public class MainIndexController {
     }
 
     @PostMapping("main/create-post")
-    public String addPost(@ModelAttribute Post post){
+    public String addPost(@ModelAttribute Post post, @RequestParam(name = "post-image-upload") String postImageUrl){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        PostImage postImages = new PostImage("hello", postImageUrl, post);
+
+
+        List<PostImage> postImages1 = new ArrayList<>();
+        postImages1.add(postImages);
+
+
+        post.setPostImages(postImages1);
         post.setUser(user);
 
-        Date date = new Date();
+
+//        Date date = new Date();
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
 //        Date newDate = sdf.format(date);
 
-        post.setCreationDate(date);
+//        post.setCreationDate(date);
 
         postDao.save(post);
 
-        return "redirect:/index/main";
+        return "redirect:/main";
     }
 
     public static void main(String[] args) {

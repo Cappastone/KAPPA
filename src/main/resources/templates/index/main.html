@@ -28,6 +28,8 @@
         <legend>Create Post</legend>
         <form th:action="@{/main/create-post}" th:method="POST" th:object="${newPost}">
             <input th:field="*{body}">
+            <input type="hidden" class="post-image-upload" name="post-image-upload">
+            <button type="button" class="upload-picture">Upload Picture</button>
             <input type="submit">
         </form>
     </fieldset>
