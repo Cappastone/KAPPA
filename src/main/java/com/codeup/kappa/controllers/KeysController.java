@@ -21,9 +21,9 @@ public class KeysController {
     @GetMapping(path = "/keys", produces = "application/javascript")
     @ResponseBody
     public String keys() {
-        String rawg = "const token =" + token + ";";
-        rawg += "const RAPID_API_TOKEN=" + RAPID_API_TOKEN + ";";
-        rawg += "const FS_API_TOKEN=" + FS_API_TOKEN + ";";
+        String rawg = "const token ='" + token + "'; ";
+        rawg += "const RAPID_API_TOKEN='" + RAPID_API_TOKEN + "'; ";
+        rawg += "const FS_API_TOKEN='" + FS_API_TOKEN + "'; ";
         return rawg;
     }
 
