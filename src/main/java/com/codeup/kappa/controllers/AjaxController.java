@@ -1,17 +1,16 @@
 package com.codeup.kappa.controllers;
 
 
+import com.codeup.kappa.models.Comment;
 import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.User;
-import com.codeup.kappa.repositories.GameRepository;
-import com.codeup.kappa.repositories.PostImageRepository;
-import com.codeup.kappa.repositories.PostRepository;
-import com.codeup.kappa.repositories.UserRepository;
+import com.codeup.kappa.repositories.*;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,14 +29,16 @@ public class AjaxController {
     private final PostImageRepository postImageDao;
     private final GameRepository gameDao;
     private final PasswordEncoder passwordEncoder;
+    private final CommentRepository commentDao;
 
 
-    public AjaxController(UserRepository userDao, PostRepository postDao, PostImageRepository postImageDao, GameRepository gameDao, PasswordEncoder passwordEncoder) {
+    public AjaxController(UserRepository userDao, PostRepository postDao, PostImageRepository postImageDao, GameRepository gameDao, PasswordEncoder passwordEncoder, CommentRepository commentDao) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.postImageDao = postImageDao;
         this.gameDao = gameDao;
         this.passwordEncoder = passwordEncoder;
+        this.commentDao = commentDao;
     }
 
     private JsonNode stringToJsonNode(String data) throws IOException {
@@ -200,6 +201,36 @@ public class AjaxController {
     }
 
 
+    @PostMapping("/post-comment")
+    public Object postComment(@RequestBody String data) throws IOException {
+
+        JsonNode actualObj = stringToJsonNode(data);
+
+        long user_id = actualObj.get("user_id").asLong();
+        long post_id = actualObj.get("post_id").asLong();
+        String comment_data = actualObj.get("comment_data").asText();
+
+        Comment comment = new Comment();
+        comment.setUser(userDao.getById(user_id));
+        comment.setPost(postDao.getPostById(post_id));
+        comment.setBody(comment_data);
+        commentDao.save(comment);
+
+        return new Comment();
+    }
+
+
+    @PostMapping("/delete-comment")
+    public Object deleteComment(@RequestBody String data) throws IOException {
+
+        JsonNode actualObj = stringToJsonNode(data);
+        long comment_id = actualObj.get("comment_id").asLong();
+        commentDao.deleteById(comment_id);
+
+        return new Comment();
+    }
+
+
 
 
 
@@ -207,3 +238,4 @@ public class AjaxController {
 
 
 }
+

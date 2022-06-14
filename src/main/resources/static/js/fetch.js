@@ -59,17 +59,24 @@ function unlikePost(values){
         });
 }
 
+// const postId= $('.like-count')[0].dataset.ps;
+// const likeCount = $('.like-count')[0].dataset.id;
+// console.log(likeCount);
+// console.log(postId);
+
 
 
 
 $('.like-btn').on('click', function (e) {
     e.preventDefault();
     let array = getBtnValue($(this));
+    console.log(array)
 
     if (array[1] !== -1) {
         if ($(this).hasClass('btn-secondary')) {
             $(this).removeClass('btn-secondary').addClass('btn-primary')
             likePost(array);
+
         } else if ($(this).hasClass('btn-primary')) {
             $(this).removeClass('btn-primary').addClass('btn-secondary')
             unlikePost(array)
@@ -217,4 +224,94 @@ $('.follow-btn').on('click', function (e) {
             unFollowUser(array)
         }
     }
+});
+
+
+/////////////////////////////  Post Comment Functionality  /////////////////////////////////
+
+function postComment(values){
+
+    const data = {
+        user_id: values[0],
+        post_id: values[1],
+        comment_data: values[2]
+    }
+    const url = 'http://localhost:8080/ajax/post-comment';
+    const readOption = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    fetch(url, readOption)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((e) => {
+            console.log('Error!!', e)
+        });
+}
+
+
+function deleteComment(values){
+    const data = {
+        comment_id: values[0]
+    }
+    const url = 'http://localhost:8080/ajax/delete-comment';
+    const readOption = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+
+    fetch(url, readOption)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((e) => {
+            console.log('Error!!', e)
+        });
+}
+
+
+const addComment = (id, user, body) => {
+    return `<div><a href="/user/ + ${id}">${user}</a>
+                <p>${body}</p></div>`
+}
+
+
+$('.post-comment-btn').on('click', function (e) {
+    e.preventDefault();
+    console.log(e.target.dataset.id);
+    let array = getBtnValue($(this));
+    const comment = $(`.comment-body[data-id=${e.target.dataset.id}]`)
+    const newArray = [array[0], array[1], comment.val()]
+    const username = $('#username').text()
+    postComment(newArray);
+
+    $(`.comments-container[data-id=${e.target.dataset.id}]`).append(addComment(array[0], username, comment.val()));
+    comment.val("")
+});
+
+
+// $('.delete-comment-btn').on('click', function (e) {
+//     e.preventDefault();
+//     let array = getBtnValue($(this));
+//     deleteComment(array);
+//
+// });
+
+
+$('.dl').on('click', function (e) {
+    e.preventDefault();
+    let array = getBtnValue($(this));
+    deleteComment(array)
+    $(`.dl[data-dl=${e.target.dataset.dl}]`).remove()
+
 });
