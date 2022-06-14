@@ -3,19 +3,19 @@
 
 /////////////////////////////  Helper functions  /////////////////////////////////
 
-function getBtnValue(target){
+function getBtnValue(target) {
     return target[0].attributes[0].value.split(',');
 }
 
 /////////////////////////////  Like Post Functionality  /////////////////////////////////
 
 
-function likePost(values){
+function likePost(values) {
     const data = {
         user_id: values[1],
         post_id: values[0]
     }
-    const url = 'http://localhost:8080/ajax/like-post';
+    const url = 'https://gamerhaven.gg/ajax/like-post';
     const readOption = {
         method: 'POST',
         headers: {
@@ -35,12 +35,12 @@ function likePost(values){
 }
 
 
-function unlikePost(values){
+function unlikePost(values) {
     const data = {
         user_id: values[1],
         post_id: values[0]
     }
-    const url = 'http://localhost:8080/ajax/unlike-post';
+    const url = 'https://gamerhaven.gg/ajax/unlike-post';
     const readOption = {
         method: 'POST',
         headers: {
@@ -58,8 +58,6 @@ function unlikePost(values){
             console.log('Error!!', e)
         });
 }
-
-
 
 
 $('.like-btn').on('click', function (e) {
@@ -78,17 +76,15 @@ $('.like-btn').on('click', function (e) {
 });
 
 
-
 /////////////////////////////  Favorite Game Functionality  /////////////////////////////////
 
 
-
-function favoriteGame(values){
+function favoriteGame(values) {
     const data = {
         user_id: values[1],
         game_id: values[0]
     }
-    const url = 'http://localhost:8080/ajax/favorite-game';
+    const url = 'https://gamerhaven.gg/ajax/favorite-game';
     const readOption = {
         method: 'POST',
         headers: {
@@ -108,12 +104,12 @@ function favoriteGame(values){
 }
 
 
-function unFavoriteGame(values){
+function unFavoriteGame(values) {
     const data = {
         user_id: values[1],
         game_id: values[0]
     }
-    const url = 'http://localhost:8080/ajax/unfavorite-game';
+    const url = 'https://gamerhaven.gg/ajax/unfavorite-game';
     const readOption = {
         method: 'POST',
         headers: {
@@ -149,17 +145,16 @@ $('.fav-btn').on('click', function (e) {
 });
 
 
-
 /////////////////////////////  Follow User Functionality  /////////////////////////////////
 
 
-function followUser(values){
+function followUser(values) {
 
     const data = {
         user_id: values[0],
         follower_id: values[1]
     }
-    const url = 'http://localhost:8080/ajax/follow-user';
+    const url = 'https://gamerhaven.gg/ajax/follow-user';
     const readOption = {
         method: 'POST',
         headers: {
@@ -179,12 +174,12 @@ function followUser(values){
 }
 
 
-function unFollowUser(values){
+function unFollowUser(values) {
     const data = {
         user_id: values[0],
         follower_id: values[1]
     }
-    const url = 'http://localhost:8080/ajax/unfollow-user';
+    const url = 'https://gamerhaven.gg/ajax/unfollow-user';
     const readOption = {
         method: 'POST',
         headers: {
