@@ -127,8 +127,8 @@ public class MainIndexController {
         newComment.setPost(postDao.getPostById(postId));
 //        comment.setComment(body);
 
-        Date date = new Date();
-        newComment.setCreationDate(date);
+//        Date date = new Date();
+//        newComment.setCreationDate(date);
 
         commentDao.save(newComment);
 

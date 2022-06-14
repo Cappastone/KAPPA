@@ -11,7 +11,7 @@
     <p th:text="${user.username}"></p>
 
     <div th:if="${user.profilePictureUrl}">
-        <img th:src="${user.profilePictureUrl}" alt="profile-picture">
+        <img style="object-fit: cover; height: 150px; width:200px;" th:src="${user.profilePictureUrl}" alt="profile-picture">
         <p th:text="${user.bio}"></p>
     </div>
 
@@ -85,7 +85,7 @@
 <!--            <p th:text="${follower.username}"></p>-->
             <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>
             <p th:text="'User Id: ' + ${follower.id}"></p>
-            <img th:src="${follower.profilePictureUrl}">
+            <img style="object-fit: cover; height: 150px; width:200px" th:src="${follower.profilePictureUrl}">
         </div>
     </div>
 
@@ -97,7 +97,7 @@
         <div th:each="following : ${following}">
 <!--            <p th:text="${following.username}"></p>-->
             <a th:text="${following.username}" th:href="'/user/' + ${following.id}"></a>
-            <img th:src="${following.profilePictureUrl}">
+            <img style="object-fit: cover; height: 150px; width:200px;" th:src="${following.profilePictureUrl}">
         </div>
     </div>
 
@@ -144,7 +144,7 @@
 
             <div th:each="image : ${post.postImages}">
     <!--            <p th:text="${image.title}"></p>-->
-                <img th:src="${image.url}">
+                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${image.url}">
             </div>
 
             <!--        JS button to Edit a Post-->
