@@ -41,6 +41,15 @@ public class PostController {
     @GetMapping("/{postId}")
     public String editPost(@PathVariable long postId, Model model) {
 
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Post post = postDao.getById(postId);
+        User user2 = post.getUser();
+
+        if (user.getId() != user2.getId()) {
+            return "redirect:/user/" + user.getId();
+        }
+
         model.addAttribute("post", postDao.getById(postId));
 
         return "posts/post";
@@ -55,10 +64,8 @@ public class PostController {
 
         postDao.save(post);
 
-
         return "redirect:/post/" + id;
     }
-
 
     @PostMapping("/delete-post")
     public String deletePost(@RequestParam("postId") long id) {
@@ -98,17 +105,6 @@ public class PostController {
 
         return "redirect:/post/" + postId;
     }
-
-//    NEEDS WORK
-//    @PostMapping("edit-image")
-//    public String updatePostImages(@RequestParam("imageId") long imageId, @RequestParam("postId") long postId, @RequestParam("title") String title, @RequestParam("url") String url){
-//
-//        PostImage image = postImageDao.getById(imageId);
-//        image.setTitle(title);
-//        image.setUrl(url);
-//
-//        return "redirect:/post/" + postId;
-//    }
 
     public static void main(String[] args) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, uuuu HH:mm");
