@@ -60,10 +60,11 @@ public class MainIndexController {
         model.addAttribute("followingPosts", postDao.findPostsByUserIds(followingIds));
         model.addAttribute("sessionUserId", user_id);
         model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
+        model.addAttribute("findCommentIdsByUserId", commentDao.findCommentIdsByUserId(user_id));
 
         model.addAttribute("newPost", new Post());
 
-        model.addAttribute("newComment", new Comment());
+//        model.addAttribute("newComment", new Comment());
 
         return "index/main";
     }
@@ -95,27 +96,7 @@ public class MainIndexController {
         return "redirect:/main";
     }
 
-    @PostMapping("main/comment")
-    public String comment(
-            @ModelAttribute Comment newComment,
-//            @RequestParam("commentBody") String body,
-            @RequestParam("postId") long postId){
 
-//        Comment comment = new Comment();
-
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        newComment.setUser(user);
-        newComment.setPost(postDao.getPostById(postId));
-//        comment.setComment(body);
-
-        Date date = new Date();
-        newComment.setCreationDate(date);
-
-        commentDao.save(newComment);
-
-        return "redirect:/main";
-    }
 
     public static void main(String[] args) {
             LocalDate date = LocalDate.now();
