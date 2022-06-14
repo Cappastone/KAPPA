@@ -1,5 +1,6 @@
 package com.codeup.kappa.controllers;
 
+import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.*;
 import org.springframework.security.core.Authentication;
@@ -8,10 +9,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.naming.Binding;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -81,7 +85,12 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String createUser(Model model) {
+    public String createUser(Model model
+//            , @RequestParam("error")String error
+    ) {
+
+        model.addAttribute("usernameError", "That username is already taken!");
+        model.addAttribute("emailError", "That email is already taken!");
 
         model.addAttribute("user", new User());
 
@@ -89,7 +98,22 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@ModelAttribute User user, BindingResult result) {
+
+        String username = user.getUsername();
+        String email = user.getEmail();
+
+        if (userDao.existsByEmail(email)) {
+            result.rejectValue("email", "user.email", "This email already exists");
+        }
+
+        if (userDao.existsByUsername(username)) {
+            result.rejectValue("username", "user.username", "This username already exists");
+        }
+
+        if (result.hasErrors()) {
+            return "users/register";
+        }
 
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
@@ -164,13 +188,4 @@ public class UserController {
         return "redirect:/user/" + user.getId();
     }
 
-//    @PostMapping("/edit-profile-pic")
-//    public String editProfilePic(
-//            @ModelAttribute User user,
-//
-//            @RequestParam(name="id")long id){
-//            user = userDao.getById(id);
-//            user.setProfilePictureUrl();
-//
-//    }
 }
