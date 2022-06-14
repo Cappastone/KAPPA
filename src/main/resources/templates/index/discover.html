@@ -26,7 +26,7 @@
 
 <!--        loop through list of media for a single Post-->
         <div th:each="image : ${post.postImages}">
-            <img th:src="${image.url}">
+            <img style="object-fit: cover; height: 150px; width:200px" th:src="${image.url}">
         </div>
 
         <p th:text="${post.body}"></p>
@@ -85,7 +85,7 @@
         <p th:text="'Likes: ' + ${game.users.size()}"></p>
 <!--        <p th:text="${game.title}"></p>-->
         <a th:text="${game.title}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
-        <img th:src="${game.imageUrl}">
+        <img style="object-fit: cover; height: 200px; width:250px;" th:src="${game.imageUrl}">
         <p th:text="${game.genre}"></p>
         <p th:text="${game.description}"></p>
 

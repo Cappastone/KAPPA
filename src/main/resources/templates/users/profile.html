@@ -11,7 +11,7 @@
     <p th:text="${user.username}"></p>
 
     <div th:if="${user.profilePictureUrl}">
-        <img th:src="${user.profilePictureUrl}" alt="profile-picture">
+        <img style="object-fit: cover; height: 150px; width:200px;" th:src="${user.profilePictureUrl}" alt="profile-picture">
         <p th:text="${user.bio}"></p>
     </div>
 
@@ -27,7 +27,7 @@
                 Edit Bio
             </button>
 
-            <!-- Modal -->
+            <!--EDIT BIO MODAL-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -36,7 +36,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!--    edit bio form-->
+                            <!--EDIT BIO FORM-->
                             <form action="/user/edit-bio" method="POST">
                                 <div class="mb-3">
                                     <input type="hidden" name="id" th:value="${user.id}">
@@ -45,15 +45,21 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <input type="submit" value="Update" class="btn btn-dark w-25">
                             </form>
-                            <!--    end edit bio form-->
+                            <!--END EDIT BIO FORM-->
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
+            <!--END EDIT BIO MODAL-->
 
-            <input type="submit" value="Edit Profile Picture" class="btn btn-dark">
+            <!--EDIT PROFILE PIC FORM-->
+            <form id="profile-pic" action="/user/edit-profile-pic" method="POST">
+                <input type="hidden" name="id" th:value="${user.id}">
+                <input type="hidden" class="change-profile-pic" name="profile-picture-url">
+                <button type="button" class="change-profile-pic btn btn-primary">Change Profile Pic</button>
 
+            </form>
+            <!--END EDIT PROFILE PIC FORM-->
         </div>
     </div>
 
@@ -79,7 +85,7 @@
 <!--            <p th:text="${follower.username}"></p>-->
             <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>
             <p th:text="'User Id: ' + ${follower.id}"></p>
-            <img th:src="${follower.profilePictureUrl}">
+            <img style="object-fit: cover; height: 150px; width:200px" th:src="${follower.profilePictureUrl}">
         </div>
     </div>
 
@@ -91,7 +97,7 @@
         <div th:each="following : ${following}">
 <!--            <p th:text="${following.username}"></p>-->
             <a th:text="${following.username}" th:href="'/user/' + ${following.id}"></a>
-            <img th:src="${following.profilePictureUrl}">
+            <img style="object-fit: cover; height: 150px; width:200px;" th:src="${following.profilePictureUrl}">
         </div>
     </div>
 
@@ -138,7 +144,7 @@
 
             <div th:each="image : ${post.postImages}">
     <!--            <p th:text="${image.title}"></p>-->
-                <img th:src="${image.url}">
+                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${image.url}">
             </div>
 
             <!--        JS button to Edit a Post-->

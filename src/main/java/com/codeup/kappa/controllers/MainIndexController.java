@@ -28,7 +28,7 @@ public class MainIndexController {
     private final PostRepository postDao;
     private final CommentRepository commentDao;
 
-    public MainIndexController(UserRepository userDao, PostRepository postDao, CommentRepository commentDao) {
+    public MainIndexController(UserRepository userDao, PostRepository postDao, CommentRepository commentDao){
         this.userDao = userDao;
         this.postDao = postDao;
         this.commentDao = commentDao;
@@ -41,12 +41,12 @@ public class MainIndexController {
     }
 
     @GetMapping("main")
-    public String mainIndex(Model model) {
+    public String mainIndex(Model model){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long user_id = user.getId();
 
-        if (user_id == 0) {
+        if(user_id == 0){
             return "redirect:/discover";
         }
 
@@ -69,7 +69,7 @@ public class MainIndexController {
     }
 
     @PostMapping("main/create-post")
-    public String addPost(@ModelAttribute Post post, @RequestParam(name = "post-image-upload") String postImageUrl) {
+    public String addPost(@ModelAttribute Post post, @RequestParam(name = "post-image-upload") String postImageUrl){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -99,7 +99,7 @@ public class MainIndexController {
     public String comment(
             @ModelAttribute Comment newComment,
 //            @RequestParam("commentBody") String body,
-            @RequestParam("postId") long postId) {
+            @RequestParam("postId") long postId){
 
 //        Comment comment = new Comment();
 
@@ -118,8 +118,8 @@ public class MainIndexController {
     }
 
     public static void main(String[] args) {
-        LocalDate date = LocalDate.now();
-        System.out.println(date);
+            LocalDate date = LocalDate.now();
+            System.out.println(date);
     }
 
 }

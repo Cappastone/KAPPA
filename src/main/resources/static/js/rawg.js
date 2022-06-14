@@ -1,7 +1,7 @@
 /////////////  FileStack API   ///////////////////////
 
 const mapImgToDiv = (post) => `<img src="${post.Url}" style="width: 148px; height: 98px">`;
-const client = filestack.init(FS_API_TOKEN);
+const client = filestack.init(FS_API_KEY);
 
 const options = {
     fromSources: ["local_file_system", "instagram", "facebook"],
@@ -131,9 +131,8 @@ function searcher(GameID) {
         console.log(data);
 
         const rating2 = data.esrb_rating;
-
-        function checkRating() {
-            if (rating2 == null) {
+        function checkRating () {
+            if(rating2 == null) {
                 return "N/A"
             } else {
                 return data.esrb_rating.name

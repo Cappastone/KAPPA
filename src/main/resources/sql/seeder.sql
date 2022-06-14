@@ -31,11 +31,11 @@ VALUES (1, 2),
        (3, 2),
        (4, 2);
 
-INSERT INTO posts (body, user_id)
-VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games! Check out these screenshots and clips.', 1),
-       ('I am pretty bad at Super Smash Bros but discovered a new character that I can see becoming my new main. What are your main characters?', 1),
-       ('I was watching my little brother play Minecraft today and he accidentally found a super secret item! Check out these screenshots.', 1),
-       ('I am new to Fortnite and looking for some cool people who can show me the ropes!', 2);
+INSERT INTO posts (body, user_id, creation_date)
+VALUES ('I was playing Apex Legends solo and dropped some crazy high kill games! Check out these screenshots and clips.', 1, NOW()),
+       ('I am pretty bad at Super Smash Bros but discovered a new character that I can see becoming my new main. What are your main characters?', 1, NOW()),
+       ('I was watching my little brother play Minecraft today and he accidentally found a super secret item! Check out these screenshots.', 1, NOW()),
+       ('I am new to Fortnite and looking for some cool people who can show me the ropes!', 2, NOW());
 
 INSERT INTO post_images (title, url, post_id)
 VALUES ('Apex Clip', 'https://static1.srcdn.com/wordpress/wp-content/uploads/2022/01/Apex-Legends-combines-battle-royale-and-hero-shooters.jpg', 1),
@@ -43,34 +43,33 @@ VALUES ('Apex Clip', 'https://static1.srcdn.com/wordpress/wp-content/uploads/202
        ('Apex Screenshot 2', 'https://cdn1.dotesports.com/wp-content/uploads/2021/01/26113248/fuse-30-30-bangalore-lifeline.png', 1),
        ('Minecraft Secret', 'https://img.redbull.com/images/c_fill,w_1200,h_630,g_auto,f_auto,q_auto/redbullcom/2020/4/28/bjoyslzjb3uxqyg82uz2/minecraft', 3);
 
-INSERT INTO post_comments (post_id, user_id, body   # ,date
+INSERT INTO post_comments (post_id, user_id, body, creation_date
 )
-VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?'
-#, '2022-01-01'
+VALUES (1, 2, 'Wow, you stomped that lobby bro! Want to play?', NOW()
 ),
        (1, 3, 'I can do that in my sleep...'
-      # , '2022-01-02'
+      , NOW()
        ),
        (2, 2, 'I really like Yoshi'
-       #, '2022-01-21'
+       , NOW()
        ),
        (2, 3, 'Link'
-       #, '2022-01-22'
+       , NOW()
        ),
        (3, 2, 'Super cool'
-       #, '2022-02-15'
+       , NOW()
        ),
        (3, 3, 'Old news'
-       #, '2022-02-17'
+       , NOW()
        ),
        (4, 1, 'I can show you some tips and tricks. Feel free to add me on any platform!'
-       #, '2022-03-05'
+       , NOW()
        ),
        (4, 3, 'Git gud'
-       #, '2022-03-07'
+       , NOW()
        ),
        (4, 4, 'Solid!'
-       #, '2022-03-08'
+       , NOW()
        );
 
 INSERT INTO post_likes (user_id, post_id)
