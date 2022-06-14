@@ -1,9 +1,9 @@
 # run this code BEFORE you run the Spring application =>
-CREATE DATABASE IF NOT EXISTS gamer_haven_db;
+CREATE DATABASE IF NOT EXISTS gamerhaven_db;
 # <= BEFORE
 
 # run this code AFTER =>
-USE gamer_haven_db;
+USE gamerhaven_db;
 
 INSERT INTO platform_links (discord, nintendo, playstation, twitch, xbox, youtube)
 VALUES ('Gamer#1337', 'Gamer', 'Gamer-Man', 'GamerTTV', 'Gamer Man', 'Gamer-YT'),
