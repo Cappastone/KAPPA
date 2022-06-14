@@ -5,18 +5,6 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<!--<form th:action="@{/user/register}" method="POST" th:object="${user}">-->
-<!--    <label for="username">Username</label>-->
-<!--    <input id="username" th:field="*{username}" />-->
-
-<!--    <label for="email">Email</label>-->
-<!--    <input id="email" th:field="*{email}" />-->
-
-<!--    <label for="password">Password</label>-->
-<!--    <input id="password" type="password" th:field="*{password}" />-->
-
-<!--    <input value="Sign me up!" type="submit" />-->
-<!--</form>-->
 <h1>Create Account</h1>
 
 <form th:action="@{/user/register}" method="POST" th:object="${user}">
@@ -24,10 +12,12 @@
         <label for="username" class="form-label"></label>
         <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}">
     </div>
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
     <div class="mb-3 w-25">
         <label for="email" class="form-label"></label>
         <input type="email" class="form-control" id="email" placeholder="Email Address" th:field="*{email}">
     </div>
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     <div class="mb-3 w-25">
         <label for="password" class="form-label"></label>
         <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}">
