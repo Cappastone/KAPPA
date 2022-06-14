@@ -69,17 +69,32 @@ public class MainIndexController {
     }
 
     @PostMapping("main/create-post")
-    public String addPost(@ModelAttribute Post post, @RequestParam(name = "post-image-upload") String postImageUrl){
+    public String addPost(@ModelAttribute Post post, @RequestParam(required = false, name = "post-image-upload") List <String> postImageUrls){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if(!postImageUrl.isBlank()) {
-
-            PostImage postImages = new PostImage("hello", postImageUrl, post);
-
+        if(postImageUrls.size() != 0) {
 
             List<PostImage> postImages1 = new ArrayList<>();
-            postImages1.add(postImages);
+
+            if (postImageUrls.size() == 1) {
+                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
+                postImages1.add(postImages);
+            } else if (postImageUrls.size() == 2) {
+                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
+                PostImage postImages2 = new PostImage("hello", postImageUrls.get(1), post);
+                postImages1.add(postImages);
+                postImages1.add(postImages2);
+            } else if (postImageUrls.size() == 3) {
+                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
+                PostImage postImages2 = new PostImage("hello", postImageUrls.get(1), post);
+                PostImage postImages3 = new PostImage("hello", postImageUrls.get(2), post);
+                postImages1.add(postImages);
+                postImages1.add(postImages2);
+                postImages1.add(postImages3);
+            }
+
+
             post.setPostImages(postImages1);
 
         }
