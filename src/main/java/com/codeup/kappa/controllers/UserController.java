@@ -156,7 +156,7 @@ public class UserController {
     }
 
     @PostMapping("/edit-profile-pic")
-    public String editProfilePic(@RequestParam(name="profile-picture-url")String profilePictureUrl, @RequestParam(name="id")long id) {
+    public String editProfilePic(@RequestParam(name = "profile-picture-url") String profilePictureUrl, @RequestParam(name = "id") long id) {
         User user = userDao.getById(id);
         user.setProfilePictureUrl(profilePictureUrl);
 
