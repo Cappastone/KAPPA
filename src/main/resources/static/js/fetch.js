@@ -3,14 +3,14 @@
 
 /////////////////////////////  Helper functions  /////////////////////////////////
 
-function getBtnValue(target){
+function getBtnValue(target) {
     return target[0].attributes[0].value.split(',');
 }
 
 /////////////////////////////  Like Post Functionality  /////////////////////////////////
 
 
-function likePost(values){
+function likePost(values) {
     const data = {
         user_id: values[1],
         post_id: values[0]
@@ -35,7 +35,7 @@ function likePost(values){
 }
 
 
-function unlikePost(values){
+function unlikePost(values) {
     const data = {
         user_id: values[1],
         post_id: values[0]
@@ -65,8 +65,6 @@ function unlikePost(values){
 // console.log(postId);
 
 
-
-
 $('.like-btn').on('click', function (e) {
     e.preventDefault();
     let array = getBtnValue($(this));
@@ -85,12 +83,10 @@ $('.like-btn').on('click', function (e) {
 });
 
 
-
 /////////////////////////////  Favorite Game Functionality  /////////////////////////////////
 
 
-
-function favoriteGame(values){
+function favoriteGame(values) {
     const data = {
         user_id: values[1],
         game_id: values[0]
@@ -115,7 +111,7 @@ function favoriteGame(values){
 }
 
 
-function unFavoriteGame(values){
+function unFavoriteGame(values) {
     const data = {
         user_id: values[1],
         game_id: values[0]
@@ -156,11 +152,10 @@ $('.fav-btn').on('click', function (e) {
 });
 
 
-
 /////////////////////////////  Follow User Functionality  /////////////////////////////////
 
 
-function followUser(values){
+function followUser(values) {
 
     const data = {
         user_id: values[0],
@@ -186,7 +181,7 @@ function followUser(values){
 }
 
 
-function unFollowUser(values){
+function unFollowUser(values) {
     const data = {
         user_id: values[0],
         follower_id: values[1]

@@ -15,7 +15,7 @@
 //    @Value("${RAPID_API_TOKEN}")
 //    private String RAPID_API_TOKEN;
 //
-//    @Value("${FS_API_KEY}")
+//    @Value("${FS_API_TOKEN}")
 //    private String FS_API_TOKEN;
 //
 //    @GetMapping(path = "/keys", produces = "application/javascript")

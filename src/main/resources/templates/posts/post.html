@@ -25,15 +25,15 @@
 
     <fieldset>
         <legend>Delete Image From Post</legend>
-        <form th:action="@{/post/delete-image}" method="POST">
             <div th:each="image: ${post.postImages}">
-                <p th:text="${image.title}"></p>
-                <img th:src="${image.url}" alt="post-image">
-                <input type="hidden" th:value="${image.id}" name="image-id">
-                <input type="hidden" th:value="${post.id}" name="post-id">
-                <input type="submit" class="btn-danger" value="Delete">
+                <form th:action="@{/post/delete-image}" method="POST">
+                    <p th:text="${image.title}"></p>
+                    <img th:src="${image.url}" alt="post-image">
+                    <input type="hidden" th:value="${image.id}" name="image-id">
+                    <input type="hidden" th:value="${post.id}" name="post-id">
+                    <input type="submit" class="btn-danger" value="Delete">
+                </form>
             </div>
-        </form>
     </fieldset>
 
     <fieldset>

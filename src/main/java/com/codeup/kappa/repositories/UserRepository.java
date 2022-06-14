@@ -12,16 +12,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 
-    @Query(value = "SELECT t.user_id FROM gamer_haven_db.user_followers t WHERE t.follower_id = :user_id GROUP BY t.user_id", nativeQuery = true)
+    @Query(value = "SELECT t.user_id FROM gamerhaven_db.user_followers t WHERE t.follower_id = :user_id GROUP BY t.user_id", nativeQuery = true)
     List<Long> followingList(long user_id);
 
-    @Query(value = "SELECT post_id FROM gamer_haven_db.post_likes t WHERE t.user_id = :id", nativeQuery = true)
+    @Query(value = "SELECT post_id FROM gamerhaven_db.post_likes t WHERE t.user_id = :id", nativeQuery = true)
     List<Long> findPostIdLikedByUserId(long id);
 
-    @Query(value = "SELECT game_id FROM gamer_haven_db.user_games t WHERE t.user_id = :id", nativeQuery = true)
+    @Query(value = "SELECT game_id FROM gamerhaven_db.user_games t WHERE t.user_id = :id", nativeQuery = true)
     List<Long> findGameIdFavoriteByUserId(long id);
 
-    @Query(value = "SELECT user_id FROM gamer_haven_db.user_followers t WHERE t.follower_id = :id", nativeQuery = true)
+    @Query(value = "SELECT user_id FROM gamerhaven_db.user_followers t WHERE t.follower_id = :id", nativeQuery = true)
     List<Long> findUserIdsByFollowerId(long id);
 
 

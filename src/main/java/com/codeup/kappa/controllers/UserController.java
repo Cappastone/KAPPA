@@ -23,7 +23,7 @@ public class UserController {
     private final PostRepository postDao;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder){
+    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.passwordEncoder = passwordEncoder;
@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public String viewUserProfile(
-            @PathVariable long id, Model model){
+            @PathVariable long id, Model model) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        if (authentication == null) {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -40,7 +40,7 @@ public class UserController {
 //        System.out.println(userDao.getById(4L).getFollowers().get(0).getUsername() + "testing!!!!!!!!!!!");
 
 
-        if(id == 0){
+        if (id == 0) {
             return "redirect:/login";
         }
 
@@ -64,26 +64,24 @@ public class UserController {
         }
 
 
-
-
-        return "/users/profile";
+        return "users/profile";
     }
 
     @GetMapping("/profile")
-    public String viewProfile(){
+    public String viewProfile() {
 
 
-        if ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() == null){
+        if ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() == null) {
             return "redirect:/login";
         }
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
 
-            return "redirect:/user/" + id;
+        return "redirect:/user/" + id;
     }
 
     @GetMapping("/register")
-    public String createUser(Model model){
+    public String createUser(Model model) {
 
         model.addAttribute("user", new User());
 
@@ -91,7 +89,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user) {
 
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
@@ -110,17 +108,17 @@ public class UserController {
     }
 
     @GetMapping("/account")
-    public String editAccount(Model model){
+    public String editAccount(Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         model.addAttribute("user", userDao.getById(id));
 
-        return "/users/account";
+        return "users/account";
     }
 
     @PostMapping("/edit-user")
-    public String editUser(@RequestParam(name="username")String username, @RequestParam(name="email")String email, @RequestParam(name="id")long id) {
+    public String editUser(@RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "id") long id) {
         User user = userDao.getById(id);
         user.setUsername(username);
         user.setEmail(email);
@@ -130,14 +128,14 @@ public class UserController {
         return "redirect:/user/" + user.getId();
     }
 
-//    Change Password //
+    //    Change Password //
     @PostMapping("edit-password")
-    public String editPassword(@RequestParam(name="oldPassword")String oldPassword, @RequestParam(name="newPassword")String newPassword, @RequestParam(name="id")long id, HttpSession session) {
+    public String editPassword(@RequestParam(name = "oldPassword") String oldPassword, @RequestParam(name = "newPassword") String newPassword, @RequestParam(name = "id") long id, HttpSession session) {
         String message;
         message = "Please enter correct current password";
         User user = userDao.getById(id);
 
-        if(this.passwordEncoder.matches(oldPassword, user.getPassword())) {
+        if (this.passwordEncoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(passwordEncoder.encode(newPassword));
             userDao.save(user);
         } else {
@@ -148,7 +146,7 @@ public class UserController {
     }
 
     @PostMapping("/edit-bio")
-    public String editBio(@RequestParam(name="bio")String bio, @RequestParam(name="id")long id) {
+    public String editBio(@RequestParam(name = "bio") String bio, @RequestParam(name = "id") long id) {
         User user = userDao.getById(id);
         user.setBio(bio);
 
@@ -158,7 +156,7 @@ public class UserController {
     }
 
     @PostMapping("/edit-profile-pic")
-    public String editProfilePic(@RequestParam(name="profile-picture-url")String profilePictureUrl, @RequestParam(name="id")long id) {
+    public String editProfilePic(@RequestParam(name = "profile-picture-url") String profilePictureUrl, @RequestParam(name = "id") long id) {
         User user = userDao.getById(id);
         user.setProfilePictureUrl(profilePictureUrl);
 

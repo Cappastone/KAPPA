@@ -70,71 +70,33 @@ public class MainIndexController {
     }
 
     @PostMapping("main/create-post")
-    public String addPost(@ModelAttribute Post post, @RequestParam(required = false, name = "post-image-upload") List <String> postImageUrls){
+    public String addPost(@ModelAttribute Post post, @RequestParam(name = "post-image-upload") String postImageUrl){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if(postImageUrls.size() != 0) {
-
-            List<PostImage> postImages1 = new ArrayList<>();
-
-            if (postImageUrls.size() == 1) {
-                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
-                postImages1.add(postImages);
-            } else if (postImageUrls.size() == 2) {
-                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
-                PostImage postImages2 = new PostImage("hello", postImageUrls.get(1), post);
-                postImages1.add(postImages);
-                postImages1.add(postImages2);
-            } else if (postImageUrls.size() == 3) {
-                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
-                PostImage postImages2 = new PostImage("hello", postImageUrls.get(1), post);
-                PostImage postImages3 = new PostImage("hello", postImageUrls.get(2), post);
-                postImages1.add(postImages);
-                postImages1.add(postImages2);
-                postImages1.add(postImages3);
-            }
+        PostImage postImages = new PostImage("hello", postImageUrl, post);
 
 
-            post.setPostImages(postImages1);
+        List<PostImage> postImages1 = new ArrayList<>();
+        postImages1.add(postImages);
 
-        }
 
+        post.setPostImages(postImages1);
         post.setUser(user);
 
 
-//        Date date = new Date();
+        Date date = new Date();
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
 //        Date newDate = sdf.format(date);
 
-//        post.setCreationDate(date);
+        post.setCreationDate(date);
 
         postDao.save(post);
 
         return "redirect:/main";
     }
-//
-//    @PostMapping("main/comment")
-//    public String comment(
-//            @ModelAttribute Comment newComment,
-////            @RequestParam("commentBody") String body,
-//            @RequestParam("postId") long postId){
-//
-////        Comment comment = new Comment();
-//
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        newComment.setUser(user);
-//        newComment.setPost(postDao.getPostById(postId));
-////        comment.setComment(body);
-//
-////        Date date = new Date();
-////        newComment.setCreationDate(date);
-//
-//        commentDao.save(newComment);
-//
-//        return "redirect:/main";
-//    }
+
+
 
     public static void main(String[] args) {
             LocalDate date = LocalDate.now();

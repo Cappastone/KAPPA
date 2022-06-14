@@ -58,7 +58,6 @@ public class User {
     private List<Game> favoriteGames = new ArrayList<>();
 
 
-
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "user_followers",
@@ -68,10 +67,8 @@ public class User {
     private List<User> followers = new ArrayList<>();
 
 
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Comment> postComments = new ArrayList<>();
-
 
 
     // this is if we just want to track likes =>
@@ -84,8 +81,8 @@ public class User {
     private List<Post> likedPosts = new ArrayList<>();
 
 
-
-    public User(){}
+    public User() {
+    }
 
     public User(String username, String email, String password) {
         this.username = username;

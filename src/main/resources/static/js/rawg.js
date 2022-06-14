@@ -1,77 +1,30 @@
 /////////////  FileStack API   ///////////////////////
 
-const mapImgToDiv = (post) => `<img src="${post.Url}" style="object-fit: cover; height: 150px; width:200px;">`;
-const client = filestack.init(FS_API_KEY);
-
-function upload (res) {
-    const url = res.filesUploaded[0].url
-    const postImg = [{Url: url}];
-    const postImages = postImg.map(mapImgToDiv)
-    $(".post-image-upload").val([url]);
-    return $('#img-output').html(postImages)
-}
-
-function upload2 (res) {
-    const url = res.filesUploaded[0].url
-    const url2 = res.filesUploaded[1].url
-    const postImg = [{Url: url}, {Url: url2}];
-    const postImages = postImg.map(mapImgToDiv)
-    $(".post-image-upload").val([url, url2]);
-    return $('#img-output').html(postImages)
-}
-
-function upload3 (res) {
-    const url = res.filesUploaded[0].url
-    const url2 = res.filesUploaded[1].url
-    const url3 = res.filesUploaded[2].url
-    const postImg = [{Url: url}, {Url: url2}, {Url: url3}];
-    const postImages = postImg.map(mapImgToDiv)
-    $(".post-image-upload").val([url, url2, url3]);
-    return $('#img-output').html(postImages)
-}
+const mapImgToDiv = (post) => `<img src="${post.Url}" style="width: 148px; height: 98px">`;
+const client = filestack.init(FS_API_TOKEN);
 
 const options = {
-    fromSources: ["local_file_system", "instagram", "facebook"],
-    maxFiles: 3,
-    onUploadDone:
-        function (res) {
-            if (res.filesUploaded.length === 1) {
-                upload(res)
-            } else if (res.filesUploaded.length === 2) {
-                upload2(res)
-            } else if (res.filesUploaded.length === 3) {
-                upload3(res)
-            }
-
-            // $(".post-image-upload").val(url);
-            // const postImg = [{Url: url}];
-            // const postImages = postImg.map(mapImgToDiv)
-            // $('#img-output').html(postImages)
-
-        }
-};
-
-const options2 = {
     fromSources: ["local_file_system", "instagram", "facebook"],
     onUploadDone:
         function (res) {
             const url = res.filesUploaded[0].url
-
+            $(".post-image-upload").val(url);
             $(".change-profile-pic").val(url);
-            $('#profile-pic').submit()
-
+            const postImg = [{Url: url}];
+            const postImages = postImg.map(mapImgToDiv)
+            $('#img-output').html(postImages)
+            $("#profile-pic").submit();
         }
 };
 
-// Upload Post Image//
 $(".upload-picture").on("click", function () {
     client.picker(options).open()
 });
 
-// Upload Profile Image//
 $(".change-profile-pic").on("click", function () {
-    client.picker(options2).open()
+    client.picker(options).open()
 });
+
 
 // this is the code to make an api req to RAWG this gets the top 20 games
 // const settings = {
@@ -183,8 +136,9 @@ function searcher(GameID) {
         console.log(data);
 
         const rating2 = data.esrb_rating;
-        function checkRating () {
-            if(rating2 == null) {
+
+        function checkRating() {
+            if (rating2 == null) {
                 return "N/A"
             } else {
                 return data.esrb_rating.name
