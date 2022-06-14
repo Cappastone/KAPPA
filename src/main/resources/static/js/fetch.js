@@ -15,7 +15,7 @@ function likePost(values) {
         user_id: values[1],
         post_id: values[0]
     }
-    const url = 'https://gamerhaven.gg/ajax/like-post';
+    const url = 'http://localhost:8080/ajax/like-post';
     const readOption = {
         method: 'POST',
         headers: {
@@ -40,7 +40,7 @@ function unlikePost(values) {
         user_id: values[1],
         post_id: values[0]
     }
-    const url = 'https://gamerhaven.gg/ajax/unlike-post';
+    const url = 'http://localhost:8080/ajax/unlike-post';
     const readOption = {
         method: 'POST',
         headers: {
@@ -84,7 +84,7 @@ function favoriteGame(values) {
         user_id: values[1],
         game_id: values[0]
     }
-    const url = 'https://gamerhaven.gg/ajax/favorite-game';
+    const url = 'http://localhost:8080/ajax/favorite-game';
     const readOption = {
         method: 'POST',
         headers: {
@@ -109,7 +109,7 @@ function unFavoriteGame(values) {
         user_id: values[1],
         game_id: values[0]
     }
-    const url = 'https://gamerhaven.gg/ajax/unfavorite-game';
+    const url = 'http://localhost:8080/ajax/unfavorite-game';
     const readOption = {
         method: 'POST',
         headers: {
@@ -154,7 +154,7 @@ function followUser(values) {
         user_id: values[0],
         follower_id: values[1]
     }
-    const url = 'https://gamerhaven.gg/ajax/follow-user';
+    const url = 'http://localhost:8080/ajax/follow-user';
     const readOption = {
         method: 'POST',
         headers: {
@@ -179,7 +179,7 @@ function unFollowUser(values) {
         user_id: values[0],
         follower_id: values[1]
     }
-    const url = 'https://gamerhaven.gg/ajax/unfollow-user';
+    const url = 'http://localhost:8080/ajax/unfollow-user';
     const readOption = {
         method: 'POST',
         headers: {
