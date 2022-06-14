@@ -9,14 +9,19 @@ const options = {
         function (res) {
             const url = res.filesUploaded[0].url
             $(".post-image-upload").val(url);
+            $(".change-profile-pic").val(url);
             const postImg = [{Url: url}];
             const postImages = postImg.map(mapImgToDiv)
             $('#img-output').html(postImages)
-
+            $("#profile-pic").submit();
         }
 };
 
 $(".upload-picture").on("click", function () {
+    client.picker(options).open()
+});
+
+$(".change-profile-pic").on("click", function () {
     client.picker(options).open()
 });
 
