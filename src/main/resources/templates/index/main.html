@@ -10,7 +10,7 @@
 
     <p th:text="${user.username} + ' is logged in'"></p>
     <div th:if="${user.profilePictureUrl}">
-        <img th:src="${user.profilePictureUrl}">
+        <img style="object-fit: cover; height: 150px; width:200px;" th:src="${user.profilePictureUrl}">
     </div>
     <div th:if="!${user.profilePictureUrl}">
         <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
@@ -73,7 +73,7 @@
         </div>
 
         <div th:each="image : ${post.postImages}">
-            <img th:src="${image.url}">
+            <img style="object-fit: cover; height: 150px; width:200px" th:src="${image.url}">
         </div>
 
         <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
