@@ -21,15 +21,15 @@ public class ConnectionsController {
     private final UserRepository userDao;
     private final CommentRepository commentDao;
 
-    public ConnectionsController(PostRepository postDao, GameRepository gameDao, UserRepository userDao, CommentRepository commentDao){
-        this. postDao = postDao;
+    public ConnectionsController(PostRepository postDao, GameRepository gameDao, UserRepository userDao, CommentRepository commentDao) {
+        this.postDao = postDao;
         this.gameDao = gameDao;
         this.userDao = userDao;
         this.commentDao = commentDao;
     }
 
     @GetMapping()
-    public String connections(Model model){
+    public String connections(Model model) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long userId = user.getId();
@@ -44,7 +44,7 @@ public class ConnectionsController {
         model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(userId));
         model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(userId));
 
-        return "/users/connections";
+        return "users/connections";
     }
 
 }
