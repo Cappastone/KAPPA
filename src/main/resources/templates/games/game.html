@@ -14,11 +14,11 @@
         <div class="w-75">
             <h1 th:text="${game.title}" class="text-center"></h1>
             <img class="full-game-img" th:src="${game.imageUrl}">
-            <p th:text="${game.developer}"></p>
+            <p th:text="'Developer: '+ ${game.developer}"></p>
             <p th:text="${game.description}"></p>
-            <p th:text="${game.genre}"></p>
-            <p th:text="${game.platforms}"></p>
-            <p th:text="${game.ageRating}"></p>
+            <p th:text="'Genres: ' +${game.genre}"></p>
+            <p th:text="'Platforms: ' + ${game.platforms}"></p>
+            <p th:text="'ESRB Rating: ' +${game.ageRating}"></p>
 
             <div sec:authorize="isAuthenticated()">
                 <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
