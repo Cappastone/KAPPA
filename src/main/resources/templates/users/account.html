@@ -38,6 +38,100 @@
 </form>
 <!--    end edit password form-->
 
+<!--ADD/EDIT PLATFORM LINKS-->
+<!--<form action="/user/edit-platform-links" method="POST">-->
+<!--    <div class="mb-3 w-25">-->
+<!--        <label for="discord" class="form-label"></label>-->
+<!--        <input type="text" class="form-control" id="discord" placeholder="discord" name="discord">-->
+<!--    </div>-->
+<!--    <div class="mb-3 w-25">-->
+<!--        <label for="nintendo" class="form-label"></label>-->
+<!--        <input type="text" class="form-control" id="nintendo" placeholder="nintendo" name="nintendo">-->
+<!--    </div>-->
+<!--    <div class="mb-3 w-25">-->
+<!--        <label for="playstation" class="form-label"></label>-->
+<!--        <input type="text" class="form-control" id="playstation" placeholder="playstation" name="playstation">-->
+<!--    </div>-->
+<!--    <div class="mb-3 w-25">-->
+<!--        <label for="twitch" class="form-label"></label>-->
+<!--        <input type="text" class="form-control" id="twitch" placeholder="twitch" name="twitch">-->
+<!--    </div>-->
+<!--    <div class="mb-3 w-25">-->
+<!--        <label for="xbox" class="form-label"></label>-->
+<!--        <input type="text" class="form-control" id="xbox" placeholder="xbox" name="xbox">-->
+<!--    </div>-->
+<!--    <div class="mb-3 w-25">-->
+<!--        <label for="youtube" class="form-label"></label>-->
+<!--        <input type="text" class="form-control" id="youtube" placeholder="youtube" name="youtube">-->
+<!--    </div>-->
+<!--    <input type="hidden" name="id" th:value="${user.id}">-->
+<!--    <input type="submit" value="Save Links" class="btn btn-dark w-25">-->
+<!--</form>-->
+
+
+<div th:if="${user.getLinks() == null}">
+    <form action="/user/create-platform-links" method="POST" th:object="${links}">
+        <div class="mb-3 w-25">
+            <label for="discord" class="form-label">Discord</label>
+            <input type="text" class="form-control" id="discord" th:field="*{discord}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="nintendo" class="form-label">Nintendo</label>
+            <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="playstation" class="form-label">Playstation</label>
+            <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="twitch" class="form-label">Twitch</label>
+            <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="xbox" class="form-label">Xbox</label>
+            <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="youtube" class="form-label">Youtube</label>
+            <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
+        </div>
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" value="Save Links" class="btn btn-dark w-25">
+    </form>
+</div>
+
+
+<div th:if="${user.getLinks() != null}">
+    <form action="/user/edit-platform-links" method="POST" th:object="${existingLinks}">
+        <div class="mb-3 w-25">
+            <label for="discord" class="form-label">Discord</label>
+            <input type="text" class="form-control" id="discord" th:field="*{discord}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="nintendo" class="form-label">Nintendo</label>
+            <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="playstation" class="form-label">Playstation</label>
+            <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="twitch" class="form-label">Twitch</label>
+            <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="xbox" class="form-label">Xbox</label>
+            <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
+        </div>
+        <div class="mb-3 w-25">
+            <label for="youtube" class="form-label">Youtube</label>
+            <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
+        </div>
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" value="Save Links" class="btn btn-dark w-25">
+    </form>
+</div>
+
 <!--footer and JS partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>
