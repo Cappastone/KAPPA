@@ -5,55 +5,81 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<!--    display users that a logged-in user is Following-->
-<div th:if="${following}">
-    <p th:text="'Following: ' + ${following.size()}"></p>
-    <div th:each="following : ${following}">
-        <!--            <p th:text="${following.username}"></p>-->
-        <a th:text="${following.username}" th:href="'/user/' + ${following.id}"></a>
-        <img style="object-fit: cover; height: 150px; width:200px;" th:src="${following.profilePictureUrl}">
+<div class="container-fluid d-flex flex-wrap">
+    <!--    display users that a logged-in user is Following-->
+    <div class="w-50">
+        <div class="container">
+            <div th:if="${following}" class="d-flex flex-column">
+                <div class="card w-100">
+                    <p th:text="'Following: ' + ${following.size()}"></p>
+                    <div th:each="following : ${following}" class="">
+                        <div class=" card-body px-2">
+                            <!--            <p th:text="${following.username}"></p>-->
+                            <div>
+                                <a th:text="${following.username}" th:href="'/user/' + ${following.id}" class="text-center"></a>
+                            </div>
+                            <div>
+                                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${following.profilePictureUrl}">
+                            </div>
 
-        <div sec:authorize="isAuthenticated()">
-            <div th:if="${ListUserIdsByFollowerId.contains(following.id)}">
-                <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Unfollow</button>
-            </div>
+                            <div sec:authorize="isAuthenticated()">
+                                <div th:if="${ListUserIdsByFollowerId.contains(following.id)}">
+                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Unfollow</button>
+                                </div>
 
-            <div th:if="${!ListUserIdsByFollowerId.contains(following.id)}">
-                <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>
+                                <div th:if="${!ListUserIdsByFollowerId.contains(following.id)}">
+                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>
+                                </div>
+                            </div>
+                            <div sec:authorize="!isAuthenticated()">
+                                <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div sec:authorize="!isAuthenticated()">
-            <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>
+    </div>
+
+    <!--    display logged-in user's Follower info-->
+    <div class="w-50">
+        <div class="container">
+            <div th:if="${user.followers}" class="d-flex flex-wrap">
+                <div class="card w-100">
+                    <p th:text="'Followers: ' + ${user.followers.size()}"></p>
+                    <div th:each="follower : ${user.followers}" class="">
+                        <div class="card-body px-2">
+                            <div>
+                                <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>
+<!--                            <p th:text="'User Id: ' + ${follower.id}"></p>-->
+                            </div>
+                            <div>
+                                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${follower.profilePictureUrl}">
+                            </div>
+
+                    <!--        <div sec:authorize="isAuthenticated()">-->
+                    <!--            <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">-->
+                    <!--                <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Follow</button>-->
+                    <!--            </div>-->
+
+                    <!--            <div th:if="${!ListUserIdsByFollowerId.contains(user.id)}">-->
+                    <!--                <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>-->
+                    <!--            </div>-->
+                    <!--        </div>-->
+                    <!--        <div sec:authorize="!isAuthenticated()">-->
+                    <!--            <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>-->
+                    <!--        </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
+
+
+
 </div>
-
-<!--    display logged-in user's Follower info-->
-<div th:if="${user.followers}">
-    <p th:text="'Followers: ' + ${user.followers.size()}"></p>
-    <div th:each="follower : ${user.followers}">
-        <!--            <p th:text="${follower.username}"></p>-->
-        <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>
-        <p th:text="'User Id: ' + ${follower.id}"></p>
-        <img style="object-fit: cover; height: 150px; width:200px;" th:src="${follower.profilePictureUrl}">
-
-<!--        <div sec:authorize="isAuthenticated()">-->
-<!--            <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">-->
-<!--                <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Follow</button>-->
-<!--            </div>-->
-
-<!--            <div th:if="${!ListUserIdsByFollowerId.contains(user.id)}">-->
-<!--                <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div sec:authorize="!isAuthenticated()">-->
-<!--            <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>-->
-<!--        </div>-->
-
-    </div>
-</div>
-
 
 <!--partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>

@@ -24,6 +24,7 @@ public class Comment {
 //    @Column(columnDefinition = "timestamp default current_timestamp")
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
     @ManyToOne

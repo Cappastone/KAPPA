@@ -7,6 +7,7 @@ import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.CommentRepository;
 import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
+import com.codeup.kappa.services.DateFormatter;
 import com.sun.mail.imap.protocol.ID;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -60,59 +61,57 @@ public class MainIndexController {
         model.addAttribute("followingPosts", postDao.findPostsByUserIds(followingIds));
         model.addAttribute("sessionUserId", user_id);
         model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
+        model.addAttribute("findCommentIdsByUserId", commentDao.findCommentIdsByUserId(user_id));
 
         model.addAttribute("newPost", new Post());
+//        model.addAttribute("newComment", new Comment());
 
-        model.addAttribute("newComment", new Comment());
+        //        get array list of dates in desired string format =>
+        DateFormatter dateFormatter = new DateFormatter();
+        List<Post> posts = postDao.findPostsByUserIds(followingIds);
+        List<Date> postCreationDateObjs = dateFormatter.getPostDateObjs(posts);
+//        List<Date> postCreationDateObjs = getPostDateObjs(posts);
+//        List<String> postDates = getDates(postCreationDateObjs);
+        List<String> postDates = dateFormatter.getDates(postCreationDateObjs);
+
+        model.addAttribute("postCreationDates", postDates);
 
         return "index/main";
     }
 
     @PostMapping("main/create-post")
-    public String addPost(@ModelAttribute Post post, @RequestParam(name = "post-image-upload") String postImageUrl){
+    public String addPost(@ModelAttribute Post post, @RequestParam(required = false, name = "post-image-upload") List <String> postImageUrls){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        PostImage postImages = new PostImage("hello", postImageUrl, post);
+        if(postImageUrls.size() != 0) {
 
+            List<PostImage> postImages1 = new ArrayList<>();
 
-        List<PostImage> postImages1 = new ArrayList<>();
-        postImages1.add(postImages);
+            if (postImageUrls.size() == 1) {
+                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
+                postImages1.add(postImages);
+            } else if (postImageUrls.size() == 2) {
+                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
+                PostImage postImages2 = new PostImage("hello", postImageUrls.get(1), post);
+                postImages1.add(postImages);
+                postImages1.add(postImages2);
+            } else if (postImageUrls.size() == 3) {
+                PostImage postImages = new PostImage("hello", postImageUrls.get(0), post);
+                PostImage postImages2 = new PostImage("hello", postImageUrls.get(1), post);
+                PostImage postImages3 = new PostImage("hello", postImageUrls.get(2), post);
+                postImages1.add(postImages);
+                postImages1.add(postImages2);
+                postImages1.add(postImages3);
+            }
 
+            post.setPostImages(postImages1);
 
-        post.setPostImages(postImages1);
+        }
+
         post.setUser(user);
 
-
-        Date date = new Date();
-//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
-//        Date newDate = sdf.format(date);
-
-        post.setCreationDate(date);
-
         postDao.save(post);
-
-        return "redirect:/main";
-    }
-
-    @PostMapping("main/comment")
-    public String comment(
-            @ModelAttribute Comment newComment,
-//            @RequestParam("commentBody") String body,
-            @RequestParam("postId") long postId){
-
-//        Comment comment = new Comment();
-
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        newComment.setUser(user);
-        newComment.setPost(postDao.getPostById(postId));
-//        comment.setComment(body);
-
-        Date date = new Date();
-        newComment.setCreationDate(date);
-
-        commentDao.save(newComment);
 
         return "redirect:/main";
     }

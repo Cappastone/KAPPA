@@ -39,6 +39,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query(value = "DELETE FROM gamerhaven_db.post_likes g WHERE g.post_id = :id", nativeQuery = true)
     void deletePostLikeByPostId(long id);
 
+//    @Query("SELECT FROM gamerhaven_db.", nativeQuery = true)
+//    Long getUserIdById(long id);
 
 }
 

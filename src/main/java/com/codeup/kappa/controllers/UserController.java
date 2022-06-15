@@ -1,17 +1,25 @@
 package com.codeup.kappa.controllers;
 
+import com.codeup.kappa.models.Game;
+import com.codeup.kappa.models.PlatformLink;
+import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.*;
+import com.codeup.kappa.services.DateFormatter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.naming.Binding;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,11 +30,13 @@ public class UserController {
     private final UserRepository userDao;
     private final PostRepository postDao;
     private final PasswordEncoder passwordEncoder;
+    private final PlatformLinkRepository platformLinkDao;
 
-    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder, PlatformLinkRepository platformLinkDao) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.passwordEncoder = passwordEncoder;
+        this.platformLinkDao = platformLinkDao;
     }
 
     @GetMapping("/{id}")
@@ -34,7 +44,7 @@ public class UserController {
             @PathVariable long id, Model model) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        if (authentication == null) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = (User)platformLinkDao SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        long user_id = user.getId();
 
 //        System.out.println(userDao.getById(4L).getFollowers().get(0).getUsername() + "testing!!!!!!!!!!!");
@@ -48,11 +58,9 @@ public class UserController {
 
 //        List<Long> postIdLikedByUserId = userDao.findPostIdLikedByUserId(user_id);
 
-
         model.addAttribute("following", userDao.findAllById(followingIds));
         model.addAttribute("user", userDao.getById(id));
         model.addAttribute("posts", postDao.findPostsByUserId(id));
-
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -63,13 +71,24 @@ public class UserController {
             model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(user_id));
         }
 
+        DateFormatter dateFormatter = new DateFormatter();
+//        get array list of dates in desired string format =>
+        User user = userDao.getById(id);
+        Date userCreationDate = user.getCreationDate();
+        String userDate = dateFormatter.getDate(userCreationDate);
+
+        List<Post> posts = postDao.findPostsByUserId(id);
+        List<Date> postCreationDateObjs = dateFormatter.getPostDateObjs(posts);
+        List<String> postDates = dateFormatter.getDates(postCreationDateObjs);
+
+        model.addAttribute("userCreationDate", userDate);
+        model.addAttribute("postCreationDates", postDates);
 
         return "users/profile";
     }
 
     @GetMapping("/profile")
     public String viewProfile() {
-
 
         if ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() == null) {
             return "redirect:/login";
@@ -89,7 +108,22 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@ModelAttribute User user, BindingResult result) {
+
+        String username = user.getUsername();
+        String email = user.getEmail();
+
+        if (userDao.existsByEmail(email)) {
+            result.rejectValue("email", "user.email", "This email already exists");
+        }
+
+        if (userDao.existsByUsername(username)) {
+            result.rejectValue("username", "user.username", "This username already exists");
+        }
+
+        if (result.hasErrors()) {
+            return "users/register";
+        }
 
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
@@ -112,13 +146,24 @@ public class UserController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
-        model.addAttribute("user", userDao.getById(id));
+        User user1 = userDao.getById(id);
+
+        boolean linksExist = user1.getLinks() != null;
+
+        model.addAttribute("user", user1);
+        model.addAttribute("links", new PlatformLink());
+        if (linksExist) {
+            long linksId = userDao.findLinksIdByUserId(id);
+            model.addAttribute("existingLinks", platformLinkDao.getById(linksId));
+
+        }
 
         return "users/account";
     }
 
     @PostMapping("/edit-user")
     public String editUser(@RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "id") long id) {
+
         User user = userDao.getById(id);
         user.setUsername(username);
         user.setEmail(email);
@@ -147,6 +192,7 @@ public class UserController {
 
     @PostMapping("/edit-bio")
     public String editBio(@RequestParam(name = "bio") String bio, @RequestParam(name = "id") long id) {
+
         User user = userDao.getById(id);
         user.setBio(bio);
 
@@ -157,6 +203,7 @@ public class UserController {
 
     @PostMapping("/edit-profile-pic")
     public String editProfilePic(@RequestParam(name = "profile-picture-url") String profilePictureUrl, @RequestParam(name = "id") long id) {
+
         User user = userDao.getById(id);
         user.setProfilePictureUrl(profilePictureUrl);
 
@@ -164,13 +211,56 @@ public class UserController {
         return "redirect:/user/" + user.getId();
     }
 
-//    @PostMapping("/edit-profile-pic")
-//    public String editProfilePic(
-//            @ModelAttribute User user,
+    @PostMapping("/edit-banner")
+    public String editBanner(@RequestParam(name = "banner-url") String bannerUrl, @RequestParam(name = "id") long id) {
+
+        User user = userDao.getById(id);
+        user.setBannerUrl(bannerUrl);
+
+        userDao.save(user);
+        return "redirect:/user/" + user.getId();
+    }
+
+
+    @PostMapping("/create-platform-links")
+    public String createPlatformLinks(@ModelAttribute PlatformLink platformLink, @RequestParam(name = "id") long id) {
+
+        User user = userDao.getById(id);
+        user.setLinks(platformLink);
+        userDao.save(user);
+
+        return "redirect:/user/account";
+    }
+
+
+    @PostMapping("/edit-platform-links")
+    public String editPlatformLinks(@ModelAttribute PlatformLink platformLink, @RequestParam(name = "id") long id) {
+
+        User user = userDao.getById(id);
+        user.setLinks(platformLink);
+        userDao.save(user);
+
+        return "redirect:/user/account";
+    }
+
+//    @PostMapping("/edit-platform-links")
+//    public String editPlatformLinks(@RequestParam(name = "discord") String discord, @RequestParam(name = "nintendo") String nintendo, @RequestParam(name = "playstation") String playstation, @RequestParam(name = "twitch") String twitch, @RequestParam(name = "xbox") String xbox, @RequestParam(name = "youtube") String youtube, @RequestParam(name = "id") long id) {
 //
-//            @RequestParam(name="id")long id){
-//            user = userDao.getById(id);
-//            user.setProfilePictureUrl();
+//        User user = userDao.getById(id);
+//        PlatformLink pl = user.getLinks();
 //
+//        pl.setDiscord(discord);
+//        pl.setNintendo(nintendo);
+//        pl.setPlaystation(playstation);
+//        pl.setTwitch(twitch);
+//        pl.setXbox(xbox);
+//        pl.setYoutube(youtube);
+//
+//        platformLinkDao.save(pl);
+//
+//        return "redirect:/user/" + user.getId();
 //    }
+
+
+
 }

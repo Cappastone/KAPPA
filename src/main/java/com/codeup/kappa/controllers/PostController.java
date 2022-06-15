@@ -41,12 +41,21 @@ public class PostController {
     @GetMapping("/{postId}")
     public String editPost(@PathVariable long postId, Model model) {
 
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Post post = postDao.getById(postId);
+        User user2 = post.getUser();
+
+        if (user.getId() != user2.getId()) {
+            return "redirect:/user/" + user.getId();
+        }
+
         model.addAttribute("post", postDao.getById(postId));
 
         return "posts/post";
     }
 
-    //    FORM-MODEL BINDING NEEDS WORK BECAUSE OF DATE FORMAT COMPLICATION
+
     @PostMapping("/edit-post")
     public String updatePost(@RequestParam("postId") long id, @RequestParam("body") String body) {
 
@@ -55,10 +64,8 @@ public class PostController {
 
         postDao.save(post);
 
-
         return "redirect:/post/" + id;
     }
-
 
     @PostMapping("/delete-post")
     public String deletePost(@RequestParam("postId") long id) {
@@ -70,7 +77,6 @@ public class PostController {
         postCommentDao.deleteAllByPost(post);
         postImageDao.deleteAllByPost(post);
         postDao.deletePostLikeByPostId(id);
-
 
         postDao.deleteById(id);
 
@@ -86,29 +92,37 @@ public class PostController {
     }
 
     @PostMapping("/add-image")
-    public String addImage(@RequestParam(name="img-title")String title, @RequestParam(name="url")String url, @RequestParam(name="post-id") long postId){
+    public String addImage(@RequestParam(name="img-urls") List <String> imageUrls, @RequestParam(name="post-id") long postId){
 
         Post post = postDao.getById(postId);
-        PostImage postImage = new PostImage(title, url, post);
 
-        List<PostImage> images = post.getPostImages();
-        images.add(postImage);
-        post.setPostImages(images);
+
+            List<PostImage> addPostImages = new ArrayList<>();
+
+            if (imageUrls.size() == 1) {
+                PostImage postImages = new PostImage("hello", imageUrls.get(0), post);
+                addPostImages.add(postImages);
+            } else if (imageUrls.size() == 2) {
+                PostImage postImages = new PostImage("hello", imageUrls.get(0), post);
+                PostImage postImages2 = new PostImage("hello", imageUrls.get(1), post);
+                addPostImages.add(postImages);
+                addPostImages.add(postImages2);
+            } else if (imageUrls.size() == 3) {
+                PostImage postImages = new PostImage("hello", imageUrls.get(0), post);
+                PostImage postImages2 = new PostImage("hello", imageUrls.get(1), post);
+                PostImage postImages3 = new PostImage("hello", imageUrls.get(2), post);
+                addPostImages.add(postImages);
+                addPostImages.add(postImages2);
+                addPostImages.add(postImages3);
+            }
+
+            post.setPostImages(addPostImages);
+
+
         postDao.save(post);
 
         return "redirect:/post/" + postId;
     }
-
-//    NEEDS WORK
-//    @PostMapping("edit-image")
-//    public String updatePostImages(@RequestParam("imageId") long imageId, @RequestParam("postId") long postId, @RequestParam("title") String title, @RequestParam("url") String url){
-//
-//        PostImage image = postImageDao.getById(imageId);
-//        image.setTitle(title);
-//        image.setUrl(url);
-//
-//        return "redirect:/post/" + postId;
-//    }
 
     public static void main(String[] args) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd, uuuu HH:mm");

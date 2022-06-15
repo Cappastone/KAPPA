@@ -8,6 +8,7 @@
 <!--display logged-in user-->
 <div th:if="${user}">
 
+    <span id="username" style="visibility: hidden" th:text="${user.username}"></span>
     <p th:text="${user.username} + ' is logged in'"></p>
     <div th:if="${user.profilePictureUrl}">
         <img style="object-fit: cover; height: 150px; width:200px;" th:src="${user.profilePictureUrl}">
@@ -44,18 +45,34 @@
         <p th:text="'Post #' + ${post.id}"></p>
 <!--        <p th:text="${post.user.username}"></p>-->
         <a th:text="${post.user.username}" th:href="'/user/' + ${post.user.id}"></a>
-        <p th:text="${post.creationDate}"></p>
+<!--        <p th:text="${post.creationDate}"></p>-->
+        <p th:text="${postCreationDates[postStat.index]}"></p>
         <p th:text="${post.body}"></p>
-        <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+        <p>Likes: <span class="like-count" th:data-id="${post.id}" th:text="${post.usersThatLiked.size()}"></span></p>
+<!--        <p class="like-count" th:data-ps="${post.id}" th:text="'Likes: ' + ${post.usersThatLiked.size()}" th:data-id="${post.usersThatLiked.size()}"></p>-->
 
 <!--        <button name="edit" th:data-id="${post.id}" class="btn btn-primary edit btn2">Edit Post</button>-->
 
-        <div th:if="${post.comments}">
+        <div th:if="${post.comments}" class="comments-container" th:data-id="${post.id}">
             <p>Comments:</p>
-            <div th:each="comment : ${post.comments}">
+            <div th:each="comment : ${post.comments}" >
     <!--            <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
-                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
-                <p th:text="${comment.body}"></p>
+
+                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>
+                <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
+
+                <div th:if="${findCommentIdsByUserId.contains(comment.id)}">
+                    <button th:data="${comment.id}" class="dl" th:data-dl="${comment.id}" >X</button>
+                </div>
+
+<!--                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>-->
+<!--                <p th:text="${comment.body}"></p>-->
+
+<!--                <div th:if="${findCommentIdsByUserId.contains(comment.id)}">-->
+<!--                    <button th:data="${comment.id}">Delete Comment</button>-->
+<!--                </div>-->
+
+
             </div>
         </div>
         <div th:if="!${post.comments}">
@@ -63,13 +80,16 @@
         </div>
 
         <div>
-            <fieldset>
-                <form th:action="@{/main/comment}" th:method="POST" th:object="${newComment}">
-                    <input th:field="*{body}" name="body">
-                    <input type="hidden" th:value="${post.id}" name="postId">
-                    <input type="submit" value="Comment">
-                </form>
-            </fieldset>
+<!--            <fieldset>-->
+<!--                <form th:action="@{/main/comment}" th:method="POST" th:object="${newComment}">-->
+<!--                    <input th:field="*{body}" name="body">-->
+<!--                    <input type="hidden" th:value="${post.id}" name="postId">-->
+<!--                    <input type="submit" value="Comment">-->
+<!--                </form>-->
+<!--                <br>-->
+<!--            </fieldset>-->
+            <input type="text" th:data-id="${post.id}" name="comment-body" class="comment-body">
+            <button  th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn" th:data-id="${post.id}">Post Comment</button>
         </div>
 
         <div th:each="image : ${post.postImages}">
@@ -77,10 +97,10 @@
         </div>
 
         <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-            <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
+            <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">Like Post</button>
         </div>
         <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-            <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+            <button th:data="${post.id} + ',' + ${sessionUserId}"   th:data-id="${post.id}"  class="like-btn btn btn-secondary">Like Post</button>
         </div>
 
 <!--        JavaScript listener used to Like a Post -->

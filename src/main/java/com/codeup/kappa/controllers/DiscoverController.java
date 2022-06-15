@@ -5,6 +5,7 @@ import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.*;
+import com.codeup.kappa.services.DateFormatter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,19 +34,6 @@ public class DiscoverController {
         this.userDao = userDao;
         this.commentDao = commentDao;
     }
-
-//    HttpServletRequest session;
-//
-//    public HttpSession getSession() {
-//        try {
-//            return session.getSession(false);
-//        } catch (NullPointerException e) {
-//            System.out.println("User not authenticated");
-//
-//        }
-//
-//        return null;
-//    }
 
     @GetMapping
     public String topPostsAndGames(Model model) {
@@ -77,6 +65,14 @@ public class DiscoverController {
 
             model.addAttribute("newComment", new Comment());
         }
+
+        //        get array list of dates in desired string format =>
+        DateFormatter dateFormatter = new DateFormatter();
+        List<Date> postCreationDateObjs = dateFormatter.getPostDateObjs(mostLikedPosts);
+        List<String> postDates = dateFormatter.getDates(postCreationDateObjs);
+
+        model.addAttribute("postCreationDates", postDates);
+
         return "index/discover";
     }
 
@@ -124,5 +120,6 @@ public class DiscoverController {
 
         return "redirect:/discover";
     }
+
 
 }
