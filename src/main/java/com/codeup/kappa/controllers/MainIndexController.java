@@ -13,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -63,8 +66,15 @@ public class MainIndexController {
         model.addAttribute("findCommentIdsByUserId", commentDao.findCommentIdsByUserId(user_id));
 
         model.addAttribute("newPost", new Post());
-
 //        model.addAttribute("newComment", new Comment());
+
+
+//        get array list of dates in desired string format =>
+        List<Post> posts = postDao.findPostsByUserIds(followingIds);
+        List<Date> postCreationDateObjs = getPostDateObjs(posts);
+        List<String> postDates = getDates(postCreationDateObjs);
+
+        model.addAttribute("postCreationDates", postDates);
 
         return "index/main";
     }
@@ -106,9 +116,83 @@ public class MainIndexController {
         return "redirect:/main";
     }
 
-    public static void main(String[] args) {
-            LocalDate date = LocalDate.now();
-            System.out.println(date);
+    public static String getDate(Date date) {
+        //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        //            Date date = format.parse(dtStart);
+
+        long diff = System.currentTimeMillis() - date.getTime();
+        long hours = Math.round(diff / (60 * 60 * 1000));
+
+        if(hours < 12) {
+            return "less than a day ago";
+        } else {
+            long days = Math.round(diff / (24.0 * 60 * 60 * 1000));
+            if (days == 0)
+                return "today";
+            else if (days == 1)
+                return "yesterday";
+            else if (days == 7)
+                return ((int) (days / 7)) + " week ago";
+            else if (days < 14)
+                return days + " days ago";
+            else if (days <= 27)
+                return ((int) (days / 7)) + " weeks ago";
+            if (days == 28 || days == 29 || days == 30 || days == 31)
+                return ((int) (days / 30)) + " month ago";
+            else if (days < 365)
+                return ((int) (days / 30)) + " months ago";
+            else if (days == 365)
+                return ((int) (days / 365)) + " year ago";
+            else
+                return ((int) (days / 365)) + " years ago";
+        }
     }
+
+    public static List<String> getDates(List<Date> dates){
+
+        List<String> dateStrings = new ArrayList<>();
+
+        for(Date date : dates){
+
+            dateStrings.add(getDate(date));
+            System.out.println("CHECK " + (getDate(date)));
+        }
+
+        return dateStrings;
+    }
+
+    public static List<Date> getPostDateObjs(List<Post> dates){
+
+        List<Date> dateObjs = new ArrayList<>();
+
+        for (Post post : dates){
+            dateObjs.add(post.getCreationDate());
+        }
+        return dateObjs;
+    }
+
+    public static void main(String[] args) {
+//            LocalDate date = LocalDate.now();
+//            System.out.println(date);
+
+//        //Past Date in the time difference of minutes
+//        String pastTimeInMinute = "09-Sep-2020 19:58:00";
+//        Date pastDate = dateFormatter.parse(pastTimeInMinute );
+//        System.out.println(timeAgo(currentDate, pastDate));
+
+//        Instant now = Instant.now();
+//        Instant instant = Instant.ofEpochMilli(1616782398);
+//        Duration d = Duration.between(now, instant);
+//        System.out.println(d);
+
+//        User user = userDao.getById(1);
+//
+//        Date creationDate = user.getCreationDate();
+//
+//        System.out.println(getDate(creationDate));
+
+
+    }
+
 
 }

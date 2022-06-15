@@ -22,7 +22,8 @@
     <div th:each="post : ${posts}">
         <p th:text="'Post #' + ${post.id}"></p>
         <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
-        <p th:text="${post.creationDate}"></p>
+<!--        <p th:text="${post.creationDate}"></p>-->
+        <p th:text="${postCreationDates[postStat.index]}"></p>
 
 <!--        loop through list of media for a single Post-->
         <div th:each="image : ${post.postImages}">

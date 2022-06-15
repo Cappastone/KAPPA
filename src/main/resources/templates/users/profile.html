@@ -8,7 +8,8 @@
 
 <!--display logged-in user's profile info-->
 <div th:if="${user}">
-    <p th:text="${user.username}"></p>
+    <p th:text="${user.username} + ' joined ' + ${userCreationDate}"></p>
+<!--    <p th:text="${userCreationDate}"></p>-->
 
     <div th:if="${user.bannerUrl}">
         <img style="object-fit: cover; height: 396px; width:100%;" th:src="${user.bannerUrl}">
@@ -146,12 +147,15 @@
 <!--        <form id="like-post" action="/user/like" method="post"></form>-->
         <div th:each="post : ${posts}">
             <p th:text="'Post #' + ${post.id}"></p>
-            <p th:text="${post.creationDate}"></p>
+
+<!--            <p th:text="${postStat.index}"></p>-->
+            <p th:text="${postCreationDates[postStat.index]}"></p>
+
             <p th:text="${post.body}"></p>
             <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+
             <p>Comments:</p>
             <div th:each="comment : ${post.comments}">
-<!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
                 <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
                 <p th:text="${comment.body}"></p>
             </div>
