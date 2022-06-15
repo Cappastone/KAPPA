@@ -1,6 +1,7 @@
 package com.codeup.kappa.controllers;
 
 import com.codeup.kappa.models.Game;
+import com.codeup.kappa.models.PlatformLink;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.*;
 import org.springframework.security.core.Authentication;
@@ -26,11 +27,13 @@ public class UserController {
     private final UserRepository userDao;
     private final PostRepository postDao;
     private final PasswordEncoder passwordEncoder;
+    private final PlatformLinkRepository platformLinkDao;
 
-    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder, PlatformLinkRepository platformLinkDao) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.passwordEncoder = passwordEncoder;
+        this.platformLinkDao = platformLinkDao;
     }
 
     @GetMapping("/{id}")
@@ -38,7 +41,7 @@ public class UserController {
             @PathVariable long id, Model model) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        if (authentication == null) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = (User)platformLinkDao SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        long user_id = user.getId();
 
 //        System.out.println(userDao.getById(4L).getFollowers().get(0).getUsername() + "testing!!!!!!!!!!!");
@@ -127,7 +130,17 @@ public class UserController {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
-        model.addAttribute("user", userDao.getById(id));
+        User user1 = userDao.getById(id);
+
+        boolean linksExist = user1.getLinks() != null;
+
+        model.addAttribute("user", user1);
+        model.addAttribute("links", new PlatformLink());
+        if (linksExist) {
+            long linksId = userDao.findLinksIdByUserId(id);
+            model.addAttribute("existingLinks", platformLinkDao.getById(linksId));
+
+        }
 
         return "users/account";
     }
@@ -191,5 +204,50 @@ public class UserController {
         userDao.save(user);
         return "redirect:/user/" + user.getId();
     }
+
+
+    @PostMapping("/create-platform-links")
+    public String createPlatformLinks(@ModelAttribute PlatformLink platformLink, @RequestParam(name = "id") long id) {
+
+        User user = userDao.getById(id);
+        user.setLinks(platformLink);
+        userDao.save(user);
+
+        return "redirect:/user/account";
+    }
+
+
+    @PostMapping("/edit-platform-links")
+    public String editPlatformLinks(@ModelAttribute PlatformLink platformLink, @RequestParam(name = "id") long id) {
+
+        User user = userDao.getById(id);
+        user.setLinks(platformLink);
+        userDao.save(user);
+
+        return "redirect:/user/account";
+    }
+
+
+
+
+
+//    @PostMapping("/edit-platform-links")
+//    public String editPlatformLinks(@RequestParam(name = "discord") String discord, @RequestParam(name = "nintendo") String nintendo, @RequestParam(name = "playstation") String playstation, @RequestParam(name = "twitch") String twitch, @RequestParam(name = "xbox") String xbox, @RequestParam(name = "youtube") String youtube, @RequestParam(name = "id") long id) {
+//
+//        User user = userDao.getById(id);
+//        PlatformLink pl = user.getLinks();
+//
+//        pl.setDiscord(discord);
+//        pl.setNintendo(nintendo);
+//        pl.setPlaystation(playstation);
+//        pl.setTwitch(twitch);
+//        pl.setXbox(xbox);
+//        pl.setYoutube(youtube);
+//
+//        platformLinkDao.save(pl);
+//
+//        return "redirect:/user/" + user.getId();
+//    }
+
 
 }

@@ -30,6 +30,16 @@ public class PlatformLink {
 
     public PlatformLink() {}
 
+    public PlatformLink(long id, String xbox, String playstation, String nintendo, String discord, String twitch, String youtube) {
+        this.id = id;
+        this.xbox = xbox;
+        this.playstation = playstation;
+        this.nintendo = nintendo;
+        this.discord = discord;
+        this.twitch = twitch;
+        this.youtube = youtube;
+    }
+
     public long getId() {
         return id;
     }
