@@ -10,6 +10,10 @@
 <div th:if="${user}">
     <p th:text="${user.username}"></p>
 
+    <div th:if="${user.bannerUrl}">
+        <img style="object-fit: cover; height: 396px; width:100%;" th:src="${user.bannerUrl}">
+    </div>
+
     <div th:if="${user.profilePictureUrl}">
         <img style="object-fit: cover; height: 150px; width:200px;" th:src="${user.profilePictureUrl}" alt="profile-picture">
         <p th:text="${user.bio}"></p>
@@ -60,6 +64,16 @@
 
             </form>
             <!--END EDIT PROFILE PIC FORM-->
+
+            <!--EDIT BANNER FORM-->
+            <form id="banner" action="/user/edit-banner" method="POST">
+                <input type="hidden" name="id" th:value="${user.id}">
+                <input type="hidden" class="change-banner" name="banner-url">
+                <button type="button" class="change-banner btn btn-secondary">Change Banner</button>
+
+            </form>
+            <!--END EDIT BANNER FORM-->
+
         </div>
     </div>
 

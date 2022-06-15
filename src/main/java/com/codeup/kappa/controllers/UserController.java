@@ -182,4 +182,14 @@ public class UserController {
         return "redirect:/user/" + user.getId();
     }
 
+    @PostMapping("/edit-banner")
+    public String editBanner(@RequestParam(name = "banner-url") String bannerUrl, @RequestParam(name = "id") long id) {
+
+        User user = userDao.getById(id);
+        user.setBannerUrl(bannerUrl);
+
+        userDao.save(user);
+        return "redirect:/user/" + user.getId();
+    }
+
 }
