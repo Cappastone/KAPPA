@@ -1,97 +1,186 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/partials.html :: head ('Landing Page')">
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 <!--header-->
 
-<iframe
-        width="760" height="515"
-        src="https://www.youtube.com/embed/mUNYh_L250M?autoplay=1&mute=1&enablejsapi=1"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-</iframe>
-
-<div class="container-fluid">
-    <div id="search-results" class="d-flex flex-row flex-wrap justify-content-center"></div>
+<h3 class="text-center " style="color: white">Discover GamerHaven Top Games</h3>
+<div th:if="${games}" class="d-flex overflow-scroll ">
+    <div th:each="game : ${games}">
+        <a th:href="'/game?gameID=' + ${game.gamesApiId}"> <img
+                style="object-fit: cover; height: 200px; width:250px; padding-right: 10px"
+                th:src="${game.imageUrl}"></a>
+    </div>
 </div>
+<h3 class="text-center mt-3" style="color: white">GamerHaven Top Post</h3>
+<!--<div id="parent-main-content" class="d-flex">-->
+<div class="d-flex justify-content-center" th:if="${posts}">
+    <div class="d-flex justify-content-center flex-column">
+        <div class="pb-4" th:each="post : ${posts}">
+            <div class="card">
+                <div class="card-body">
+                    <!--                    this div below contains the timestamp and the users @ that posted-->
+                    <div class="d-flex justify-content-between">
+                        <a th:href="'/user/' + ${post.user.id}"><h5 class="card-title"
+                                                                    th:text="'@'+ ${post.user.getUsername()}"></h5>
+                        </a>
+                        <div th:text="${post.creationDate}"></div>
+                    </div>
+                    <!--                    below this will contain the body of the post and any img if attached-->
+                    <p th:text="${post.body}"></p>
+                    <!--                    below is img div-->
+                    <div class="d-flex post-img-box">
+                        <div th:each="image : ${post.postImages}">
+                            <img class="post-img" th:src="${image.url}">
+                        </div>
+                    </div>
+
+                    <!--                    and lastly below this will show the like btn and hopefully a comment modal this is still under construction-->
+                    <div th:text="'Likes ' + ${post.usersThatLiked.size()}"></div>
+                    <!--                    button to trigger modal-->
+                    <div class="btn-post-box d-flex">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                            comment
+                        </button>
+                        <!--        JS button to Like a Post-->
+                        <div sec:authorize="isAuthenticated()">
+                            <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
+                                <button th:data="${post.id} + ',' + ${sessionUserId}"
+                                        class="like-btn btn btn-primary">Like Post
+                                </button>
+                            </div>
+
+                            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
+                                <button th:data="${post.id} + ',' + ${sessionUserId}"
+                                        class="like-btn btn btn-secondary">Like Post
+                                </button>
+                            </div>
+                        </div>
+                        <div sec:authorize="isAuthenticated()" class="flex-grow-1 d-flex justify-content-end">
+                            <fieldset>
+                                <form th:action="@{/discover/comment}" th:method="POST" th:object="${newComment}">
+                                    <input th:field="*{body}" name="body">
+                                    <input type="hidden" th:value="${post.id}" name="postId">
+                                    <input type="submit" value="Comment">
+                                </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <!--                    Modal-->
+                    <!--                    modal is under construction for the model to work we need to assign a data- id to the post-->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Comments</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div th:each="comment : ${post.comments}">
+                                        <!--            <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>-->
+                                        <a th:text="${comment.user.username}"
+                                           th:href="'/user/' + ${comment.user.id}"></a>
+                                        <p th:text="${comment.body}"></p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--</div>-->
+
 
 <!--display all Posts info-->
-<div th:if="${posts}">
-    <div th:each="post : ${posts}">
-        <p th:text="'Post #' + ${post.id}"></p>
-        <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
-        <p th:text="${post.creationDate}"></p>
+<!--<div th:if="${posts}">-->
+<!--    <div th:each="post : ${posts}">-->
+<!--        <p th:text="'Post #' + ${post.id}"></p>-->
+<!--        <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>-->
+<!--        <p th:text="${post.creationDate}"></p>-->
 
-<!--        loop through list of media for a single Post-->
-        <div th:each="image : ${post.postImages}">
-            <img style="object-fit: cover; height: 150px; width:200px" th:src="${image.url}">
-        </div>
+<!--        &lt;!&ndash;        loop through list of media for a single Post&ndash;&gt;-->
+<!--        <div th:each="image : ${post.postImages}">-->
+<!--            <img style="object-fit: cover; height: 150px; width:200px" th:src="${image.url}">-->
+<!--        </div>-->
 
-        <p th:text="${post.body}"></p>
+<!--        <p th:text="${post.body}"></p>-->
 
-<!--        loop through list of comments belonging to a single Post-->
-        <div th:each="comment : ${post.comments}">
-<!--            <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>-->
-            <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
-            <p th:text="${comment.body}"></p>
-        </div>
+<!--        &lt;!&ndash;        loop through list of comments belonging to a single Post&ndash;&gt;-->
+<!--        <div th:each="comment : ${post.comments}">-->
+<!--            &lt;!&ndash;            <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>&ndash;&gt;-->
+<!--            <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>-->
+<!--            <p th:text="${comment.body}"></p>-->
+<!--        </div>-->
 
-        <div sec:authorize="isAuthenticated()">
-            <fieldset>
-                <form th:action="@{/discover/comment}" th:method="POST" th:object="${newComment}">
-                    <input th:field="*{body}" name="body">
-                    <input type="hidden" th:value="${post.id}" name="postId">
-                    <input type="submit" value="Comment">
-                </form>
-            </fieldset>
-        </div>
-        <div sec:authorize="!isAuthenticated()">
-            <fieldset>
-                <form>
-                    <input type="text">
-                    <input type="button" onclick="redirectToLogin()" value="Comment">
-                </form>
-            </fieldset>
-        </div>
+<!--        <div sec:authorize="isAuthenticated()">-->
+<!--            <fieldset>-->
+<!--                <form th:action="@{/discover/comment}" th:method="POST" th:object="${newComment}">-->
+<!--                    <input th:field="*{body}" name="body">-->
+<!--                    <input type="hidden" th:value="${post.id}" name="postId">-->
+<!--                    <input type="submit" value="Comment">-->
+<!--                </form>-->
+<!--            </fieldset>-->
+<!--        </div>-->
+<!--        <div sec:authorize="!isAuthenticated()">-->
+<!--            <fieldset>-->
+<!--                <form>-->
+<!--                    <input type="text">-->
+<!--                    <input type="button" onclick="redirectToLogin()" value="Comment">-->
+<!--                </form>-->
+<!--            </fieldset>-->
+<!--        </div>-->
 
-<!--        JS button to Like a Post-->
-        <div sec:authorize="isAuthenticated()">
-            <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
-            </div>
+<!--        &lt;!&ndash;        JS button to Like a Post&ndash;&gt;-->
+<!--        <div sec:authorize="isAuthenticated()">-->
+<!--            <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">-->
+<!--                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post-->
+<!--                </button>-->
+<!--            </div>-->
 
-            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
-            </div>
-        </div>
+<!--            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">-->
+<!--                <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
-        <div sec:authorize="!isAuthenticated()">
-            <button onclick="redirectToLogin()" class="btn btn-danger">Like Post</button>
-        </div>
+<!--        <div sec:authorize="!isAuthenticated()">-->
+<!--            <button onclick="redirectToLogin()" class="btn btn-danger">Like Post</button>-->
+<!--        </div>-->
 
-        <hr>
-    </div>
-</div>
+<!--        <hr>-->
+<!--    </div>-->
+<!--</div>-->
 
-<hr>
+<!--<hr>-->
 
 <!--display all Games info-->
-<div th:if="${games}">
-    <p>Top Games:</p>
-    <div th:each="game : ${games}">
-        <p th:text="'Likes: ' + ${game.users.size()}"></p>
-<!--        <p th:text="${game.title}"></p>-->
-        <a th:text="${game.title}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
-        <img style="object-fit: cover; height: 200px; width:250px;" th:src="${game.imageUrl}">
-        <p th:text="${game.genre}"></p>
-        <p th:text="${game.description}"></p>
+<!--<div th:if="${games}">-->
+<!--    <p>Top Games:</p>-->
+<!--    <div th:each="game : ${games}">-->
+<!--        <p th:text="'Likes: ' + ${game.users.size()}"></p>-->
+<!--        &lt;!&ndash;        <p th:text="${game.title}"></p>&ndash;&gt;-->
+<!--        <a th:text="${game.title}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>-->
+<!--        <img style="object-fit: cover; height: 200px; width:250px;" th:src="${game.imageUrl}">-->
+<!--        <p th:text="${game.genre}"></p>-->
+<!--        <p th:text="${game.description}"></p>-->
 
-        <hr>
-    </div>
-</div>
+<!--        <hr>-->
+<!--    </div>-->
+<!--</div>-->
 
 <!--footer and JS partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
