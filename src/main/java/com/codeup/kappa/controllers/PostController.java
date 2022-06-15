@@ -92,14 +92,33 @@ public class PostController {
     }
 
     @PostMapping("/add-image")
-    public String addImage(@RequestParam(name="img-title")String title, @RequestParam(name="url")String url, @RequestParam(name="post-id") long postId){
+    public String addImage(@RequestParam(name="img-urls") List <String> imageUrls, @RequestParam(name="post-id") long postId){
 
         Post post = postDao.getById(postId);
-        PostImage postImage = new PostImage(title, url, post);
 
-        List<PostImage> images = post.getPostImages();
-        images.add(postImage);
-        post.setPostImages(images);
+
+            List<PostImage> addPostImages = new ArrayList<>();
+
+            if (imageUrls.size() == 1) {
+                PostImage postImages = new PostImage("hello", imageUrls.get(0), post);
+                addPostImages.add(postImages);
+            } else if (imageUrls.size() == 2) {
+                PostImage postImages = new PostImage("hello", imageUrls.get(0), post);
+                PostImage postImages2 = new PostImage("hello", imageUrls.get(1), post);
+                addPostImages.add(postImages);
+                addPostImages.add(postImages2);
+            } else if (imageUrls.size() == 3) {
+                PostImage postImages = new PostImage("hello", imageUrls.get(0), post);
+                PostImage postImages2 = new PostImage("hello", imageUrls.get(1), post);
+                PostImage postImages3 = new PostImage("hello", imageUrls.get(2), post);
+                addPostImages.add(postImages);
+                addPostImages.add(postImages2);
+                addPostImages.add(postImages3);
+            }
+
+            post.setPostImages(addPostImages);
+
+
         postDao.save(post);
 
         return "redirect:/post/" + postId;

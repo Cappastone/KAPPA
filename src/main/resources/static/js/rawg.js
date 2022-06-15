@@ -1,85 +1,85 @@
-/////////////  FileStack API   ///////////////////////
-
-const mapImgToDiv = (post) => `<img src="${post.Url}" style="width: 148px; height: 98px">`;
-const client = filestack.init(FS_API_TOKEN);
-
-function upload (res) {
-    const url = res.filesUploaded[0].url
-    const postImg = [{Url: url}];
-    const postImages = postImg.map(mapImgToDiv)
-    $(".post-image-upload").val([url]);
-    return $('#img-output').html(postImages)
-}
-
-function upload2 (res) {
-    const url = res.filesUploaded[0].url
-    const url2 = res.filesUploaded[1].url
-    const postImg = [{Url: url}, {Url: url2}];
-    const postImages = postImg.map(mapImgToDiv)
-    $(".post-image-upload").val([url, url2]);
-    return $('#img-output').html(postImages)
-}
-
-function upload3 (res) {
-    const url = res.filesUploaded[0].url
-    const url2 = res.filesUploaded[1].url
-    const url3 = res.filesUploaded[2].url
-    const postImg = [{Url: url}, {Url: url2}, {Url: url3}];
-    const postImages = postImg.map(mapImgToDiv)
-    $(".post-image-upload").val([url, url2, url3]);
-    return $('#img-output').html(postImages)
-}
-
-const options = {
-    fromSources: ["local_file_system", "instagram", "facebook"],
-    maxFiles: 3,
-    onUploadDone:
-        function (res) {
-            if (res.filesUploaded.length === 1) {
-                upload(res)
-            } else if (res.filesUploaded.length === 2) {
-                upload2(res)
-            } else if (res.filesUploaded.length === 3) {
-                upload3(res)
-            }
-        }
-};
-
-const options2 = {
-    fromSources: ["local_file_system", "instagram", "facebook"],
-    onUploadDone:
-        function (res) {
-            const url = res.filesUploaded[0].url
-
-            $(".change-profile-pic").val(url);
-            $('#profile-pic').submit()
-
-        }
-};
-
-const options3 = {
-    fromSources: ["local_file_system", "instagram", "facebook"],
-    onUploadDone:
-        function (res) {
-            const url = res.filesUploaded[0].url
-
-            $(".change-banner").val(url);
-            $('#banner').submit()
-
-        }
-};
-
-$(".upload-picture").on("click", function () {
-    client.picker(options).open()
-});
-
-$(".change-profile-pic").on("click", function () {
-    client.picker(options2).open()
-});
-
-$(".change-banner").on("click", function () {
-    client.picker(options3).open()
-});
+// /////////////  FileStack API   ///////////////////////
+//
+// const mapImgToDiv = (post) => `<img src="${post.Url}" style="width: 148px; height: 98px">`;
+// const client = filestack.init(FS_API_TOKEN);
+//
+// function upload (res) {
+//     const url = res.filesUploaded[0].url
+//     const postImg = [{Url: url}];
+//     const postImages = postImg.map(mapImgToDiv)
+//     $(".post-image-upload").val([url]);
+//     return $('#img-output').html(postImages)
+// }
+//
+// function upload2 (res) {
+//     const url = res.filesUploaded[0].url
+//     const url2 = res.filesUploaded[1].url
+//     const postImg = [{Url: url}, {Url: url2}];
+//     const postImages = postImg.map(mapImgToDiv)
+//     $(".post-image-upload").val([url, url2]);
+//     return $('#img-output').html(postImages)
+// }
+//
+// function upload3 (res) {
+//     const url = res.filesUploaded[0].url
+//     const url2 = res.filesUploaded[1].url
+//     const url3 = res.filesUploaded[2].url
+//     const postImg = [{Url: url}, {Url: url2}, {Url: url3}];
+//     const postImages = postImg.map(mapImgToDiv)
+//     $(".post-image-upload").val([url, url2, url3]);
+//     return $('#img-output').html(postImages)
+// }
+//
+// const options = {
+//     fromSources: ["local_file_system", "instagram", "facebook"],
+//     maxFiles: 3,
+//     onUploadDone:
+//         function (res) {
+//             if (res.filesUploaded.length === 1) {
+//                 upload(res)
+//             } else if (res.filesUploaded.length === 2) {
+//                 upload2(res)
+//             } else if (res.filesUploaded.length === 3) {
+//                 upload3(res)
+//             }
+//         }
+// };
+//
+// const options2 = {
+//     fromSources: ["local_file_system", "instagram", "facebook"],
+//     onUploadDone:
+//         function (res) {
+//             const url = res.filesUploaded[0].url
+//
+//             $(".change-profile-pic").val(url);
+//             $('#profile-pic').submit()
+//
+//         }
+// };
+//
+// const options3 = {
+//     fromSources: ["local_file_system", "instagram", "facebook"],
+//     onUploadDone:
+//         function (res) {
+//             const url = res.filesUploaded[0].url
+//
+//             $(".change-banner").val(url);
+//             $('#banner').submit()
+//
+//         }
+// };
+//
+// $(".upload-picture").on("click", function () {
+//     client.picker(options).open()
+// });
+//
+// $(".change-profile-pic").on("click", function () {
+//     client.picker(options2).open()
+// });
+//
+// $(".change-banner").on("click", function () {
+//     client.picker(options3).open()
+// });
 
 
 // this is the code to make an api req to RAWG this gets the top 20 games

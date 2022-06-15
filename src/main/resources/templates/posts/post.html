@@ -36,17 +36,24 @@
             </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset th:if="${post.postImages.size() < 3}">
         <legend>Add Image to Post</legend>
-        <form th:action="@{/post/add-image}" method="POST">
-            <label for="img-title">Image Title:</label>
-            <input type="text" id="img-title" name="img-title">
-            <label for="url" class="form-label">URL:</label>
-            <input type="text" id="url" name="url">
+        <form id="upload-post-images" th:action="@{/post/add-image}" method="POST">
+            <input type="hidden" name="img-urls" id="img-urls">
             <input type="hidden" th:value="${post.id}" name="post-id">
-            <input type="submit" value="Submit" class="btn-primary">
+            <div th:if="${post.postImages.size() == 0}">
+                <button id="upload-post-img-btn-zero" type="button" class="btn-primary">Upload Image</button>
+            </div>
+            <div th:if="${post.postImages.size() == 1}">
+                <button id="upload-post-img-btn-one" type="button" class="btn-primary">Upload Image</button>
+            </div>
+            <div th:if="${post.postImages.size() == 2}">
+                <button id="upload-post-img-btn-two" type="button" class="btn-primary">Upload Image</button>
+            </div>
         </form>
     </fieldset>
+
+
 
 <!--    EDIT IMAGE NEEDS WORK-->
 <!--    <fieldset>-->
