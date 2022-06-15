@@ -25,7 +25,8 @@
                         <a th:href="'/user/' + ${post.user.id}"><h5 class="card-title"
                                                                     th:text="'@'+ ${post.user.getUsername()}"></h5>
                         </a>
-                        <div th:text="${post.creationDate}"></div>
+<!--                        <div th:text="${post.creationDate}"></div>-->
+                        <p th:text="${postCreationDates[postStat.index]}"></p>
                     </div>
                     <!--                    below this will contain the body of the post and any img if attached-->
                     <p th:text="${post.body}"></p>

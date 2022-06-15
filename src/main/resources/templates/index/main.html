@@ -45,7 +45,8 @@
         <p th:text="'Post #' + ${post.id}"></p>
 <!--        <p th:text="${post.user.username}"></p>-->
         <a th:text="${post.user.username}" th:href="'/user/' + ${post.user.id}"></a>
-        <p th:text="${post.creationDate}"></p>
+<!--        <p th:text="${post.creationDate}"></p>-->
+        <p th:text="${postCreationDates[postStat.index]}"></p>
         <p th:text="${post.body}"></p>
         <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
 <!--        <p class="like-count" th:data-ps="${post.id}" th:text="'Likes: ' + ${post.usersThatLiked.size()}" th:data-id="${post.usersThatLiked.size()}"></p>-->

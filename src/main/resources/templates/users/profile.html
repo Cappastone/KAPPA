@@ -146,7 +146,8 @@
 <!--        <form id="like-post" action="/user/like" method="post"></form>-->
         <div th:each="post : ${posts}">
             <p th:text="'Post #' + ${post.id}"></p>
-            <p th:text="${post.creationDate}"></p>
+<!--            <p th:text="${post.creationDate}"></p>-->
+            <p th:text="${postCreationDates[postStat.index]}"></p>
             <p th:text="${post.body}"></p>
             <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
             <p>Comments:</p>
