@@ -69,15 +69,22 @@ $('.like-btn').on('click', function (e) {
     e.preventDefault();
     let array = getBtnValue($(this));
     console.log(array)
+    const clickedId = e.target.dataset.id;
+
+    const likeText = $(`.like-count[data-id=${clickedId}]`);
 
     if (array[1] !== -1) {
         if ($(this).hasClass('btn-secondary')) {
             $(this).removeClass('btn-secondary').addClass('btn-primary')
+
             likePost(array);
+
+            likeText.text(parseInt(likeText.text())+1);
 
         } else if ($(this).hasClass('btn-primary')) {
             $(this).removeClass('btn-primary').addClass('btn-secondary')
             unlikePost(array)
+            likeText.text(parseInt(likeText.text())-1);
         }
     }
 });
