@@ -6,7 +6,7 @@
 
 /*this is the basic img size for all img on the site*/
 img {
-    width: 100px;
+    /*width: 100px;*/
 }
 
 /*this is the body for all pages on site*/
@@ -25,7 +25,6 @@ body {
 .card {
     background-color: rgb(42, 42, 42);
     color: white;
-    margin-top: 20px;
 }
 
 .full-game-img {
