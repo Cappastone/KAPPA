@@ -31,36 +31,31 @@ public class UserController {
     private final PostRepository postDao;
     private final PasswordEncoder passwordEncoder;
     private final PlatformLinkRepository platformLinkDao;
+    private final CommentRepository commentDao;
 
-    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder, PlatformLinkRepository platformLinkDao) {
+    public UserController(UserRepository userDao, PostRepository postDao, PasswordEncoder passwordEncoder, PlatformLinkRepository platformLinkDao, CommentRepository commentDao) {
         this.userDao = userDao;
         this.postDao = postDao;
         this.passwordEncoder = passwordEncoder;
         this.platformLinkDao = platformLinkDao;
+        this.commentDao = commentDao;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{profile_id}")
     public String viewUserProfile(
-            @PathVariable long id, Model model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication == null) {
-//        User user = (User)platformLinkDao SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        long user_id = user.getId();
+            @PathVariable long profile_id, Model model) {
 
-//        System.out.println(userDao.getById(4L).getFollowers().get(0).getUsername() + "testing!!!!!!!!!!!");
-
-
-        if (id == 0) {
+        if (profile_id == 0) {
             return "redirect:/login";
         }
 
-        List<Long> followingIds = userDao.followingList(id);
+        List<Long> followingIds = userDao.followingList(profile_id);
 
 //        List<Long> postIdLikedByUserId = userDao.findPostIdLikedByUserId(user_id);
 
         model.addAttribute("following", userDao.findAllById(followingIds));
-        model.addAttribute("user", userDao.getById(id));
-        model.addAttribute("posts", postDao.findPostsByUserId(id));
+        model.addAttribute("user", userDao.getById(profile_id));
+        model.addAttribute("posts", postDao.findPostsByUserId(profile_id));
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -69,15 +64,18 @@ public class UserController {
             model.addAttribute("sessionUserId", user_id);
             model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
             model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(user_id));
+            model.addAttribute("findCommentIdsByUserId", commentDao.findCommentIdsByUserId(user_id));
+
         }
 
-        DateFormatter dateFormatter = new DateFormatter();
+
 //        get array list of dates in desired string format =>
-        User user = userDao.getById(id);
+        DateFormatter dateFormatter = new DateFormatter();
+        User user = userDao.getById(profile_id);
         Date userCreationDate = user.getCreationDate();
         String userDate = dateFormatter.getDate(userCreationDate);
 
-        List<Post> posts = postDao.findPostsByUserId(id);
+        List<Post> posts = postDao.findPostsByUserId(profile_id);
         List<Date> postCreationDateObjs = dateFormatter.getPostDateObjs(posts);
         List<String> postDates = dateFormatter.getDates(postCreationDateObjs);
 
@@ -133,13 +131,18 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/user/{id}")
-    public String editUser(@PathVariable long id, Model model) {
 
-        model.addAttribute("user", userDao.getById(id));
 
-        return "users/profile";
-    }
+//    @GetMapping("/user/{id}")
+//    public String editUser(@PathVariable long id, Model model) {
+//
+//        model.addAttribute("user", userDao.getById(id));
+//
+//        return "users/profile";
+//    }
+
+
+
 
     @GetMapping("/account")
     public String editAccount(Model model) {

@@ -8,6 +8,7 @@
 
 <!--display logged-in user's profile info-->
 <div th:if="${user}">
+    <span id="username" style="visibility: hidden" th:text="${user.username}"></span>
     <p th:text="${user.username}"></p>
 
     <div th:if="${user.bannerUrl}">
@@ -150,17 +151,44 @@
             <p th:text="${postCreationDates[postStat.index]}"></p>
             <p th:text="${post.body}"></p>
             <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
-            <p>Comments:</p>
-            <div th:each="comment : ${post.comments}">
-<!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
-                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>
-                <p th:text="${comment.body}"></p>
+
+            <div th:if="${post.comments}" class="comments-container" th:data-id="${post.id}">
+
+                <p>Comments:</p>
+                <div th:each="comment : ${post.comments}">
+
+    <!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
+    <!--                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>-->
+    <!--                <p th:text="${comment.body}"></p>-->
+
+                    <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>
+                    <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
+
+
+                    <div th:if="${findCommentIdsByUserId.contains(comment.id)}">
+                        <button th:data="${comment.id}" class="dl" th:data-dl="${comment.id}" >X</button>
+                    </div>
+                </div>
+
             </div>
+
+            <div th:if="!${post.comments}">
+                <p>No comments yet, be the first!</p>
+            </div>
+
+
+            <div>
+                <input type="text" th:data-id="${post.id}" name="comment-body" class="comment-body">
+                <button  th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn" th:data-id="${post.id}">Post Comment</button>
+            </div>
+
 
             <div th:each="image : ${post.postImages}">
     <!--            <p th:text="${image.title}"></p>-->
                 <img style="object-fit: cover; height: 150px; width:200px;" th:src="${image.url}">
             </div>
+
+
 
             <!--        JS button to Edit a Post-->
             <div sec:authorize="isAuthenticated()">
