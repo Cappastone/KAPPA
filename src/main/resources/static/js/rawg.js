@@ -57,12 +57,28 @@ const options2 = {
         }
 };
 
+const options3 = {
+    fromSources: ["local_file_system", "instagram", "facebook"],
+    onUploadDone:
+        function (res) {
+            const url = res.filesUploaded[0].url
+
+            $(".change-banner").val(url);
+            $('#banner').submit()
+
+        }
+};
+
 $(".upload-picture").on("click", function () {
     client.picker(options).open()
 });
 
 $(".change-profile-pic").on("click", function () {
     client.picker(options2).open()
+});
+
+$(".change-banner").on("click", function () {
+    client.picker(options3).open()
 });
 
 

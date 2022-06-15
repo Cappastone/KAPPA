@@ -1,7 +1,10 @@
 package com.codeup.kappa.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -36,6 +39,14 @@ public class User {
 
     @Column(length = 1000)
     private String profilePictureUrl;
+
+    @Column(length = 1000)
+    private String BannerUrl;
+
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
 
     @Column(columnDefinition = "TEXT")
     private String bio;
@@ -240,5 +251,21 @@ public class User {
 
     public void setLikedPosts(List<Post> likedPosts) {
         this.likedPosts = likedPosts;
+    }
+
+    public String getBannerUrl() {
+        return BannerUrl;
+    }
+
+    public void setBannerUrl(String bannerUrl) {
+        BannerUrl = bannerUrl;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 }
