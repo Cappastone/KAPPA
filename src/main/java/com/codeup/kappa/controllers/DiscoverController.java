@@ -5,6 +5,7 @@ import com.codeup.kappa.models.Game;
 import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.*;
+import com.codeup.kappa.services.DateFormatter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -66,8 +67,9 @@ public class DiscoverController {
         }
 
         //        get array list of dates in desired string format =>
-        List<Date> postCreationDateObjs = getPostDateObjs(mostLikedPosts);
-        List<String> postDates = getDates(postCreationDateObjs);
+        DateFormatter dateFormatter = new DateFormatter();
+        List<Date> postCreationDateObjs = dateFormatter.getPostDateObjs(mostLikedPosts);
+        List<String> postDates = dateFormatter.getDates(postCreationDateObjs);
 
         model.addAttribute("postCreationDates", postDates);
 
@@ -119,57 +121,5 @@ public class DiscoverController {
         return "redirect:/discover";
     }
 
-    public static String getDate(Date date) {
-
-        long diff = System.currentTimeMillis() - date.getTime();
-        long hours = Math.round(diff / (60 * 60 * 1000));
-
-        if(hours < 12) {
-            return "less than a day ago";
-        } else {
-            long days = Math.round(diff / (24.0 * 60 * 60 * 1000));
-            if (days == 0)
-                return "today";
-            else if (days == 1)
-                return "yesterday";
-            else if (days == 7)
-                return ((int) (days / 7)) + " week ago";
-            else if (days < 14)
-                return days + " days ago";
-            else if (days <= 27)
-                return ((int) (days / 7)) + " weeks ago";
-            if (days == 28 || days == 29 || days == 30 || days == 31)
-                return ((int) (days / 30)) + " month ago";
-            else if (days < 365)
-                return ((int) (days / 30)) + " months ago";
-            else if (days == 365)
-                return ((int) (days / 365)) + " year ago";
-            else
-                return ((int) (days / 365)) + " years ago";
-        }
-    }
-
-    public static List<String> getDates(List<Date> dates){
-
-        List<String> dateStrings = new ArrayList<>();
-
-        for(Date date : dates){
-
-            dateStrings.add(getDate(date));
-            System.out.println("CHECK " + (getDate(date)));
-        }
-
-        return dateStrings;
-    }
-
-    public static List<Date> getPostDateObjs(List<Post> dates){
-
-        List<Date> dateObjs = new ArrayList<>();
-
-        for (Post post : dates){
-            dateObjs.add(post.getCreationDate());
-        }
-        return dateObjs;
-    }
 
 }
