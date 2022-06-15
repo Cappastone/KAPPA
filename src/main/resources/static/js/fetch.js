@@ -1,5 +1,6 @@
 // THIS JAVASCRIPT IS ONLY FOR FETCH REQUESTS
 
+const gamerHaven = 'https://gamerhaven.gg/ajax/'
 
 /////////////////////////////  Helper functions  /////////////////////////////////
 
@@ -24,7 +25,7 @@ function likePost(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(url, readOption)
+    fetch(gamerHaven + 'like-post', readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -49,7 +50,7 @@ function unlikePost(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(url, readOption)
+    fetch(gamerHaven + 'unlike-post', readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -107,7 +108,7 @@ function favoriteGame(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(url, readOption)
+    fetch(gamerHaven + 'favorite-game', readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -132,7 +133,7 @@ function unFavoriteGame(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(url, readOption)
+    fetch(gamerHaven + 'unfavorite-game', readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -177,7 +178,7 @@ function followUser(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(url, readOption)
+    fetch(gamerHaven + 'follow-user', readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -202,7 +203,7 @@ function unFollowUser(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(url, readOption)
+    fetch(gamerHaven + 'unfollow-user', readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -246,7 +247,7 @@ function postComment(values){
         body: JSON.stringify(data),
     };
 
-    fetch(url, readOption)
+    fetch(gamerHaven + 'post-comment', readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -270,7 +271,7 @@ function deleteComment(values){
         body: JSON.stringify(data),
     };
 
-    fetch(url, readOption)
+    fetch(gamerHaven + 'delete-comment', readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
