@@ -28,4 +28,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByUsername(String username);
 
+    @Query(value = "SELECT t.links_id FROM gamerhaven_db.users t WHERE t.id = :id", nativeQuery = true)
+    long findLinksIdByUserId(long id);
+
 }
