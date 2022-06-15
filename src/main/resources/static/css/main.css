@@ -1,38 +1,37 @@
-/*img cara is a class the carousel on the discover page*/
+/*img cara is a class the carasel on the discover page*/
 .img-cara {
     height: 35vw;
     width: 80vw;
 }
 
+/*this is the basic img size for all img on the site*/
+img {
+    /*width: 100px;*/
+}
 
+/*this is the body for all pages on site*/
+body {
+    background-color: #333333;
+    color: white;
+}
 
+/*this is the class for the post images that will go on all post*/
+.post-img {
+    width: 30vw;
+    height: 20vw;
+}
 
+/*this is for the cards on the post subject to change*/
+.card {
+    background-color: rgb(42, 42, 42);
+    color: white;
+}
 
+.full-game-img {
+    width: 70vw;
+    height: 40vw;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 .ACCh1 {
     color: white;
@@ -44,7 +43,7 @@
 
 .ACCp {
     color: white;
-=======
+= = = = = = =
     /*width: 100px;*/
 }
 
