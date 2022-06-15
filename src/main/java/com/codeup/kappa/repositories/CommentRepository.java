@@ -13,7 +13,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     void deleteAllByPost(Post post);
 
-    @Query(value = "SELECT id FROM gamer_haven_db.post_comments t WHERE t.user_id = :id", nativeQuery = true)
+    @Query(value = "SELECT id FROM gamerhaven_db.post_comments t WHERE t.user_id = :id", nativeQuery = true)
     List<Long> findCommentIdsByUserId(long id);
 
 }

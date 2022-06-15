@@ -55,7 +55,7 @@ public class PostController {
         return "posts/post";
     }
 
-    //    FORM-MODEL BINDING NEEDS WORK BECAUSE OF DATE FORMAT COMPLICATION
+
     @PostMapping("/edit-post")
     public String updatePost(@RequestParam("postId") long id, @RequestParam("body") String body) {
 
@@ -77,7 +77,6 @@ public class PostController {
         postCommentDao.deleteAllByPost(post);
         postImageDao.deleteAllByPost(post);
         postDao.deletePostLikeByPostId(id);
-
 
         postDao.deleteById(id);
 

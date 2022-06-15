@@ -52,11 +52,9 @@ public class UserController {
 
 //        List<Long> postIdLikedByUserId = userDao.findPostIdLikedByUserId(user_id);
 
-
         model.addAttribute("following", userDao.findAllById(followingIds));
         model.addAttribute("user", userDao.getById(id));
         model.addAttribute("posts", postDao.findPostsByUserId(id));
-
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -67,13 +65,11 @@ public class UserController {
             model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(user_id));
         }
 
-
         return "users/profile";
     }
 
     @GetMapping("/profile")
     public String viewProfile() {
-
 
         if ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() == null) {
             return "redirect:/login";
@@ -85,12 +81,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String createUser(Model model
-//            , @RequestParam("error")String error
-    ) {
-
-        model.addAttribute("usernameError", "That username is already taken!");
-        model.addAttribute("emailError", "That email is already taken!");
+    public String createUser(Model model) {
 
         model.addAttribute("user", new User());
 
@@ -143,6 +134,7 @@ public class UserController {
 
     @PostMapping("/edit-user")
     public String editUser(@RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "id") long id) {
+
         User user = userDao.getById(id);
         user.setUsername(username);
         user.setEmail(email);
@@ -171,6 +163,7 @@ public class UserController {
 
     @PostMapping("/edit-bio")
     public String editBio(@RequestParam(name = "bio") String bio, @RequestParam(name = "id") long id) {
+
         User user = userDao.getById(id);
         user.setBio(bio);
 
@@ -181,6 +174,7 @@ public class UserController {
 
     @PostMapping("/edit-profile-pic")
     public String editProfilePic(@RequestParam(name = "profile-picture-url") String profilePictureUrl, @RequestParam(name = "id") long id) {
+
         User user = userDao.getById(id);
         user.setProfilePictureUrl(profilePictureUrl);
 

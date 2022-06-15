@@ -221,7 +221,6 @@ $('.follow-btn').on('click', function (e) {
     }
 });
 
-
 /////////////////////////////  Post Comment Functionality  /////////////////////////////////
 
 function postComment(values){
