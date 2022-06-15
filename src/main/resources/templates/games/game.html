@@ -51,15 +51,7 @@
         </div>
     </div>
 </div>
-<h4 class="text-center mt-3"> People Who Like</h4>
-<div class="d-flex justify-content-around flex-wrap">
-    <div th:each="user : ${game.users}">
-        <div class="d-flex flex-column">
-            <img th:src="${user.profilePictureUrl}" class="sm-profile-pic" alt="profile-pic">
-            <a class="text-center sm-profile-name" th:text="${user.username}" th:href="'user/' + ${user.id}"></a>
-        </div>
-    </div>
-</div>
+
 
 <div th:replace="partials/partials.html :: scripts"></div>
 
