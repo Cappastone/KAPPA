@@ -2,39 +2,59 @@
 <html lang="en">
 <html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/partials.html :: head ('Edit Account')">
-<body>
-<nav th:replace="partials/partials.html :: navbar"></nav>
 
+<body class="ACCbody">
+<nav th:replace="partials/partials.html :: navbar"></nav>
 <!--    edit username/email form-->
-<form action="/user/edit-user" method="POST">
-    <div class="mb-3 w-25">
-        <label for="edit-username" class="form-label"></label>
-        <input type="text" class="form-control" id="edit-username" placeholder="New Username" name="username">
+<form class="col-sm-12" action="/user/edit-user" method="POST">
+    <h1 class="ACCh1 d-flex justify-content-center mt-3">General Settings</h1>
+    <p class="ACCp d-flex justify-content-center">Manage the account details you've shared with Gamer Haven.</p><br>
+
+    <!--NEW USERNAME-->
+    <div class="d-flex justify-content-center">
+        <div class="mb-3 w-25 pe-3">
+            <label for="edit-username" class="form-label"></label>
+            <input type="text" class="form-control" id="edit-username" placeholder="New Username" name="username">
+        </div>
+
+        <!--NEW EMAIL ADDRESS-->
+        <div class="mb-3 w-25 ps-3">
+            <label for="edit-email" class="form-label"></label>
+            <input type="email" class="form-control" id="edit-email" placeholder="New Email Address" name="email">
+        </div>
     </div>
-    <div class="mb-3 w-25">
-        <label for="edit-email" class="form-label"></label>
-        <input type="email" class="form-control" id="edit-email" placeholder="New Email Address" name="email">
+    <!--UPDATE INFO BUTTON-->
+    <div class="d-flex justify-content-center">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" value="Update Info" class="btn btn-dark w-25 border border-2 border-white">
     </div>
-    <input type="hidden" name="id" th:value="${user.id}">
-    <input type="submit" value="Update Info" class="btn btn-dark w-25">
 </form>
 <!--    end edit username/email form-->
 
 <!--    edit password form-->
 <div id="errormsg" style="display:none"></div>
 <form action="/user/edit-password" method="POST">
-    <div class="mb-3 w-25">
-        <label for="password" class="form-label"></label>
-        <input type="password" class="form-control" id="password" placeholder="Current Password" name="oldPassword">
+
+    <!--CURRENT PASSWORD-->
+    <div class="d-flex justify-content-center mt-5">
+        <div class="mb-3 w-25 pe-3">
+            <label for="password" class="form-label"></label>
+            <input type="password" class="form-control" id="password" placeholder="Current Password" name="oldPassword">
+        </div>
+
+        <!--NEW PASSWORD-->
+        <div class="mb-3 w-25 ps-3">
+            <label for="update-password" class="form-label"></label>
+            <input type="password" class="form-control" id="update-password" placeholder="New Password" name="newPassword">
+        </div>
+        <span id="error" style="display:none">Password mismatch</span>
     </div>
 
-    <div class="mb-3 w-25">
-        <label for="update-password" class="form-label"></label>
-        <input type="password" class="form-control" id="update-password" placeholder="New Password" name="newPassword">
+    <!--UPDATE PASSWORD BUTTON-->
+    <div class="d-flex justify-content-center">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <input type="submit" value="Update Password" class="btn btn-dark w-25 border border-2 border-white">
     </div>
-    <span id="error" style="display:none">Password mismatch</span>
-    <input type="hidden" name="id" th:value="${user.id}">
-    <input type="submit" value="Update Password" class="btn btn-dark w-25">
 </form>
 <!--    end edit password form-->
 
