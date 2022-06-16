@@ -5,24 +5,29 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-
-<div th:each="game : ${games}">
-    <div class="game-card">
-        <div class="card" style="width: 18rem">
-            <img class="card-img-top card-img-top" th:src="${game.getImageUrl()}">
-            <div class="card-body card-txt-bottom">
-                <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" th:data-id="${game.getGamesApiId()}"><span th:text="${game.getTitle()}"></span></h4>
-                    <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
-                        <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">Favorite Game</button>
-                    </div>
-                    <div th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">
-                        <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">Favorite Game</button>
+<div class="justify-content-center d-flex">
+    <div>
+    <div class="container d-flex flex-wrap justify-content-center">
+    <div th:each="game : ${games}" class="justify-content-center d-flex">
+        <div class="game-card justify-content-center d-flex col">
+            <div class="card mt-3 me-3" style="width: 18rem; height: 18rem">
+                <img class="card-img-top" style="height: 10rem" th:src="${game.getImageUrl()}">
+                <div class="card-body card-txt-bottom">
+                    <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" th:data-id="${game.getGamesApiId()}"><span th:text="${game.getTitle()}"></span></h4>
+                        <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
+                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">Favorite Game</button>
+                        </div>
+                        <div class="" th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">
+                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">Favorite Game</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+
 
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>
