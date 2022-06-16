@@ -58,6 +58,7 @@
                 <p class="pt-3">Be the first to favorite this game!</p>
             </div>
 
+
             <div th:if="${game.users.size() > 0}">
                 <h4 class="text-center mt-3"> People Who Like</h4>
                 <div class="d-flex justify-content-around flex-wrap">
@@ -80,9 +81,11 @@
 
     </div>
 
+
 </div>
 
 <footer th:replace="partials/partials.html :: footer"></footer>
+
 <div th:replace="partials/partials.html :: scripts"></div>
 
 <script th:if="!${game}">

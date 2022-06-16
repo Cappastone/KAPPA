@@ -4,22 +4,26 @@
 <head th:replace="partials/partials.html :: head ('My Games')">
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
-
+<div class="justify-content-center d-flex mt-4">
+    <h2>Favorite Games</h2>
+</div>
 <div class="justify-content-center d-flex">
     <div>
     <div class="container d-flex flex-wrap justify-content-center">
     <div th:each="game : ${games}" class="justify-content-center d-flex">
+
         <div class="game-card justify-content-center d-flex col">
-            <div class="card mt-3 me-3" style="width: 18rem; height: 18rem">
+            <div class="card mt-3 me-3" style="width: 18rem; height: 19rem">
                 <img class="card-img-top" style="height: 10rem" th:src="${game.getImageUrl()}">
-                <div class="card-body card-txt-bottom">
+                <div class="card-body card-txt-bottom d-flex flex-column justify-content-between">
                     <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" th:data-id="${game.getGamesApiId()}"><span th:text="${game.getTitle()}"></span></h4>
-                        <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
-                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">Favorite Game</button>
+                        <div  th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
+                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary"><i class="fa-solid fa-star"></i></button>
                         </div>
-                        <div class="" th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">
-                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">Favorite Game</button>
+                        <div class="d-flex" th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">
+                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary"><i class="fa-regular fa-star"></i></button>
                         </div>
+<!--                    </div>-->
                     </div>
                 </div>
             </div>
