@@ -5,38 +5,42 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<div class="container-fluid d-flex flex-wrap">
+<div class="container-fluid d-flex flex-wrap pt-3">
     <!--    display users that a logged-in user is Following-->
     <div class="w-50">
         <div class="container">
-            <div th:if="${following}" class="d-flex flex-column">
-                <div th:if="${following.size() > 0}" class="card w-100">
-                    <p th:text="'Following: ' + ${following.size()}"></p>
-                    <div th:each="following : ${following}" class="">
-                        <div class=" card-body px-2">
-                            <!--            <p th:text="${following.username}"></p>-->
-                            <div>
-                                <a th:text="${following.username}" th:href="'/user/' + ${following.id}" class="text-center"></a>
-                            </div>
+            <div th:if="${following}" class="d-flex flex-column card">
+                <div th:if="${following.size() > 0}" class="d-flex flex-column">
+                    <h3 th:text="'Following: ' + ${following.size()}"></h3>
+                    <div th:each="following : ${following}" >
+                        <div class="card-body px-2 d-flex flex-wrap">
                             <div th:if="${following.profilePictureUrl}">
-                                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${following.profilePictureUrl}">
+                                <a th:href="'/user/' + ${following.id}">
+                                    <img class="profile-pic-c" th:src="${following.profilePictureUrl}" >
+                                </a>
                             </div>
+
                             <div th:if="!${following.profilePictureUrl}">
-                                <img style="object-fit: cover; height: 150px; width:200px;" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                                <a th:href="'/user/' + ${following.id}">
+                                    <img class="profile-pic-c" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                                </a>
+                            </div>
+                            <div>
+                                <a th:text="${following.username}" th:href="'/user/' + ${following.id}" class="profile-name-c"></a>
                             </div>
 
-                            <div sec:authorize="isAuthenticated()">
-                                <div th:if="${ListUserIdsByFollowerId.contains(following.id)}">
-                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Unfollow</button>
-                                </div>
+<!--                            <div sec:authorize="isAuthenticated()">-->
+<!--                                <div th:if="${ListUserIdsByFollowerId.contains(following.id)}">-->
+<!--                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary"><i class="fa-solid fa-heart-crack"></i></button>-->
+<!--                                </div>-->
 
-                                <div th:if="${!ListUserIdsByFollowerId.contains(following.id)}">
-                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>
-                                </div>
-                            </div>
-                            <div sec:authorize="!isAuthenticated()">
-                                <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>
-                            </div>
+<!--                                <div th:if="${!ListUserIdsByFollowerId.contains(following.id)}">-->
+<!--                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div sec:authorize="!isAuthenticated()">-->
+<!--                                <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>-->
+<!--                            </div>-->
 
                         </div>
                     </div>
@@ -51,17 +55,23 @@
     <!--    display logged-in user's Follower info-->
     <div class="w-50">
         <div class="container">
-            <div th:if="${user.followers.size() > 0}" class="d-flex flex-wrap">
+            <div th:if="${user.followers.size() > 0}" class="d-flex flex-column">
                 <div class="card w-100">
-                    <p th:text="'Followers: ' + ${user.followers.size()}"></p>
+                    <h3 th:text="'Followers: ' + ${user.followers.size()}"></h3>
                     <div th:each="follower : ${user.followers}" class="">
-                        <div class="card-body px-2">
-                            <div>
-                                <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>
-<!--                            <p th:text="'User Id: ' + ${follower.id}"></p>-->
+                        <div class="card-body px-2 d-flex flex-wrap">
+                            <div th:if="${follower.profilePictureUrl}">
+                                <a th:href="'/user/' + ${follower.id}">
+                                    <img class="profile-pic-c" th:src="${follower.profilePictureUrl}" th:href="'/user/' + ${follower.id}">
+                                </a>
+                            </div>
+                            <div th:if="!${follower.profilePictureUrl}">
+                                <a th:href="'/user/' + ${follower.id}">
+                                    <img class="profile-pic-c"  src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                                </a>
                             </div>
                             <div>
-                                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${follower.profilePictureUrl}">
+                                <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}" class="profile-name-c"></a>
                             </div>
 
                     <!--        <div sec:authorize="isAuthenticated()">-->
@@ -85,9 +95,6 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 
 <!--partials needed on every page-->
