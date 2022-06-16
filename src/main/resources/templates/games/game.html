@@ -47,7 +47,9 @@
                            th:href="'user/' + ${user.id}"></a>
                     </div>
                     <div th:if="!${user.profilePictureUrl}" class="d-flex flex-column">
-                        <img class="sm-profile-pic" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                        <img class="sm-profile-pic"
+                             src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg"
+                             alt="profile-picture">
                         <a class="text-center sm-profile-name" th:text="${user.username}"
                            th:href="'user/' + ${user.id}"></a>
                     </div>
@@ -57,7 +59,7 @@
     </div>
 </div>
 
-
+<div th:replace="partials/partials.html :: footer"></div>
 <div th:replace="partials/partials.html :: scripts"></div>
 
 <script
