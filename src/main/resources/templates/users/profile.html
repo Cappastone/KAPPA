@@ -2,6 +2,7 @@
 <html lang="en">
 <html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/partials.html :: head ('View Profile')">
+
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 <!--header -->
@@ -150,27 +151,31 @@
 <!--            <p th:text="${post.creationDate}"></p>-->
             <p th:text="${postCreationDates[postStat.index]}"></p>
             <p th:text="${post.body}"></p>
-            <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>
+<!--            <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>-->
+            <p>Likes: <span class="like-count" th:data-id="${post.id}" th:text="${post.usersThatLiked.size()}"></span></p>
 
-            <div th:if="${post.comments}" class="comments-container" th:data-id="${post.id}">
+            <p><span class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>  Comments</p>
+            <div class="flip" style="color: dodgerblue; cursor: pointer;">Click to view comments</div>
+                <div class="panel panel-collapsed">
 
-                <p>Comments:</p>
-                <div th:each="comment : ${post.comments}">
+                    <div th:if="${post.comments}" class="comments-container" th:data-id="${post.id}">
 
-    <!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
-    <!--                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>-->
-    <!--                <p th:text="${comment.body}"></p>-->
+                        <div th:each="comment : ${post.comments}">
 
-                    <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>
-                    <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
+            <!--                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>-->
+            <!--                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>-->
+            <!--                <p th:text="${comment.body}"></p>-->
+
+                            <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>
+                            <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
 
 
-                    <div th:if="${findCommentIdsByUserId.contains(comment.id)}">
-                        <button th:data="${comment.id}" class="dl" th:data-dl="${comment.id}" >X</button>
+                            <div th:if="${findCommentIdsByUserId.contains(comment.id)}">
+                                <button th:data="${comment.id}" class="dl" th:data-dl="${comment.id}" th:data-id="${post.id}">X</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-            </div>
 
             <div th:if="!${post.comments}">
                 <p>No comments yet, be the first!</p>
@@ -201,10 +206,10 @@
 <!--            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">-->
             <div sec:authorize="isAuthenticated()">
                 <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                    <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>
+                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">Like Post</button>
                 </div>
                 <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                    <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>
+                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">Like Post</button>
                 </div>
             </div>
             <div sec:authorize="!isAuthenticated()">
@@ -234,9 +239,36 @@
 
 </div>
 
+
+
 <!--partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>
+
+<script>
+
+
+
+
+    $(document).ready(function(){
+        $(".flip").click(function(){
+            if ($(this).next().hasClass('panel-collapsed')) {
+                // expand the panel
+                $(this).next().slideDown("fast");
+                $(this).next().removeClass('panel-collapsed');
+                $(this).text("Click to hide comments")
+            }
+            else {
+                // collapse the panel
+                $(this).next().slideUp("fast");
+                $(this).next().addClass('panel-collapsed');
+                $(this).text("Click to view comments")
+            }
+            // $(this).next().slideDown("slow");
+        });
+    });
+
+</script>
 
 </body>
 </html>
