@@ -295,13 +295,21 @@ const addComment = (id, user, body) => {
 }
 
 
+
+
 $('.post-comment-btn').on('click', function (e) {
     e.preventDefault();
+
+    const clickedId = e.target.dataset.id;
+
+    const commentText = $(`.comment-count[data-id=${clickedId}]`);
     console.log(e.target.dataset.id);
     let array = getBtnValue($(this));
     const comment = $(`.comment-body[data-id=${e.target.dataset.id}]`)
     const newArray = [array[0], array[1], comment.val()]
     const username = $('#username').text()
+
+    commentText.text(parseInt(commentText.text())+1);
     postComment(newArray);
 
     $(`.comments-container[data-id=${e.target.dataset.id}]`).append(addComment(array[0], username, comment.val()));
@@ -319,7 +327,11 @@ $('.post-comment-btn').on('click', function (e) {
 
 $('.dl').on('click', function (e) {
     e.preventDefault();
+    const clickedId = e.target.dataset.id;
+    const commentText = $(`.comment-count[data-id=${clickedId}]`);
+
     let array = getBtnValue($(this));
+    commentText.text(parseInt(commentText.text())-1);
     deleteComment(array)
     $(`.dl[data-dl=${e.target.dataset.dl}]`).remove()
 
