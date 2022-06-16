@@ -8,10 +8,13 @@
 
 <!--display logged-in user's profile info-->
 <div th:if="${user}">
-    <p th:text="${user.username}"></p>
+    <p th:text="${user.username} + ' \'s profile'"></p>
 
     <div th:if="${user.bannerUrl}">
-        <img style="object-fit: cover; height: 396px; width:100%;" th:src="${user.bannerUrl}">
+        <img style="object-fit: cover; height: 396px; width:100%;" th:src="${user.bannerUrl}" alt="banner-picture">
+    </div>
+    <div th:if="!${user.bannerUrl}">
+        <img style="object-fit: cover; height: 396px; width:100%;" src="https://i0.wp.com/kpsu.org/wp-content/uploads/2017/02/Perfect-Universe-poster-galaxy-planet-outer-space-Purple-landscape-poster-Wide-Wallpaper-silk-Art-Home-Deco.jpg?ssl=1" alt="banner-picture">
     </div>
 
     <div th:if="${user.profilePictureUrl}">
@@ -20,7 +23,7 @@
     </div>
 
     <div th:if="!${user.profilePictureUrl}">
-        <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+        <img style="object-fit: cover; height: 150px; width:200px;" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
         <p th:text="${user.bio}"></p>
     </div>
 
@@ -98,21 +101,35 @@
         <div th:each="follower : ${user.followers}">
 <!--            <p th:text="${follower.username}"></p>-->
             <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>
-            <p th:text="'User Id: ' + ${follower.id}"></p>
-            <img style="object-fit: cover; height: 150px; width:200px" th:src="${follower.profilePictureUrl}">
+<!--            <p th:text="'User Id: ' + ${follower.id}"></p>-->
+            <div th:if="${follower.profilePictureUrl}">
+                <img style="object-fit: cover; height: 150px; width:200px" th:src="${follower.profilePictureUrl}" alt="profile-pic">
+            </div>
+            <div th:if="!${follower.profilePictureUrl}">
+                <img style="object-fit: cover; height: 150px; width:200px;" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="default-profile-picture" >
+            </div>
+<!--            <p th:text="${user.bio}"></p>-->
         </div>
     </div>
 
     <hr>
 
 <!--    display users that a logged-in user is Following-->
-    <div th:if="${following}">
+    <div th:if="${following.size() > 0}">
         <p th:text="'Following: ' + ${following.size()}"></p>
-        <div th:each="following : ${following}">
+        <div th:each="userTheyFollow : ${following}">
 <!--            <p th:text="${following.username}"></p>-->
-            <a th:text="${following.username}" th:href="'/user/' + ${following.id}"></a>
-            <img style="object-fit: cover; height: 150px; width:200px;" th:src="${following.profilePictureUrl}">
+            <a th:text="${userTheyFollow.username}" th:href="'/user/' + ${userTheyFollow.id}"></a>
+            <div th:if="${userTheyFollow.profilePictureUrl}">
+                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${userTheyFollow.profilePictureUrl}">
+            </div>
+            <div th:if="!${userTheyFollow.profilePictureUrl}">
+                <img style="object-fit: cover; height: 150px; width:200px;" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+            </div>
         </div>
+    </div>
+    <div th:if="${following.size() == 0}">
+        <p>You aren't following anyone yet, start exploring!</p>
     </div>
 
     <hr>
@@ -130,13 +147,25 @@
 
 <!--    display the Platform Links of a logged-in user-->
     <div th:if="${user.links}">
-        <p>Platform Links:</p>
-        <p th:text="'Discord: ' + ${user.links.discord}"></p>
-        <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
-        <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
-        <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
-        <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
-        <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
+        <p>Platform Links</p>
+        <div th:if="!${user.links.discord.isBlank()}">
+            <p th:text="'Discord: ' + ${user.links.discord}"></p>
+        </div>
+        <div th:if="!${user.links.nintendo}">
+            <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
+        </div>
+        <div th:if="!${user.links.playstation.isBlank()}">
+            <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
+        </div>
+        <div th:if="!${user.links.twitch.isBlank()}">
+            <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
+        </div>
+        <div th:if="!${user.links.xbox.isBlank()}">
+            <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
+        </div>
+        <div th:if="!${user.links.youtube.isBlank()}">
+            <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
+        </div>
     </div>
 
     <hr>
