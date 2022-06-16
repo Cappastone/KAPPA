@@ -41,8 +41,13 @@
             <h4 class="text-center mt-3"> People Who Like</h4>
             <div class="d-flex justify-content-around flex-wrap">
                 <div th:each="user : ${game.users}">
-                    <div class="d-flex flex-column">
+                    <div th:if="${user.profilePictureUrl}" class="d-flex flex-column">
                         <img th:src="${user.profilePictureUrl}" class="sm-profile-pic" alt="profile-pic">
+                        <a class="text-center sm-profile-name" th:text="${user.username}"
+                           th:href="'user/' + ${user.id}"></a>
+                    </div>
+                    <div th:if="!${user.profilePictureUrl}" class="d-flex flex-column">
+                        <img class="sm-profile-pic" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
                         <a class="text-center sm-profile-name" th:text="${user.username}"
                            th:href="'user/' + ${user.id}"></a>
                     </div>

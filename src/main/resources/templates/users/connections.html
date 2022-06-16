@@ -10,7 +10,7 @@
     <div class="w-50">
         <div class="container">
             <div th:if="${following}" class="d-flex flex-column">
-                <div class="card w-100">
+                <div th:if="${following.size() > 0}" class="card w-100">
                     <p th:text="'Following: ' + ${following.size()}"></p>
                     <div th:each="following : ${following}" class="">
                         <div class=" card-body px-2">
@@ -18,8 +18,11 @@
                             <div>
                                 <a th:text="${following.username}" th:href="'/user/' + ${following.id}" class="text-center"></a>
                             </div>
-                            <div>
+                            <div th:if="${following.profilePictureUrl}">
                                 <img style="object-fit: cover; height: 150px; width:200px;" th:src="${following.profilePictureUrl}">
+                            </div>
+                            <div th:if="!${following.profilePictureUrl}">
+                                <img style="object-fit: cover; height: 150px; width:200px;" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
                             </div>
 
                             <div sec:authorize="isAuthenticated()">
@@ -38,6 +41,9 @@
                         </div>
                     </div>
                 </div>
+                <div th:if="${following.size() == 0}" class="card w-100">
+                    <p>You aren't following anyone, start exploring!</p>
+                </div>
             </div>
         </div>
     </div>
@@ -45,7 +51,7 @@
     <!--    display logged-in user's Follower info-->
     <div class="w-50">
         <div class="container">
-            <div th:if="${user.followers}" class="d-flex flex-wrap">
+            <div th:if="${user.followers.size() > 0}" class="d-flex flex-wrap">
                 <div class="card w-100">
                     <p th:text="'Followers: ' + ${user.followers.size()}"></p>
                     <div th:each="follower : ${user.followers}" class="">
@@ -73,6 +79,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div th:if="${user.followers.size() == 0}" class="d-flex flex-wrap">
+                <p>You don't have any followers, start connecting!</p>
             </div>
         </div>
     </div>
