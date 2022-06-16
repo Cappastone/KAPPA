@@ -156,7 +156,7 @@
         <div th:if="!${user.links.discord.isBlank()}">
             <p th:text="'Discord: ' + ${user.links.discord}"></p>
         </div>
-        <div th:if="!${user.links.nintendo}">
+        <div th:if="!${user.links.nintendo.isBlank()}">
             <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
         </div>
         <div th:if="!${user.links.playstation.isBlank()}">
