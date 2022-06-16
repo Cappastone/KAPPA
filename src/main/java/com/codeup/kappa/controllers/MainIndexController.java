@@ -60,6 +60,7 @@ public class MainIndexController {
 //        model.addAttribute("posts", postDao.findAll());
         model.addAttribute("followingPosts", postDao.findPostsByUserIds(followingIds));
         model.addAttribute("sessionUserId", user_id);
+        model.addAttribute("sessionUsername", user.getUsername());
         model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
         model.addAttribute("findCommentIdsByUserId", commentDao.findCommentIdsByUserId(user_id));
 

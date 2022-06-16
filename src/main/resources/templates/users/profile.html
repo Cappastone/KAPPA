@@ -12,8 +12,8 @@
 
     <p th:text="${user.username} + ' \'s profile'"></p>
 
-    <span id="username" style="visibility: hidden" th:text="${user.username}"></span>
-    <p th:text="${user.username}"></p>
+    <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
+<!--    <p th:text="${user.username}"></p>-->
 
     <div th:if="${user.bannerUrl}">
         <img style="object-fit: cover; height: 396px; width:100%;" th:src="${user.bannerUrl}" alt="banner-picture">
@@ -203,7 +203,7 @@
 
 
                             <div th:if="${findCommentIdsByUserId.contains(comment.id)}">
-                                <button th:data="${comment.id}" class="dl" th:data-dl="${comment.id}" th:data-id="${post.id}">X</button>
+                                <button th:data="${comment.id}" class="delete dl" th:data-dl="${comment.id}" th:data-id="${post.id}">X</button>
                             </div>
                         </div>
                     </div>

@@ -325,7 +325,7 @@ $('.post-comment-btn').on('click', function (e) {
 // });
 
 
-$('.dl').on('click', function (e) {
+$('.delete').on('click', function (e) {
     e.preventDefault();
     const clickedId = e.target.dataset.id;
     const commentText = $(`.comment-count[data-id=${clickedId}]`);
