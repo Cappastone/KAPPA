@@ -62,6 +62,7 @@ public class UserController {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             long user_id = user.getId();
             model.addAttribute("sessionUserId", user_id);
+            model.addAttribute("sessionUsername", user.getUsername());
             model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
             model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(user_id));
             model.addAttribute("findCommentIdsByUserId", commentDao.findCommentIdsByUserId(user_id));

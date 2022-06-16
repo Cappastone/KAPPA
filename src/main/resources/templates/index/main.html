@@ -8,7 +8,7 @@
 <!--display logged-in user-->
 <div th:if="${user}">
 
-    <span id="username" style="visibility: hidden" th:text="${user.username}"></span>
+    <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
     <p th:text="${user.username} + ' is logged in'"></p>
     <div th:if="${user.profilePictureUrl}">
         <img style="object-fit: cover; height: 150px; width:200px;" th:src="${user.profilePictureUrl}">
@@ -62,7 +62,7 @@
                 <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
 
                 <div th:if="${findCommentIdsByUserId.contains(comment.id)}">
-                    <button th:data="${comment.id}" class="dl" th:data-dl="${comment.id}" >X</button>
+                    <button th:data="${comment.id}" class="delete dl" th:data-dl="${comment.id}" >X</button>
                 </div>
 
 <!--                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>-->
