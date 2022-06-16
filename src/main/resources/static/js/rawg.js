@@ -230,7 +230,7 @@ function searcher(GameID) {
 
 
 const mapEleToDiv = (results) => `
-            <div class="game-card">
+           <div class="game-card py-2 px-2">
                 <div class="card" style="width: 18rem">
                     <img class="card-img-top card-img-top" src="${results.background_image}">
                 <div class="card-body card-txt-bottom">
