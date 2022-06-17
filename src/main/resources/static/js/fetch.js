@@ -33,8 +33,8 @@ function likePost(values) {
         },
         body: JSON.stringify(data),
     };
-    fetch(gamerHaven + 'like-post', readOption)
-        // fetch(url, readOption)
+    // fetch(gamerHaven + 'like-post', readOption)
+        fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -59,8 +59,8 @@ function unlikePost(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(gamerHaven + 'unlike-post', readOption)
-        // fetch(url, readOption)
+    // fetch(gamerHaven + 'unlike-post', readOption)
+        fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -118,8 +118,8 @@ function favoriteGame(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(gamerHaven + 'favorite-game', readOption)
-        // fetch(url, readOption)
+    // fetch(gamerHaven + 'favorite-game', readOption)
+        fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -144,8 +144,8 @@ function unFavoriteGame(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(gamerHaven + 'unfavorite-game', readOption)
-        // fetch(url, readOption)
+    // fetch(gamerHaven + 'unfavorite-game', readOption)
+        fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -216,8 +216,8 @@ function unFollowUser(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(gamerHaven + 'unfollow-user', readOption)
-        // fetch(url, readOption)
+    // fetch(gamerHaven + 'unfollow-user', readOption)
+        fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -261,8 +261,8 @@ function postComment(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(gamerHaven + 'post-comment', readOption)
-        // fetch(url, readOption)
+    // fetch(gamerHaven + 'post-comment', readOption)
+        fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -286,8 +286,8 @@ function deleteComment(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(gamerHaven + 'delete-comment', readOption)
-        // fetch(url, readOption)
+    // fetch(gamerHaven + 'delete-comment', readOption)
+        fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
