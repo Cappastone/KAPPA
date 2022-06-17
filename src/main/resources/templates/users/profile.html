@@ -118,10 +118,10 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!--EDIT BIO FORM-->
-                                                    <form action="/user/edit-bio" method="POST">
+                                                    <form action="/user/edit-bio" method="POST" th:object="${user}">
                                                         <div class="mb-3">
-                                                            <input type="hidden" name="id" th:value="${user.id}">
-                                                            <textarea class="form-control" id="bio" name="bio" rows="3" th:value="${user.bio}"></textarea>
+                                                            <input type="hidden" th:field="*{id}">
+                                                            <textarea class="form-control" rows="3" th:field="*{bio}"></textarea>
                                                         </div>
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                         <input type="submit" value="Update" class="btn btn-dark w-25">
