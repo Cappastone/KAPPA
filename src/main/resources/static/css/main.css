@@ -107,6 +107,20 @@ body {
     width: 50vw;
 }
 
-.x-btn {
+.edit-btn-post-view{
+    position: relative;
+    top: 1px;
+}
 
+.delete-img-btn{
+}
+
+.img-container {
+}
+
+.img-container .delete-img-btn {
+}
+
+.img-container .delete-img-btn:hover {
+    /*background-color: yellow;*/
 }
