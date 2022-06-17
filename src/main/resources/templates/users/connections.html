@@ -5,6 +5,36 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
+
+<form action="/connections" method="get">
+
+    <input type="search" name="search-users">
+    <button type="submit">Search User</button>
+
+</form>
+
+<div th:if="${searchResults}">
+
+    <div th:if="${searchResults.isEmpty()}">
+        <h1>Sorry no results found!</h1>
+    </div>
+
+    <div th:each="userTheyFollow : ${searchResults}" class="d-flex flex-wrap justify-content-evenly">
+
+        <div th:if="${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">
+            <img class="profile-following-picture" th:src="${userTheyFollow.profilePictureUrl}">
+            <a class="text-center links-text" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
+        </div>
+        <div th:if="!${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">
+            <img class="profile-following-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+            <a class="text-center links-text" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
+        </div>
+    </div>
+
+</div>
+
+
+
 <div class="container-fluid d-flex flex-wrap pt-3">
     <!--    display users that a logged-in user is Following-->
     <div class="w-50">
