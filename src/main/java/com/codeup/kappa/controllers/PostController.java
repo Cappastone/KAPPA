@@ -56,20 +56,37 @@ public class PostController {
     }
 
 
+//    @PostMapping("/edit-post")
+//    public String updatePost(@RequestParam("postId") long id, @RequestParam("body") String body) {
+//
+//        Post post = postDao.getPostById(id);
+//
+//        if (body.isBlank()){
+//            return "redirect:/post/" + id;
+//        }
+//
+//        post.setBody(body);
+//
+//        postDao.save(post);
+//
+//        return "redirect:/post/" + id;
+//    }
+
+
     @PostMapping("/edit-post")
-    public String updatePost(@RequestParam("postId") long id, @RequestParam("body") String body) {
+    public String updatePost(@ModelAttribute Post post) {
 
-        Post post = postDao.getPostById(id);
+        Post existingPost = postDao.getPostById(post.getId());
 
-        if (body.isBlank()){
-            return "redirect:/post/" + id;
-        }
+//        if (body.isBlank()){
+//            return "redirect:/post/" + id;
+//        }
 
-        post.setBody(body);
+        existingPost.setBody(post.getBody());
 
-        postDao.save(post);
+        postDao.save(existingPost);
 
-        return "redirect:/post/" + id;
+        return "redirect:/post/" + post.getId();
     }
 
     @PostMapping("/delete-post")
