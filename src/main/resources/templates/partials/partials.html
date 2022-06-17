@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head (title)">
@@ -176,16 +177,17 @@
     <!-- Copyright -->
 </footer>
 <!--FOOTER-->
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
 
 
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark gradient-custom">
     <div class="container-fluid">
 
         <!--HOME-->
-        <a sec:authorize="isAuthenticated()" class="navbar-brand" href="/main"><img class="nav-logo"
-                                                                                    src="https://cdn.discordapp.com/attachments/949839896883916830/987392552141467718/Untitled_58.gif"></a>
+        <a class="navbar-brand" href="/main">
+            <img class="nav-logo" src="https://cdn.discordapp.com/attachments/949839896883916830/987392552141467718/Untitled_58.gif">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -234,16 +236,16 @@
                         <div>
                             <i class="bi bi-person-circle"></i>
                         </div>
-                        Profile
+                        <span sec:authorize="isAuthenticated()">Profile</span>
+                        <span sec:authorize="!isAuthenticated()">Login/Sign Up</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown"
                         style="background-color: #333333;">
                         <li sec:authorize="!isAuthenticated()">
-                            <a style="color: white" class="dropdown-item" href="/user/register">Sign Up</a>
-                        </li>
-
-                        <li sec:authorize="!isAuthenticated()">
                             <a style="color: white" class="dropdown-item" href="/login">Login</a>
+                        </li>
+                        <li sec:authorize="!isAuthenticated()">
+                            <a style="color: white" class="dropdown-item" href="/user/register">Sign Up</a>
                         </li>
                         <li sec:authorize="isAuthenticated()">
                             <a style="color: white" class="dropdown-item" href="/user/profile">Profile</a>
@@ -264,7 +266,7 @@
             <!--            files are linked-->
             <div class="search d-flex">
                 <input id="search" type="search" class="form-control" placeholder="Search Games">
-                <button id="submit-btn" class="btn btn-outline-light"><i class="fa fa-search"></i></button>
+                <button id="submit-btn" class="btn-nav btn btn-outline-light"><i class="fa fa-search"></i></button>
             </div>
         </div>
     </div>
@@ -284,5 +286,6 @@
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: -2;"></video>
-<
+  z-index: -2;">
+
+</video>
