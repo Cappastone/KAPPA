@@ -10,7 +10,7 @@
     background: -webkit-linear-gradient(to right, rgb(17, 17, 17), rgb(49, 49, 49));
 
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgb(31, 31, 31), rgb(120, 56, 218), rgb(88, 40, 211));
+    background: linear-gradient(to right, rgb(31, 31, 31), rgba(0, 0, 0, 0.51), rgb(0, 0, 0));
 
     /*box-shadow: rgba(88, 40, 211, 0.56) 0px 22px 70px 4px;*/
 }
