@@ -12,7 +12,7 @@
     <link rel="stylesheet" th:href="@{/css/profile.css}">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" th:href="@{/css/searchResults.css}">
-
+    <link rel="stylesheet" th:href="@{/css/landing.css}">
 
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
 
@@ -27,8 +27,8 @@
     <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="/js/keys.js"></script>
-<!--    <script src="/keys"></script>-->
+    <script src="/js/keys.js"></script>
+    <!--    <script src="/keys"></script>-->
     <script src="/js/fetch.js"></script>
     <script src="/js/filestack.js"></script>
     <script src="/js/rawg.js"></script>
@@ -253,7 +253,8 @@
                         </li>
                         <li sec:authorize="isAuthenticated()">
                             <form th:action="@{/logout}" th:method="post" id="logout-form">
-                                <a onclick="document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
+                                <a style="color: red" onclick="document.getElementById('logout-form').submit();"
+                                   class="dropdown-item">Logout</a>
                             </form>
                         </li>
                     </ul>
@@ -283,4 +284,5 @@
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: -1;"></video>
+  z-index: -2;"></video>
+<
