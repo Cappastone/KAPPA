@@ -31,4 +31,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT t.links_id FROM gamerhaven_db.users t WHERE t.id = :id", nativeQuery = true)
     long findLinksIdByUserId(long id);
 
+    List <User> findByUsernameContaining(String name);
+
+    @Query(value = "SELECT * FROM gamerhaven_db.users t WHERE t.username LIKE :id", nativeQuery = true)
+    List <User> findUserByName(String id);
+
+
+
+
 }

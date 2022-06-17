@@ -5,16 +5,17 @@ import com.codeup.kappa.repositories.CommentRepository;
 import com.codeup.kappa.repositories.GameRepository;
 import com.codeup.kappa.repositories.PostRepository;
 import com.codeup.kappa.repositories.UserRepository;
+import com.sun.mail.imap.protocol.Item;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
-@RequestMapping("/connections")
+//@RequestMapping("/connections")
 public class ConnectionsController {
     private final PostRepository postDao;
     private final GameRepository gameDao;
@@ -28,8 +29,12 @@ public class ConnectionsController {
         this.commentDao = commentDao;
     }
 
-    @GetMapping()
-    public String connections(Model model) {
+    @GetMapping("/connections")
+    public String connections(Model model, @RequestParam(name="search-users", required=false) String qparams) {
+
+        if (qparams != null) {
+            model.addAttribute("searchResults", userDao.findUserByName('%' + qparams + '%'));
+        }
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long userId = user.getId();
@@ -44,7 +49,41 @@ public class ConnectionsController {
         model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(userId));
         model.addAttribute("ListUserIdsByFollowerId", userDao.findUserIdsByFollowerId(userId));
 
+
+
         return "users/connections";
     }
+
+//    @GetMapping(path = {"/user", "/user/{data}"})
+//    public void user(@PathVariable(required=false,name="data") String data,
+//                     @RequestParam(required=false) Map<String,String> qparams) {
+//        qparams.forEach((a,b) -> {
+//            System.out.println(String.format("%s -> %s",a,b));
+//        }
+//
+//        if (data != null) {
+//            System.out.println(data);
+//        }
+//    }
+//
+//    @RequestMapping(value="connections", method = RequestMethod.GET)
+//    public @ResponseBody User getItem(@RequestParam("serach-users") String itemid){
+//
+//        User i = userDao.findByUsername(itemid);
+//
+//
+//        return i;
+//    }
+
+//    @PostMapping()
+//    public String searchUser(@RequestParam(name = "search-users") String searchedUser, Model model) {
+//
+//        if (searchedUser != null) {
+//            model.addAttribute("searchResults", searchedUser);
+//        }
+//
+//
+//        return "redirect:/connections";
+//    }
 
 }
