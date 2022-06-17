@@ -211,13 +211,24 @@ public class UserController {
         return "redirect:/user/" + user.getId();
     }
 
+//    @PostMapping("/edit-bio")
+//    public String editBio(@RequestParam(name = "bio") String bio, @RequestParam(name = "id") long id) {
+//
+//        User user = userDao.getById(id);
+//        user.setBio(bio);
+//
+//        userDao.save(user);
+//
+//        return "redirect:/user/" + user.getId();
+//    }
+
     @PostMapping("/edit-bio")
-    public String editBio(@RequestParam(name = "bio") String bio, @RequestParam(name = "id") long id) {
+    public String editBio(@ModelAttribute User user) {
 
-        User user = userDao.getById(id);
-        user.setBio(bio);
+        User existingUser = userDao.getById(user.getId());
+        existingUser.setBio(user.getBio());
 
-        userDao.save(user);
+        userDao.save(existingUser);
 
         return "redirect:/user/" + user.getId();
     }
