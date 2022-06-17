@@ -5,7 +5,7 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
 <div class="d-flex justify-content-center vw-100">
-    <div class="card pt-4 pb-4 mt-5 px-4">
+    <div class="card pt-4 pb-4 mt-5 px-4 container">
 
         <div th:if="${post}">
         <!--    <p th:text="'Post ID: ' + ${post.id}"></p>-->
@@ -84,7 +84,7 @@
 
                 <hr>
 
-                <div class="pt-5 flex-grow-5">
+                <div class="pt-5 flex-grow-5 d-flex justify-content-center">
                     <input type="hidden" form="delete-post" th:value="${post.id}" name="postId">
                     <button type="submit" form="delete-post" class="btn-danger">Delete Post</button>
                 </div>
