@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="partials/partials.html :: head ('Your Developers')">
+<body>
+    <nav th:replace="partials/partials.html :: navbar"></nav>
+
+    <form action="/aboutUs/about-us" method="POST">
+        <div class="d-flex justify-content-center mt-5 mb-5">
+            <h1>Meet Your Developers</h1>
+        </div>
+
+    <div class="d-flex flex-row justify-content-evenly">
+
+        <!--JOHN-->
+        <div class="card" style="width: 15rem; border-radius: 1rem">
+            <div class="d-flex flex-row justify-content-evenly text-center">
+                <div class="d-flex flex-column">
+                    <div class="mb-3 mt-3">
+                        <img src="https://cdn.discordapp.com/attachments/976137842860384327/987389328600752128/john.jpeg" class="card-img-top rounded-circle" style="width: 12rem; height: 12rem">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">John Castro</h4>
+                    <div class="d-flex  justify-content-evenly mb-3 mt-4">
+                        <a href="https://github.com/johhncastro"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/johhncaastro/"><i class="fab fa-linkedin-in"></i></a>
+                        <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
+                    </div>
+                        <p class="card-text">Full Stack Web Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END JOHN-->
+        <!--OSCAR-->
+        <div class="card" style="width: 15rem; border-radius: 1rem">
+            <div class="d-flex flex-row justify-content-evenly text-center">
+                <div class="d-flex flex-column">
+                    <div class="mb-3 mt-3">
+                        <img src="https://cdn.discordapp.com/attachments/976137842860384327/987388705692078080/Oscar.jpeg" class="card-img-top rounded-circle" style="width: 12rem; height: 12rem">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Oscar Castro</h4>
+                        <div class="d-flex  justify-content-evenly mb-3 mt-4">
+                            <a href="https://github.com/oscar-ct"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/oscar-ct/"><i class="fab fa-linkedin-in"></i></a>
+                            <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
+                        </div>
+                        <div>
+                            <p class="card-text">Full Stack Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END OSCAR-->
+        <!--CHRIS-->
+        <div class="card" style="width: 15rem; border-radius: 1rem">
+            <div class="d-flex flex-row justify-content-evenly text-center">
+                <div class="d-flex flex-column">
+                    <div class="mb-3 mt-3">
+                        <img src="https://cdn.discordapp.com/attachments/976137842860384327/987388704706420786/chris.jpeg" class="card-img-top rounded-circle" style="width: 12rem; height: 12rem">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Christopher Berry</h4>
+                        <div class="d-flex  justify-content-evenly mb-3 mt-4">
+                            <a href="https://github.com/c-berry"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/cm-berry/"><i class="fab fa-linkedin-in"></i></a>
+                            <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
+                        </div>
+                        <p class="card-text">Full Stack Web Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END CHRIS-->
+        <!--NATHAN-->
+        <div class="card" style="width: 15rem; border-radius: 1rem">
+            <div class="d-flex flex-row justify-content-evenly text-center">
+                <div class="d-flex flex-column">
+                    <div class="mb-3 mt-3">
+                        <img src="https://cdn.discordapp.com/attachments/976137842860384327/987388705486565416/nathan.jpeg" class="card-img-top  rounded-circle" style="width: 12rem; height: 12rem">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Nathan Haustveit</h4>
+                        <div class="d-flex  justify-content-evenly mb-3 mt-4">
+                            <a href="https://github.com/Nathan-Haustveit"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/nathan-haustveit/"><i class="fab fa-linkedin-in"></i></a>
+                            <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
+                        </div>
+                        <p class="card-text">Full Stack Web Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END NATHAN-->
+        <!--MATT-->
+        <div class="card" style="width: 15rem; border-radius: 1rem">
+            <div class="d-flex flex-row justify-content-evenly text-center">
+                <div class="d-flex flex-column">
+                    <div class="mb-3 mt-3">
+                        <img src="https://cdn.discordapp.com/attachments/976137842860384327/987388704920318012/Matt.jpeg" class="card-img-top rounded-circle" style="width: 12rem; height: 12rem">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Matthew Martinez</h4>
+                    <div class="d-flex  justify-content-evenly mb-3 mt-4">
+                        <a href="https://github.com/MDMartinez2120"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/matt-martinez2120/"><i class="fab fa-linkedin-in"></i></a>
+                        <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
+                    </div>
+                        <p class="card-text">Full Stack Web Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END MATT-->
+
+
+        </div>
+    </form>
+</body>
+</html>
