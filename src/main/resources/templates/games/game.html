@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
 <head th:replace="partials/partials.html :: head (GamerHaven)"></head>
 <body>
 <div th:replace="partials/partials.html :: navbar"></div>
@@ -11,66 +12,105 @@
 
 <div th:if="${game}">
 
-     <div class="container d-flex justify-content-between">
 
-        <h1 th:text="${game.title}" class="game-title"></h1>
 
-        <div sec:authorize="isAuthenticated()" class="favorite-icon">
+    <div class="container w-100 d-flex justify-content-evenly pt-3">
+        <h1 style="font-weight: lighter" th:text="${game.title}"></h1>
+        <!--        <div sec:authorize="isAuthenticated()" class="favorite-icon">-->
+        <!--            <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">-->
+        <!--                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">-->
+        <!--                    <i class="fa-solid fa-star"></i>-->
+        <!--                </button>-->
+        <!--            </div>-->
+        <!--            <div th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">-->
+        <!--                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">-->
+        <!--                    <i class="fa-solid fa-star"></i>-->
+        <!--                </button>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--         <div sec:authorize="!isAuthenticated()">-->
+        <!--             <button onclick="redirectToLogin()" class="btn btn-danger">-->
+        <!--                 <i class="fa-solid fa-star"></i>-->
+        <!--             </button>-->
+        <!--         </div>-->
+    </div>
 
-            <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
+
+    <div sec:authorize="isAuthenticated()" class="container">
+        <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}" class="w-100 d-flex justify-content-between pb-2">
+            <div class="w-75">
                 <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">
                     <i class="fa-solid fa-star"></i>
                 </button>
             </div>
+            <div class="w-25">
+                <h4 class="text-center"> People Who Favorited This Game</h4>
+            </div>
+        </div>
 
-            <div th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">
+        <div th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}" class="w-100 d-flex justify-content-between pb-2">
+            <div class="w-75">
                 <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">
                     <i class="fa-solid fa-star"></i>
                 </button>
             </div>
+            <div class="w-25">
+                <h4 class="text-center"> People Who Favorited This Game</h4>
+            </div>
+        </div>
+    </div>
+
+    <div sec:authorize="!isAuthenticated()" class="container">
+        <div class="w-100 d-flex justify-content-between pb-2">
+            <div class="w-75">
+                <button onclick="redirectToLogin()" class="btn btn-danger">
+                    <i class="fa-solid fa-star"></i>
+                </button>
+            </div>
+            <div class="w-25">
+                <h4 class="text-center"> People Who Favorited This Game</h4>
+            </div>
 
         </div>
+    </div>
 
-         <div sec:authorize="!isAuthenticated()">
-             <button onclick="redirectToLogin()" class="btn btn-danger">
-                 <i class="fa-solid fa-star"></i>
-             </button>
-         </div>
 
-     </div>
 
-    <div class=" container d-flex">
-
+    <div class="container d-flex">
         <div class=" w-75">
             <img class="full-game-img" th:src="${game.imageUrl}">
 
-            <p th:text="'Developer: '+ ${game.developer}"></p>
-            <p th:text="${game.description}"></p>
-            <p th:text="'Genres: ' +${game.genre}"></p>
-            <p th:text="'Platforms: ' + ${game.platforms}"></p>
-            <p th:text="'ESRB Rating: ' +${game.ageRating}"></p>
+            <div class="pt-3">
+                <p>Developer:<span class="game-tags" th:text="${game.developer}"></span></p>
+                <p>Description:<span class="game-tags" th:text="${game.description}"></span></p>
+                <p>Genres:<span class="game-tags" th:text="${game.genre}"></span></p>
+                <p>Platforms:<span class="game-tags" th:text="${game.platforms}"></span></p>
+                <p>Age Rating:<span class="game-tags" th:text="${game.ageRating}"></span></p>
+            </div>
 
         </div>
 
         <div class="w-25">
 
             <div th:if="${game.users.size() == 0}">
-                <p class="pt-3 ms-3">Be the first to favorite this game!</p>
+                <p class="text-center pt-4">Be the first to favorite this game!</p>
             </div>
 
 
+
+
             <div th:if="${game.users.size() > 0}">
-                <h4 class="text-center mt-3"> People Who Like</h4>
+                <!--                <h4 class="text-center"> People Who Like</h4>-->
                 <div class="d-flex justify-content-around flex-wrap">
                     <div th:each="user : ${game.users}">
-                        <div th:if="${user.profilePictureUrl}" class="d-flex flex-column">
-                            <img th:src="${user.profilePictureUrl}" class="sm-profile-pic" alt="profile-pic">
-                            <a class="text-center sm-profile-name" th:text="${user.username}"
+                        <div th:if="${user.profilePictureUrl}" class="d-flex flex-wrap flex-column">
+                            <img th:src="${user.profilePictureUrl}" class="profile-following-picture" alt="profile-pic">
+                            <a class="text-center links-text"  th:text="${#strings.abbreviate(user.username, 10)}"
                                th:href="'user/' + ${user.id}"></a>
                         </div>
                         <div th:if="!${user.profilePictureUrl}" class="d-flex flex-column">
-                            <img class="sm-profile-pic" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
-                            <a class="text-center sm-profile-name" th:text="${user.username}"
+                            <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" class="profile-following-picture" alt="profile-picture">
+                            <a class="text-center links-text" th:text="${#strings.abbreviate(user.username, 10)}"
                                th:href="'user/' + ${user.id}"></a>
                         </div>
                     </div>
@@ -98,3 +138,121 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head th:replace="partials/partials.html :: head (GamerHaven)"></head>-->
+<!--<body>-->
+<!--<div th:replace="partials/partials.html :: navbar"></div>-->
+
+
+<!--<div th:if="!${game}" id="testing"></div>-->
+
+<!--<div th:if="!${game}" id="save"></div>-->
+
+<!--<div th:if="${game}">-->
+
+<!--     <div class="container d-flex justify-content-between">-->
+
+<!--        <h1 th:text="${game.title}" class="game-title"></h1>-->
+
+<!--        <div sec:authorize="isAuthenticated()" class="favorite-icon">-->
+
+<!--            <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">-->
+<!--                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">-->
+<!--                    <i class="fa-solid fa-star"></i>-->
+<!--                </button>-->
+<!--            </div>-->
+
+<!--            <div th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">-->
+<!--                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">-->
+<!--                    <i class="fa-solid fa-star"></i>-->
+<!--                </button>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--         <div sec:authorize="!isAuthenticated()">-->
+<!--             <button onclick="redirectToLogin()" class="btn btn-danger">-->
+<!--                 <i class="fa-solid fa-star"></i>-->
+<!--             </button>-->
+<!--         </div>-->
+
+<!--     </div>-->
+
+<!--    <div class=" container d-flex">-->
+
+<!--        <div class=" w-75">-->
+<!--            <img class="full-game-img" th:src="${game.imageUrl}">-->
+
+<!--            <p th:text="'Developer: '+ ${game.developer}"></p>-->
+<!--            <p th:text="${game.description}"></p>-->
+<!--            <p th:text="'Genres: ' +${game.genre}"></p>-->
+<!--            <p th:text="'Platforms: ' + ${game.platforms}"></p>-->
+<!--            <p th:text="'ESRB Rating: ' +${game.ageRating}"></p>-->
+
+<!--        </div>-->
+
+<!--        <div class="w-25">-->
+
+<!--            <div th:if="${game.users.size() == 0}">-->
+<!--                <p class="pt-3 ms-3">Be the first to favorite this game!</p>-->
+<!--            </div>-->
+
+
+<!--            <div th:if="${game.users.size() > 0}">-->
+<!--                <h4 class="text-center mt-3"> People Who Like</h4>-->
+<!--                <div class="d-flex justify-content-around flex-wrap">-->
+<!--                    <div th:each="user : ${game.users}">-->
+<!--                        <div th:if="${user.profilePictureUrl}" class="d-flex flex-column">-->
+<!--                            <img th:src="${user.profilePictureUrl}" class="sm-profile-pic" alt="profile-pic">-->
+<!--                            <a class="text-center sm-profile-name" th:text="${user.username}"-->
+<!--                               th:href="'user/' + ${user.id}"></a>-->
+<!--                        </div>-->
+<!--                        <div th:if="!${user.profilePictureUrl}" class="d-flex flex-column">-->
+<!--                            <img class="sm-profile-pic" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">-->
+<!--                            <a class="text-center sm-profile-name" th:text="${user.username}"-->
+<!--                               th:href="'user/' + ${user.id}"></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--    </div>-->
+
+
+<!--</div>-->
+
+<!--<footer th:replace="partials/partials.html :: footer"></footer>-->
+
+<!--<div th:replace="partials/partials.html :: scripts"></div>-->
+
+<!--<script th:if="!${game}">-->
+<!--    const urlParams = new URLSearchParams(window.location.search);-->
+<!--    const myParam = urlParams.get('gameID');-->
+<!--    searcher(myParam);-->
+<!--    // const myForm = document.getElementById("myForm");-->
+<!--    // myForm.submit();-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->

@@ -124,3 +124,15 @@ body {
 .img-container .delete-img-btn:hover {
     /*background-color: yellow;*/
 }
+/*EDIT POST VIEW*/
+
+
+.nav-logo {
+    width: 50px;
+    height: 50px;
+}
+
+.game-tags {
+    padding-left: 10px;
+    font-weight: lighter;
+}
