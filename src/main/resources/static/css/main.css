@@ -87,8 +87,9 @@ body {
     height: 2.5rem; /* Footer height */
 }
 
-/*game view*/
-.game-title {
+
+
+.game-title{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -101,3 +102,12 @@ body {
 /**{*/
 /*    font-family: Goldplay, serif;*/
 /*}*/
+
+/*EDIT POST VIEW*/
+.edit-post-body {
+    width: 50vw;
+}
+
+.x-btn{
+
+}

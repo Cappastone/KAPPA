@@ -8,7 +8,7 @@
 <!--    edit username/email form-->
 <div class="d-flex flex-wrap">
     <div class="col-md-6">
-        <form action="/user/edit-user" method="POST">
+        <form th:action="@{/user/edit-user}" method="POST" th:object="${user}">
             <h1 class="ACCh1 d-flex justify-content-center mt-5">Account Settings</h1>
             <p class="ACCp d-flex justify-content-center">Manage the account details you've shared with Gamer Haven.</p><br>
 
@@ -16,14 +16,16 @@
             <div class="d-flex justify-content-center ms-5">
                 <div class="mb-3 w-50 pe-3">
                     <label for="edit-username" class="form-label"></label>
-                    <input type="text" class="form-control " id="edit-username" placeholder="New Username" name="username">
+                    <input th:field="*{username}" type="text" class="form-control " id="edit-username" placeholder="New Username" name="username">
                 </div>
+<!--                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>-->
 
                 <!--NEW EMAIL ADDRESS-->
                 <div class="mb-3 w-50 ps-3">
                     <label for="edit-email" class="form-label"></label>
-                    <input type="email" class="form-control" id="edit-email" placeholder="New Email Address" name="email">
+                    <input th:field="*{email}" type="email" class="form-control" id="edit-email" placeholder="New Email Address" name="email">
                 </div>
+<!--                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
             </div>
 
             <!--UPDATE INFO BUTTON-->

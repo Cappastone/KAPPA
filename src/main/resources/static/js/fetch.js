@@ -1,5 +1,14 @@
 // THIS JAVASCRIPT IS ONLY FOR FETCH REQUESTS
 
+// function limitText() {
+//     var elem = $(".limit-text");
+//     if (elem.val().length > 10) {
+//         elem.val(elem.val().substr(0, 10));
+//     }
+// }
+//
+// limitText()
+
 const gamerHaven = 'https://gamerhaven.gg/ajax/'
 
 /////////////////////////////  Helper functions  /////////////////////////////////

@@ -69,11 +69,11 @@ $(".upload-picture").on("click", function () {
     client.picker(options).open()
 });
 
-$(".change-profile-pic").on("click", function () {
+$(".change-profile-pic-btn").on("click", function () {
     client.picker(options2).open()
 });
 
-$(".change-banner").on("click", function () {
+$(".change-banner-btn").on("click", function () {
     client.picker(options3).open()
 });
 
