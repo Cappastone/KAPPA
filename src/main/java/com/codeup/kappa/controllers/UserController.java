@@ -69,7 +69,6 @@ public class UserController {
 
         }
 
-
 //        get array list of dates in desired string format =>
         DateFormatter dateFormatter = new DateFormatter();
         User user = userDao.getById(profile_id);
@@ -106,6 +105,7 @@ public class UserController {
         return "users/register";
     }
 
+//    REFERENCE
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user, BindingResult result) {
 
@@ -132,19 +132,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-
-
-//    @GetMapping("/user/{id}")
-//    public String editUser(@PathVariable long id, Model model) {
-//
-//        model.addAttribute("user", userDao.getById(id));
-//
-//        return "users/profile";
-//    }
-
-
-
-
     @GetMapping("/account")
     public String editAccount(Model model) {
 
@@ -165,24 +152,54 @@ public class UserController {
         return "users/account";
     }
 
+//    WORK IN PROGRESS
     @PostMapping("/edit-user")
-    public String editUser(@RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "id") long id) {
+    public String editUser(
+//            @RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "id") long id,
+            @ModelAttribute("user") User user,
+            BindingResult result) {
 
-        User user = userDao.getById(id);
-        user.setUsername(username);
-        user.setEmail(email);
+        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = sessionUser.getId();
 
-        userDao.save(user);
+        User user2 = userDao.getById(id);
 
-        return "redirect:/user/" + user.getId();
+        if (user.getUsername().length() > 2) {
+            user2.setUsername(user.getUsername());
+        } else {
+            return "redirect:/user/account";
+        }
+//            result.rejectValue("username", "user.username", "This username is too short!");
+//        }
+
+        if (user.getEmail().length() > 10) {
+            user2.setEmail(user.getEmail());
+        } else {
+            return "redirect:/user/account";
+        }
+//            result.rejectValue("email", "user.email", "This email is too short!");
+//        }
+
+//        if (result.hasErrors()) {
+//            return "users/account";
+//        }
+
+        userDao.save(user2);
+
+        return "redirect:/user/account";
     }
 
     //    Change Password //
     @PostMapping("edit-password")
     public String editPassword(@RequestParam(name = "oldPassword") String oldPassword, @RequestParam(name = "newPassword") String newPassword, @RequestParam(name = "id") long id, HttpSession session) {
+
         String message;
         message = "Please enter correct current password";
         User user = userDao.getById(id);
+
+        if (newPassword.length() < 5){
+            return "redirect:/user/account";
+        }
 
         if (this.passwordEncoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(passwordEncoder.encode(newPassword));

@@ -6,152 +6,162 @@
 <body class="ACCbody">
 <nav th:replace="partials/partials.html :: navbar"></nav>
 <!--    edit username/email form-->
-<form class="col-sm-12" action="/user/edit-user" method="POST">
-    <h1 class="ACCh1 d-flex justify-content-center mt-3">General Settings</h1>
-    <p class="ACCp d-flex justify-content-center">Manage the account details you've shared with Gamer Haven.</p><br>
+<div class="d-flex flex-wrap">
+    <div class="col-md-6">
+        <form th:action="@{/user/edit-user}" method="POST" th:object="${user}">
+            <h1 class="ACCh1 d-flex justify-content-center mt-5">Account Settings</h1>
+            <p class="ACCp d-flex justify-content-center">Manage the account details you've shared with Gamer Haven.</p><br>
 
-    <!--NEW USERNAME-->
-    <div class="d-flex justify-content-center">
-        <div class="mb-3 w-25 pe-3">
-            <label for="edit-username" class="form-label"></label>
-            <input type="text" class="form-control" id="edit-username" placeholder="New Username" name="username">
+            <!--NEW USERNAME-->
+            <div class="d-flex justify-content-center ms-5">
+                <div class="mb-3 w-50 pe-3">
+                    <label for="edit-username" class="form-label"></label>
+                    <input th:field="*{username}" type="text" class="form-control " id="edit-username" placeholder="New Username" name="username">
+                </div>
+<!--                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>-->
+
+                <!--NEW EMAIL ADDRESS-->
+                <div class="mb-3 w-50 ps-3">
+                    <label for="edit-email" class="form-label"></label>
+                    <input th:field="*{email}" type="email" class="form-control" id="edit-email" placeholder="New Email Address" name="email">
+                </div>
+<!--                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
+            </div>
+
+            <!--UPDATE INFO BUTTON-->
+            <div class="d-flex justify-content-center ms-5">
+                <input type="hidden" name="id" th:value="${user.id}">
+                <input type="submit" value="Update Info" class="btn btn-dark w-50 border border-2 border-white">
+            </div>
+        </form>
+        <!--    end edit username/email form-->
+
+        <!--    edit password form-->
+        <div id="errormsg" style="display:none"></div>
+        <form action="/user/edit-password" method="POST">
+
+            <!--CURRENT PASSWORD-->
+            <div class="d-flex justify-content-center ms-5 mt-5">
+                <div class="mb-3 w-50 pe-3">
+                    <label for="password" class="form-label"></label>
+                    <input type="password" class="form-control" id="password" placeholder="Current Password" name="oldPassword">
+                </div>
+
+                <!--NEW PASSWORD-->
+                <div class="mb-3 w-50 ps-3">
+                    <label for="update-password" class="form-label"></label>
+                    <input type="password" class="form-control" id="update-password" placeholder="New Password" name="newPassword">
+                </div>
+                <span id="error" style="display:none">Password mismatch</span>
+            </div>
+
+            <!--UPDATE PASSWORD BUTTON-->
+            <div class="d-flex justify-content-center mb-5 ms-5">
+                <input type="hidden" name="id" th:value="${user.id}">
+                <input type="submit" value="Update Password" class="btn btn-dark w-50 border border-2 border-white">
+            </div>
+        </form>
+    </div>
+    <!--    end edit password form-->
+
+    <!--ADD/EDIT PLATFORM LINKS-->
+    <!--<form action="/user/edit-platform-links" method="POST">-->
+    <!--    <div class="mb-3 w-25">-->
+    <!--        <label for="discord" class="form-label"></label>-->
+    <!--        <input type="text" class="form-control" id="discord" placeholder="discord" name="discord">-->
+    <!--    </div>-->
+    <!--    <div class="mb-3 w-25">-->
+    <!--        <label for="nintendo" class="form-label"></label>-->
+    <!--        <input type="text" class="form-control" id="nintendo" placeholder="nintendo" name="nintendo">-->
+    <!--    </div>-->
+    <!--    <div class="mb-3 w-25">-->
+    <!--        <label for="playstation" class="form-label"></label>-->
+    <!--        <input type="text" class="form-control" id="playstation" placeholder="playstation" name="playstation">-->
+    <!--    </div>-->
+    <!--    <div class="mb-3 w-25">-->
+    <!--        <label for="twitch" class="form-label"></label>-->
+    <!--        <input type="text" class="form-control" id="twitch" placeholder="twitch" name="twitch">-->
+    <!--    </div>-->
+    <!--    <div class="mb-3 w-25">-->
+    <!--        <label for="xbox" class="form-label"></label>-->
+    <!--        <input type="text" class="form-control" id="xbox" placeholder="xbox" name="xbox">-->
+    <!--    </div>-->
+    <!--    <div class="mb-3 w-25">-->
+    <!--        <label for="youtube" class="form-label"></label>-->
+    <!--        <input type="text" class="form-control" id="youtube" placeholder="youtube" name="youtube">-->
+    <!--    </div>-->
+    <!--    <input type="hidden" name="id" th:value="${user.id}">-->
+    <!--    <input type="submit" value="Save Links" class="btn btn-dark w-25">-->
+    <!--</form>-->
+
+    <div class="col-md-6">
+        <div th:if="${user.getLinks() == null}">
+            <form action="/user/create-platform-links" method="POST" th:object="${links}">
+                <div class="mb-3 w-25">
+                    <label for="discord" class="form-label">Discord</label>
+                    <input type="text" class="form-control" id="discord" th:field="*{discord}">
+                </div>
+                <div class="mb-3 w-25">
+                    <label for="nintendo" class="form-label">Nintendo</label>
+                    <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
+                </div>
+                <div class="mb-3 w-25">
+                    <label for="playstation" class="form-label">Playstation</label>
+                    <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
+                </div>
+                <div class="mb-3 w-25">
+                    <label for="twitch" class="form-label">Twitch</label>
+                    <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
+                </div>
+                <div class="mb-3 w-25">
+                    <label for="xbox" class="form-label">Xbox</label>
+                    <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
+                </div>
+                <div class="mb-3 w-25">
+                    <label for="youtube" class="form-label">Youtube</label>
+                    <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
+                </div>
+                <input type="hidden" name="id" th:value="${user.id}">
+                <input type="submit" value="Save Links" class="btn btn-dark w-100">
+            </form>
         </div>
 
-        <!--NEW EMAIL ADDRESS-->
-        <div class="mb-3 w-25 ps-3">
-            <label for="edit-email" class="form-label"></label>
-            <input type="email" class="form-control" id="edit-email" placeholder="New Email Address" name="email">
+        <div class="d-flex justify-content-center mt-5 col-md-12">
+            <div th:if="${user.getLinks() != null}">
+                <form action="/user/edit-platform-links" method="POST" th:object="${existingLinks}">
+                    <h2>Platform Links</h2><br>
+                    <p>Add your preferred platform links here.</p>
+                    <div class="mb-3 w-100">
+                        <label for="discord" class="form-label">Discord</label>
+                        <input type="text" class="form-control" id="discord" th:field="*{discord}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="nintendo" class="form-label">Nintendo</label>
+                        <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="playstation" class="form-label">Playstation</label>
+                        <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="twitch" class="form-label">Twitch</label>
+                        <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="xbox" class="form-label">Xbox</label>
+                        <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="youtube" class="form-label">Youtube</label>
+                        <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
+                    </div>
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="submit" value="Save Links" class="btn btn-dark w-100 border border-2 border-white">
+                </form>
+            </div>
         </div>
     </div>
-    <!--UPDATE INFO BUTTON-->
-    <div class="d-flex justify-content-center">
-        <input type="hidden" name="id" th:value="${user.id}">
-        <input type="submit" value="Update Info" class="btn btn-dark w-25 border border-2 border-white">
-    </div>
-</form>
-<!--    end edit username/email form-->
-
-<!--    edit password form-->
-<div id="errormsg" style="display:none"></div>
-<form action="/user/edit-password" method="POST">
-
-    <!--CURRENT PASSWORD-->
-    <div class="d-flex justify-content-center mt-5">
-        <div class="mb-3 w-25 pe-3">
-            <label for="password" class="form-label"></label>
-            <input type="password" class="form-control" id="password" placeholder="Current Password" name="oldPassword">
-        </div>
-
-        <!--NEW PASSWORD-->
-        <div class="mb-3 w-25 ps-3">
-            <label for="update-password" class="form-label"></label>
-            <input type="password" class="form-control" id="update-password" placeholder="New Password" name="newPassword">
-        </div>
-        <span id="error" style="display:none">Password mismatch</span>
-    </div>
-
-    <!--UPDATE PASSWORD BUTTON-->
-    <div class="d-flex justify-content-center">
-        <input type="hidden" name="id" th:value="${user.id}">
-        <input type="submit" value="Update Password" class="btn btn-dark w-25 border border-2 border-white">
-    </div>
-</form>
-<!--    end edit password form-->
-
-<!--ADD/EDIT PLATFORM LINKS-->
-<!--<form action="/user/edit-platform-links" method="POST">-->
-<!--    <div class="mb-3 w-25">-->
-<!--        <label for="discord" class="form-label"></label>-->
-<!--        <input type="text" class="form-control" id="discord" placeholder="discord" name="discord">-->
-<!--    </div>-->
-<!--    <div class="mb-3 w-25">-->
-<!--        <label for="nintendo" class="form-label"></label>-->
-<!--        <input type="text" class="form-control" id="nintendo" placeholder="nintendo" name="nintendo">-->
-<!--    </div>-->
-<!--    <div class="mb-3 w-25">-->
-<!--        <label for="playstation" class="form-label"></label>-->
-<!--        <input type="text" class="form-control" id="playstation" placeholder="playstation" name="playstation">-->
-<!--    </div>-->
-<!--    <div class="mb-3 w-25">-->
-<!--        <label for="twitch" class="form-label"></label>-->
-<!--        <input type="text" class="form-control" id="twitch" placeholder="twitch" name="twitch">-->
-<!--    </div>-->
-<!--    <div class="mb-3 w-25">-->
-<!--        <label for="xbox" class="form-label"></label>-->
-<!--        <input type="text" class="form-control" id="xbox" placeholder="xbox" name="xbox">-->
-<!--    </div>-->
-<!--    <div class="mb-3 w-25">-->
-<!--        <label for="youtube" class="form-label"></label>-->
-<!--        <input type="text" class="form-control" id="youtube" placeholder="youtube" name="youtube">-->
-<!--    </div>-->
-<!--    <input type="hidden" name="id" th:value="${user.id}">-->
-<!--    <input type="submit" value="Save Links" class="btn btn-dark w-25">-->
-<!--</form>-->
-
-
-<div th:if="${user.getLinks() == null}">
-    <form action="/user/create-platform-links" method="POST" th:object="${links}">
-        <div class="mb-3 w-25">
-            <label for="discord" class="form-label">Discord</label>
-            <input type="text" class="form-control" id="discord" th:field="*{discord}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="nintendo" class="form-label">Nintendo</label>
-            <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="playstation" class="form-label">Playstation</label>
-            <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="twitch" class="form-label">Twitch</label>
-            <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="xbox" class="form-label">Xbox</label>
-            <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="youtube" class="form-label">Youtube</label>
-            <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
-        </div>
-        <input type="hidden" name="id" th:value="${user.id}">
-        <input type="submit" value="Save Links" class="btn btn-dark w-25">
-    </form>
 </div>
-
-
-<div th:if="${user.getLinks() != null}">
-    <form action="/user/edit-platform-links" method="POST" th:object="${existingLinks}">
-        <div class="mb-3 w-25">
-            <label for="discord" class="form-label">Discord</label>
-            <input type="text" class="form-control" id="discord" th:field="*{discord}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="nintendo" class="form-label">Nintendo</label>
-            <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="playstation" class="form-label">Playstation</label>
-            <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="twitch" class="form-label">Twitch</label>
-            <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="xbox" class="form-label">Xbox</label>
-            <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
-        </div>
-        <div class="mb-3 w-25">
-            <label for="youtube" class="form-label">Youtube</label>
-            <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
-        </div>
-        <input type="hidden" name="id" th:value="${user.id}">
-        <input type="submit" value="Save Links" class="btn btn-dark w-25">
-    </form>
-</div>
-
 <!--footer and JS partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>

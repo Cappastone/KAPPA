@@ -301,7 +301,32 @@
 
     <div th:if="${user.favoriteGames.size() == 0}">
         <p>You don't have any favorite games yet!</p>
-    </div>
+
+    <hr>
+<!-- 
+<!--    display the Platform Links of a logged-in user-->
+    <div th:if="${user.links}">
+        <p>Platform Links</p>
+        <div th:if="!${user.links.discord.isBlank()}">
+            <p th:text="'Discord: ' + ${user.links.discord}"></p>
+        </div>
+        <div th:if="!${user.links.nintendo.isBlank()}">
+            <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
+        </div>
+        <div th:if="!${user.links.playstation.isBlank()}">
+            <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
+        </div>
+        <div th:if="!${user.links.twitch.isBlank()}">
+            <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
+        </div>
+        <div th:if="!${user.links.xbox.isBlank()}">
+            <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
+        </div>
+        <div th:if="!${user.links.youtube.isBlank()}">
+            <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
+        </div>
+
+    </div> -->
 
     <hr>
 
