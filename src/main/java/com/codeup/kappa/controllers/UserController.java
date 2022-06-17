@@ -107,7 +107,9 @@ public class UserController {
 
 //    REFERENCE
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user, BindingResult result) {
+    public String saveUser(@ModelAttribute User user, BindingResult result
+//            , @RequestParam("password") String pv
+    ) {
 
         String username = user.getUsername();
         String email = user.getEmail();
@@ -119,6 +121,14 @@ public class UserController {
         if (userDao.existsByUsername(username)) {
             result.rejectValue("username", "user.username", "This username already exists");
         }
+
+        if (user.getPassword().length() < 6) {
+            result.rejectValue("password", "user.password", "Password must be at least 6 characters!");
+        }
+
+//        if (!pv.equals(user.getPassword())) {
+//            result.rejectValue("password", "user.password", "Passwords do not match!");
+//        }
 
         if (result.hasErrors()) {
             return "users/register";
