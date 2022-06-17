@@ -1,6 +1,6 @@
 /////////////  FileStack API   ///////////////////////
 
-const mapImgToDiv = (post) => `<img src="${post.Url}" style="object-fit: cover; width: 250px; height: 250px">`;
+const mapImgToDiv = (post) => `<img src="${post.Url}" style="object-fit: cover; width: 250px; height: 250px; padding-left: 20px; padding-right: 20px;">`;
 const client = filestack.init(FS_API_TOKEN);
 
 function upload (res) {
