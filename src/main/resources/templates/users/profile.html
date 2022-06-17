@@ -29,48 +29,40 @@
         <div class="row">
 
             <div class="container d-flex flex-wrap w-25">
-
                 <div class="container d-flex flex-wrap">
-
                     <div th:if="${user.profilePictureUrl}" class="profile-picture-container d-flex align-items-end">
                         <img class="profile-picture" th:src="${user.profilePictureUrl}" alt="profile-picture">
                         <!--        <p th:text="${user.bio}"></p>-->
-                        <button form="profile-pic" type="button" class="change-profile-pic-btn btn btn-dark"><i class="fa-solid fa-user-pen"></i></button>
-
+                        <div th:if="${sessionUserId == user.id}">
+                            <button type="button" class="change-profile-pic-btn btn btn-dark"><i class="fa-solid fa-user-pen"></i></button>
+                        </div>
                     </div>
-
                     <div th:if="!${user.profilePictureUrl}" class="profile-picture-container d-flex align-items-end">
                         <img class="profile-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
                 <!--        <p th:text="${user.bio}"></p>-->
-                        <button form="profile-pic" type="button" class="change-profile-pic-btn btn btn-dark"><i class="fa-solid fa-user-pen"></i></button>
+                        <div th:if="${sessionUserId == user.id}">
+                            <button  type="button" class="change-profile-pic-btn btn btn-dark"><i class="fa-solid fa-user-pen"></i></button>
+                        </div>
                     </div>
-
                     <span class="profile-username" th:text="${user.getUsername()}"></span>
-
-
                 </div>
-
 <!--                <div class="profile-username"><span th:text="${user.getUsername()}"></span></div>-->
-
-
             </div>
+
 
             <div class="container d-flex flex-wrap w-75">
 
                 <div class="container d-flex flex-wrap">
-
-
-
                     <div class="user-info container d-flex flex-wrap justify-content-between">
-
                         <div class="profile-follower">Followers:
                             <span th:text="${user.getFollowers().size()}"></span>
                         </div>
                         <div class="profile-following">Following:
                             <span th:text="${following.size()}"></span>
                         </div>
-
-                        <button form="banner" type="button" class="change-banner-btn btn btn-dark"><i class="fa-solid fa-image"></i></button>
+                        <div th:if="${sessionUserId == user.id}">
+                            <button type="button" class="change-banner-btn btn btn-dark"><i class="fa-solid fa-image"></i></button>
+                        </div>
                     </div>
                 </div>
 
@@ -102,39 +94,40 @@
 <!--                    <div th:if="${user.bio == null}" class="profile-bio card null-bio">-->
                     <div class="profile-bio card">
                         <div class="card-body bio-card-body">
-                        <h5 class="card-title">Bio</h5>
-<!--                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-                        <p class="card-text" style="font-weight: lighter" th:text="${user.bio}"></p>
-                        <p th:if="${user.bio == null}" class="card-text" style="font-weight: lighter">We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defense, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America.</p>
-        <!--                <a href="#" class="card-link">Card link</a>-->
-        <!--                <a href="#" class="card-link">Another link</a>-->
-                        <div sec:authorize="isAuthenticated()">
-                            <div th:if="${user.id == sessionUserId}">
-                                <div class="d-flex justify-content-end">
-                                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Edit Bio
-                                    </button>
-                                </div>
+                            <h5 class="card-title">Bio</h5>
+    <!--                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+                            <p class="card-text" style="font-weight: lighter" th:text="${user.bio}"></p>
+                            <p th:if="${user.bio == null}" class="card-text" style="font-weight: lighter">We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defense, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America.</p>
+            <!--                <a href="#" class="card-link">Card link</a>-->
+            <!--                <a href="#" class="card-link">Another link</a>-->
+                            <div sec:authorize="isAuthenticated()">
+                                <div th:if="${user.id == sessionUserId}">
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Edit Bio
+                                        </button>
+                                    </div>
 
-                                <!--EDIT BIO MODAL-->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit Bio</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <!--EDIT BIO FORM-->
-                                                <form action="/user/edit-bio" method="POST">
-                                                    <div class="mb-3">
-                                                        <input type="hidden" name="id" th:value="${user.id}">
-                                                        <textarea class="form-control" id="bio" name="bio" rows="3" th:value="${user.bio}"></textarea>
-                                                    </div>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <input type="submit" value="Update" class="btn btn-dark w-25">
-                                                </form>
-                                                <!--END EDIT BIO FORM-->
+                                    <!--EDIT BIO MODAL-->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Bio</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!--EDIT BIO FORM-->
+                                                    <form action="/user/edit-bio" method="POST">
+                                                        <div class="mb-3">
+                                                            <input type="hidden" name="id" th:value="${user.id}">
+                                                            <textarea class="form-control" id="bio" name="bio" rows="3" th:value="${user.bio}"></textarea>
+                                                        </div>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <input type="submit" value="Update" class="btn btn-dark w-25">
+                                                    </form>
+                                                    <!--END EDIT BIO FORM-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -144,27 +137,17 @@
                     </div>
                 </div>
             </div>
+
+            <form id="profile-pic" action="/user/edit-profile-pic" method="POST">
+                <input form="profile-pic" type="hidden" name="id" th:value="${user.id}">
+                <input form="profile-pic" type="hidden" class="change-profile-pic" name="profile-picture-url">
+            </form>
+
+            <form id="banner" action="/user/edit-banner" method="POST">
+                <input form="banner" type="hidden" name="id" th:value="${user.id}">
+                <input form="banner" type="hidden" class="change-banner" name="banner-url">
+            </form>
         </div>
-
-
-
-
-
-
-
-        <form id="profile-pic" action="/user/edit-profile-pic" method="POST">
-            <input form="profile-pic" type="hidden" name="id" th:value="${user.id}">
-            <input form="profile-pic" type="hidden" class="change-profile-pic" name="profile-picture-url">
-        </form>
-
-        <form id="banner" action="/user/edit-banner" method="POST">
-            <input form="banner" type="hidden" name="id" th:value="${user.id}">
-            <input form="banner" type="hidden" class="change-banner" name="banner-url">
-        </form>
-
-
-
-    </div>
 
     <!-- Button trigger modal for Edit Bio-->
 <!--    <div sec:authorize="isAuthenticated()">-->
@@ -216,6 +199,7 @@
 
 <!--        </div>-->
 <!--    </div>-->
+    </div>
 
     <div sec:authorize="isAuthenticated()">
         <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">
@@ -229,6 +213,7 @@
     <div sec:authorize="!isAuthenticated()">
         <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>
     </div>
+
 
     <hr>
 
@@ -301,34 +286,33 @@
 
     <div th:if="${user.favoriteGames.size() == 0}">
         <p>You don't have any favorite games yet!</p>
-
+    </div>
     <hr>
-<!-- 
-<!--    display the Platform Links of a logged-in user-->
-    <div th:if="${user.links}">
-        <p>Platform Links</p>
-        <div th:if="!${user.links.discord.isBlank()}">
-            <p th:text="'Discord: ' + ${user.links.discord}"></p>
-        </div>
-        <div th:if="!${user.links.nintendo.isBlank()}">
-            <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
-        </div>
-        <div th:if="!${user.links.playstation.isBlank()}">
-            <p th:text="'Playstation: ' + ${user.links.playstation}"></p>
-        </div>
-        <div th:if="!${user.links.twitch.isBlank()}">
-            <p th:text="'Twitch: ' + ${user.links.twitch}"></p>
-        </div>
-        <div th:if="!${user.links.xbox.isBlank()}">
-            <p th:text="'Xbox: ' + ${user.links.xbox}"></p>
-        </div>
-        <div th:if="!${user.links.youtube.isBlank()}">
-            <p th:text="'YouTube: ' + ${user.links.youtube}"></p>
-        </div>
+<!--     display the Platform Links of a logged-in user-->
+<!--    <div th:if="${user.links}">-->
+<!--        <p>Platform Links</p>-->
+<!--        <div th:if="!${user.links.discord.isBlank()}">-->
+<!--            <p th:text="'Discord: ' + ${user.links.discord}"></p>-->
+<!--        </div>-->
+<!--        <div th:if="!${user.links.nintendo.isBlank()}">-->
+<!--            <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>-->
+<!--        </div>-->
+<!--        <div th:if="!${user.links.playstation.isBlank()}">-->
+<!--            <p th:text="'Playstation: ' + ${user.links.playstation}"></p>-->
+<!--        </div>-->
+<!--        <div th:if="!${user.links.twitch.isBlank()}">-->
+<!--            <p th:text="'Twitch: ' + ${user.links.twitch}"></p>-->
+<!--        </div>-->
+<!--        <div th:if="!${user.links.xbox.isBlank()}">-->
+<!--            <p th:text="'Xbox: ' + ${user.links.xbox}"></p>-->
+<!--        </div>-->
+<!--        <div th:if="!${user.links.youtube.isBlank()}">-->
+<!--            <p th:text="'YouTube: ' + ${user.links.youtube}"></p>-->
+<!--        </div>-->
 
-    </div> -->
+<!--    </div> &ndash;&gt;-->
 
-    <hr>
+<!--    <hr>-->
 
 <!--    display the Platform Links of a logged-in user-->
 <!--    <div th:if="${user.links}">-->
@@ -419,9 +403,10 @@
 
                             <div class="d-flex">
 
-
-                                <div th:if="${findCommentIdsByUserId.contains(comment.id)}" class="pe-3 pt-3">
-                                    <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0" th:data-dl="${comment.id}" th:data-id="${post.id}">x</button>
+                                <div sec:authorize="isAuthenticated()">
+                                    <div th:if="${findCommentIdsByUserId.contains(comment.id)}" class="pe-3 pt-3">
+                                        <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0" th:data-dl="${comment.id}" th:data-id="${post.id}">x</button>
+                                    </div>
                                 </div>
 
                                 <div>
@@ -449,18 +434,20 @@
                         </div>
 
 
-
-                        <div class="w-100 d-flex justify-content-end">
-                            <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-secondary" th:data-id="${post.id}">Post Comment</button>
+                        <div sec:authorize="isAuthenticated()">
+                            <div class="w-100 d-flex justify-content-end">
+                                <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-secondary" th:data-id="${post.id}">Post Comment</button>
+                            </div>
+                        </div>
+                        <div sec:authorize="!isAuthenticated()">
+                            <div class="w-100 d-flex justify-content-end">
+                                <button class="post-comment-btn btn btn-secondary" onclick="redirectToLogin()">Post Comment</button>
+                            </div>
                         </div>
                     </div>
-
-
                 </div>
-
-
-
             </div>
+        </div>
     </div>
 
 
@@ -560,7 +547,7 @@
 <!--</div>-->
 
 
-
+</div>
 <!--partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>
