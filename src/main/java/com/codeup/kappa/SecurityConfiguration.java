@@ -82,7 +82,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private UserDetailsLoader usersLoader;
+    private final UserDetailsLoader usersLoader;
 
     public SecurityConfiguration(UserDetailsLoader usersLoader) {
         this.usersLoader = usersLoader;

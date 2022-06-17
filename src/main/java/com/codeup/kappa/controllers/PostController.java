@@ -60,6 +60,11 @@ public class PostController {
     public String updatePost(@RequestParam("postId") long id, @RequestParam("body") String body) {
 
         Post post = postDao.getPostById(id);
+
+        if (body.isBlank()){
+            return "redirect:/post/" + id;
+        }
+
         post.setBody(body);
 
         postDao.save(post);

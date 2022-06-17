@@ -4,71 +4,94 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<div class="d-flex justify-content-center">
-    <div class="card pt-4 pb-4 mt-5 px-4 mx-auto">
-        <div th:if="${post}" class="">
+<div class="d-flex justify-content-center vw-100">
+    <div class="card pt-4 pb-4 mt-5 px-4 container">
+
+        <div th:if="${post}">
         <!--    <p th:text="'Post ID: ' + ${post.id}"></p>-->
     <!--        <p th:text="${post.body}"></p>-->
         </div>
 
-        <div th:if="${post}" class="">
+        <div th:if="${post}">
+            <div class="card-body">
 
-            <fieldset>
-                <legend>Edit Post</legend>
-                <form id="delete-post" action="/post/delete-post" method="post"></form>
-                <form th:action="@{/post/edit-post}" method="POST">
-                    <input type="text" th:value="${post.body}" name="body" class="edit-post-body">
-                                <input type="hidden" th:value="*{post.id}" name="postId">
-        <!--                        <input type="hidden" th:value="${post.user.id}">-->
-                    <input type="submit" class="btn-primary" value="Edit">
-                </form>
-<!--                <input type="hidden" form="delete-post" th:value="${post.id}" name="postId">-->
-<!--                <button type="submit" form="delete-post" class="btn-danger">Delete Post</button>-->
-            </fieldset>
+                <fieldset>
+                    <legend>Edit Post</legend>
+                    <hr>
+                    <form id="delete-post" action="/post/delete-post" method="post"></form>
+                    <form th:action="@{/post/edit-post}" method="POST">
+                        <p th:text="${post.body}" class="ms-3"></p>
+                        <input type="hidden" th:value="${post.id}" name="postId">
+                        <input type="hidden" th:value="${post.user.id}">
 
+                        <div class="container d-flex" style="margin-bottom: 0">
 
-            <div class=" d-flex pt-3">
-                <fieldset th:if="${post.postImages.size() < 3}" class="d-flex">
-                    <legend class="pe-3">Add Image to Post</legend>
-                    <form id="upload-post-images" th:action="@{/post/add-image}" method="POST">
-                        <input type="hidden" name="img-urls" id="img-urls">
-                        <input type="hidden" th:value="${post.id}" name="post-id">
-                        <div th:if="${post.postImages.size() == 0}">
-                            <button id="upload-post-img-btn-zero" type="button" class="btn-primary">Upload</button>
+                            <textarea type="input" th:value="${post.body}" name="body" rows="10" cols="80" class="mb-4" ></textarea>
+
+                            <div class="mb-0 edit-btn-post-view" style="">
+                                <input type="submit" class="btn-primary ms-2 mb-0" value="Edit">
+                            </div>
+
                         </div>
-                        <div th:if="${post.postImages.size() == 1}">
-                            <button id="upload-post-img-btn-one" type="button" class="btn-primary">Upload</button>
-                        </div>
-                        <div th:if="${post.postImages.size() == 2}">
-                            <button id="upload-post-img-btn-two" type="button" class="btn-primary">Upload</button>
-                        </div>
+
                     </form>
+    <!--                <input type="hidden" form="delete-post" th:value="${post.id}" name="postId">-->
+    <!--                <button type="submit" form="delete-post" class="btn-danger">Delete Post</button>-->
                 </fieldset>
-            </div>
 
+                <hr>
 
-            <fieldset>
-        <!--        <legend>Delete Image From Post</legend>-->
-                <div th:each="image: ${post.postImages}" class="container">
-                    <form th:action="@{/post/delete-image}" method="POST">
-        <!--                    <p th:text="${image.title}"></p>-->
-                        <img th:src="${image.url}" alt="post-image" class="post-img mt-2">
-                        <input type="submit" class="btn-danger ms-3 mb-3 x-btn" value="X">
-                        <input type="hidden" th:value="${image.id}" name="image-id">
-                        <input type="hidden" th:value="${post.id}" name="post-id">
-
-
-                    </form>
+                <div class=" d-flex pt-3">
+                    <fieldset th:if="${post.postImages.size() < 3}" class="d-flex">
+                        <legend class="pe-3">Add Image to Post</legend>
+                        <form id="upload-post-images" th:action="@{/post/add-image}" method="POST">
+                            <input type="hidden" name="img-urls" id="img-urls">
+                            <input type="hidden" th:value="${post.id}" name="post-id">
+                            <div th:if="${post.postImages.size() == 0}">
+                                <button id="upload-post-img-btn-zero" type="button" class="btn-primary">Upload</button>
+                            </div>
+                            <div th:if="${post.postImages.size() == 1}">
+                                <button id="upload-post-img-btn-one" type="button" class="btn-primary">Upload</button>
+                            </div>
+                            <div th:if="${post.postImages.size() == 2}">
+                                <button id="upload-post-img-btn-two" type="button" class="btn-primary">Upload</button>
+                            </div>
+                        </form>
+                    </fieldset>
                 </div>
-            </fieldset>
 
 
-            <div class="pt-5">
-                <input type="hidden" form="delete-post" th:value="${post.id}" name="postId">
-                <button type="submit" form="delete-post" class="btn-danger">Delete Post</button>
+                <fieldset class="container d-flex mb-5">
+            <!--        <legend>Delete Image From Post</legend>-->
+                    <div th:each="image: ${post.postImages}" class="container">
+                        <form th:action="@{/post/delete-image}" method="POST">
+            <!--                    <p th:text="${image.title}"></p>-->
+
+                            <div class="post-img-box d-flex">
+                                <img th:src="${image.url}" alt="post-image" class="post-image mt-3" style="object-fit: cover; height: 125px; width:175px;">
+
+                                <div class="delete-img-post-view mt-3">
+                                    <input type="submit" class="delete-img-btn btn-danger" value="X">
+                                </div>
+                            </div>
+
+                            <input type="hidden" th:value="${image.id}" name="image-id">
+                            <input type="hidden" th:value="${post.id}" name="post-id">
+
+                        </form>
+                    </div>
+                </fieldset>
+
+                <hr>
+
+                <div class="pt-5 flex-grow-5 d-flex justify-content-center">
+                    <input type="hidden" form="delete-post" th:value="${post.id}" name="postId">
+                    <button type="submit" form="delete-post" class="btn-danger">Delete Post</button>
+                </div>
+
             </div>
-
         </div>
+
     </div>
 </div>
 <!--partials needed on every page-->
