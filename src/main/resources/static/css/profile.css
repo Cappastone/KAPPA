@@ -1,0 +1,133 @@
+
+.profile-picture-container {
+
+
+}
+
+.profile-picture {
+    object-fit: cover;
+    height: 180px;
+    width:180px;
+    border-radius: 50%;
+}
+
+.profile-picture-container {
+
+    position: relative;
+    bottom: 5em;
+}
+
+.profile-banner {
+    object-fit: cover;
+    height: 396px;
+    width:100%;
+}
+
+/*button*/
+.change-banner-btn {
+
+    position: relative;
+    bottom: 3em;
+    left: 2em;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    opacity: 80%;
+
+}
+
+/*button*/
+.change-profile-pic-btn {
+
+    position: relative;
+    right: 2em;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    opacity: 80%;
+}
+
+.user-info {
+
+
+}
+
+.top-profile {
+
+}
+
+.profile-username {
+
+    position: relative;
+    bottom: 2em;
+    left: 15px;
+    font-size: 50px;
+}
+
+.profile-follower {
+
+    font-size: 25px;
+
+
+}
+
+.profile-following {
+
+    font-size: 25px;
+
+}
+
+.profile-bio {
+    position: relative;
+    top: 10px;
+    max-width: 70%;
+
+}
+.profile-follower-picture {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.profile-following-picture {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.profile-game-picture {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.profile-links {
+
+    padding-top: 40px;
+    max-width: 30%;
+
+
+}
+
+.links-text {
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.custom-width {
+    width: 120px;
+}
+
+/*.null-bio {*/
+/*   margin-left: 20px;*/
+/*}*/
+
+.bio-card-body {
+    width: 534px;
+}
