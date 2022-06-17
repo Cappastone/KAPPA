@@ -11,7 +11,12 @@
     <link rel="stylesheet" th:href="@{/css/profile.css}">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" th:href="@{/css/searchResults.css}">
+
+  
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+
     <link rel="stylesheet" th:href="@{/css/connections.css}">
+
 </head>
 <body>
 
@@ -33,91 +38,91 @@
 </div>
 
 <!--NAVBAR-->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+<!--<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--    <div class="container-fluid">-->
 
-        <!--HOME-->
-        <a sec:authorize="isAuthenticated()" class="navbar-brand" href="/main">Home</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<!--        &lt;!&ndash;HOME&ndash;&gt;-->
+<!--        <a sec:authorize="isAuthenticated()" class="navbar-brand" href="/main">Home</a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"-->
+<!--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
 
-                <!--DISCOVER-->
-                <li class="nav-item">
-                    <a class="nav-link" href="/discover">Discover</a>
-                </li>
+<!--                &lt;!&ndash;DISCOVER&ndash;&gt;-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/discover">Discover</a>-->
+<!--                </li>-->
 
-                <!--VIEW YOUR PROFILE-->
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/user/profile">Profile</a>
-                </li>
+<!--                &lt;!&ndash;VIEW YOUR PROFILE&ndash;&gt;-->
+<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
+<!--                    <a class="nav-link" aria-current="page" href="/user/profile">Profile</a>-->
+<!--                </li>-->
 
-                <!-- MY CONNECTIONS-->
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/connections">My Connections</a>
-                </li>
+<!--                &lt;!&ndash; MY CONNECTIONS&ndash;&gt;-->
+<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
+<!--                    <a class="nav-link" aria-current="page" href="/connections">My Connections</a>-->
+<!--                </li>-->
 
-                <!-- FAVORITE GAMES-->
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/game/favorites">Favorite Games</a>
-                </li>
+<!--                &lt;!&ndash; FAVORITE GAMES&ndash;&gt;-->
+<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
+<!--                    <a class="nav-link" aria-current="page" href="/game/favorites">Favorite Games</a>-->
+<!--                </li>-->
 
-                <!--CREATE-->
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link" href="/posts/create">Create</a>-->
-                <!--                </li>-->
+<!--                &lt;!&ndash;CREATE&ndash;&gt;-->
+<!--                &lt;!&ndash;                <li class="nav-item">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <a class="nav-link" href="/posts/create">Create</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </li>&ndash;&gt;-->
 
-                <!--DROPDOWN-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li sec:authorize="!isAuthenticated()">
-                            <a class="dropdown-item" href="/user/register">Sign Up</a>
-                        </li>
-                        <!--                        <li><hr class="dropdown-divider"></li>-->
-                        <li sec:authorize="!isAuthenticated()">
-                            <!--                            <form th:action="@{/login}" th:method="POST">-->
-                            <!--                                <button class="btn-link dropdown-item" style="margin-top: 8px">Login</button>-->
-                            <!--                            </form>-->
-                            <a class="dropdown-item" href="/login">Login</a>
-                        </li>
-                        <li sec:authorize="isAuthenticated()">
-                            <a class="dropdown-item" href="/user/account">Account Details</a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li sec:authorize="isAuthenticated()">
-                            <!--                            <form th:action="@{/logout}" th:method="POST">-->
-                            <!--                                <button class="btn-link dropdown-item" style="margin-top: 8px">Logout</button>-->
-                            <!--                            </form>-->
-                            <form th:action="@{/logout}" th:method="post" id="logout-form">
-                                <a onclick="document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
-                            </form>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!--            this is our search bar that utilizes the rawg.js file and keys.js this search bar will only work if those 2 files are linked-->
-            <!--            <form class="d-flex" >-->
-            <!--                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">-->
-            <!--                &lt;!&ndash;                <input type="hidden" value="" name="title">&ndash;&gt;-->
-            <!--                <button id="submit-btn" class="btn btn-outline-light" type="submit">Search</button>-->
-            <!--            </form>-->
-            <div class="search d-flex">
-                <input id="search" type="text" class="form-control" placeholder="Search Games">
-                <button id="submit-btn" class="btn btn-outline-light"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
-    </div>
-</nav>
+<!--                &lt;!&ndash;DROPDOWN&ndash;&gt;-->
+<!--                <li class="nav-item dropdown">-->
+<!--                    <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"-->
+<!--                       data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                        Dropdown-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                        <li sec:authorize="!isAuthenticated()">-->
+<!--                            <a class="dropdown-item" href="/user/register">Sign Up</a>-->
+<!--                        </li>-->
+<!--                        &lt;!&ndash;                        <li><hr class="dropdown-divider"></li>&ndash;&gt;-->
+<!--                        <li sec:authorize="!isAuthenticated()">-->
+<!--                            &lt;!&ndash;                            <form th:action="@{/login}" th:method="POST">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <button class="btn-link dropdown-item" style="margin-top: 8px">Login</button>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </form>&ndash;&gt;-->
+<!--                            <a class="dropdown-item" href="/login">Login</a>-->
+<!--                        </li>-->
+<!--                        <li sec:authorize="isAuthenticated()">-->
+<!--                            <a class="dropdown-item" href="/user/account">Account Details</a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <hr class="dropdown-divider">-->
+<!--                        </li>-->
+<!--                        <li sec:authorize="isAuthenticated()">-->
+<!--                            &lt;!&ndash;                            <form th:action="@{/logout}" th:method="POST">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <button class="btn-link dropdown-item" style="margin-top: 8px">Logout</button>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </form>&ndash;&gt;-->
+<!--                            <form th:action="@{/logout}" th:method="post" id="logout-form">-->
+<!--                                <a onclick="document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>-->
+<!--                            </form>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            this is our search bar that utilizes the rawg.js file and keys.js this search bar will only work if those 2 files are linked-->
+<!--            <form class="d-flex" >-->
+<!--                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">-->
+<!--                &lt;!&ndash;                <input type="hidden" value="" name="title">&ndash;&gt;-->
+<!--                <button id="submit-btn" class="btn btn-outline-light" type="submit">Search</button>-->
+<!--            </form>-->
+<!--            <div class="search d-flex">-->
+<!--                <input id="search" type="text" class="form-control" placeholder="Search Games">-->
+<!--                <button id="submit-btn" class="btn btn-outline-light"><i class="fa fa-search"></i></button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 <!--NAVBAR-->
 
 <!--FOOTER-->
@@ -161,7 +166,7 @@
     <!-- Grid container -->
 
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="text-center p-3 gradient-custom">
         © 2020 Copyright:
         <a class="text-white" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">LOL</a>
     </div>
@@ -170,3 +175,110 @@
 <!--FOOTER-->
 </body>
 </html>
+
+
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark gradient-custom">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="/discover">Navbar</a>
+
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars text-light"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link active" aria-current="page" href="#!">
+                        <div>
+                            <i class="fas fa-home fa-lg mb-1"></i>
+                        </div>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link" href="#!">
+                        <div>
+                            <i class="far fa-envelope fa-lg mb-1"></i>
+                        </div>
+                        Nav Item
+                    </a>
+                </li>
+                <li class="nav-item dropdown text-center mx-2 mx-lg-1">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-mdb-toggle="dropdown"
+                       aria-expanded="false">
+                        <div>
+                            <i class="far fa-envelope fa-lg mb-1"></i>
+                        </div>
+                        Dropdown
+                    </a>
+                    <!-- Dropdown menu -->
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider"/>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Left links -->
+
+            <!-- Right links -->
+            <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link" href="#!">
+                        <div>
+                            <i class="fas fa-bell fa-lg mb-1"></i>
+                        </div>
+                        Messages
+                    </a>
+                </li>
+                <li class="nav-item text-center mx-2 mx-lg-1">
+                    <a class="nav-link" href="#!">
+                        <div>
+                            <i class="fas fa-globe-americas fa-lg mb-1"></i>
+                        </div>
+                        News
+                    </a>
+                </li>
+            </ul>
+            <!-- Right links -->
+
+            <!-- Search form -->
+            <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
+                <input id="search" type="search" class="form-control" placeholder="Search" aria-label="Search"/>
+                <button id="submit-btn" class="btn btn-outline-white" type="button" data-mdb-ripple-color="dark">
+                    Search
+                </button>
+            </form>
+        </div>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+
+<video th:fragment="video-bg"
+       src="https://static.videezy.com/system/resources/previews/000/054/399/original/1311149_Abstract-neon-lines_HD_BG.mp4"
+       muted loop
+       autoplay style=" width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;"></video>

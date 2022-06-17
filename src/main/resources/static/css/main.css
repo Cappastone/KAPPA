@@ -25,12 +25,12 @@ body {
 
 /*this is for the cards on the post subject to change*/
 .card {
-    background-color: rgb(42, 42, 42);
+    background-color: rgba(0, 0, 0, 0.56);
     color: white;
 }
 
 .full-game-img {
-width: 100%;
+    width: 100%;
 
 }
 
@@ -61,10 +61,6 @@ body {
 }
 
 /*this is for the cards on the post subject to change*/
-.card {
-    background-color: rgb(42, 42, 42);
-    color: white;
-}
 
 /*.full-game-img {*/
 /*    width: 70vw;*/
@@ -91,14 +87,15 @@ body {
     height: 2.5rem; /* Footer height */
 }
 
-/*GAME VIEW*/
+
+
 .game-title{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-.favorite-icon{
+.favorite-icon {
 
 }
 

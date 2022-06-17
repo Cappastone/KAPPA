@@ -275,6 +275,9 @@ document.querySelector('#submit-btn').addEventListener('click', function () {
     window.location = ("/results?search=" + searchQuery);
 });
 
+// document.querySelector()
+
+
 function gameRedirect(elem) {
     // var dataID = $(this).attr("data-id")
     var dataId = $(elem).data("id");
