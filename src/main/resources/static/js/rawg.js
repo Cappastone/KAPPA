@@ -275,7 +275,15 @@ document.querySelector('#submit-btn').addEventListener('click', function () {
     window.location = ("/results?search=" + searchQuery);
 });
 
-// document.querySelector()
+document.querySelector('#search').addEventListener('keypress', function () {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        document.getElementById("submit-btn").click();
+    }
+})
 
 
 function gameRedirect(elem) {

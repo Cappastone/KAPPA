@@ -12,7 +12,7 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" th:href="@{/css/searchResults.css}">
 
-  
+
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
 
     <link rel="stylesheet" th:href="@{/css/connections.css}">
@@ -110,9 +110,11 @@
 <!--                    </ul>-->
 <!--                </li>-->
 <!--            </ul>-->
-<!--            this is our search bar that utilizes the rawg.js file and keys.js this search bar will only work if those 2 files are linked-->
-<!--            <form class="d-flex" >-->
-<!--                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">-->
+<!--            this is our search bar that utilizes the rawg.js file and keys.js this search bar will only work if those 2-->
+<!--            files are linked-->
+<!--            <form class="d-flex">-->
+<!--                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"-->
+<!--                       name="search">-->
 <!--                &lt;!&ndash;                <input type="hidden" value="" name="title">&ndash;&gt;-->
 <!--                <button id="submit-btn" class="btn btn-outline-light" type="submit">Search</button>-->
 <!--            </form>-->
@@ -126,7 +128,7 @@
 <!--NAVBAR-->
 
 <!--FOOTER-->
-<footer id="footer" th:fragment="footer" class="text-center text-white">
+<footer id="footer" th:fragment="footer" class="text-center text-white mt-5 pt-5">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
         <!-- Section: Social media -->
@@ -178,92 +180,84 @@
 
 
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark gradient-custom">
-    <!-- Container wrapper -->
     <div class="container-fluid">
-        <!-- Navbar brand -->
-        <a class="navbar-brand" href="/discover">Navbar</a>
 
-        <!-- Toggle button -->
-        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <i class="fas fa-bars text-light"></i>
+        <!--HOME-->
+        <a sec:authorize="isAuthenticated()" class="navbar-brand" href="/main">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
-                <li class="nav-item text-center mx-2 mx-lg-1">
-                    <a class="nav-link active" aria-current="page" href="#!">
-                        <div>
-                            <i class="fas fa-home fa-lg mb-1"></i>
-                        </div>
-                        Home
-                    </a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <!--DISCOVER-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/discover">Discover</a>
                 </li>
-                <li class="nav-item text-center mx-2 mx-lg-1">
-                    <a class="nav-link" href="#!">
-                        <div>
-                            <i class="far fa-envelope fa-lg mb-1"></i>
-                        </div>
-                        Nav Item
-                    </a>
+
+                <!--VIEW YOUR PROFILE-->
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/user/profile">Profile</a>
                 </li>
-                <li class="nav-item dropdown text-center mx-2 mx-lg-1">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-mdb-toggle="dropdown"
-                       aria-expanded="false">
-                        <div>
-                            <i class="far fa-envelope fa-lg mb-1"></i>
-                        </div>
+
+                <!-- MY CONNECTIONS-->
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/connections">My Connections</a>
+                </li>
+
+                <!-- FAVORITE GAMES-->
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/game/favorites">Favorite Games</a>
+                </li>
+
+                <!--CREATE-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="/posts/create">Create</a>-->
+                <!--                </li>-->
+
+                <!--DROPDOWN-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         Dropdown
                     </a>
-                    <!-- Dropdown menu -->
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider"/>
+                        <li sec:authorize="!isAuthenticated()">
+                            <a class="dropdown-item" href="/user/register">Sign Up</a>
+                        </li>
+                        <!--                        <li><hr class="dropdown-divider"></li>-->
+                        <li sec:authorize="!isAuthenticated()">
+                            <!--                            <form th:action="@{/login}" th:method="POST">-->
+                            <!--                                <button class="btn-link dropdown-item" style="margin-top: 8px">Login</button>-->
+                            <!--                            </form>-->
+                            <a class="dropdown-item" href="/login">Login</a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <a class="dropdown-item" href="/user/account">Account Details</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <!--                            <form th:action="@{/logout}" th:method="POST">-->
+                            <!--                                <button class="btn-link dropdown-item" style="margin-top: 8px">Logout</button>-->
+                            <!--                            </form>-->
+                            <form th:action="@{/logout}" th:method="post" id="logout-form">
+                                <a onclick="document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>
+                            </form>
                         </li>
                     </ul>
                 </li>
             </ul>
-            <!-- Left links -->
-
-            <!-- Right links -->
-            <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
-                <li class="nav-item text-center mx-2 mx-lg-1">
-                    <a class="nav-link" href="#!">
-                        <div>
-                            <i class="fas fa-bell fa-lg mb-1"></i>
-                        </div>
-                        Messages
-                    </a>
-                </li>
-                <li class="nav-item text-center mx-2 mx-lg-1">
-                    <a class="nav-link" href="#!">
-                        <div>
-                            <i class="fas fa-globe-americas fa-lg mb-1"></i>
-                        </div>
-                        News
-                    </a>
-                </li>
-            </ul>
-            <!-- Right links -->
-
-            <!-- Search form -->
-            <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
-                <input id="search" type="search" class="form-control" placeholder="Search" aria-label="Search"/>
-                <button id="submit-btn" class="btn btn-outline-white" type="button" data-mdb-ripple-color="dark">
-                    Search
-                </button>
-            </form>
+            <!--            this is our search bar that utilizes the rawg.js file and keys.js this search bar will only work if those 2-->
+            <!--            files are linked-->
+            <div class="search d-flex">
+                <input id="search" type="search" class="form-control" placeholder="Search Games">
+                <button id="submit-btn" class="btn btn-outline-light"><i class="fa fa-search"></i></button>
+            </div>
         </div>
-        <!-- Collapsible wrapper -->
     </div>
     <!-- Container wrapper -->
 </nav>
