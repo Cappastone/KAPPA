@@ -1,11 +1,11 @@
 /////////////  FileStack API   ///////////////////////
 
-const mapImgToDiv = (post) => `<img src="${post.Url}" style="width: 148px; height: 98px">`;
+const mapImgToDiv = (post) => `<img src="${post.Url}" style="object-fit: cover; width: 250px; height: 250px">`;
 const client = filestack.init(FS_API_TOKEN);
 
 function upload (res) {
     const url = res.filesUploaded[0].url
-    const postImg = [{Url: url}];
+    const postImg = [{Url: url}]
     const postImages = postImg.map(mapImgToDiv)
     $(".post-image-upload").val([url]);
     return $('#img-output').html(postImages)
