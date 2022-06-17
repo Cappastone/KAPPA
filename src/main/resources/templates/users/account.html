@@ -5,12 +5,13 @@
 
 <body class="ACCbody">
 <nav th:replace="partials/partials.html :: navbar"></nav>
+
 <!--    edit username/email form-->
 <div class="d-flex flex-wrap">
     <div class="col-md-6">
         <form th:action="@{/user/edit-user}" method="POST" th:object="${user}">
-            <h1 class="ACCh1 d-flex justify-content-center mt-5">Account Settings</h1>
-            <p class="ACCp d-flex justify-content-center">Manage the account details you've shared with Gamer Haven.</p><br>
+            <h1 class="ACCh1 d-flex justify-content-center mt-5 ms-5">Account Settings</h1>
+            <p class="ACCp d-flex justify-content-center ms-5">Manage the account details you've shared with Gamer Haven.</p><br>
 
             <!--NEW USERNAME-->
             <div class="d-flex justify-content-center ms-5">
@@ -96,41 +97,45 @@
 
     <div class="col-md-6">
         <div th:if="${user.getLinks() == null}">
-            <form action="/user/create-platform-links" method="POST" th:object="${links}">
-                <div class="mb-3 w-25">
-                    <label for="discord" class="form-label">Discord</label>
-                    <input type="text" class="form-control" id="discord" th:field="*{discord}">
-                </div>
-                <div class="mb-3 w-25">
-                    <label for="nintendo" class="form-label">Nintendo</label>
-                    <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
-                </div>
-                <div class="mb-3 w-25">
-                    <label for="playstation" class="form-label">Playstation</label>
-                    <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
-                </div>
-                <div class="mb-3 w-25">
-                    <label for="twitch" class="form-label">Twitch</label>
-                    <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
-                </div>
-                <div class="mb-3 w-25">
-                    <label for="xbox" class="form-label">Xbox</label>
-                    <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
-                </div>
-                <div class="mb-3 w-25">
-                    <label for="youtube" class="form-label">Youtube</label>
-                    <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
-                </div>
-                <input type="hidden" name="id" th:value="${user.id}">
-                <input type="submit" value="Save Links" class="btn btn-dark w-100">
-            </form>
+            <div class="d-flex justify-content-center mt-5">
+                <form action="/user/create-platform-links" method="POST" th:object="${links}">
+                    <h2>Platform Links</h2><br>
+                    <p>Add your platform links here.</p>
+                    <div class="mb-3 w-100">
+                        <label for="discord" class="form-label">Discord</label>
+                        <input type="text" class="form-control" id="discord" th:field="*{discord}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="nintendo" class="form-label">Nintendo</label>
+                        <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="playstation" class="form-label">Playstation</label>
+                        <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="twitch" class="form-label">Twitch</label>
+                        <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="xbox" class="form-label">Xbox</label>
+                        <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
+                    </div>
+                    <div class="mb-3 w-100">
+                        <label for="youtube" class="form-label">Youtube</label>
+                        <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
+                    </div>
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <input type="submit" value="Save Links" class="btn btn-dark w-100 border border-2 border-white">
+                </form>
+            </div>
         </div>
 
         <div class="d-flex justify-content-center mt-5 col-md-12">
             <div th:if="${user.getLinks() != null}">
                 <form action="/user/edit-platform-links" method="POST" th:object="${existingLinks}">
                     <h2>Platform Links</h2><br>
-                    <p>Add your preferred platform links here.</p>
+                    <p>Add your platform links here.</p>
                     <div class="mb-3 w-100">
                         <label for="discord" class="form-label">Discord</label>
                         <input type="text" class="form-control" id="discord" th:field="*{discord}">
