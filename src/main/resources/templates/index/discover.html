@@ -16,8 +16,9 @@
 
 
 
-
-
+<div sec:authorize="isAuthenticated()">
+<span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
+</div>
 
 <h3 class="text-center py-3" style="color: white; font-weight: lighter">Discover GamerHaven Top Posts</h3>
 <div th:if="${posts}" class="container">

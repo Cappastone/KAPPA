@@ -60,7 +60,9 @@ public class DiscoverController {
         if (principal instanceof UserDetails) {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             long user_id = user.getId();
+            User user2 = userDao.getById(user_id);
             model.addAttribute("sessionUserId", user_id);
+            model.addAttribute("sessionUsername", user2.getUsername());
             model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
             model.addAttribute("findCommentIdsByUserId", commentDao.findCommentIdsByUserId(user_id));
 
