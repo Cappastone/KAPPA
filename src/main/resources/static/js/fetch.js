@@ -33,8 +33,8 @@ function likePost(values) {
         },
         body: JSON.stringify(data),
     };
-    // fetch(gamerHaven + 'like-post', readOption)
-    fetch(url, readOption)
+    fetch(gamerHaven + 'like-post', readOption)
+        // fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -59,8 +59,8 @@ function unlikePost(values) {
         body: JSON.stringify(data),
     };
 
-    // fetch(gamerHaven + 'unlike-post', readOption)
-    fetch(url, readOption)
+    fetch(gamerHaven + 'unlike-post', readOption)
+        // fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -90,12 +90,12 @@ $('.like-btn').on('click', function (e) {
 
             likePost(array);
 
-            likeText.text(parseInt(likeText.text())+1);
+            likeText.text(parseInt(likeText.text()) + 1);
 
         } else if ($(this).hasClass('btn-primary')) {
             $(this).removeClass('btn-primary').addClass('btn-secondary')
             unlikePost(array)
-            likeText.text(parseInt(likeText.text())-1);
+            likeText.text(parseInt(likeText.text()) - 1);
         }
     }
 });
@@ -118,8 +118,8 @@ function favoriteGame(values) {
         body: JSON.stringify(data),
     };
 
-    // fetch(gamerHaven + 'favorite-game', readOption)
-    fetch(url, readOption)
+    fetch(gamerHaven + 'favorite-game', readOption)
+        // fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -144,8 +144,8 @@ function unFavoriteGame(values) {
         body: JSON.stringify(data),
     };
 
-    // fetch(gamerHaven + 'unfavorite-game', readOption)
-    fetch(url, readOption)
+    fetch(gamerHaven + 'unfavorite-game', readOption)
+        // fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -216,8 +216,8 @@ function unFollowUser(values) {
         body: JSON.stringify(data),
     };
 
-    // fetch(gamerHaven + 'unfollow-user', readOption)
-    fetch(url, readOption)
+    fetch(gamerHaven + 'unfollow-user', readOption)
+        // fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -245,7 +245,7 @@ $('.follow-btn').on('click', function (e) {
 
 /////////////////////////////  Post Comment Functionality  /////////////////////////////////
 
-function postComment(values){
+function postComment(values) {
 
     const data = {
         user_id: values[0],
@@ -261,8 +261,8 @@ function postComment(values){
         body: JSON.stringify(data),
     };
 
-    // fetch(gamerHaven + 'post-comment', readOption)
-    fetch(url, readOption)
+    fetch(gamerHaven + 'post-comment', readOption)
+        // fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -273,7 +273,7 @@ function postComment(values){
 }
 
 
-function deleteComment(values){
+function deleteComment(values) {
     const data = {
         comment_id: values[0]
     }
@@ -286,8 +286,8 @@ function deleteComment(values){
         body: JSON.stringify(data),
     };
 
-    // fetch(gamerHaven + 'delete-comment', readOption)
-    fetch(url, readOption)
+    fetch(gamerHaven + 'delete-comment', readOption)
+        // fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -304,8 +304,6 @@ const addComment = (id, user, body) => {
 }
 
 
-
-
 $('.post-comment-btn').on('click', function (e) {
     e.preventDefault();
 
@@ -318,7 +316,7 @@ $('.post-comment-btn').on('click', function (e) {
     const newArray = [array[0], array[1], comment.val()]
     const username = $('#username').text()
 
-    commentText.text(parseInt(commentText.text())+1);
+    commentText.text(parseInt(commentText.text()) + 1);
     postComment(newArray);
 
     $(`.comments-container[data-id=${e.target.dataset.id}]`).append(addComment(array[0], username, comment.val()));
@@ -340,7 +338,7 @@ $('.delete').on('click', function (e) {
     const commentText = $(`.comment-count[data-id=${clickedId}]`);
 
     let array = getBtnValue($(this));
-    commentText.text(parseInt(commentText.text())-1);
+    commentText.text(parseInt(commentText.text()) - 1);
     deleteComment(array)
     $(`.dl[data-dl=${e.target.dataset.dl}]`).remove()
 
