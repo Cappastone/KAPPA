@@ -62,6 +62,7 @@ public class DiscoverController {
             long user_id = user.getId();
             model.addAttribute("sessionUserId", user_id);
             model.addAttribute("ListPostIdLikedByUserId", userDao.findPostIdLikedByUserId(user_id));
+            model.addAttribute("findCommentIdsByUserId", commentDao.findCommentIdsByUserId(user_id));
 
             model.addAttribute("newComment", new Comment());
         }

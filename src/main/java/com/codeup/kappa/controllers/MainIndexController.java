@@ -35,11 +35,11 @@ public class MainIndexController {
         this.commentDao = commentDao;
     }
 
-    @GetMapping
-    public String home() {
-
-        return "index/discover";
-    }
+//    @GetMapping
+//    public String home() {
+//
+//        return "index/discover";
+//    }
 
     @GetMapping("main")
     public String mainIndex(Model model){

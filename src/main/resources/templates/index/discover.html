@@ -5,7 +5,7 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 <!--header-->
 
-<h3 class="text-center " style="color: white">Discover GamerHaven Top Games</h3>
+<h3 class="text-center py-3" style="color: white; font-weight: lighter">Discover GamerHaven Top Games</h3>
 <div th:if="${games}" class="d-flex overflow-scroll ">
     <div th:each="game : ${games}">
         <a th:href="'/game?gameID=' + ${game.gamesApiId}"> <img
@@ -13,87 +13,134 @@
                 th:src="${game.imageUrl}"></a>
     </div>
 </div>
-<h3 class="text-center mt-3" style="color: white">GamerHaven Top Post</h3>
-<!--<div id="parent-main-content" class="d-flex">-->
-<div class="d-flex justify-content-center" th:if="${posts}">
-    <div class="d-flex justify-content-center flex-column">
-        <div class="pb-4" th:each="post : ${posts}">
-            <div class="card">
-                <div class="card-body">
-                    <!--                    this div below contains the timestamp and the users @ that posted-->
-                    <div class="d-flex justify-content-between">
-                        <a th:href="'/user/' + ${post.user.id}"><h5 class="card-title"
-                                                                    th:text="'@'+ ${post.user.getUsername()}"></h5>
-                        </a>
-<!--                        <div th:text="${post.creationDate}"></div>-->
-                        <p th:text="${postCreationDates[postStat.index]}"></p>
+
+
+
+
+
+
+<h3 class="text-center py-3" style="color: white; font-weight: lighter">Discover GamerHaven Top Posts</h3>
+<div th:if="${posts}" class="container">
+    <div th:each="post : ${posts}">
+        <div class="card my-4 mx-5 px-5">
+            <div class="card-body my-2">
+
+                <p class="card-text text-end py-0 my-0"><small th:text="${postCreationDates[postStat.index]}" class="text-muted"></small></p>
+                <!--                    <h5 class="card-title">Card title</h5>-->
+                <div class="mb-4" th:if="${post.postImages.size() != 0}" th:each="image : ${post.postImages}">
+                    <img style="object-fit: cover; height: 150px; width:200px;" th:src="${image.url}">
+                </div>
+
+                <div class="d-flex w-100">
+
+                    <div th:if="${post.user.profilePictureUrl}">
+                        <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${post.user.profilePictureUrl}">
                     </div>
-                    <!--                    below this will contain the body of the post and any img if attached-->
-                    <p th:text="${post.body}"></p>
-                    <!--                    below is img div-->
-                    <div class="d-flex post-img-box">
-                        <div th:each="image : ${post.postImages}">
-                            <img class="post-img" th:src="${image.url}">
-                        </div>
+                    <div th:if="!${post.user.profilePictureUrl}">
+                        <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
                     </div>
 
-                    <!--                    and lastly below this will show the like btn and hopefully a comment modal this is still under construction-->
-                    <div th:text="'Likes ' + ${post.usersThatLiked.size()}"></div>
-                    <!--                    button to trigger modal-->
-                    <div class="btn-post-box d-flex">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                            comment
-                        </button>
-                        <!--        JS button to Like a Post-->
+                    <p class="card-text ps-5 pt-2" th:text="${post.body}"></p>
+
+                </div>
+
+                <div class="d-flex justify-content-between align-items-end">
+                    <div>
+
+                        <div class="d-flex main-feed-username" >
+                            <p class="card-text"><small class="text-muted pe-1"> Posted by:</small></p>
+
+                            <a th:text="${#strings.abbreviate(post.user.username, 10)}" th:href="'/user/' + ${post.user.id}"></a>
+                        </div>
+                        <div sec:authorize="isAuthenticated()">
+                            <div th:if="${post.getUser().id == sessionUserId}">
+                                <button name="edit" th:data-id="${post.id}" class="edit btn btn-dark"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="d-flex flip" style="cursor: pointer">
+                        <div>
+                            <button class="flip2 btn btn-dark" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>Click to view comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
+                        </div>
+                        <!--                            <div>-->
+                        <!--                                <p><span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span></p>-->
+                        <!--                            </div>-->
+                    </div>
+
+
+
+
+                    <div>
+                        <p>Likes: <span class="like-count" th:data-id="${post.id}" th:text="${post.usersThatLiked.size()}"></span></p>
+
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}"
-                                        class="like-btn btn btn-primary">Like Post
-                                </button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary"><i class="fa-solid fa-thumbs-up"></i></button>
+                            </div>
+                            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary"><i class="fa-solid fa-thumbs-up"></i></button>
+                            </div>
+                        </div>
+                        <div sec:authorize="!isAuthenticated()">
+                            <button onclick="redirectToLogin()" class="btn btn-danger"><i class="fa-solid fa-thumbs-up"></i></button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel panel-collapsed" th:data-id="${post.id}">
+                <div th:if="${post.comments}" class="comments-container" th:data-id="${post.id}">
+
+                    <div th:each="comment : ${post.comments}">
+
+                        <div class="d-flex">
+
+                            <div sec:authorize="isAuthenticated()">
+                                <div th:if="${findCommentIdsByUserId.contains(comment.id)}" class="pe-3 pt-3">
+                                    <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0" th:data-dl="${comment.id}" th:data-id="${post.id}">x</button>
+                                </div>
                             </div>
 
-                            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}"
-                                        class="like-btn btn btn-secondary">Like Post
-                                </button>
+                            <div>
+                                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>
+
+                                <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
                             </div>
-                        </div>
-                        <div sec:authorize="isAuthenticated()" class="flex-grow-1 d-flex justify-content-end">
-                            <fieldset>
-                                <form th:action="@{/discover/comment}" th:method="POST" th:object="${newComment}">
-                                    <input th:field="*{body}" name="body">
-                                    <input type="hidden" th:value="${post.id}" name="postId">
-                                    <input type="submit" value="Comment">
-                                </form>
-                            </fieldset>
+
+                            <!--                                <div th:if="${findCommentIdsByUserId.contains(comment.id)}">-->
+                            <!--                                    <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0" th:data-dl="${comment.id}" th:data-id="${post.id}">x</button>-->
+                            <!--                                </div>-->
                         </div>
                     </div>
-                    <!--                    Modal-->
-                    <!--                    modal is under construction for the model to work we need to assign a data- id to the post-->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title text-center" id="exampleModalLabel">Comments</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div th:each="comment : ${post.comments}">
-                                        <!--            <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>-->
-                                        <a th:text="${comment.user.username}"
-                                           th:href="'/user/' + ${comment.user.id}"></a>
-                                        <p th:text="${comment.body}"></p>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                    </button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
+                </div>
+
+
+                <div th:if="!${post.comments}">
+                    <p>No comments yet, be the first!</p>
+                </div>
+
+
+                <div>
+                    <div class="w-100">
+                        <textarea type="text" th:data-id="${post.id}" name="comment-body" class="comment-body w-100"></textarea>
+                    </div>
+
+
+                    <div sec:authorize="isAuthenticated()">
+                        <div class="w-100 d-flex justify-content-end">
+                            <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-secondary" th:data-id="${post.id}">Post Comment</button>
+                        </div>
+                    </div>
+                    <div sec:authorize="!isAuthenticated()">
+                        <div class="w-100 d-flex justify-content-end">
+                            <button class="post-comment-btn btn btn-secondary" onclick="redirectToLogin()">Post Comment</button>
                         </div>
                     </div>
                 </div>
@@ -101,6 +148,104 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+<!--<h3 class="text-center mt-3" style="color: white">GamerHaven Top Post</h3>-->
+<!--&lt;!&ndash;<div id="parent-main-content" class="d-flex">&ndash;&gt;-->
+<!--<div class="d-flex justify-content-center" th:if="${posts}">-->
+<!--    <div class="d-flex justify-content-center flex-column">-->
+<!--        <div class="pb-4" th:each="post : ${posts}">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    &lt;!&ndash;                    this div below contains the timestamp and the users @ that posted&ndash;&gt;-->
+<!--                    <div class="d-flex justify-content-between">-->
+<!--                        <a th:href="'/user/' + ${post.user.id}"><h5 class="card-title"-->
+<!--                                                                    th:text="'@'+ ${post.user.getUsername()}"></h5>-->
+<!--                        </a>-->
+<!--&lt;!&ndash;                        <div th:text="${post.creationDate}"></div>&ndash;&gt;-->
+<!--                        <p th:text="${postCreationDates[postStat.index]}"></p>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                    below this will contain the body of the post and any img if attached&ndash;&gt;-->
+<!--                    <p th:text="${post.body}"></p>-->
+<!--                    &lt;!&ndash;                    below is img div&ndash;&gt;-->
+<!--                    <div class="d-flex post-img-box">-->
+<!--                        <div th:each="image : ${post.postImages}">-->
+<!--                            <img class="post-img" th:src="${image.url}">-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash;                    and lastly below this will show the like btn and hopefully a comment modal this is still under construction&ndash;&gt;-->
+<!--                    <div th:text="'Likes ' + ${post.usersThatLiked.size()}"></div>-->
+<!--                    &lt;!&ndash;                    button to trigger modal&ndash;&gt;-->
+<!--                    <div class="btn-post-box d-flex">-->
+<!--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"-->
+<!--                                data-bs-target="#exampleModal">-->
+<!--                            comment-->
+<!--                        </button>-->
+<!--                        &lt;!&ndash;        JS button to Like a Post&ndash;&gt;-->
+<!--                        <div sec:authorize="isAuthenticated()">-->
+<!--                            <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">-->
+<!--                                <button th:data="${post.id} + ',' + ${sessionUserId}"-->
+<!--                                        class="like-btn btn btn-primary">Like Post-->
+<!--                                </button>-->
+<!--                            </div>-->
+
+<!--                            <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">-->
+<!--                                <button th:data="${post.id} + ',' + ${sessionUserId}"-->
+<!--                                        class="like-btn btn btn-secondary">Like Post-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div sec:authorize="isAuthenticated()" class="flex-grow-1 d-flex justify-content-end">-->
+<!--                            <fieldset>-->
+<!--                                <form th:action="@{/discover/comment}" th:method="POST" th:object="${newComment}">-->
+<!--                                    <input th:field="*{body}" name="body">-->
+<!--                                    <input type="hidden" th:value="${post.id}" name="postId">-->
+<!--                                    <input type="submit" value="Comment">-->
+<!--                                </form>-->
+<!--                            </fieldset>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                    Modal&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    modal is under construction for the model to work we need to assign a data- id to the post&ndash;&gt;-->
+<!--                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"-->
+<!--                         aria-hidden="true">-->
+<!--                        <div class="modal-dialog">-->
+<!--                            <div class="modal-content">-->
+<!--                                <div class="modal-header">-->
+<!--                                    <h5 class="modal-title text-center" id="exampleModalLabel">Comments</h5>-->
+<!--                                    <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+<!--                                            aria-label="Close"></button>-->
+<!--                                </div>-->
+<!--                                <div class="modal-body">-->
+<!--                                    <div th:each="comment : ${post.comments}">-->
+<!--                                        &lt;!&ndash;            <p th:text="${comment.user.username}  + ' said ' + ${comment.comment}"></p>&ndash;&gt;-->
+<!--                                        <a th:text="${comment.user.username}"-->
+<!--                                           th:href="'/user/' + ${comment.user.id}"></a>-->
+<!--                                        <p th:text="${comment.body}"></p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="modal-footer">-->
+<!--                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close-->
+<!--                                    </button>-->
+<!--                                    <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <!--</div>-->
 
@@ -186,5 +331,53 @@
 <!--footer and JS partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>
 <div th:replace="partials/partials.html :: scripts"></div>
+
+
+<script>
+    $(document).ready(function(){
+        // $(".flip").click(function(){
+        //     if ($(this).next().hasClass('panel-collapsed')) {
+        //         // expand the panel
+        //         $(this).next().slideDown("fast");
+        //         $(this).next().removeClass('panel-collapsed');
+        //         // $(this).text("Click to hide comments")
+        //     }
+        //     else {
+        //         // collapse the panel
+        //         $(this).next().slideUp("fast");
+        //         $(this).next().addClass('panel-collapsed');
+        //         // $(this).text("Click to view comments")
+        //     }
+        //     // $(this).next().slideDown("slow");
+        // });
+
+
+        $(".flip").on('click', function (e) {
+            e.preventDefault();
+            // if ($(this).next().hasClass('panel-collapsed')) {
+            //     // expand the panel
+            //     $(this).next().slideDown("fast");
+            //     $(this).next().removeClass('panel-collapsed');
+            //     // $(this).text("Click to hide comments")
+            // }
+            // else {
+            //     // collapse the panel
+            //     $(this).next().slideUp("fast");
+            //     $(this).next().addClass('panel-collapsed');
+            //     // $(this).text("Click to view comments")
+            // }
+            const clickedId = e.target.dataset.id;
+            console.log(clickedId)
+            const likeText = $(`.panel[data-id=${clickedId}]`);
+            console.log(likeText)
+
+            likeText.slideToggle("fast");
+        });
+
+    });
+
+</script>
+
+
 </body>
 </html>
