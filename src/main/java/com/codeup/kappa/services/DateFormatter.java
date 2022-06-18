@@ -13,25 +13,27 @@ public class DateFormatter {
         long diff = System.currentTimeMillis() - date.getTime();
         long hours = Math.round(diff / (60 * 60 * 1000));
 
-        if(hours < 12) {
-            return "less than a day ago";
+        if(hours == 1) {
+            return hours + " hour ago";
+        } else if(hours < 24) {
+            return hours + " hours ago";
         } else {
             long days = Math.round(diff / (24.0 * 60 * 60 * 1000));
             if (days == 0)
                 return "today";
             else if (days == 1)
                 return "yesterday";
-            else if (days == 7)
+            else if ((int) (days / 7) == 1)
                 return ((int) (days / 7)) + " week ago";
             else if (days < 14)
                 return days + " days ago";
             else if (days <= 27)
                 return ((int) (days / 7)) + " weeks ago";
-            if (days == 28 || days == 29 || days == 30 || days == 31 || days == 32)
+            if ((int) (days / 30) == 1)
                 return ((int) (days / 30)) + " month ago";
             else if (days < 365)
                 return ((int) (days / 30)) + " months ago";
-            else if (days == 365)
+            else if ((int) (days / 365) == 1)
                 return ((int) (days / 365)) + " year ago";
             else
                 return ((int) (days / 365)) + " years ago";
@@ -45,7 +47,7 @@ public class DateFormatter {
         for(Date date : dates){
 
             dateStrings.add(getDate(date));
-            System.out.println("CHECK " + (getDate(date)));
+//            System.out.println("CHECK " + (getDate(date)));
         }
 
         return dateStrings;

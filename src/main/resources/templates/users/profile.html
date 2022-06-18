@@ -227,12 +227,16 @@
 <!--            <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>-->
 <!--            <p th:text="'User Id: ' + ${follower.id}"></p>-->
             <div th:if="${follower.profilePictureUrl}" class="d-flex flex-wrap flex-column">
-                <img class="profile-follower-picture" th:src="${follower.profilePictureUrl}" alt="profile-pic">
-                <a class="text-center links-text" th:text="${#strings.abbreviate(follower.username, 10)}"  th:href="'/user/' + ${follower.id}"></a>
+                <a th:href="'/user/' + ${follower.id}">
+                    <img class="profile-follower-picture" th:src="${follower.profilePictureUrl}" alt="profile-pic">
+                </a>
+                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(follower.username, 10)}"  th:href="'/user/' + ${follower.id}"></a>
             </div>
             <div th:if="!${follower.profilePictureUrl}" class="d-flex flex-wrap flex-column">
-                <img class="profile-follower-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="default-profile-picture" >
-                <a class="text-center links-text" th:text="${#strings.abbreviate(follower.username, 10)}"  th:href="'/user/' + ${follower.id}"></a>
+                <a th:href="'/user/' + ${follower.id}">
+                    <img class="profile-follower-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="default-profile-picture">
+                </a>
+                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(follower.username, 10)}"  th:href="'/user/' + ${follower.id}"></a>
             </div>
 <!--            <p th:text="${user.bio}"></p>-->
         </div>
@@ -254,12 +258,16 @@
 <!--            <p th:text="${following.username}"></p>-->
 
             <div th:if="${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">
-                <img class="profile-following-picture" th:src="${userTheyFollow.profilePictureUrl}">
-                <a class="text-center links-text" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
+                <a th:href="'/user/' + ${userTheyFollow.id}">
+                    <img class="profile-following-picture" th:src="${userTheyFollow.profilePictureUrl}">
+                </a>
+                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
             </div>
             <div th:if="!${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">
-                <img class="profile-following-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
-                <a class="text-center links-text" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
+                <a th:href="'/user/' + ${userTheyFollow.id}">
+                    <img class="profile-following-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                </a>
+                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
             </div>
         </div>
     </div>
@@ -278,8 +286,10 @@
         <div th:each="game : ${user.favoriteGames}" class="d-flex flex-wrap justify-content-evenly">
 <!--            <p th:text="${game.title}"></p>-->
             <div class="d-flex flex-wrap flex-column">
-                <img class="profile-game-picture" th:src="${game.imageUrl}">
-                <a class="text-center links-text" th:text="${#strings.abbreviate(game.title, 10)}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
+                <a th:href="'/game?gameID=' + ${game.gamesApiId}">
+                    <img class="profile-game-picture" th:src="${game.imageUrl}">
+                </a>
+                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(game.title, 10)}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
             </div>
         </div>
     </div>
@@ -412,7 +422,7 @@
                                 </div>
 
                                 <div>
-                                    <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>
+                                    <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl profile-name-c" th:data-dl="${comment.id}"></a>
 
                                     <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
                                 </div>

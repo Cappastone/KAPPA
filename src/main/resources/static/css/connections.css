@@ -6,7 +6,7 @@
 }
 
 .profile-name-c{
-    color: whitesmoke;
+    color: #b6b4b4;
     text-decoration: none;
 }
 
@@ -57,7 +57,7 @@ h3{
 }
 
 .discover-card{
-    height: 50em;
+    height: 45em;
 }
 
 .discover-title {
@@ -75,4 +75,6 @@ h3{
 .item-configuration {
 /*height: 25%; //or whatever percentage is needed*/
 overflow-y: scroll;
+    margin-left: .5em;
+    margin-right: .5em;
 }
