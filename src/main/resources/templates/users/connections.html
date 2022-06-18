@@ -6,126 +6,312 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
 
-<form action="/connections" method="get">
 
-    <input type="search" name="search-users">
-    <button type="submit">Search User</button>
+<div class="container">
 
-</form>
+    <form id="searched-user" action="/connections" method="get"></form>
+    <div>
+        <h1 style="font-weight: lighter" class="text-center my-4">My Connections</h1>
 
-<div th:if="${searchResults}">
+        <div class="d-flex flex-column">
 
-    <div th:if="${searchResults.isEmpty()}">
-        <h1>Sorry no results found!</h1>
+            <div class="row">
+
+                <div class="col-sm">
+
+                    <div class="card">
+                        <div class="card-body discover-card">
+                            <h5 class="card-title discover-title">Search for friend</h5>
+                            <div class="input-group rounded py-3">
+                                <input form="searched-user" name="search-users" type="search" class="form-control rounded" placeholder="Search">
+                                <button form="searched-user" type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+
+
+                            <div th:if="${searchResults}">
+
+                                <div th:if="${searchResults.isEmpty()}">
+                                    <h2 style="font-weight: lighter;" class="text-center my-4">Sorry no results found!</h2>
+                                </div>
+
+
+                                <div class="container my-4 d-flex flex-wrap justify-content-center">
+                                    <div th:each="search : ${searchResults}" >
+                                        <div class="mx-3 my-3">
+
+                                            <div th:if="${search.profilePictureUrl}">
+                                                <a th:href="'/user/' + ${search.id}">
+                                                    <img class="discover-pic" th:src="${search.profilePictureUrl}" >
+                                                </a>
+                                            </div>
+
+
+                                            <div th:if="!${search.profilePictureUrl}">
+                                                <a th:href="'/user/' + ${search.id}">
+                                                    <img class="discover-pic" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                                                </a>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center">
+                                                <a th:text="${#strings.abbreviate(search.username, 10)}" th:href="'/user/' + ${search.id}" class="profile-name-c"></a>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-body discover-card">
+
+                            <div th:if="${user.followers.size() != 0}">
+                                <h5 class="card-title discover-title">Followers:<span th:text="${user.followers.size()}"></span></h5>
+
+
+                                <div class="container d-flex flex-wrap justify-content-center">
+                                    <div th:each="follower : ${user.followers}" >
+                                        <div class="mx-3 my-3">
+
+                                            <div th:if="${follower.profilePictureUrl}">
+                                                <a th:href="'/user/' + ${follower.id}">
+                                                    <img class="discover-pic" th:src="${follower.profilePictureUrl}" >
+                                                </a>
+                                            </div>
+
+
+                                            <div th:if="!${follower.profilePictureUrl}">
+                                                <a th:href="'/user/' + ${follower.id}">
+                                                    <img class="discover-pic" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                                                </a>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center">
+                                                <a th:text="${#strings.abbreviate(follower.username, 10)}" th:href="'/user/' + ${follower.id}" class="profile-name-c"></a>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div th:if="${user.followers.size() == 0}" class="py-4 d-flex flex-wrap justify-content-center">
+                                <h5 class="card-title discover-title">Followers:</h5>
+                                <p class="text-center py-2">You don't have any followers, start connecting!!!</p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-body discover-card">
+
+                            <div th:if="${following.size() != 0}">
+                                <h5 class="card-title discover-title">Following:<span th:text="${following.size()}"></span></h5>
+                                <div class="container d-flex flex-wrap justify-content-center">
+                                    <div th:each="following : ${following}" >
+                                        <div class="mx-3 my-3">
+
+                                            <div th:if="${following.profilePictureUrl}">
+                                                <a th:href="'/user/' + ${following.id}">
+                                                    <img class="discover-pic" th:src="${following.profilePictureUrl}" >
+                                                </a>
+                                            </div>
+
+
+                                            <div th:if="!${following.profilePictureUrl}">
+                                                <a th:href="'/user/' + ${following.id}">
+                                                    <img class="discover-pic" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                                                </a>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center">
+                                                <a th:text="${#strings.abbreviate(following.username, 10)}" th:href="'/user/' + ${following.id}" class="profile-name-c"></a>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div th:if="${following.size() == 0}" class="py-4 d-flex flex-wrap justify-content-center">
+                                <h5 class="card-title discover-title">Following:</h5>
+                                <p class="text-center py-2">You aren't following anyone, start exploring!</p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div th:each="userTheyFollow : ${searchResults}" class="d-flex flex-wrap justify-content-evenly">
-
-        <div th:if="${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">
-            <img class="profile-following-picture" th:src="${userTheyFollow.profilePictureUrl}">
-            <a class="text-center links-text" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
-        </div>
-        <div th:if="!${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">
-            <img class="profile-following-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
-            <a class="text-center links-text" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
-        </div>
-    </div>
 
 </div>
 
 
 
-<div class="container-fluid d-flex flex-wrap pt-3">
-    <!--    display users that a logged-in user is Following-->
-    <div class="w-50">
-        <div class="container">
-            <div th:if="${following}" class="d-flex flex-column card">
-                <div th:if="${following.size() > 0}" class="d-flex flex-column">
-                    <h3 th:text="'Following: ' + ${following.size()}"></h3>
-                    <div th:each="following : ${following}" >
-                        <div class="card-body px-2 d-flex flex-wrap">
-                            <div th:if="${following.profilePictureUrl}">
-                                <a th:href="'/user/' + ${following.id}">
-                                    <img class="profile-pic-c" th:src="${following.profilePictureUrl}" >
-                                </a>
-                            </div>
 
-                            <div th:if="!${following.profilePictureUrl}">
-                                <a th:href="'/user/' + ${following.id}">
-                                    <img class="profile-pic-c" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
-                                </a>
-                            </div>
-                            <div>
-                                <a th:text="${following.username}" th:href="'/user/' + ${following.id}" class="profile-name-c"></a>
-                            </div>
 
-<!--                            <div sec:authorize="isAuthenticated()">-->
-<!--                                <div th:if="${ListUserIdsByFollowerId.contains(following.id)}">-->
-<!--                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary"><i class="fa-solid fa-heart-crack"></i></button>-->
-<!--                                </div>-->
 
-<!--                                <div th:if="${!ListUserIdsByFollowerId.contains(following.id)}">-->
-<!--                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>-->
-<!--                                </div>-->
+
+<!--<form action="/connections" method="get">-->
+
+<!--    <input type="search" name="search-users">-->
+<!--    <button type="submit">Search User</button>-->
+
+<!--</form>-->
+
+<!--<div th:if="${searchResults}">-->
+
+<!--    <div th:if="${searchResults.isEmpty()}">-->
+<!--        <h1>Sorry no results found!</h1>-->
+<!--    </div>-->
+
+<!--    <div th:each="userTheyFollow : ${searchResults}" class="d-flex flex-wrap justify-content-evenly">-->
+
+<!--        <div th:if="${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">-->
+<!--            <img class="profile-following-picture" th:src="${userTheyFollow.profilePictureUrl}">-->
+<!--            <a class="text-center links-text" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>-->
+<!--        </div>-->
+<!--        <div th:if="!${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">-->
+<!--            <img class="profile-following-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">-->
+<!--            <a class="text-center links-text" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+
+
+<!--<div class="container-fluid d-flex flex-wrap pt-3">-->
+<!--    &lt;!&ndash;    display users that a logged-in user is Following&ndash;&gt;-->
+<!--    <div class="w-50">-->
+<!--        <div class="container">-->
+<!--            <div th:if="${following}" class="d-flex flex-column card">-->
+<!--                <div th:if="${following.size() > 0}" class="d-flex flex-column">-->
+<!--                    <h3 th:text="'Following: ' + ${following.size()}"></h3>-->
+<!--                    <div th:each="following : ${following}" >-->
+<!--                        <div class="card-body px-2 d-flex flex-wrap">-->
+<!--                            <div th:if="${following.profilePictureUrl}">-->
+<!--                                <a th:href="'/user/' + ${following.id}">-->
+<!--                                    <img class="profile-pic-c" th:src="${following.profilePictureUrl}" >-->
+<!--                                </a>-->
 <!--                            </div>-->
-<!--                            <div sec:authorize="!isAuthenticated()">-->
-<!--                                <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>-->
+
+<!--                            <div th:if="!${following.profilePictureUrl}">-->
+<!--                                <a th:href="'/user/' + ${following.id}">-->
+<!--                                    <img class="profile-pic-c" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <a th:text="${following.username}" th:href="'/user/' + ${following.id}" class="profile-name-c"></a>-->
 <!--                            </div>-->
 
-                        </div>
-                    </div>
-                </div>
-                <div th:if="${following.size() == 0}" class="card w-100">
-                    <p>You aren't following anyone, start exploring!</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--&lt;!&ndash;                            <div sec:authorize="isAuthenticated()">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div th:if="${ListUserIdsByFollowerId.contains(following.id)}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary"><i class="fa-solid fa-heart-crack"></i></button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
 
-    <!--    display logged-in user's Follower info-->
-    <div class="w-50">
-        <div class="container">
-            <div th:if="${user.followers.size() > 0}" class="d-flex flex-column">
-                <div class="card w-100">
-                    <h3 th:text="'Followers: ' + ${user.followers.size()}"></h3>
-                    <div th:each="follower : ${user.followers}" class="">
-                        <div class="card-body px-2 d-flex flex-wrap">
-                            <div th:if="${follower.profilePictureUrl}">
-                                <a th:href="'/user/' + ${follower.id}">
-                                    <img class="profile-pic-c" th:src="${follower.profilePictureUrl}" th:href="'/user/' + ${follower.id}">
-                                </a>
-                            </div>
-                            <div th:if="!${follower.profilePictureUrl}">
-                                <a th:href="'/user/' + ${follower.id}">
-                                    <img class="profile-pic-c"  src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
-                                </a>
-                            </div>
-                            <div>
-                                <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}" class="profile-name-c"></a>
-                            </div>
+<!--&lt;!&ndash;                                <div th:if="${!ListUserIdsByFollowerId.contains(following.id)}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <button th:data="${following.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div sec:authorize="!isAuthenticated()">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
 
-                    <!--        <div sec:authorize="isAuthenticated()">-->
-                    <!--            <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">-->
-                    <!--                <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Follow</button>-->
-                    <!--            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div th:if="${following.size() == 0}" class="card w-100">-->
+<!--                    <p>You aren't following anyone, start exploring!</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-                    <!--            <div th:if="${!ListUserIdsByFollowerId.contains(user.id)}">-->
-                    <!--                <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>-->
-                    <!--            </div>-->
-                    <!--        </div>-->
-                    <!--        <div sec:authorize="!isAuthenticated()">-->
-                    <!--            <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>-->
-                    <!--        </div>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div th:if="${user.followers.size() == 0}" class="d-flex flex-wrap">
-                <p>You don't have any followers, start connecting!</p>
-            </div>
-        </div>
-    </div>
-</div>
+<!--    &lt;!&ndash;    display logged-in user's Follower info&ndash;&gt;-->
+<!--    <div class="w-50">-->
+<!--        <div class="container">-->
+<!--            <div th:if="${user.followers.size() > 0}" class="d-flex flex-column">-->
+<!--                <div class="card w-100">-->
+<!--                    <h3 th:text="'Followers: ' + ${user.followers.size()}"></h3>-->
+<!--                    <div th:each="follower : ${user.followers}" class="">-->
+<!--                        <div class="card-body px-2 d-flex flex-wrap">-->
+<!--                            <div th:if="${follower.profilePictureUrl}">-->
+<!--                                <a th:href="'/user/' + ${follower.id}">-->
+<!--                                    <img class="profile-pic-c" th:src="${follower.profilePictureUrl}" th:href="'/user/' + ${follower.id}">-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div th:if="!${follower.profilePictureUrl}">-->
+<!--                                <a th:href="'/user/' + ${follower.id}">-->
+<!--                                    <img class="profile-pic-c"  src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}" class="profile-name-c"></a>-->
+<!--                            </div>-->
+
+<!--                    &lt;!&ndash;        <div sec:authorize="isAuthenticated()">&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Follow</button>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--                    &lt;!&ndash;            <div th:if="${!ListUserIdsByFollowerId.contains(user.id)}">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>&ndash;&gt;-->
+<!--                    &lt;!&ndash;            </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;        <div sec:authorize="!isAuthenticated()">&ndash;&gt;-->
+<!--                    &lt;!&ndash;            <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>&ndash;&gt;-->
+<!--                    &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div th:if="${user.followers.size() == 0}" class="d-flex flex-wrap">-->
+<!--                <p>You don't have any followers, start connecting!</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <!--partials needed on every page-->
 <footer th:replace="partials/partials.html :: footer"></footer>

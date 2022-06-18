@@ -190,8 +190,8 @@ function followUser(values) {
         body: JSON.stringify(data),
     };
 
-    fetch(gamerHaven + 'follow-user', readOption)
-        // fetch(url, readOption)
+    // fetch(gamerHaven + 'follow-user', readOption)
+        fetch(url, readOption)
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
