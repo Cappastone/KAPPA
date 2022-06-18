@@ -5,8 +5,6 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-
-
 <div class="container">
 
     <form id="searched-user" action="/connections" method="get"></form>
@@ -21,9 +19,9 @@
 
                     <div class="card">
                         <div class="card-body discover-card item-configuration">
-                            <h5 class="card-title discover-title">Search for friend</h5>
+                            <h5 class="card-title discover-title">Find a friend</h5>
                             <div class="input-group rounded py-3">
-                                <input form="searched-user" name="search-users" type="search" class="form-control rounded" placeholder="Search">
+                                <input form="searched-user" name="search-users" type="search" class="form-control rounded" placeholder="Search Username">
                                 <button form="searched-user" type="submit" class="btn btn-primary">
                                     <i class="fas fa-search"></i>
                                 </button>

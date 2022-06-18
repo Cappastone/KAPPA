@@ -50,10 +50,14 @@
 
                 <div class="d-flex w-100 ">
                     <div th:if="${user.profilePictureUrl}">
-                        <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${user.profilePictureUrl}">
+                        <a th:href="'/user/' + ${user.id}">
+                            <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${user.profilePictureUrl}">
+                        </a>
                     </div>
                     <div th:if="!${user.profilePictureUrl}">
-                        <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                        <a th:href="'/user/' + ${user.id}">
+                            <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                        </a>
                     </div>
 
                     <textarea type="input" th:field="*{body}" class="w-100 px-5 mx-5"></textarea>
@@ -107,10 +111,14 @@
                 <div class="d-flex w-100">
 
                     <div th:if="${post.user.profilePictureUrl}">
-                        <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${post.user.profilePictureUrl}">
+                        <a th:href="'/user/' + ${post.user.id}">
+                            <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${post.user.profilePictureUrl}">
+                        </a>
                     </div>
                     <div th:if="!${post.user.profilePictureUrl}">
-                        <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                        <a th:href="'/user/' + ${user.id}">
+                            <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                        </a>
                     </div>
 
                     <p class="card-text ps-5 pt-2" th:text="${post.body}"></p>
@@ -123,7 +131,7 @@
                         <div class="d-flex main-feed-username" >
                             <p class="card-text"><small class="text-muted pe-1"> Posted by:</small></p>
 
-                            <a th:text="${#strings.abbreviate(post.user.username, 10)}" th:href="'/user/' + ${post.user.id}"></a>
+                            <a th:text="${#strings.abbreviate(post.user.username, 10)}" th:href="'/user/' + ${post.user.id}" class="profile-name-c"></a>
                         </div>
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${post.getUser().id == sessionUserId}">
@@ -137,7 +145,7 @@
 
                     <div class="d-flex flip" style="cursor: pointer">
                         <div>
-                            <button class="flip2 btn btn-dark" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>Click to view comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
+                            <button class="flip2 btn btn-dark" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
                         </div>
                         <!--                            <div>-->
                         <!--                                <p><span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span></p>-->
@@ -182,7 +190,7 @@
                             </div>
 
                             <div>
-                                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>
+                                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl profile-name-c" th:data-dl="${comment.id}"></a>
 
                                 <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
                             </div>

@@ -14,3 +14,7 @@
 
     /*box-shadow: rgba(88, 40, 211, 0.56) 0px 22px 70px 4px;*/
 }
+
+.dropdown-item {
+    cursor: pointer;
+}
