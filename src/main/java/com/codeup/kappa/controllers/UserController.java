@@ -107,9 +107,7 @@ public class UserController {
 
 //    REFERENCE
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute User user, BindingResult result
-//            , @RequestParam("password") String pv
-    ) {
+    public String saveUser(@ModelAttribute User user, BindingResult result, @RequestParam(name = "confirm") String confirm) {
 
         String username = user.getUsername();
         String email = user.getEmail();
@@ -126,9 +124,15 @@ public class UserController {
             result.rejectValue("password", "user.password", "Password must be at least 6 characters!");
         }
 
-//        if (!pv.equals(user.getPassword())) {
-//            result.rejectValue("password", "user.password", "Passwords do not match!");
-//        }
+        if (user.getUsername().length() < 3) {
+            result.rejectValue("username", "user.username", "Username is too short!");
+        }
+
+        if (!user.getPassword().equals(confirm)) {
+            result.rejectValue("password", "user.password", "Passwords do not match!");
+        }
+
+
 
         if (result.hasErrors()) {
             return "users/register";
