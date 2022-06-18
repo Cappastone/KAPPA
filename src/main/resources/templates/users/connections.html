@@ -20,7 +20,7 @@
                 <div class="col-sm">
 
                     <div class="card">
-                        <div class="card-body discover-card">
+                        <div class="card-body discover-card item-configuration">
                             <h5 class="card-title discover-title">Search for friend</h5>
                             <div class="input-group rounded py-3">
                                 <input form="searched-user" name="search-users" type="search" class="form-control rounded" placeholder="Search">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-sm">
                     <div class="card">
-                        <div class="card-body discover-card">
+                        <div class="card-body discover-card item-configuration">
 
                             <div th:if="${user.followers.size() != 0}">
                                 <h5 class="card-title discover-title">Followers:<span th:text="${user.followers.size()}"></span></h5>
@@ -134,7 +134,7 @@
                 </div>
                 <div class="col-sm">
                     <div class="card">
-                        <div class="card-body discover-card">
+                        <div class="card-body discover-card item-configuration">
 
                             <div th:if="${following.size() != 0}">
                                 <h5 class="card-title discover-title">Following:<span th:text="${following.size()}"></span></h5>
