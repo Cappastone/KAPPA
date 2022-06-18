@@ -71,3 +71,8 @@ h3{
     object-fit: cover;
     border-radius: 10px;
 }
+
+.item-configuration {
+/*height: 25%; //or whatever percentage is needed*/
+overflow-y: scroll;
+}
