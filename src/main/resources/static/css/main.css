@@ -174,3 +174,12 @@ font-size: small;
     color: #b6b4b4;
     text-decoration: none;
 }
+
+button {
+    border-radius: 10px!important;
+    transition: all .3s ease-in-out;
+}
+button:hover {
+    transform: scale(1.1);
+    z-index: +1;
+}
