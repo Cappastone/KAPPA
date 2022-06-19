@@ -13,17 +13,17 @@
     <div th:each="game : ${games}" class="justify-content-center d-flex">
 
         <div class="game-card justify-content-center d-flex col">
-            <div class="card mt-3 me-3" style="width: 18rem; height: 19rem">
+            <div class="card fav-game-card mt-3 me-3" style="width: 18rem; height: 22rem">
                 <a th:href="'/game?gameID=' + ${game.gamesApiId}">
-                    <img class="card-img-top" style="height: 10rem" th:src="${game.getImageUrl()}">
+                    <img class="card-img-top" style="height: 13rem" th:src="${game.getImageUrl()}">
                 </a>
                 <div class="card-body card-txt-bottom d-flex flex-column justify-content-between">
                     <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" th:data-id="${game.getGamesApiId()}"><span th:text="${game.getTitle()}"></span></h4>
                         <div  th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
-                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary"><i class="fa-solid fa-star"></i></button>
+                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary"><i>&#11088;</i></button>
                         </div>
                         <div class="d-flex" th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">
-                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary"><i class="fa-regular fa-star"></i></button>
+                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary"><i>&#11088;</i></button>
                         </div>
 <!--                    </div>-->
                     </div>
