@@ -89,6 +89,7 @@
     object-fit: cover;
     border-radius: 10px;
     margin: 10px;
+    transition: all .2s ease-in-out;
 }
 
 .profile-following-picture {
@@ -97,6 +98,7 @@
     object-fit: cover;
     border-radius: 10px;
     margin: 10px;
+    transition: all .2s ease-in-out;
 }
 
 .profile-game-picture {
@@ -105,6 +107,7 @@
     object-fit: cover;
     border-radius: 10px;
     margin: 10px;
+    transition: all .2s ease-in-out;
 }
 
 .profile-links {
@@ -135,4 +138,23 @@
 .main-feed-username {
     position: relative;
     right: 1.5em;
+}
+
+
+
+
+.profile-follower-picture:hover {
+    transform: scale(1.2);
+    z-index: +1;
+}
+
+
+.profile-following-picture:hover {
+    transform: scale(1.2);
+    z-index: +1;
+}
+
+.profile-game-picture:hover {
+    transform: scale(1.2);
+    z-index: +1;
 }
