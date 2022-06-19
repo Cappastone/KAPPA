@@ -136,3 +136,26 @@ body {
     padding-left: 10px;
     font-weight: lighter;
 }
+
+input {
+    opacity: 85%;
+}
+
+textarea {
+    opacity: 85%;
+}
+
+@media screen and (max-width: 992px) {
+
+    .act-input {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 992px) {
+
+    .act-width {
+        width: 100% !important;
+    }
+}

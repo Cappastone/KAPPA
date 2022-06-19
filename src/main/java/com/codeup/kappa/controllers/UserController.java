@@ -166,64 +166,167 @@ public class UserController {
         return "users/account";
     }
 
+
+
+
+
+
+
+
+
 //    WORK IN PROGRESS
     @PostMapping("/edit-user")
     public String editUser(
 //            @RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "id") long id,
-            @ModelAttribute("user") User user,
-            BindingResult result) {
+            @ModelAttribute("user") User user) {
 
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = sessionUser.getId();
 
         User user2 = userDao.getById(id);
 
-        if (user.getUsername().length() > 2) {
+        if (user.getUsername().length() < 3) {
+            return "redirect:/user/account?user_invalid";
+        } else {
             user2.setUsername(user.getUsername());
-        } else {
-            return "redirect:/user/account";
         }
-//            result.rejectValue("username", "user.username", "This username is too short!");
-//        }
 
-        if (user.getEmail().length() > 10) {
-            user2.setEmail(user.getEmail());
+        if (user.getUsername().length() > 15) {
+            return "redirect:/user/account?user_invalid2";
         } else {
-            return "redirect:/user/account";
+            user2.setUsername(user.getUsername());
         }
-//            result.rejectValue("email", "user.email", "This email is too short!");
-//        }
 
-//        if (result.hasErrors()) {
-//            return "users/account";
-//        }
+
+        if (userDao.existsByUsername(user.getUsername())) {
+            return "redirect:/user/account?user_exists";
+        } else {
+            user2.setUsername(user.getUsername());
+        }
+
 
         userDao.save(user2);
 
-        return "redirect:/user/account";
+        return "redirect:/user/account?user_success";
     }
 
-    //    Change Password //
-    @PostMapping("edit-password")
-    public String editPassword(@RequestParam(name = "oldPassword") String oldPassword, @RequestParam(name = "newPassword") String newPassword, @RequestParam(name = "id") long id, HttpSession session) {
 
-        String message;
-        message = "Please enter correct current password";
-        User user = userDao.getById(id);
 
-        if (newPassword.length() < 5){
-            return "redirect:/user/account";
-        }
 
-        if (this.passwordEncoder.matches(oldPassword, user.getPassword())) {
-            user.setPassword(passwordEncoder.encode(newPassword));
-            userDao.save(user);
+
+
+
+
+    @PostMapping("/edit-email")
+    public String editEmail(@ModelAttribute("user") User user) {
+
+        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = sessionUser.getId();
+
+        User user2 = userDao.getById(id);
+
+
+        if (userDao.existsByEmail(user.getEmail())) {
+            return "redirect:/user/account?email_exists";
         } else {
-            session.setAttribute("message", message);
+            user2.setEmail(user.getEmail());
         }
 
-        return "redirect:/user/" + user.getId();
+
+        userDao.save(user2);
+
+        return "redirect:/user/account?email_success";
     }
+
+
+
+
+
+
+
+
+    @PostMapping("/edit-firstname")
+    public String editFirstName(@ModelAttribute("user") User user) {
+
+        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = sessionUser.getId();
+        User user2 = userDao.getById(id);
+        user2.setFirstName(user.getFirstName());
+        userDao.save(user2);
+
+        return "redirect:/user/account?fn_success";
+    }
+
+    @PostMapping("/edit-lastname")
+    public String editLastName(@ModelAttribute("user") User user) {
+
+        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = sessionUser.getId();
+        User user2 = userDao.getById(id);
+        user2.setLastName(user.getLastName());
+        userDao.save(user2);
+
+        return "redirect:/user/account?ln_success";
+    }
+
+
+
+
+
+    @PostMapping("edit-password")
+    public String editPassword(@RequestParam(name = "password") String oldPassword, @RequestParam(name = "new-password") String newPassword) {
+
+        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = sessionUser.getId();
+        User user2 = userDao.getById(id);
+
+        if (!passwordEncoder.matches(oldPassword, user2.getPassword())){
+            return "redirect:/user/account?ps_invalid";
+        } else {
+            user2.setPassword(passwordEncoder.encode(newPassword));
+        }
+
+        if (newPassword.length() < 6){
+            return "redirect:/user/account?ps_error";
+        } else {
+            user2.setPassword(passwordEncoder.encode(newPassword));
+        }
+
+        userDao.save(user2);
+
+        return "redirect:/user/account?ps_success" ;
+    }
+
+
+
+
+
+
+
+
+
+
+//    //    Change Password //
+//    @PostMapping("edit-password")
+//    public String editPassword(@RequestParam(name = "password") String oldPassword, @RequestParam(name = "confirm") String newPassword, @RequestParam(name = "id") long id, HttpSession session) {
+//
+//        String message;
+//        message = "Please enter correct current password";
+//        User user = userDao.getById(id);
+//
+//        if (newPassword.length() < 5){
+//            return "redirect:/user/account";
+//        }
+//
+//        if (this.passwordEncoder.matches(oldPassword, user.getPassword())) {
+//            user.setPassword(passwordEncoder.encode(newPassword));
+//            userDao.save(user);
+//        } else {
+//            session.setAttribute("message", message);
+//        }
+//
+//        return "redirect:/user/" + user.getId();
+//    }
 
 //    @PostMapping("/edit-bio")
 //    public String editBio(@RequestParam(name = "bio") String bio, @RequestParam(name = "id") long id) {
