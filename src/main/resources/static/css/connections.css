@@ -73,8 +73,8 @@ h3{
 }
 
 .item-configuration {
-/*height: 25%; //or whatever percentage is needed*/
-overflow-y: scroll;
+    /*height: 25%; //or whatever percentage is needed*/
+    overflow-y: scroll;
     margin-left: .5em;
     margin-right: .5em;
 }
