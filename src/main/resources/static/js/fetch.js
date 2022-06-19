@@ -280,9 +280,11 @@ $('.follow-btn').on('click', function (e) {
     if (array[1] !== -1) {
         if ($(this).hasClass('btn-secondary')) {
             $(this).removeClass('btn-secondary').addClass('btn-primary')
+            $(this).text('Following')
             followUser(array);
         } else if ($(this).hasClass('btn-primary')) {
             $(this).removeClass('btn-primary').addClass('btn-secondary')
+            $(this).text('Follow')
             unFollowUser(array)
         }
     }
