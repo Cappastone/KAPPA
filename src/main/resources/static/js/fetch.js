@@ -346,7 +346,7 @@ function deleteComment(values) {
 
 
 const addComment = (id, user, body) => {
-    return `<div><a href="/user/ + ${id}">${user}</a>
+    return `<div><a class="profile-name-c" href="/user/ + ${id}">${user}</a>
                 <p>${body}</p></div>`
 }
 
