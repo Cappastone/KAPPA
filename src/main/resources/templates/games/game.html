@@ -104,13 +104,17 @@
                 <div class="d-flex justify-content-around flex-wrap">
                     <div th:each="user : ${game.users}">
                         <div th:if="${user.profilePictureUrl}" class="d-flex flex-wrap flex-column">
-                            <img th:src="${user.profilePictureUrl}" class="profile-following-picture" alt="profile-pic">
-                            <a class="text-center links-text"  th:text="${#strings.abbreviate(user.username, 10)}"
+                            <a th:href="'user/' + ${user.id}">
+                                <img th:src="${user.profilePictureUrl}" class="profile-following-picture" alt="profile-pic">
+                            </a>
+                            <a class="text-center links-text profile-name-c"  th:text="${#strings.abbreviate(user.username, 10)}"
                                th:href="'user/' + ${user.id}"></a>
                         </div>
                         <div th:if="!${user.profilePictureUrl}" class="d-flex flex-column">
-                            <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" class="profile-following-picture" alt="profile-picture">
-                            <a class="text-center links-text" th:text="${#strings.abbreviate(user.username, 10)}"
+                            <a th:href="'user/' + ${user.id}">
+                                <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" class="profile-following-picture" alt="profile-picture">
+                            </a>
+                            <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(user.username, 10)}"
                                th:href="'user/' + ${user.id}"></a>
                         </div>
                     </div>

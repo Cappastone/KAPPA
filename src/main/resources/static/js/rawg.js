@@ -232,7 +232,7 @@ function searcher(GameID) {
 const mapEleToDiv = (results) => `
            <div class="game-card py-2 px-2">
                 <div class="card" style="width: 18rem">
-                    <img class="card-img-top card-img-top" src="${results.background_image}">
+                    <img class="card-img-top card-img-top" style="cursor: pointer;" src="${results.background_image}" onclick="gameRedirect(this)" data-id="${results.id}">
                 <div class="card-body card-txt-bottom">
                     <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" data-id="${results.id}">${results.name}</h4>
                 </div>
