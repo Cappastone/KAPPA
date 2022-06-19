@@ -14,7 +14,9 @@
 
         <div class="game-card justify-content-center d-flex col">
             <div class="card mt-3 me-3" style="width: 18rem; height: 19rem">
-                <img class="card-img-top" style="height: 10rem" th:src="${game.getImageUrl()}">
+                <a th:href="'/game?gameID=' + ${game.gamesApiId}">
+                    <img class="card-img-top" style="height: 10rem" th:src="${game.getImageUrl()}">
+                </a>
                 <div class="card-body card-txt-bottom d-flex flex-column justify-content-between">
                     <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" th:data-id="${game.getGamesApiId()}"><span th:text="${game.getTitle()}"></span></h4>
                         <div  th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">

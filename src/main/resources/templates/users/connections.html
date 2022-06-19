@@ -78,7 +78,7 @@
                         <div class="card-body discover-card item-configuration">
 
                             <div th:if="${user.followers.size() != 0}">
-                                <h5 class="card-title discover-title">Followers:<span th:text="${user.followers.size()}"></span></h5>
+                                <h5 class="card-title discover-title">Followers: <span th:text="${user.followers.size()}"></span></h5>
 
 
                                 <div class="container d-flex flex-wrap justify-content-center">
@@ -110,8 +110,8 @@
 
 
                             <div th:if="${user.followers.size() == 0}" class="py-4 d-flex flex-wrap justify-content-center">
-                                <h5 class="card-title discover-title">Followers:</h5>
-                                <p class="text-center py-2">You don't have any followers, start connecting!!!</p>
+                                <h5 class="card-title discover-title">Followers: </h5>
+                                <p class="text-center py-2">You don't have any followers, start connecting!</p>
                             </div>
 
 
