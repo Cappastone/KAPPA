@@ -1,4 +1,4 @@
-/*img cara is a class the carasel on the discover page*/
+/*img cara is a class the carousel on the discover page*/
 .img-cara {
     height: 35vw;
     width: 80vw;
@@ -158,4 +158,19 @@ textarea {
     .act-width {
         width: 100% !important;
     }
+}
+
+#footer {
+    bottom: 0;
+    color: #707070;
+    height: 2em;
+    left: 0;
+    position: relative; //changed to relative from fixed also works if position is not there
+font-size: small;
+    width:100%;
+}
+
+.footer-text{
+    color: #b6b4b4;
+    text-decoration: none;
 }
