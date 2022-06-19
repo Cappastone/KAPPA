@@ -94,6 +94,19 @@ body {
     margin-right: auto;
 }
 
+.game-title:hover {
+    color: blue;
+}
+
+.fav-game-card {
+    transition: all .3s ease-in-out;
+}
+
+.fav-game-card:hover {
+    transform: scale(1.1);
+    z-index: +1;
+}
+
 .favorite-icon {
 
 }

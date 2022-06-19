@@ -40,7 +40,7 @@
         <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}" class="w-100 d-flex justify-content-between pb-2">
             <div class="w-75">
                 <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">
-                    <i class="fa-solid fa-star"></i>
+                    <i>&#11088;</i>
                 </button>
             </div>
             <div class="w-25">
@@ -51,7 +51,7 @@
         <div th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}" class="w-100 d-flex justify-content-between pb-2">
             <div class="w-75">
                 <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">
-                    <i class="fa-solid fa-star"></i>
+                    <i>&#11088;</i>
                 </button>
             </div>
             <div class="w-25">
@@ -64,7 +64,7 @@
         <div class="w-100 d-flex justify-content-between pb-2">
             <div class="w-75">
                 <button onclick="redirectToLogin()" class="btn btn-danger">
-                    <i class="fa-solid fa-star"></i>
+                    <i>&#11088;</i>
                 </button>
             </div>
             <div class="w-25">
