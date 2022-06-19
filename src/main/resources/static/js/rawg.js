@@ -229,13 +229,39 @@ function searcher(GameID) {
 }
 
 
+// const mapEleToDiv = (results) => `
+//            <div class="game-card py-2 px-2">
+//                 <div class="card" style="width: 18rem">
+//                     <img class="card-img-top card-img-top" style="cursor: pointer;" src="${results.background_image}" onclick="gameRedirect(this)" data-id="${results.id}">
+//                 <div class="card-body card-txt-bottom">
+//                     <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" data-id="${results.id}">${results.name}</h4>
+//                 </div>
+//                 </div>
+//             </div>`;
+
+
+
+
+
+
+function nullResults(results) {
+    if (results.released == null) {
+        return "N/A"
+    } else {
+        return results.released;
+    }
+}
+
 const mapEleToDiv = (results) => `
            <div class="game-card py-2 px-2">
-                <div class="card" style="width: 18rem">
-                    <img class="card-img-top card-img-top" style="cursor: pointer;" src="${results.background_image}" onclick="gameRedirect(this)" data-id="${results.id}">
-                <div class="card-body card-txt-bottom">
-                    <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" data-id="${results.id}">${results.name}</h4>
-                </div>
+                <div class="card searched-game" style="width: 18rem" onclick="gameRedirect(this)" data-id="${results.id}">
+                    <img class="card-img-top card-img-top" style="cursor: pointer;" src="${results.background_image}">
+                    <div class="card-body card-txt-bottom">
+                        <h4 class="game-title" id="game-title">${results.name}</h4>
+                    </div>
+                    <div>
+                        <h6 class="text-muted text-center">(${nullResults(results).substr(0, 4)})</h6>
+                    </div>
                 </div>
             </div>`;
 
@@ -254,6 +280,9 @@ function stringSearch(GameString) {
         }
     };
     $.ajax(searchString).done(function (data) {
+
+
+
         console.log(data);
         const test = data.results.map(mapEleToDiv);
         $('#search-results').html(test);
