@@ -203,7 +203,7 @@
 
     <div sec:authorize="isAuthenticated()">
         <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">
-            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Follow</button>
+            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Following</button>
         </div>
 
         <div th:if="${!ListUserIdsByFollowerId.contains(user.id)}">
