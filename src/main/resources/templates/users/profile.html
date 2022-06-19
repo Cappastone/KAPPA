@@ -13,15 +13,15 @@
     <div class="top-profile container d-flex flex-column justify-content-end">
 <!--    <p th:text="${user.username} + ' \'s profile'"></p>-->
 
-        <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
+<!--        <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>-->
     <!--    <p th:text="${user.username}"></p>-->
 
         <div th:if="${user.bannerUrl}" class="banner-container">
-            <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%;" th:src="${user.bannerUrl}" alt="banner-picture">
+            <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;" th:src="${user.bannerUrl}" alt="banner-picture">
         </div>
 
         <div th:if="!${user.bannerUrl}" class="banner-container">
-            <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%;" src="https://i0.wp.com/kpsu.org/wp-content/uploads/2017/02/Perfect-Universe-poster-galaxy-planet-outer-space-Purple-landscape-poster-Wide-Wallpaper-silk-Art-Home-Deco.jpg?ssl=1" alt="banner-picture">
+            <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;" src="https://i0.wp.com/kpsu.org/wp-content/uploads/2017/02/Perfect-Universe-poster-galaxy-planet-outer-space-Purple-landscape-poster-Wide-Wallpaper-silk-Art-Home-Deco.jpg?ssl=1" alt="banner-picture">
         </div>
 
 
@@ -72,24 +72,46 @@
 
                     <div th:if="${user.links}" class="profile-links">
                         <div th:if="!${user.links.discord.isBlank()}">
-                            <p class="links-text" th:text="'Discord: ' + ${user.links.discord}"></p>
+                            <p>Discord: <span class="links-text" th:text="${user.links.discord}"></span></p>
                         </div>
                         <div th:if="!${user.links.nintendo.isBlank()}">
-                            <p class="links-text" th:text="'Nintendo: ' + ${user.links.nintendo}"></p>
+                            <p>Nintendo: <span class="links-text" th:text="${user.links.nintendo}"></span></p>
                         </div>
                         <div th:if="!${user.links.playstation.isBlank()}">
-                            <p class="links-text" th:text="'Playstation: ' + ${user.links.playstation}"></p>
+                            <p>Playstation: <span class="links-text" th:text="${user.links.playstation}"></span></p>
                         </div>
                         <div th:if="!${user.links.twitch.isBlank()}">
-                            <p class="links-text" th:text="'Twitch: ' + ${user.links.twitch}"></p>
+                            <p>Twitch: <span class="links-text" th:text="${user.links.twitch}"></span></p>
                         </div>
                         <div th:if="!${user.links.xbox.isBlank()}">
-                            <p class="links-text" th:text="'Xbox: ' + ${user.links.xbox}"></p>
+                            <p>Xbox: <span class="links-text" th:text="${user.links.xbox}"></span></p>
                         </div>
                         <div th:if="!${user.links.youtube.isBlank()}">
-                            <p class="links-text" th:text="'YouTube: ' + ${user.links.youtube}"></p>
+                            <p>Youtube: <span class="links-text" th:text="${user.links.youtube}"></span></p>
                         </div>
                     </div>
+
+
+<!--                    <div th:if="${user.links}" class="profile-links">-->
+<!--                        <div th:if="!${user.links.discord.isBlank()}">-->
+<!--                            <p class="links-text" th:text="'Discord: ' + ${user.links.discord}"></p>-->
+<!--                        </div>-->
+<!--                        <div th:if="!${user.links.nintendo.isBlank()}">-->
+<!--                            <p class="links-text" th:text="'Nintendo: ' + ${user.links.nintendo}"></p>-->
+<!--                        </div>-->
+<!--                        <div th:if="!${user.links.playstation.isBlank()}">-->
+<!--                            <p class="links-text" th:text="'Playstation: ' + ${user.links.playstation}"></p>-->
+<!--                        </div>-->
+<!--                        <div th:if="!${user.links.twitch.isBlank()}">-->
+<!--                            <p class="links-text" th:text="'Twitch: ' + ${user.links.twitch}"></p>-->
+<!--                        </div>-->
+<!--                        <div th:if="!${user.links.xbox.isBlank()}">-->
+<!--                            <p class="links-text" th:text="'Xbox: ' + ${user.links.xbox}"></p>-->
+<!--                        </div>-->
+<!--                        <div th:if="!${user.links.youtube.isBlank()}">-->
+<!--                            <p class="links-text" th:text="'YouTube: ' + ${user.links.youtube}"></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
 <!--                    <div th:if="${user.bio == null}" class="profile-bio card null-bio">-->
                     <div class="profile-bio card">
@@ -348,7 +370,7 @@
 <!--    </div>-->
 
 <!--    <hr>-->
-
+    <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
 <!--    display all the Posts that the logged-in user has created-->
     <div th:if="${posts}">
         <div th:each="post : ${posts}">
