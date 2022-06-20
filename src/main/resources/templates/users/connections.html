@@ -135,7 +135,7 @@
                         <div class="card-body discover-card item-configuration">
 
                             <div th:if="${following.size() != 0}">
-                                <h5 class="card-title discover-title">Following:<span th:text="${following.size()}"></span></h5>
+                                <h5 class="card-title discover-title">Following: <span th:text="${following.size()}"></span></h5>
                                 <div class="container d-flex flex-wrap justify-content-center">
                                     <div th:each="following : ${following}" >
                                         <div class="mx-3 my-3">
