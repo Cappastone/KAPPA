@@ -51,17 +51,17 @@
 
                 </div>
 
-                <div class="d-flex justify-content-between align-items-end">
+                <div class="d-flex justify-content-between align-items-end mt-2">
                     <div>
 
-                        <div class="d-flex main-feed-username" >
-                            <p class="card-text"><small class="text-muted pe-1"> Posted by:</small></p>
+                        <div class="d-flex flex-column main-feed-username" >
+                            <p class="card-text mb-0"><small class="text-muted pe-1"> Posted by:</small></p>
 
                             <a th:text="${#strings.abbreviate(post.user.username, 10)}" th:href="'/user/' + ${post.user.id}" class="profile-name-c"></a>
                         </div>
-                        <div sec:authorize="isAuthenticated()">
+                        <div sec:authorize="isAuthenticated()" class="mt-2">
                             <div th:if="${post.getUser().id == sessionUserId}">
-                                <button name="edit" th:data-id="${post.id}" class="edit btn btn-dark"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button name="edit" th:data-id="${post.id}" class="edit btn btn-outline-light py-1 px-2"><i class="fa-solid fa-pen-to-square"></i></button>
                             </div>
                         </div>
 
@@ -71,7 +71,7 @@
 
                     <div class="d-flex flip" style="cursor: pointer">
                         <div>
-                            <button class="flip2 btn btn-dark" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
+                            <button class="flip2 btn btn-outline-light" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
                         </div>
                         <!--                            <div>-->
                         <!--                                <p><span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span></p>-->
@@ -86,14 +86,14 @@
 
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">&#128077;</button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-purple">&#128077;</button>
                             </div>
                             <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">&#128077;</button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-outline-light">&#128077;</button>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
-                            <button onclick="redirectToLogin()" class="btn btn-danger">&#128077;</button>
+                            <button onclick="redirectToLogin()" class="btn btn-outline-light">&#128077;</button>
                         </div>
 
 
@@ -142,12 +142,12 @@
 
                     <div sec:authorize="isAuthenticated()">
                         <div class="w-100 d-flex justify-content-end">
-                            <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-secondary" th:data-id="${post.id}">Post Comment</button>
+                            <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-outline-light" th:data-id="${post.id}">Post Comment</button>
                         </div>
                     </div>
                     <div sec:authorize="!isAuthenticated()">
                         <div class="w-100 d-flex justify-content-end">
-                            <button class="post-comment-btn btn btn-secondary" onclick="redirectToLogin()">Post Comment</button>
+                            <button class="post-comment-btn btn btn-outline-light" onclick="redirectToLogin()">Post Comment</button>
                         </div>
                     </div>
                 </div>
