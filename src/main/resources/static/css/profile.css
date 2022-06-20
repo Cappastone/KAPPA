@@ -78,8 +78,8 @@
 }
 
 .profile-bio {
-    position: relative;
-    top: 10px;
+    /*position: relative;*/
+    /*top: 10px;*/
     max-width: 70%;
 
 }
@@ -133,6 +133,7 @@
 
 .bio-card-body {
     width: 534px;
+
 }
 
 .main-feed-username {
@@ -157,4 +158,15 @@
 .profile-game-picture:hover {
     transform: scale(1.2);
     z-index: +1;
+}
+
+.profile-following-btn {
+    position: relative;
+    bottom: 30px;
+    left: 10px;
+}
+
+.btn-purple {
+    background: rebeccapurple;
+    color: white;
 }
