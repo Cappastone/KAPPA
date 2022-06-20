@@ -39,7 +39,7 @@
     <div sec:authorize="isAuthenticated()" class="container">
         <div th:if="${ListGameIdFavoriteByUserId.contains(game.id)}" class="w-100 d-flex justify-content-between pb-2">
             <div class="w-75">
-                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">
+                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-purple">
                     &#11088;
                 </button>
             </div>
@@ -50,7 +50,7 @@
 
         <div th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}" class="w-100 d-flex justify-content-between pb-2">
             <div class="w-75">
-                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">
+                <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-outline-light">
                     &#11088;
                 </button>
             </div>
@@ -63,7 +63,7 @@
     <div sec:authorize="!isAuthenticated()" class="container">
         <div class="w-100 d-flex justify-content-between pb-2">
             <div class="w-75">
-                <button onclick="redirectToLogin()" class="btn btn-danger">
+                <button onclick="redirectToLogin()" class="btn btn-outline-light">
                     &#11088;
                 </button>
             </div>
