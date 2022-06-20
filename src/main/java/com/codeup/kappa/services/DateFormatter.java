@@ -13,7 +13,10 @@ public class DateFormatter {
         long diff = System.currentTimeMillis() - date.getTime();
         long hours = Math.round(diff / (60 * 60 * 1000));
 
-        if(hours == 1) {
+        if(hours < 1){
+            return ((int) hours / 60) + " minutes ago";
+        }
+         else if(hours == 1) {
             return hours + " hour ago";
         } else if(hours < 24) {
             return hours + " hours ago";

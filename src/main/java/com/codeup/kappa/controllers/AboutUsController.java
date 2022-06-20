@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/about")
 public class AboutUsController {
 
-    @GetMapping("/about-us")
+    @GetMapping
     public String getAboutUs() {
         return "/about/about-us";
     }
 
-    @PostMapping("/about-us")
-    public String showAboutUs() {
-        return "about/about-us";
-    }
 }
