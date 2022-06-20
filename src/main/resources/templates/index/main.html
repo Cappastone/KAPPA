@@ -164,14 +164,14 @@
 
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary"><i class="fa-solid fa-thumbs-up"></i></button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">&#128077;</button>
                             </div>
                             <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary"><i class="fa-solid fa-thumbs-up"></i></button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">&#128077;</button>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
-                            <button onclick="redirectToLogin()" class="btn btn-danger"><i class="fa-solid fa-thumbs-up"></i></button>
+                            <button onclick="redirectToLogin()" class="btn btn-danger">&#128077;</button>
                         </div>
 
 
