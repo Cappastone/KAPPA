@@ -59,7 +59,7 @@
 .profile-username {
 
     position: relative;
-    bottom: 2em;
+    bottom: 1.5em;
     left: 15px;
     font-size: 50px;
 }
@@ -137,8 +137,8 @@
 }
 
 .main-feed-username {
-    position: relative;
-    right: 1.5em;
+    /*position: relative;*/
+    /*right: 1.5em;*/
 }
 
 
