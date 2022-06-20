@@ -48,7 +48,7 @@
 
     <div class="card my-4 mx-5 px-5 pt-3">
         <div class="card-body my-2">
-            <h4 class="card-title text-center">Create A Post!</h4>
+            <h4 style="font-weight: lighter" class="card-title text-center pb-3">Create A Post!</h4>
 <!--            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
 <!--            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
             <form th:action="@{/main/create-post}" th:method="POST" th:object="${newPost}">
@@ -73,13 +73,13 @@
 
                 <div class="px-4 mx-4 mt-4">
                     <div class="w-100 d-flex justify-content-end px-5 mx-5">
-                        <button type="submit" class="btn btn-primary">Post</button>
+                        <button type="submit" class="btn btn-outline-light">Post</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="d-flex justify-content-center">
-            <button type="button" class="upload-picture btn btn-dark">Upload Picture</button>
+            <button type="button" class="upload-picture btn btn-outline-light">Upload Picture</button>
         </div>
         <div id="img-output" class="py-3 d-flex justify-content-evenly"></div>
 
@@ -130,17 +130,17 @@
 
                 </div>
 
-                <div class="d-flex justify-content-between align-items-end">
+                <div class="d-flex justify-content-between align-items-end mt-2">
                     <div>
 
-                        <div class="d-flex main-feed-username" >
-                            <p class="card-text"><small class="text-muted pe-1"> Posted by:</small></p>
+                        <div class="d-flex flex-column main-feed-username" >
+                            <p class="card-text mb-0"><small class="text-muted pe-1"> Posted by:</small></p>
 
                             <a th:text="${#strings.abbreviate(post.user.username, 10)}" th:href="'/user/' + ${post.user.id}" class="profile-name-c"></a>
                         </div>
-                        <div sec:authorize="isAuthenticated()">
+                        <div sec:authorize="isAuthenticated()" class="mt-2">
                             <div th:if="${post.getUser().id == sessionUserId}">
-                                <button name="edit" th:data-id="${post.id}" class="edit btn btn-dark"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button name="edit" th:data-id="${post.id}" class="edit btn btn-outline-light py-1 px-2"><i class="fa-solid fa-pen-to-square"></i></button>
                             </div>
                         </div>
 
@@ -150,7 +150,7 @@
 
                     <div class="d-flex flip" style="cursor: pointer">
                         <div>
-                            <button class="flip2 btn btn-dark" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
+                            <button class="flip2 btn btn-outline-light" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
                         </div>
                         <!--                            <div>-->
                         <!--                                <p><span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span></p>-->
@@ -165,14 +165,14 @@
 
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">&#128077;</button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-purple">&#128077;</button>
                             </div>
                             <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">&#128077;</button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-purple">&#128077;</button>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
-                            <button onclick="redirectToLogin()" class="btn btn-danger">&#128077;</button>
+                            <button onclick="redirectToLogin()" class="btn btn-outline-light">&#128077;</button>
                         </div>
 
 
@@ -221,12 +221,12 @@
 
                     <div sec:authorize="isAuthenticated()">
                         <div class="w-100 d-flex justify-content-end">
-                            <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-secondary" th:data-id="${post.id}">Post Comment</button>
+                            <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-outline-light" th:data-id="${post.id}">Post Comment</button>
                         </div>
                     </div>
                     <div sec:authorize="!isAuthenticated()">
                         <div class="w-100 d-flex justify-content-end">
-                            <button class="post-comment-btn btn btn-secondary" onclick="redirectToLogin()">Post Comment</button>
+                            <button class="post-comment-btn btn btn-outline-light" onclick="redirectToLogin()">Post Comment</button>
                         </div>
                     </div>
                 </div>

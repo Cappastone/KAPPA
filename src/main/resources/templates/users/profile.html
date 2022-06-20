@@ -53,13 +53,13 @@
             <div class="container d-flex flex-wrap w-75">
 
                 <div class="container d-flex flex-wrap">
-                    <div class="user-info container d-flex flex-wrap justify-content-between">
-                        <div class="profile-follower">Followers:
-                            <span th:text="${user.getFollowers().size()}"></span>
-                        </div>
-                        <div class="profile-following">Following:
-                            <span th:text="${following.size()}"></span>
-                        </div>
+                    <div class="user-info container d-flex flex-wrap justify-content-end">
+<!--                        <div class="profile-follower">Followers:-->
+<!--                            <span th:text="${user.getFollowers().size()}"></span>-->
+<!--                        </div>-->
+<!--                        <div class="profile-following">Following:-->
+<!--                            <span th:text="${following.size()}"></span>-->
+<!--                        </div>-->
                         <div th:if="${sessionUserId == user.id}">
                             <button type="button" class="change-banner-btn btn btn-dark"><i class="fa-solid fa-image"></i></button>
                         </div>
@@ -68,29 +68,30 @@
 
 
 
-                <div class="container d-flex flex-wrap justify-content-between">
+                <div class="ms-5 container d-flex flex-wrap justify-content-between">
+<!--                    <div class="card">-->
+                            <div th:if="${user.links}" class=" py-3 card">
+                                <div th:if="!${user.links.discord.isBlank()}" class="card-body my-0 py-0">
+                                    <p><i class="fa-brands fa-discord"></i><span class="links-text ms-3" th:text="${user.links.discord}"></span></p>
+                                </div>
+                                <div th:if="!${user.links.nintendo.isBlank()}" class="card-body my-0 py-0">
+                                    <p><i class="bi bi-nintendo-switch"></i><span class="links-text ms-3" th:text="${user.links.nintendo}"></span></p>
+                                </div>
+                                <div th:if="!${user.links.playstation.isBlank()}" class="card-body my-0 py-0">
+                                    <p><i class="fa-brands fa-playstation"></i><span class="links-text ms-3" th:text="${user.links.playstation}"></span></p>
+                                </div>
+                                <div th:if="!${user.links.twitch.isBlank()}" class="card-body my-0 py-0">
+                                    <p><i class="fa-brands fa-twitch"></i><span class="links-text ms-3" th:text="${user.links.twitch}"></span></p>
+                                </div>
+                                <div th:if="!${user.links.xbox.isBlank()}" class="card-body my-0 py-0">
+                                    <p><i class="fa-brands fa-xbox"></i><span class="links-text ms-3" th:text="${user.links.xbox}"></span></p>
+                                </div>
+                                <div th:if="!${user.links.youtube.isBlank()}" class="card-body my-0 py-0">
+                                    <p><i class="fa-brands fa-youtube"></i><span class="links-text ms-3" th:text="${user.links.youtube}"></span></p>
+                                </div>
 
-                    <div th:if="${user.links}" class="profile-links">
-                        <div th:if="!${user.links.discord.isBlank()}">
-                            <p>Discord: <span class="links-text" th:text="${user.links.discord}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.nintendo.isBlank()}">
-                            <p>Nintendo: <span class="links-text" th:text="${user.links.nintendo}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.playstation.isBlank()}">
-                            <p>Playstation: <span class="links-text" th:text="${user.links.playstation}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.twitch.isBlank()}">
-                            <p>Twitch: <span class="links-text" th:text="${user.links.twitch}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.xbox.isBlank()}">
-                            <p>Xbox: <span class="links-text" th:text="${user.links.xbox}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.youtube.isBlank()}">
-                            <p>Youtube: <span class="links-text" th:text="${user.links.youtube}"></span></p>
-                        </div>
+<!--                        </div>-->
                     </div>
-
 
 <!--                    <div th:if="${user.links}" class="profile-links">-->
 <!--                        <div th:if="!${user.links.discord.isBlank()}">-->
@@ -125,7 +126,7 @@
                             <div sec:authorize="isAuthenticated()">
                                 <div th:if="${user.id == sessionUserId}">
                                     <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Edit Bio
                                         </button>
                                     </div>
@@ -146,7 +147,7 @@
                                                             <textarea class="form-control" rows="3" th:field="*{bio}"></textarea>
                                                         </div>
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <input type="submit" value="Update" class="btn btn-dark w-25">
+                                                        <input type="submit" value="Update" class="btn btn-outline-light w-25">
                                                     </form>
                                                     <!--END EDIT BIO FORM-->
                                                 </div>
@@ -223,17 +224,17 @@
 <!--    </div>-->
     </div>
 
-    <div sec:authorize="isAuthenticated()">
+    <div sec:authorize="isAuthenticated()" class="profile-following-btn">
         <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">
-            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-primary">Following</button>
+            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-purple">Following</button>
         </div>
 
         <div th:if="${!ListUserIdsByFollowerId.contains(user.id)}">
-            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-secondary">Follow</button>
+            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-outline-light">Follow</button>
         </div>
     </div>
     <div sec:authorize="!isAuthenticated()">
-        <button onclick="redirectToLogin()" class="btn btn-danger">Follow</button>
+        <button onclick="redirectToLogin()" class="btn btn-outline-light">Follow</button>
     </div>
 
 
@@ -392,7 +393,7 @@
 
                             <div sec:authorize="isAuthenticated()">
                                 <div th:if="${post.getUser().id == sessionUserId}">
-                                    <button name="edit" th:data-id="${post.id}" class="edit btn btn-dark"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button name="edit" th:data-id="${post.id}" class="edit btn btn-outline-light"><i class="fa-solid fa-pen-to-square"></i></button>
                                 </div>
                             </div>
 
@@ -402,7 +403,7 @@
 
                         <div class="d-flex flip" style="cursor: pointer">
                             <div>
-                                <button class="flip2 btn btn-dark" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>Click to view comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</button>
+                                <button class="flip2 btn btn-outline-light" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>Click to view comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</button>
                             </div>
 <!--                            <div>-->
 <!--                                <p><span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span></p>-->
@@ -417,14 +418,14 @@
 
                             <div sec:authorize="isAuthenticated()">
                                 <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">&#128077;</button>
+                                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-purple">&#128077;</button>
                                 </div>
                                 <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">&#128077;</button>
+                                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-outline-light">&#128077;</button>
                                 </div>
                             </div>
                             <div sec:authorize="!isAuthenticated()">
-                                <button onclick="redirectToLogin()" class="btn btn-danger">&#128077;</button>
+                                <button onclick="redirectToLogin()" class="btn btn-outline-light">&#128077;</button>
                             </div>
 
 
@@ -473,12 +474,12 @@
 
                         <div sec:authorize="isAuthenticated()">
                             <div class="w-100 d-flex justify-content-end">
-                                <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-secondary" th:data-id="${post.id}">Post Comment</button>
+                                <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-outline-light" th:data-id="${post.id}">Post Comment</button>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
                             <div class="w-100 d-flex justify-content-end">
-                                <button class="post-comment-btn btn btn-secondary" onclick="redirectToLogin()">Post Comment</button>
+                                <button class="post-comment-btn btn btn-outline-light" onclick="redirectToLogin()">Post Comment</button>
                             </div>
                         </div>
                     </div>

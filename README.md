@@ -6,6 +6,9 @@
 <h2>About The Project</h2>
 <p>Welcome to GamerHaven. With this project the goal is to make a social media site for gamers to find other gamers who play the same games and have the same interests. We wanted to have a smooth user experience to make sure the player just had to focus on gaming. This is a full stack project that utilizes many technologies to bring it all together. </p>
 
+<h3>Link to site</h3>
+[GamerHaven](https://gamerhaven.gg/)
+
 <h3>Built With</h3>
 
 - HTML
@@ -103,11 +106,13 @@
 
     </dependencies>
 ````
+
 <h3>API Keys Needed</h3>
 <h5>Rawg API</h5>
 [Game API](https://rawg.io/apidocs)
 <h5>Filestack API</h5>
 [Filestack API](https://www.filestack.com/)
+
 
 
 

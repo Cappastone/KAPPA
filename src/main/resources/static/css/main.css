@@ -224,7 +224,6 @@ button:hover {
     z-index: +1;
 }
 
-
 .neonText {
     color: rgba(255, 255, 255, 0.78);
     text-shadow: 0 0 7px #fff,
@@ -288,4 +287,9 @@ button:hover {
 
 .block:after {
     filter: blur(50px);
+}
+
+.flip2 {
+    /*position: relative;*/
+    /*right: 30px;*/
 }
