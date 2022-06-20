@@ -10,7 +10,7 @@ public class AboutUsController {
 
     @GetMapping
     public String getAboutUs() {
-        return "/about/about";
+        return "about/about";
     }
 
 }
