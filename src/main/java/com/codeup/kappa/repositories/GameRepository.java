@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface GameRepository extends JpaRepository<Game, Long> {
 
-    @Query(value = "SELECT game_id FROM gamerhaven_db.user_games t GROUP BY t.game_id ORDER BY COUNT(*) DESC;", nativeQuery = true)
+    @Query(value = "SELECT game_id FROM gamerhaven_db.user_games t GROUP BY t.game_id ORDER BY COUNT(*) DESC LIMIT 15;", nativeQuery = true)
     List<String> findGameByMostLiked();
 
 //    Game getGameByGamesApiId(long id);
