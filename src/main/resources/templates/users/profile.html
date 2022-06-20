@@ -240,9 +240,9 @@
     <hr>
 
 <!--    display logged-in user's Follower info-->
-    <div th:if="${user.followers.size() != 0}" class="d-flex flex-wrap">
-        <div class="d-flex align-items-center custom-width">
-            <p th:text="'Followers: ' + ${user.followers.size()}"></p>
+    <div th:if="${user.followers.size() != 0}" class="d-flex overflow-scroll py-3">
+        <div class="d-flex align-items-center me-2">
+            <p class="custom-width" th:text="'Followers: ' + ${user.followers.size()}"></p>
         </div>
         <div th:each="follower : ${user.followers}" class="d-flex flex-wrap justify-content-evenly">
 <!--            <p th:text="${follower.username}"></p>-->
@@ -271,9 +271,9 @@
     <hr>
 
 <!--    display users that a logged-in user is Following-->
-    <div th:if="${following.size() > 0}" class="d-flex flex-wrap">
-        <div class="d-flex align-items-center custom-width">
-            <p th:text="'Following: ' + ${following.size()}"></p>
+    <div th:if="${following.size() > 0}" class="d-flex overflow-scroll py-3">
+        <div class="d-flex align-items-center me-2">
+            <p class="custom-width" th:text="'Following: ' + ${following.size()}"></p>
         </div>
 
         <div th:each="userTheyFollow : ${following}" class="d-flex flex-wrap justify-content-evenly">
@@ -300,20 +300,23 @@
     <hr>
 
 <!--    display the logged-in user's Favorite Games info-->
-    <div th:if="${user.favoriteGames.size() != 0}" class="d-flex flex-wrap">
-        <div class="d-flex align-items-center custom-width">
-            <p th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
+    <div th:if="${user.favoriteGames.size() != 0}" class="d-flex overflow-scroll py-3">
+        <div class="d-flex align-items-center me-2">
+            <p class="custom-width" th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
         </div>
 
-        <div th:each="game : ${user.favoriteGames}" class="d-flex flex-wrap justify-content-evenly">
-<!--            <p th:text="${game.title}"></p>-->
-            <div class="d-flex flex-wrap flex-column">
-                <a th:href="'/game?gameID=' + ${game.gamesApiId}">
-                    <img class="profile-game-picture" th:src="${game.imageUrl}">
-                </a>
-                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(game.title, 10)}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
+
+
+            <div th:each="game : ${user.favoriteGames}" class="d-flex flex-wrap justify-content-evenly">
+    <!--            <p th:text="${game.title}"></p>-->
+                <div class="d-flex flex-wrap flex-column">
+                    <a th:href="'/game?gameID=' + ${game.gamesApiId}">
+                        <img class="profile-game-picture" th:src="${game.imageUrl}">
+                    </a>
+                    <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(game.title, 10)}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
+                </div>
             </div>
-        </div>
+
     </div>
 
     <div th:if="${user.favoriteGames.size() == 0}">
