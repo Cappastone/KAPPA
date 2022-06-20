@@ -6,9 +6,9 @@
 <!--header-->
 
 <h3 class="text-center py-3" style="color: white; font-weight: lighter">Discover GamerHaven's Top Games</h3>
-<div th:if="${games}" class="d-flex overflow-scroll ">
+<div th:if="${games}" class="d-flex overflow-scroll">
     <div th:each="game : ${games}">
-        <a th:href="'/game?gameID=' + ${game.gamesApiId}"> <img
+        <a th:href="'/game?gameID=' + ${game.gamesApiId}"> <img class="discover-games"
                 style="object-fit: cover; height: 200px; width:250px; padding-right: 10px"
                 th:src="${game.imageUrl}"></a>
     </div>
@@ -86,14 +86,14 @@
 
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary"><i class="fa-solid fa-thumbs-up"></i></button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">&#128077;</button>
                             </div>
                             <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary"><i class="fa-solid fa-thumbs-up"></i></button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">&#128077;</button>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
-                            <button onclick="redirectToLogin()" class="btn btn-danger"><i class="fa-solid fa-thumbs-up"></i></button>
+                            <button onclick="redirectToLogin()" class="btn btn-danger">&#128077;</button>
                         </div>
 
 

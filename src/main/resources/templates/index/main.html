@@ -8,10 +8,11 @@
 <!--&lt;!&ndash;display logged-in user&ndash;&gt;-->
 <!--<div th:if="${user}">-->
 
-    <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
+
 
 <div class="justify-content-center d-flex mt-4">
     <h1 style="font-weight: lighter">Most Recent Posts</h1>
+    <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
 </div>
 <!--    <p th:text="${user.username} + ' is logged in'"></p>-->
 <!--    <div th:if="${user.profilePictureUrl}">-->
@@ -64,7 +65,7 @@
                         </a>
                     </div>
 
-                    <textarea rows="3" type="input" th:field="*{body}" class="w-100 px-5 mx-5 form-control-lg"></textarea>
+                    <textarea rows="3" type="input" th:field="*{body}" placeholder="What's on your mind?" class="w-100 px-5 mx-5 form-control-lg"></textarea>
 
                     <input type="hidden" class="post-image-upload" name="post-image-upload">
                 </div>
@@ -164,14 +165,14 @@
 
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary"><i class="fa-solid fa-thumbs-up"></i></button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">&#128077;</button>
                             </div>
                             <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary"><i class="fa-solid fa-thumbs-up"></i></button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">&#128077;</button>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
-                            <button onclick="redirectToLogin()" class="btn btn-danger"><i class="fa-solid fa-thumbs-up"></i></button>
+                            <button onclick="redirectToLogin()" class="btn btn-danger">&#128077;</button>
                         </div>
 
 

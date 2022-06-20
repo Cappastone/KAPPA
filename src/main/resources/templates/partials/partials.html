@@ -29,12 +29,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-<!--    Required for localhost8080-->
+    <!--    Required for localhost8080-->
         <script src="/js/keys.js"></script>
 
     <!--    Required for live site-->
 <!--    <script src="/keys"></script>-->
-
 
 
     <script src="/js/fetch.js"></script>
@@ -45,96 +44,6 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
 </div>
-
-<!--NAVBAR-->
-<!--<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-<!--    <div class="container-fluid">-->
-
-<!--        &lt;!&ndash;HOME&ndash;&gt;-->
-<!--        <a sec:authorize="isAuthenticated()" class="navbar-brand" href="/main">Home</a>-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"-->
-<!--                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-
-<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-
-<!--                &lt;!&ndash;DISCOVER&ndash;&gt;-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="/discover">Discover</a>-->
-<!--                </li>-->
-
-<!--                &lt;!&ndash;VIEW YOUR PROFILE&ndash;&gt;-->
-<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
-<!--                    <a class="nav-link" aria-current="page" href="/user/profile">Profile</a>-->
-<!--                </li>-->
-
-<!--                &lt;!&ndash; MY CONNECTIONS&ndash;&gt;-->
-<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
-<!--                    <a class="nav-link" aria-current="page" href="/connections">My Connections</a>-->
-<!--                </li>-->
-
-<!--                &lt;!&ndash; FAVORITE GAMES&ndash;&gt;-->
-<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
-<!--                    <a class="nav-link" aria-current="page" href="/game/favorites">Favorite Games</a>-->
-<!--                </li>-->
-
-<!--                &lt;!&ndash;CREATE&ndash;&gt;-->
-<!--                &lt;!&ndash;                <li class="nav-item">&ndash;&gt;-->
-<!--                &lt;!&ndash;                    <a class="nav-link" href="/posts/create">Create</a>&ndash;&gt;-->
-<!--                &lt;!&ndash;                </li>&ndash;&gt;-->
-
-<!--                &lt;!&ndash;DROPDOWN&ndash;&gt;-->
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"-->
-<!--                       data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                        Dropdown-->
-<!--                    </a>-->
-<!--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-<!--                        <li sec:authorize="!isAuthenticated()">-->
-<!--                            <a class="dropdown-item" href="/user/register">Sign Up</a>-->
-<!--                        </li>-->
-<!--                        &lt;!&ndash;                        <li><hr class="dropdown-divider"></li>&ndash;&gt;-->
-<!--                        <li sec:authorize="!isAuthenticated()">-->
-<!--                            &lt;!&ndash;                            <form th:action="@{/login}" th:method="POST">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                <button class="btn-link dropdown-item" style="margin-top: 8px">Login</button>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                            </form>&ndash;&gt;-->
-<!--                            <a class="dropdown-item" href="/login">Login</a>-->
-<!--                        </li>-->
-<!--                        <li sec:authorize="isAuthenticated()">-->
-<!--                            <a class="dropdown-item" href="/user/account">Account Details</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <hr class="dropdown-divider">-->
-<!--                        </li>-->
-<!--                        <li sec:authorize="isAuthenticated()">-->
-<!--                            &lt;!&ndash;                            <form th:action="@{/logout}" th:method="POST">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                                <button class="btn-link dropdown-item" style="margin-top: 8px">Logout</button>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                            </form>&ndash;&gt;-->
-<!--                            <form th:action="@{/logout}" th:method="post" id="logout-form">-->
-<!--                                <a onclick="document.getElementById('logout-form').submit();" class="dropdown-item">Logout</a>-->
-<!--                            </form>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            this is our search bar that utilizes the rawg.js file and keys.js this search bar will only work if those 2-->
-<!--            files are linked-->
-<!--            <form class="d-flex">-->
-<!--                <input id="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"-->
-<!--                       name="search">-->
-<!--                &lt;!&ndash;                <input type="hidden" value="" name="title">&ndash;&gt;-->
-<!--                <button id="submit-btn" class="btn btn-outline-light" type="submit">Search</button>-->
-<!--            </form>-->
-<!--            <div class="search d-flex">-->
-<!--                <input id="search" type="text" class="form-control" placeholder="Search Games">-->
-<!--                <button id="submit-btn" class="btn btn-outline-light"><i class="fa fa-search"></i></button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-<!--NAVBAR-->
 
 <!--FOOTER-->
 <footer id="footer" th:fragment="footer" class="text-center text-white mt-5">
@@ -177,28 +86,26 @@
     <!-- Grid container -->
 
     <!-- Copyright -->
-<!--    <div class="text-center p-3 gradient-custom">-->
-<!--        © 2022 Copyright:-->
-<!--        <a class="text-white" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">LOL</a>-->
-<!--    </div>-->
+    <!--    <div class="text-center p-3 gradient-custom">-->
+    <!--        © 2022 Copyright:-->
+    <!--        <a class="text-white" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">LOL</a>-->
+    <!--    </div>-->
     <!-- Copyright -->
-    
+
     <div class="text-center p-3 gradient-custom">
-        <a th:href="@{/about/about-us}" class="footer-text"><i class="bi bi-github"></i
+        <a href="/about" class="footer-text"><i class="bi bi-github"></i
         > Developers</a>
     </div>
-    
+
 </footer>
 <!--FOOTER-->
-<!--</body>-->
-<!--</html>-->
 
 
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark gradient-custom">
     <div class="container-fluid">
 
         <!--HOME-->
-        <a class="navbar-brand" href="/main">
+        <a class="navbar-brand" href="/">
             <img class="nav-logo"
                  src="https://cdn.discordapp.com/attachments/949839896883916830/987392552141467718/Untitled_58.gif">
         </a>
@@ -310,5 +217,4 @@
   top: 0;
   bottom: 0;
   z-index: -2;">
-
 </video>

@@ -240,10 +240,6 @@ function searcher(GameID) {
 //             </div>`;
 
 
-
-
-
-
 function nullResults(results) {
     if (results.released == null) {
         return "N/A"
@@ -280,7 +276,6 @@ function stringSearch(GameString) {
         }
     };
     $.ajax(searchString).done(function (data) {
-
 
 
         console.log(data);
