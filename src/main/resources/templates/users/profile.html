@@ -63,6 +63,9 @@
                         <div th:if="${sessionUserId == user.id}">
                             <button type="button" class="change-banner-btn btn btn-dark"><i class="fa-solid fa-image"></i></button>
                         </div>
+                        <div th:if="${sessionUserId != user.id}" class="my-3">
+<!--                            <button type="button" class="change-banner-btn btn btn-dark"><i class="fa-solid fa-image"></i></button>-->
+                        </div>
                     </div>
                 </div>
 
