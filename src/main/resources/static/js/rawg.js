@@ -240,10 +240,6 @@ function searcher(GameID) {
 //             </div>`;
 
 
-
-
-
-
 function nullResults(results) {
     if (results.released == null) {
         return "N/A"
@@ -280,7 +276,6 @@ function stringSearch(GameString) {
         }
     };
     $.ajax(searchString).done(function (data) {
-
 
 
         console.log(data);
@@ -408,6 +403,6 @@ $(".edit").on("click", function () {
 
 /// when pushed change
 function redirectToLogin() {
-    document.location.href = "http://localhost:8080/login"
-    // document.location.href = "https://gamerhaven.gg/login"
+    // document.location.href = "http://localhost:8080/login"
+    document.location.href = "https://gamerhaven.gg/login"
 }

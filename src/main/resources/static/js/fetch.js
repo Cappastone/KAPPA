@@ -21,7 +21,7 @@ const localHost = 'http://localhost:8080/ajax/'
 
 
 function changeUrls() {
-    return localHost;
+    return gamerHaven;
     // return gamerHaven;
 }
 
