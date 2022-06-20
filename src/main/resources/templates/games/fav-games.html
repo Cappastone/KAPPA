@@ -20,10 +20,10 @@
                 <div class="card-body card-txt-bottom d-flex flex-column justify-content-between">
                     <h4 class="game-title" id="game-title" onclick="gameRedirect(this)" th:data-id="${game.getGamesApiId()}"><span th:text="${game.getTitle()}"></span></h4>
                         <div  th:if="${ListGameIdFavoriteByUserId.contains(game.id)}">
-                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-primary">&#11088;</button>
+                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-purple">&#11088;</button>
                         </div>
                         <div class="d-flex" th:if="${!ListGameIdFavoriteByUserId.contains(game.id)}">
-                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-secondary">&#11088;</button>
+                            <button th:data="${game.id} + ',' + ${sessionUserId}" class="fav-btn btn btn-outline-light">&#11088;</button>
                         </div>
 <!--                    </div>-->
                     </div>

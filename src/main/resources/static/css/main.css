@@ -11,8 +11,15 @@ img {
 
 /*this is the body for all pages on site*/
 body {
-    background-color: #333333;
-    color: white;
+    /*background-color: #333333;*/
+    /*color: white;*/
+    /*background-image: linear-gradient(180deg,#575757, black, rebeccapurple);*/
+    background-image: linear-gradient(180deg, #8560d7, rebeccapurple, #66289a, #391b50, rgba(0, 0, 0, 0.61), black);
+    /*background-image: linear-gradient(to bottom right, grey, black, mediumpurple);*/
+    /*background: radial-gradient(circle at top, #521b92 , #000000);*/
+    /*background: radial-gradient(circle at top,#000000, #521b92 );*/
+
+    background-attachment: fixed;
     position: relative;
     min-height: 100vh;
 }
@@ -120,12 +127,12 @@ body {
     width: 50vw;
 }
 
-.edit-btn-post-view{
+.edit-btn-post-view {
     position: relative;
     top: 1px;
 }
 
-.delete-img-btn{
+.delete-img-btn {
 }
 
 .img-container {
@@ -137,6 +144,7 @@ body {
 .img-container .delete-img-btn:hover {
     /*background-color: yellow;*/
 }
+
 /*EDIT POST VIEW*/
 
 
@@ -178,20 +186,21 @@ textarea {
     color: #707070;
     height: 2em;
     left: 0;
-    position: relative; //changed to relative from fixed also works if position is not there
-font-size: small;
-    width:100%;
+    position: relative;
+/ / changed to relative from fixed also works if position is not there font-size: small;
+    width: 100%;
 }
 
-.footer-text{
+.footer-text {
     color: #b6b4b4;
     text-decoration: none;
 }
 
 button {
-    border-radius: 10px!important;
+    border-radius: 10px !important;
     transition: all .3s ease-in-out;
 }
+
 button:hover {
     transform: scale(1.1);
     z-index: +1;
@@ -213,6 +222,71 @@ button:hover {
 .discover-games:hover {
     transform: scale(1.1);
     z-index: +1;
+}
+
+.neonText {
+    color: rgba(255, 255, 255, 0.78);
+    text-shadow: 0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #6537e3,
+    0 0 42px #7f33fc,
+    0 0 82px #7e22e3,
+    0 0 92px #672be7,
+    0 0 102px #612fda,
+    0 0 151px #5531e1;
+}
+
+/* Additional styling */
+
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 21px #6537e3,
+        0 0 42px #7f33fc,
+        0 0 82px #7e22e3,
+        0 0 92px #672be7,
+        0 0 102px #612fda,
+        0 0 151px #5531e1;;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+
+.block {
+    background: linear-gradient(0deg, #000, #272727);
+}
+
+.block:before, .block:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(45deg, #5531e1, #612fda, #672be7, #7e22e3, #7f33fc, #6537e3,
+    #7e22e3, #672be7, #612fda, #5531e1);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.block:after {
+    filter: blur(50px);
 }
 
 .flip2 {
