@@ -205,3 +205,12 @@ button:hover {
     transform: scale(1.1);
     z-index: +1;
 }
+
+.discover-games {
+    transition: all .3s ease-in-out;
+}
+
+.discover-games:hover {
+    transform: scale(1.1);
+    z-index: +1;
+}

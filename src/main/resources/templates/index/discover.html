@@ -6,9 +6,9 @@
 <!--header-->
 
 <h3 class="text-center py-3" style="color: white; font-weight: lighter">Discover GamerHaven's Top Games</h3>
-<div th:if="${games}" class="d-flex overflow-scroll ">
+<div th:if="${games}" class="d-flex overflow-scroll">
     <div th:each="game : ${games}">
-        <a th:href="'/game?gameID=' + ${game.gamesApiId}"> <img
+        <a th:href="'/game?gameID=' + ${game.gamesApiId}"> <img class="discover-games"
                 style="object-fit: cover; height: 200px; width:250px; padding-right: 10px"
                 th:src="${game.imageUrl}"></a>
     </div>
