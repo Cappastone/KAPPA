@@ -125,7 +125,11 @@ public class UserController {
         }
 
         if (user.getUsername().length() < 3) {
-            result.rejectValue("username", "user.username", "Username is too short!");
+            result.rejectValue("username", "user.username", "Username must be at least 3 characters!");
+        }
+
+        if (user.getUsername().length() > 15) {
+            result.rejectValue("username", "user.username", "Username must be less than 15 characters");
         }
 
         if (!user.getPassword().equals(confirm)) {
@@ -375,6 +379,27 @@ public class UserController {
     public String createPlatformLinks(@ModelAttribute PlatformLink platformLink, @RequestParam(name = "id") long id) {
 
         User user = userDao.getById(id);
+
+        if (platformLink.getDiscord().length() > 22) {
+            return "redirect:/user/account?discord";
+        }
+        if (platformLink.getNintendo().length() > 22) {
+            return "redirect:/user/account?nintendo";
+        }
+        if (platformLink.getPlaystation().length() > 22) {
+            return "redirect:/user/account?playstation";
+        }
+        if (platformLink.getTwitch().length() > 22) {
+            return "redirect:/user/account?twitch";
+        }
+        if (platformLink.getXbox().length() > 22) {
+            return "redirect:/user/account?xbox";
+        }
+        if (platformLink.getYoutube().length() > 22) {
+            return "redirect:/user/account?youtube";
+        }
+
+
         user.setLinks(platformLink);
         userDao.save(user);
 
@@ -386,6 +411,27 @@ public class UserController {
     public String editPlatformLinks(@ModelAttribute PlatformLink platformLink, @RequestParam(name = "id") long id) {
 
         User user = userDao.getById(id);
+
+        if (platformLink.getDiscord().length() > 22) {
+            return "redirect:/user/account?discord";
+        }
+        if (platformLink.getNintendo().length() > 22) {
+            return "redirect:/user/account?nintendo";
+        }
+        if (platformLink.getPlaystation().length() > 22) {
+            return "redirect:/user/account?playstation";
+        }
+        if (platformLink.getTwitch().length() > 22) {
+            return "redirect:/user/account?twitch";
+        }
+        if (platformLink.getXbox().length() > 22) {
+            return "redirect:/user/account?xbox";
+        }
+        if (platformLink.getYoutube().length() > 22) {
+            return "redirect:/user/account?youtube";
+        }
+
+
         user.setLinks(platformLink);
         userDao.save(user);
 
