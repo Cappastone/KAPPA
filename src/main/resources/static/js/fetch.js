@@ -107,15 +107,15 @@ $('.like-btn').on('click', function (e) {
     const likeText = $(`.like-count[data-id=${clickedId}]`);
 
     if (array[1] !== -1) {
-        if ($(this).hasClass('btn-secondary')) {
-            $(this).removeClass('btn-secondary').addClass('btn-primary')
+        if ($(this).hasClass('btn-outline-light')) {
+            $(this).removeClass('btn-outline-light').addClass('btn-purple')
 
             likePost(array);
 
             likeText.text(parseInt(likeText.text()) + 1);
 
-        } else if ($(this).hasClass('btn-primary')) {
-            $(this).removeClass('btn-primary').addClass('btn-secondary')
+        } else if ($(this).hasClass('btn-purple')) {
+            $(this).removeClass('btn-purple').addClass('btn-outline-light')
             unlikePost(array)
             likeText.text(parseInt(likeText.text()) - 1);
         }
@@ -183,11 +183,11 @@ $('.fav-btn').on('click', function (e) {
     let array = getBtnValue($(this));
 
     if (array[1] !== -1) {
-        if ($(this).hasClass('btn-secondary')) {
-            $(this).removeClass('btn-secondary').addClass('btn-primary')
+        if ($(this).hasClass('btn-outline-light')) {
+            $(this).removeClass('btn-outline-light').addClass('btn-purple')
             favoriteGame(array);
-        } else if ($(this).hasClass('btn-primary')) {
-            $(this).removeClass('btn-primary').addClass('btn-secondary')
+        } else if ($(this).hasClass('btn-purple')) {
+            $(this).removeClass('btn-purple').addClass('btn-outline-light')
             unFavoriteGame(array)
         }
     }
@@ -255,12 +255,12 @@ $('.follow-btn').on('click', function (e) {
     let array = getBtnValue($(this));
 
     if (array[1] !== -1) {
-        if ($(this).hasClass('btn-secondary')) {
-            $(this).removeClass('btn-secondary').addClass('btn-primary')
+        if ($(this).hasClass('btn-outline-light')) {
+            $(this).removeClass('btn-outline-light').addClass('btn-purple')
             $(this).text('Following')
             followUser(array);
-        } else if ($(this).hasClass('btn-primary')) {
-            $(this).removeClass('btn-primary').addClass('btn-secondary')
+        } else if ($(this).hasClass('btn-purple')) {
+            $(this).removeClass('btn-purple').addClass('btn-outline-light')
             $(this).text('Follow')
             unFollowUser(array)
         }
