@@ -34,10 +34,10 @@
                                         <p class="text-center text-danger">This username has been taken!</p>
                                     </div>
                                     <div class="pt-1" th:if="${param.user_invalid}">
-                                        <p class="text-center text-danger">Username too short</p>
+                                        <p class="text-center text-danger">Username must be at least 6 characters</p>
                                     </div>
                                     <div class="pt-1" th:if="${param.user_invalid2}">
-                                        <p class="text-center text-danger">Username too long</p>
+                                        <p class="text-center text-danger">Chill, username is way too long</p>
                                     </div>
                                     <div class="pt-1" th:if="${param.user_success}">
                                         <p class="text-center text-success">Username has been updated</p>
@@ -121,7 +121,7 @@
                                         <input name="new-password" type="password" class="form-control" id="new-password">
                                     </div>
                                     <div class="pb-1" th:if="${param.ps_error}">
-                                        <p class="text-center text-danger">Password is too short</p>
+                                        <p class="text-center text-danger">Password must be at least 6 characters</p>
                                     </div>
                                     <div class="mt-4 d-flex justify-content-center">
                                         <button class="ms-2 btn btn-outline-light">Update</button>
@@ -171,31 +171,49 @@
                             <div class="mb-2 mx-2">
                                 <label for="discord" class="form-label">Discord</label>
                                 <input type="text" class="form-control" id="discord" th:field="*{discord}">
+                                <div class="pt-1" th:if="${param.discord}">
+                                    <p class="text-center text-danger">Chill, handle is way too long</p>
+                                </div>
                             </div>
 
                             <div class="mb-2 mx-2">
                                 <label for="nintendo" class="form-label">Nintendo</label>
                                 <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
+                                <div class="pt-1" th:if="${param.nintendo}">
+                                    <p class="text-center text-danger">Chill, handle is way too long</p>
+                                </div>
                             </div>
 
                             <div class="mb-2 mx-2">
                                 <label for="playstation" class="form-label">Playstation</label>
                                 <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
+                                <div class="pt-1" th:if="${param.playstation}">
+                                    <p class="text-center text-danger">Chill, handle is way too long</p>
+                                </div>
                             </div>
 
                             <div class="mb-2 mx-2">
                                 <label for="twitch" class="form-label">Twitch</label>
                                 <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
+                                <div class="pt-1" th:if="${param.twitch}">
+                                    <p class="text-center text-danger">Chill, handle is way too long</p>
+                                </div>
                             </div>
 
                             <div class="mb-2 mx-2">
                                 <label for="xbox" class="form-label">Xbox</label>
                                 <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
+                                <div class="pt-1" th:if="${param.xbox}">
+                                    <p class="text-center text-danger">Chill, handle is way too long</p>
+                                </div>
                             </div>
 
                             <div class="mb-2 mx-2">
                                 <label for="youtube" class="form-label">Youtube</label>
                                 <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
+                                <div class="pt-1" th:if="${param.youtube}">
+                                    <p class="text-center text-danger">Chill, handle is way too long</p>
+                                </div>
                             </div>
 
 
@@ -220,31 +238,49 @@
                                 <div class="mb-2 mx-2">
                                     <label for="discord" class="form-label">Discord</label>
                                     <input type="text" class="form-control" id="discord" th:field="*{discord}">
+                                    <div class="pt-1" th:if="${param.discord}">
+                                        <p class="text-center text-danger">Chill, handle is way too long</p>
+                                    </div>
                                 </div>
 
                                 <div class="mb-2 mx-2">
                                     <label for="nintendo" class="form-label">Nintendo</label>
                                     <input type="text" class="form-control" id="nintendo" th:field="*{nintendo}">
+                                    <div class="pt-1" th:if="${param.nintendo}">
+                                        <p class="text-center text-danger">Chill, handle is way too long</p>
+                                    </div>
                                 </div>
 
                                 <div class="mb-2 mx-2">
                                     <label for="playstation" class="form-label">Playstation</label>
                                     <input type="text" class="form-control" id="playstation" th:field="*{playstation}">
+                                    <div class="pt-1" th:if="${param.playstation}">
+                                        <p class="text-center text-danger">Chill, handle is way too long</p>
+                                    </div>
                                 </div>
 
                                 <div class="mb-2 mx-2">
                                     <label for="twitch" class="form-label">Twitch</label>
                                     <input type="text" class="form-control" id="twitch" th:field="*{twitch}">
+                                    <div class="pt-1" th:if="${param.twitch}">
+                                        <p class="text-center text-danger">Chill, handle is way too long</p>
+                                    </div>
                                 </div>
 
                                 <div class="mb-2 mx-2">
                                     <label for="xbox" class="form-label">Xbox</label>
                                     <input type="text" class="form-control" id="xbox" th:field="*{xbox}">
+                                    <div class="pt-1" th:if="${param.xbox}">
+                                        <p class="text-center text-danger">Chill, handle is way too long</p>
+                                    </div>
                                 </div>
 
                                 <div class="mb-2 mx-2">
                                     <label for="youtube" class="form-label">Youtube</label>
                                     <input type="text" class="form-control" id="youtube" th:field="*{youtube}">
+                                    <div class="pt-1" th:if="${param.youtube}">
+                                        <p class="text-center text-danger">Chill, handle is way too long</p>
+                                    </div>
                                 </div>
 
 
