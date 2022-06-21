@@ -64,13 +64,13 @@
                 </div>
 
 
-                <fieldset class="container d-flex mb-5">
+                <fieldset class="container d-flex mb-5 post-img-box">
             <!--        <legend>Delete Image From Post</legend>-->
                     <div th:each="image: ${post.postImages}" class="container">
                         <form th:action="@{/post/delete-image}" method="POST">
             <!--                    <p th:text="${image.title}"></p>-->
 
-                            <div class="post-img-box d-flex">
+                            <div class=" d-flex">
                                 <img th:src="${image.url}" alt="post-image" class="post-image mt-3" style="object-fit: cover; height: 125px; width:175px;">
 
                                 <div class="delete-img-post-view mt-3">
