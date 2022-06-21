@@ -433,6 +433,23 @@ button:hover {
     }
 
 
+    /*////////////////////////  ACCOUNT VIEW  //////////////////////////*/
+
+
+    .mobile-account-details-view {
+        padding: 10px!important;
+        margin: 10px!important;
+    }
+
+    .links-card {
+        /*width: 425px!important;*/
+    }
+    .links-input {
+        padding: 8px 10px 8px 10px!important;
+        margin: 5px 10px 5px 10px!important;
+    }
+
+
 
 
 
