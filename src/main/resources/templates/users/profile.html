@@ -50,7 +50,7 @@
             </div>
 
 
-            <div class="container d-flex flex-wrap w-75">
+            <div class="profile-bio-container container d-flex flex-wrap w-75">
 
                 <div class="container d-flex flex-wrap">
                     <div class="user-info container d-flex flex-wrap justify-content-end">
@@ -71,7 +71,7 @@
 
 
 
-                <div class="ms-5 container d-flex flex-wrap justify-content-between">
+                <div class="links-container ms-5 container d-flex flex-wrap justify-content-between">
 <!--                    <div class="card">-->
                             <div th:if="${user.links}" class=" py-3 card">
                                 <div th:if="!${user.links.discord.isBlank()}" class="card-body my-0 py-0">
@@ -226,7 +226,7 @@
 <!--        </div>-->
 <!--    </div>-->
     </div>
-
+    <div class="mobile-spacing"></div>
     <div sec:authorize="isAuthenticated()" class="profile-following-btn">
         <div th:if="${ListUserIdsByFollowerId.contains(user.id)}">
             <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-purple">Following</button>
@@ -244,7 +244,7 @@
     <hr>
 
 <!--    display logged-in user's Follower info-->
-    <div th:if="${user.followers.size() != 0}" class="d-flex overflow-scroll py-3">
+    <div th:if="${user.followers.size() != 0}" class="d-flex overflow-scrolly py-3">
         <div class="d-flex align-items-center me-2">
             <p class="custom-width" th:text="'Followers: ' + ${user.followers.size()}"></p>
         </div>
@@ -275,7 +275,7 @@
     <hr>
 
 <!--    display users that a logged-in user is Following-->
-    <div th:if="${following.size() > 0}" class="d-flex overflow-scroll py-3">
+    <div th:if="${following.size() > 0}" class="d-flex overflow-scrolly py-3">
         <div class="d-flex align-items-center me-2">
             <p class="custom-width" th:text="'Following: ' + ${following.size()}"></p>
         </div>
@@ -304,7 +304,7 @@
     <hr>
 
 <!--    display the logged-in user's Favorite Games info-->
-    <div th:if="${user.favoriteGames.size() != 0}" class="d-flex overflow-scroll py-3">
+    <div th:if="${user.favoriteGames.size() != 0}" class="d-flex overflow-scrolly py-3">
         <div class="d-flex align-items-center me-2">
             <p class="custom-width" th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
         </div>
@@ -381,8 +381,8 @@
 <!--    display all the Posts that the logged-in user has created-->
     <div th:if="${posts}">
         <div th:each="post : ${posts}">
-            <div class="card my-4 mx-5 px-5">
-                <div class="card-body my-2">
+            <div class="card my-4 mx-5 profile-posts px-5">
+                <div class="card-body  my-2">
 <!--                    <h5 class="card-title">Card title</h5>-->
                     <div class="d-flex justify-content-center">
                         <div class="mb-4" th:if="${post.postImages.size() != 0}" th:each="image : ${post.postImages}">

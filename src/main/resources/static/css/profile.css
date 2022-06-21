@@ -80,7 +80,7 @@
 .profile-bio {
     /*position: relative;*/
     /*top: 10px;*/
-    max-width: 70%;
+    /*max-width: 70%;*/
 
 }
 .profile-follower-picture {
@@ -170,3 +170,91 @@
     background: rebeccapurple;
     color: white;
 }
+
+.overflow-scrolly {
+    /*-ms-overflow-style: none;*/
+    /*scrollbar-width: none;*/
+    overflow-x: scroll!important;
+}
+
+
+
+/*MOBILE VIEW*/
+
+
+@media screen and (max-width: 768px) {
+
+    .banner-container {
+        width: 100%;
+        height: 5px;
+    }
+
+    .profile-banner {
+        height: 250px!important;
+    }
+
+    .profile-picture {
+        height: 100px;
+        width: 100px;
+    }
+
+    .profile-picture-container {
+        position: revert;
+        /*bottom: 2em!important;*/
+    }
+
+    .profile-username {
+        position: revert;
+        /*bottom: 1em;*/
+        font-size: 29px;
+
+    }
+
+    .profile-bio-container {
+        /*flex-wrap: nowrap!important;*/
+        /*flex: none!important;*/
+
+    }
+    .change-banner-btn {
+        position: revert;
+
+    }
+
+    .links-container {
+        position: relative;
+        top: 15em;
+        right: 1em;
+    }
+
+    .mobile-spacing {
+        height: 20em;
+    }
+
+    .profile-bio {
+        margin-top: 2em;
+        position: relative;
+        width: 500px;
+        right: 9em;
+        padding-right: 22em;
+    }
+
+    .bio-card-body {
+        width: 20em;
+        margin-bottom: 0px;
+    }
+    .profile-posts {
+        margin: 10px!important;
+        padding: 10px!important;
+    }
+    .flip2 {
+        margin-top: 80px!important;
+        font-size: 12px!important;
+        width: 150px!important;
+    }
+
+
+
+
+
+}
+
