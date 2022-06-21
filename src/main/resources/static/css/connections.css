@@ -92,10 +92,18 @@ h3{
     .connections-extra-spacing {
         height: 35px;
     }
+    .discover-pic {
+        height: 90px!important;
+        width: 90px!important;
+    }
+    .discover-card {
+        height: auto!important;
+    }
 }
 
 @media screen and (min-width: 768px) {
     .connections-extra-spacing {
         display: none;
     }
+
 }
