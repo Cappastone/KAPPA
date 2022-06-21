@@ -432,9 +432,13 @@ button:hover {
         position: relative;
         bottom: 10px!important;
     }
-
-
-    /*////////////////////////  ACCOUNT VIEW  //////////////////////////*/
+  
+  /*EDIT POSTS*/
+    .post-img-box {
+        overflow-y: scroll;
+    }
+  
+      /*////////////////////////  ACCOUNT VIEW  //////////////////////////*/
 
 
     .mobile-account-details-view {
@@ -449,17 +453,40 @@ button:hover {
         padding: 8px 10px 8px 10px!important;
         margin: 5px 10px 5px 10px!important;
     }
-
-/*EDIT POSTS*/
-    .post-img-box {
-        overflow-y: scroll;
+  
+  
+/*   ///////////////////////////  ABOUT US  /////////////////////////////////*/
+  
+    .about-us-card {
+      height: 36em;
     }
 
-
-
-
-
-
-
+  
 
 }
+
+
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 1200px) {
+    .about-us-container {
+        display: flex;
+        /*flex-direction: column!important;*/
+        flex-wrap: wrap!important;
+    }
+
+    .about-us-card {
+        margin-top: .5em;
+    }
+  
+}
+
+
+
+
+  .flip-container {
+      perspective: 1000px;
+  }
