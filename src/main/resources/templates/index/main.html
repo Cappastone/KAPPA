@@ -11,7 +11,7 @@
 
 
 <div class="justify-content-center d-flex mt-4">
-    <h1 style="font-weight: lighter">Most Recent Posts</h1>
+    <h1 class="main-header" style="font-weight: lighter">Most Recent Posts</h1>
     <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
 </div>
 <!--    <p th:text="${user.username} + ' is logged in'"></p>-->
@@ -46,7 +46,7 @@
 <div class="container">
 
 
-    <div class="card my-4 mx-5 px-5 pt-3">
+    <div class="card main-create-post my-4 mx-5 px-5 pt-3">
         <div class="card-body my-2">
             <h4 style="font-weight: lighter" class="card-title text-center pb-3">Create A Post!</h4>
 <!--            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
@@ -54,18 +54,18 @@
             <form th:action="@{/main/create-post}" th:method="POST" th:object="${newPost}">
 
                 <div class="d-flex w-100 ">
-                    <div th:if="${user.profilePictureUrl}">
+                    <div th:if="${user.profilePictureUrl}" class="main-profile-pic-mobile">
                         <a th:href="'/user/' + ${user.id}">
                             <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${user.profilePictureUrl}">
                         </a>
                     </div>
-                    <div th:if="!${user.profilePictureUrl}">
+                    <div th:if="!${user.profilePictureUrl}" class="main-profile-pic-mobile">
                         <a th:href="'/user/' + ${user.id}">
                             <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
                         </a>
                     </div>
 
-                    <textarea rows="3" type="input" th:field="*{body}" placeholder="What's on your mind?" class="w-100 px-5 mx-5 form-control-lg"></textarea>
+                    <textarea rows="3" type="input" th:field="*{body}" placeholder="What's on your mind?" class="w-100 px-5 mx-5 form-control-lg main-text-area-mobile"></textarea>
 
                     <input type="hidden" class="post-image-upload" name="post-image-upload">
                 </div>
@@ -102,7 +102,7 @@
 
 <div th:if="${followingPosts}" class="container">
     <div th:each="post : ${followingPosts}">
-        <div class="card my-4 mx-5 px-5">
+        <div class="card main-posts my-4 mx-5 px-5">
             <div class="card-body my-2">
 
                 <p class="card-text text-end py-0 my-0"><small th:text="${postCreationDates[postStat.index]}" class="text-muted"></small></p>
@@ -150,7 +150,7 @@
 
                     <div class="d-flex flip" style="cursor: pointer">
                         <div>
-                            <button class="flip2 btn btn-outline-light" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
+                            <button class="flip2 btn btn-outline-light" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View Comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</i></button>
                         </div>
                         <!--                            <div>-->
                         <!--                                <p><span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span></p>-->

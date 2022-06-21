@@ -294,3 +294,40 @@ button:hover {
     /*position: relative;*/
     /*right: 30px;*/
 }
+
+@media screen and (max-width: 768px) {
+
+    .flip2 {
+        margin-top: 80px!important;
+        font-size: 12px!important;
+        width: 150px!important;
+    }
+
+    .main-posts {
+        margin: 10px!important;
+        padding: 10px!important;
+    }
+
+    .main-create-post {
+        margin: 10px!important;
+        padding: 10px!important;
+    }
+    .main-profile-pic-mobile {
+        display: none;
+    }
+    .main-text-area-mobile {
+        margin: 10px!important;
+        padding: 10px!important;
+    }
+    #img-output {
+        overflow-x: scroll;
+    }
+    .main-header {
+        margin-left: 45px;
+    }
+
+
+
+
+
+}
