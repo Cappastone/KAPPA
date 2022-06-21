@@ -18,3 +18,9 @@
 .dropdown-item {
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .gradient-custom {
+
+    }
+}
