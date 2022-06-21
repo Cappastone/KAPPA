@@ -432,11 +432,28 @@ button:hover {
         bottom: 10px!important;
     }
 
+}
 
+.about-us-card {
+    height: 36em;
+}
 
+@media screen and (max-width: 1200px) {
 
+}
 
+@media screen and (max-width: 1200px) {
+    .about-us-container {
+        display: flex;
+        /*flex-direction: column!important;*/
+        flex-wrap: wrap!important;
+    }
 
+    .about-us-card {
+        margin-top: .5em;
+    }
+}
 
-
+.flip-container {
+    perspective: 1000px;
 }
