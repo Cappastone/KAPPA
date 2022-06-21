@@ -23,31 +23,30 @@
 <h3 class="text-center py-3" style="color: white; font-weight: lighter">Discover GamerHaven's Top Posts</h3>
 <div th:if="${posts}" class="container">
     <div th:each="post : ${posts}">
-        <div class="card discover-top-posts my-4 mx-5 px-5">
+        <div class="card main-posts my-4 mx-5 px-5">
             <div class="card-body my-2">
 
                 <p class="card-text text-end py-0 my-0"><small th:text="${postCreationDates[postStat.index]}" class="text-muted"></small></p>
                 <!--                    <h5 class="card-title">Card title</h5>-->
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center post-img-mobile">
                     <div class="mb-4" th:if="${post.postImages.size() != 0}" th:each="image : ${post.postImages}">
-                        <img style="object-fit: cover; height: 200px; width:250px;" class="mx-5" th:src="${image.url}">
+                        <img style="object-fit: cover; height: 200px; width:250px;" class="mx-3 post-img-mobile-images" th:src="${image.url}">
                     </div>
                 </div>
 
                 <div class="d-flex w-100">
 
-                    <div th:if="${post.user.profilePictureUrl}">
+                    <div th:if="${post.user.profilePictureUrl}" class="main-mobile-posts-profile-pic">
                         <a th:href="'/user/' + ${post.user.id}">
                             <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${post.user.profilePictureUrl}">
                         </a>
                     </div>
-                    <div th:if="!${post.user.profilePictureUrl}">
-                        <a th:href="'/user/' + ${post.user.id}">
+                        <a th:href="'/user/' + ${post.user.id}" class="main-mobile-posts-profile-pic">
                             <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
                         </a>
-                    </div>
 
-                    <p class="card-text ps-5 pt-2" th:text="${post.body}"></p>
+
+                    <p class="card-text ps-5 pt-2 mobile-comment-text" th:text="${post.body}"></p>
 
                 </div>
 

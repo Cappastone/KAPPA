@@ -298,9 +298,14 @@ button:hover {
 @media screen and (max-width: 768px) {
 
     .flip2 {
-        margin-top: 80px!important;
+        position: relative;
+        right: 1.5em;
+        top: 5px!important;
+        margin-top: 60px!important;
         font-size: 12px!important;
         width: 150px!important;
+        padding-left: 5px!important;
+        padding-right: 5px!important;
     }
 
     .main-posts {
@@ -328,6 +333,26 @@ button:hover {
 
 
 
+
+}
+
+@media screen and (max-width: 1200px) {
+
+    .post-img-mobile {
+        overflow-x: scroll;
+        justify-content: normal!important;
+
+    }
+    .post-img-mobile-images{
+        padding-bottom: 5px!important;
+    }
+
+    .main-mobile-posts-profile-pic {
+        display: none;
+    }
+    .mobile-comment-text {
+        padding-left: 0px!important;
+    }
 }
 
 
@@ -336,6 +361,11 @@ button:hover {
         margin: 10px!important;
         padding: 10px!important;
     }
+    .edit-post-area {
+        width: 100% !important;
+    }
+
+
 
 
 
