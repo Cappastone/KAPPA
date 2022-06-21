@@ -41,16 +41,18 @@
                             <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${post.user.profilePictureUrl}">
                         </a>
                     </div>
-                        <a th:href="'/user/' + ${post.user.id}" class="main-mobile-posts-profile-pic">
+                    <div th:if="!${post.user.profilePictureUrl}" class="main-mobile-posts-profile-pic">
+                    <a th:href="'/user/' + ${post.user.id}" class="main-mobile-posts-profile-pic">
                             <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
                         </a>
+                    </div>
 
 
                     <p class="card-text ps-5 pt-2 mobile-comment-text" th:text="${post.body}"></p>
 
                 </div>
 
-                <div class="d-flex justify-content-between align-items-end mt-2">
+                <div class="main-container-1 d-flex justify-content-between align-items-end mt-2">
                     <div>
 
                         <div class="d-flex flex-column main-feed-username" >
