@@ -457,19 +457,19 @@ button:hover {
   
 /*   ///////////////////////////  ABOUT US  /////////////////////////////////*/
   
-    .about-us-card {
-      height: 36em;
-    }
+
 
   
 
 }
 
 
-
-@media screen and (max-width: 1200px) {
-
+/*NO MEDIA QUERY!!!!*/
+.about-us-card {
+    height: 36em;
 }
+
+
 
 @media screen and (max-width: 1200px) {
     .about-us-container {
@@ -483,10 +483,3 @@ button:hover {
     }
   
 }
-
-
-
-
-  .flip-container {
-      perspective: 1000px;
-  }
