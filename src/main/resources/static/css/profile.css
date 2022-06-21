@@ -233,14 +233,17 @@
     .profile-bio {
         margin-top: 2em;
         position: relative;
-        width: 500px;
+        /*width: 500px;*/
         right: 9em;
-        padding-right: 22em;
+        padding-right: 21em;
     }
 
     .bio-card-body {
-        width: 20em;
+        width: 21em;
         margin-bottom: 0px;
+    }
+    .bio-text {
+        width: 100% !important;
     }
     .profile-posts {
         margin: 10px!important;
@@ -251,6 +254,8 @@
         font-size: 12px!important;
         width: 150px!important;
     }
+
+
 
 
 

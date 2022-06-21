@@ -122,8 +122,8 @@
                         <div class="card-body bio-card-body">
                             <h5 class="card-title">Bio</h5>
     <!--                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-                            <p class="card-text" style="font-weight: lighter" th:text="${user.bio}"></p>
-                            <p th:if="${user.bio == null}" class="card-text" style="font-weight: lighter">We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defense, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America.</p>
+                            <p class="card-text bio-text" style="font-weight: lighter" th:text="${user.bio}"></p>
+                            <p th:if="${user.bio == null}" class="card-text bio-text" style="font-weight: lighter">We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defense, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America.</p>
             <!--                <a href="#" class="card-link">Card link</a>-->
             <!--                <a href="#" class="card-link">Another link</a>-->
                             <div sec:authorize="isAuthenticated()">
