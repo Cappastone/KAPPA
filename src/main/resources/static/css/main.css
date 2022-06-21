@@ -357,6 +357,7 @@ button:hover {
     .main-container-1 {
         margin-top: 20px!important;
     }
+
 }
 
 
@@ -431,12 +432,40 @@ button:hover {
         position: relative;
         bottom: 10px!important;
     }
+  
+  /*EDIT POSTS*/
+    .post-img-box {
+        overflow-y: scroll;
+    }
+  
+      /*////////////////////////  ACCOUNT VIEW  //////////////////////////*/
+
+
+    .mobile-account-details-view {
+        padding: 10px!important;
+        margin: 10px!important;
+    }
+
+    .links-card {
+        /*width: 425px!important;*/
+    }
+    .links-input {
+        padding: 8px 10px 8px 10px!important;
+        margin: 5px 10px 5px 10px!important;
+    }
+  
+  
+/*   ///////////////////////////  ABOUT US  /////////////////////////////////*/
+  
+    .about-us-card {
+      height: 36em;
+    }
+
+  
 
 }
 
-.about-us-card {
-    height: 36em;
-}
+
 
 @media screen and (max-width: 1200px) {
 
@@ -452,8 +481,12 @@ button:hover {
     .about-us-card {
         margin-top: .5em;
     }
+  
 }
 
-.flip-container {
-    perspective: 1000px;
-}
+
+
+
+  .flip-container {
+      perspective: 1000px;
+  }

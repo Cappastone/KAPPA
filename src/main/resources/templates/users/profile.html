@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/partials.html :: head ('View Profile')">
 
 <body>
+<!--<h1>HELLO JUSTIN! </h1>-->
 <nav th:replace="partials/partials.html :: navbar"></nav>
 <!--header -->
 
@@ -11,19 +12,21 @@
 <div th:if="${user}" class="container">
 
     <div class="top-profile container d-flex flex-column justify-content-end">
-<!--    <p th:text="${user.username} + ' \'s profile'"></p>-->
+        <!--    <p th:text="${user.username} + ' \'s profile'"></p>-->
 
-<!--        <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>-->
-    <!--    <p th:text="${user.username}"></p>-->
+        <!--        <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>-->
+        <!--    <p th:text="${user.username}"></p>-->
 
         <div th:if="${user.bannerUrl}" class="banner-container">
-            <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;" th:src="${user.bannerUrl}" alt="banner-picture">
+            <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;"
+                 th:src="${user.bannerUrl}" alt="banner-picture">
         </div>
 
         <div th:if="!${user.bannerUrl}" class="banner-container">
-            <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;" src="https://i0.wp.com/kpsu.org/wp-content/uploads/2017/02/Perfect-Universe-poster-galaxy-planet-outer-space-Purple-landscape-poster-Wide-Wallpaper-silk-Art-Home-Deco.jpg?ssl=1" alt="banner-picture">
+            <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;"
+                 src="https://i0.wp.com/kpsu.org/wp-content/uploads/2017/02/Perfect-Universe-poster-galaxy-planet-outer-space-Purple-landscape-poster-Wide-Wallpaper-silk-Art-Home-Deco.jpg?ssl=1"
+                 alt="banner-picture">
         </div>
-
 
 
         <div class="row">
@@ -34,19 +37,23 @@
                         <img class="profile-picture" th:src="${user.profilePictureUrl}" alt="profile-picture">
                         <!--        <p th:text="${user.bio}"></p>-->
                         <div th:if="${sessionUserId == user.id}">
-                            <button type="button" class="change-profile-pic-btn btn btn-dark"><i class="fa-solid fa-user-pen"></i></button>
+                            <button type="button" class="change-profile-pic-btn btn btn-dark"><i
+                                    class="fa-solid fa-user-pen"></i></button>
                         </div>
                     </div>
                     <div th:if="!${user.profilePictureUrl}" class="profile-picture-container d-flex align-items-end">
-                        <img class="profile-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
-                <!--        <p th:text="${user.bio}"></p>-->
+                        <img class="profile-picture"
+                             src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg"
+                             alt="profile-picture">
+                        <!--        <p th:text="${user.bio}"></p>-->
                         <div th:if="${sessionUserId == user.id}">
-                            <button  type="button" class="change-profile-pic-btn btn btn-dark"><i class="fa-solid fa-user-pen"></i></button>
+                            <button type="button" class="change-profile-pic-btn btn btn-dark"><i
+                                    class="fa-solid fa-user-pen"></i></button>
                         </div>
                     </div>
                     <span class="profile-username" th:text="${user.getUsername()}"></span>
                 </div>
-<!--                <div class="profile-username"><span th:text="${user.getUsername()}"></span></div>-->
+                <!--                <div class="profile-username"><span th:text="${user.getUsername()}"></span></div>-->
             </div>
 
 
@@ -54,103 +61,123 @@
 
                 <div class="container d-flex flex-wrap">
                     <div class="user-info container d-flex flex-wrap justify-content-end">
-<!--                        <div class="profile-follower">Followers:-->
-<!--                            <span th:text="${user.getFollowers().size()}"></span>-->
-<!--                        </div>-->
-<!--                        <div class="profile-following">Following:-->
-<!--                            <span th:text="${following.size()}"></span>-->
-<!--                        </div>-->
+                        <!--                        <div class="profile-follower">Followers:-->
+                        <!--                            <span th:text="${user.getFollowers().size()}"></span>-->
+                        <!--                        </div>-->
+                        <!--                        <div class="profile-following">Following:-->
+                        <!--                            <span th:text="${following.size()}"></span>-->
+                        <!--                        </div>-->
                         <div th:if="${sessionUserId == user.id}">
-                            <button type="button" class="change-banner-btn btn btn-dark"><i class="fa-solid fa-image"></i></button>
+                            <button type="button" class="change-banner-btn btn btn-dark"><i
+                                    class="fa-solid fa-image"></i></button>
                         </div>
                         <div th:if="${sessionUserId != user.id}" class="my-3">
-<!--                            <button type="button" class="change-banner-btn btn btn-dark"><i class="fa-solid fa-image"></i></button>-->
+                            <!--                            <button type="button" class="change-banner-btn btn btn-dark"><i class="fa-solid fa-image"></i></button>-->
                         </div>
                     </div>
                 </div>
 
 
-
                 <div class="links-container ms-5 container d-flex flex-wrap justify-content-between">
-<!--                    <div class="card">-->
-                            <div th:if="${user.links}" class=" py-3 card">
-                                <div th:if="!${user.links.discord.isBlank()}" class="card-body my-0 py-0">
-                                    <p><i class="fa-brands fa-discord"></i><span class="links-text ms-3" th:text="${user.links.discord}"></span></p>
-                                </div>
-                                <div th:if="!${user.links.nintendo.isBlank()}" class="card-body my-0 py-0">
-                                    <p><i class="bi bi-nintendo-switch"></i><span class="links-text ms-3" th:text="${user.links.nintendo}"></span></p>
-                                </div>
-                                <div th:if="!${user.links.playstation.isBlank()}" class="card-body my-0 py-0">
-                                    <p><i class="fa-brands fa-playstation"></i><span class="links-text ms-3" th:text="${user.links.playstation}"></span></p>
-                                </div>
-                                <div th:if="!${user.links.twitch.isBlank()}" class="card-body my-0 py-0">
-                                    <p><i class="fa-brands fa-twitch"></i><span class="links-text ms-3" th:text="${user.links.twitch}"></span></p>
-                                </div>
-                                <div th:if="!${user.links.xbox.isBlank()}" class="card-body my-0 py-0">
-                                    <p><i class="fa-brands fa-xbox"></i><span class="links-text ms-3" th:text="${user.links.xbox}"></span></p>
-                                </div>
-                                <div th:if="!${user.links.youtube.isBlank()}" class="card-body my-0 py-0">
-                                    <p><i class="fa-brands fa-youtube"></i><span class="links-text ms-3" th:text="${user.links.youtube}"></span></p>
-                                </div>
+                    <!--                    <div class="card">-->
+                    <div th:if="${user.links}" class=" py-3 card">
+                        <div th:if="!${user.links.discord.isBlank()}" class="card-body my-0 py-0">
+                            <p><i class="fa-brands fa-discord"></i><span class="links-text ms-3"
+                                                                         th:text="${user.links.discord}"></span></p>
+                        </div>
+                        <div th:if="!${user.links.nintendo.isBlank()}" class="card-body my-0 py-0">
+                            <p><i class="bi bi-nintendo-switch"></i><span class="links-text ms-3"
+                                                                          th:text="${user.links.nintendo}"></span></p>
+                        </div>
+                        <div th:if="!${user.links.playstation.isBlank()}" class="card-body my-0 py-0">
+                            <p><i class="fa-brands fa-playstation"></i><span class="links-text ms-3"
+                                                                             th:text="${user.links.playstation}"></span>
+                            </p>
+                        </div>
+                        <div th:if="!${user.links.twitch.isBlank()}" class="card-body my-0 py-0">
+                            <p><i class="fa-brands fa-twitch"></i><span class="links-text ms-3"
+                                                                        th:text="${user.links.twitch}"></span></p>
+                        </div>
+                        <div th:if="!${user.links.xbox.isBlank()}" class="card-body my-0 py-0">
+                            <p><i class="fa-brands fa-xbox"></i><span class="links-text ms-3"
+                                                                      th:text="${user.links.xbox}"></span></p>
+                        </div>
+                        <div th:if="!${user.links.youtube.isBlank()}" class="card-body my-0 py-0">
+                            <p><i class="fa-brands fa-youtube"></i><span class="links-text ms-3"
+                                                                         th:text="${user.links.youtube}"></span></p>
+                        </div>
 
-<!--                        </div>-->
+                        <!--                        </div>-->
                     </div>
 
-<!--                    <div th:if="${user.links}" class="profile-links">-->
-<!--                        <div th:if="!${user.links.discord.isBlank()}">-->
-<!--                            <p class="links-text" th:text="'Discord: ' + ${user.links.discord}"></p>-->
-<!--                        </div>-->
-<!--                        <div th:if="!${user.links.nintendo.isBlank()}">-->
-<!--                            <p class="links-text" th:text="'Nintendo: ' + ${user.links.nintendo}"></p>-->
-<!--                        </div>-->
-<!--                        <div th:if="!${user.links.playstation.isBlank()}">-->
-<!--                            <p class="links-text" th:text="'Playstation: ' + ${user.links.playstation}"></p>-->
-<!--                        </div>-->
-<!--                        <div th:if="!${user.links.twitch.isBlank()}">-->
-<!--                            <p class="links-text" th:text="'Twitch: ' + ${user.links.twitch}"></p>-->
-<!--                        </div>-->
-<!--                        <div th:if="!${user.links.xbox.isBlank()}">-->
-<!--                            <p class="links-text" th:text="'Xbox: ' + ${user.links.xbox}"></p>-->
-<!--                        </div>-->
-<!--                        <div th:if="!${user.links.youtube.isBlank()}">-->
-<!--                            <p class="links-text" th:text="'YouTube: ' + ${user.links.youtube}"></p>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                    <div th:if="${user.links}" class="profile-links">-->
+                    <!--                        <div th:if="!${user.links.discord.isBlank()}">-->
+                    <!--                            <p class="links-text" th:text="'Discord: ' + ${user.links.discord}"></p>-->
+                    <!--                        </div>-->
+                    <!--                        <div th:if="!${user.links.nintendo.isBlank()}">-->
+                    <!--                            <p class="links-text" th:text="'Nintendo: ' + ${user.links.nintendo}"></p>-->
+                    <!--                        </div>-->
+                    <!--                        <div th:if="!${user.links.playstation.isBlank()}">-->
+                    <!--                            <p class="links-text" th:text="'Playstation: ' + ${user.links.playstation}"></p>-->
+                    <!--                        </div>-->
+                    <!--                        <div th:if="!${user.links.twitch.isBlank()}">-->
+                    <!--                            <p class="links-text" th:text="'Twitch: ' + ${user.links.twitch}"></p>-->
+                    <!--                        </div>-->
+                    <!--                        <div th:if="!${user.links.xbox.isBlank()}">-->
+                    <!--                            <p class="links-text" th:text="'Xbox: ' + ${user.links.xbox}"></p>-->
+                    <!--                        </div>-->
+                    <!--                        <div th:if="!${user.links.youtube.isBlank()}">-->
+                    <!--                            <p class="links-text" th:text="'YouTube: ' + ${user.links.youtube}"></p>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
-<!--                    <div th:if="${user.bio == null}" class="profile-bio card null-bio">-->
+                    <!--                    <div th:if="${user.bio == null}" class="profile-bio card null-bio">-->
                     <div class="profile-bio card">
                         <div class="card-body bio-card-body">
                             <h5 class="card-title">Bio</h5>
-    <!--                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+                            <!--                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
                             <p class="card-text bio-text" style="font-weight: lighter" th:text="${user.bio}"></p>
-                            <p th:if="${user.bio == null}" class="card-text bio-text" style="font-weight: lighter">We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defense, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America.</p>
-            <!--                <a href="#" class="card-link">Card link</a>-->
-            <!--                <a href="#" class="card-link">Another link</a>-->
+                            <p th:if="${user.bio == null}" class="card-text bio-text" style="font-weight: lighter">We
+                                the People of the United States, in Order to form a more perfect Union, establish
+                                Justice, insure domestic Tranquility, provide for the common defense, promote the
+                                general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do
+                                ordain and establish this Constitution for the United States of America.</p>
+                            <!--                <a href="#" class="card-link">Card link</a>-->
+                            <!--                <a href="#" class="card-link">Another link</a>-->
                             <div sec:authorize="isAuthenticated()">
                                 <div th:if="${user.id == sessionUserId}">
                                     <div class="d-flex justify-content-end">
-                                        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
                                             Edit Bio
                                         </button>
                                     </div>
 
                                     <!--EDIT BIO MODAL-->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" style="color: black" id="exampleModalLabel">Edit Bio</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title" style="color: black" id="exampleModalLabel">
+                                                        Edit Bio</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <!--EDIT BIO FORM-->
                                                     <form action="/user/edit-bio" method="POST" th:object="${user}">
                                                         <div class="mb-3">
                                                             <input type="hidden" th:field="*{id}">
-                                                            <textarea class="form-control" rows="3" th:field="*{bio}"></textarea>
+                                                            <textarea class="form-control" rows="3"
+                                                                      th:field="*{bio}"></textarea>
                                                         </div>
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" value="Update" class="btn btn-secondary">Update</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="submit" value="Update" class="btn btn-secondary">
+                                                            Update
+                                                        </button>
                                                     </form>
                                                     <!--END EDIT BIO FORM-->
                                                 </div>
@@ -175,56 +202,56 @@
             </form>
         </div>
 
-    <!-- Button trigger modal for Edit Bio-->
-<!--    <div sec:authorize="isAuthenticated()">-->
-<!--        <div th:if="${user.id == sessionUserId}">-->
-<!--            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
-<!--                Edit Bio-->
-<!--            </button>-->
+        <!-- Button trigger modal for Edit Bio-->
+        <!--    <div sec:authorize="isAuthenticated()">-->
+        <!--        <div th:if="${user.id == sessionUserId}">-->
+        <!--            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+        <!--                Edit Bio-->
+        <!--            </button>-->
 
-            <!--EDIT BIO MODAL-->
-<!--            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--                <div class="modal-dialog">-->
-<!--                    <div class="modal-content">-->
-<!--                        <div class="modal-header">-->
-<!--                            <h5 class="modal-title" id="exampleModalLabel">Edit Bio</h5>-->
-<!--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                        </div>-->
-<!--                        <div class="modal-body">-->
-<!--                            &lt;!&ndash;EDIT BIO FORM&ndash;&gt;-->
-<!--                            <form action="/user/edit-bio" method="POST">-->
-<!--                                <div class="mb-3">-->
-<!--                                    <input type="hidden" name="id" th:value="${user.id}">-->
-<!--                                    <textarea class="form-control" id="bio" name="bio" rows="3" th:value="${user.bio}"></textarea>-->
-<!--                                </div>-->
-<!--                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--                                <input type="submit" value="Update" class="btn btn-dark w-25">-->
-<!--                            </form>-->
-<!--                            &lt;!&ndash;END EDIT BIO FORM&ndash;&gt;-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-            <!--END EDIT BIO MODAL-->
+        <!--EDIT BIO MODAL-->
+        <!--            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+        <!--                <div class="modal-dialog">-->
+        <!--                    <div class="modal-content">-->
+        <!--                        <div class="modal-header">-->
+        <!--                            <h5 class="modal-title" id="exampleModalLabel">Edit Bio</h5>-->
+        <!--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+        <!--                        </div>-->
+        <!--                        <div class="modal-body">-->
+        <!--                            &lt;!&ndash;EDIT BIO FORM&ndash;&gt;-->
+        <!--                            <form action="/user/edit-bio" method="POST">-->
+        <!--                                <div class="mb-3">-->
+        <!--                                    <input type="hidden" name="id" th:value="${user.id}">-->
+        <!--                                    <textarea class="form-control" id="bio" name="bio" rows="3" th:value="${user.bio}"></textarea>-->
+        <!--                                </div>-->
+        <!--                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+        <!--                                <input type="submit" value="Update" class="btn btn-dark w-25">-->
+        <!--                            </form>-->
+        <!--                            &lt;!&ndash;END EDIT BIO FORM&ndash;&gt;-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--END EDIT BIO MODAL-->
 
-            <!--EDIT PROFILE PIC FORM-->
-<!--            <form id="profile-pic" action="/user/edit-profile-pic" method="POST">-->
-<!--                <input type="hidden" name="id" th:value="${user.id}">-->
-<!--                <input type="hidden" class="change-profile-pic" name="profile-picture-url">-->
-<!--                <button type="button" class="change-profile-pic btn btn-primary">Change Profile Pic</button>-->
-<!--            </form>-->
-            <!--END EDIT PROFILE PIC FORM-->
+        <!--EDIT PROFILE PIC FORM-->
+        <!--            <form id="profile-pic" action="/user/edit-profile-pic" method="POST">-->
+        <!--                <input type="hidden" name="id" th:value="${user.id}">-->
+        <!--                <input type="hidden" class="change-profile-pic" name="profile-picture-url">-->
+        <!--                <button type="button" class="change-profile-pic btn btn-primary">Change Profile Pic</button>-->
+        <!--            </form>-->
+        <!--END EDIT PROFILE PIC FORM-->
 
-            <!--EDIT BANNER FORM-->
-<!--            <form id="banner" action="/user/edit-banner" method="POST">-->
-<!--                <input type="hidden" name="id" th:value="${user.id}">-->
-<!--                <input type="hidden" class="change-banner" name="banner-url">-->
-<!--                <button type="button" class="change-banner btn btn-secondary">Change Banner</button>-->
-<!--            </form>-->
-            <!--END EDIT BANNER FORM-->
+        <!--EDIT BANNER FORM-->
+        <!--            <form id="banner" action="/user/edit-banner" method="POST">-->
+        <!--                <input type="hidden" name="id" th:value="${user.id}">-->
+        <!--                <input type="hidden" class="change-banner" name="banner-url">-->
+        <!--                <button type="button" class="change-banner btn btn-secondary">Change Banner</button>-->
+        <!--            </form>-->
+        <!--END EDIT BANNER FORM-->
 
-<!--        </div>-->
-<!--    </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
     </div>
     <div class="mobile-spacing"></div>
     <div sec:authorize="isAuthenticated()" class="profile-following-btn">
@@ -233,7 +260,8 @@
         </div>
 
         <div th:if="${!ListUserIdsByFollowerId.contains(user.id)}">
-            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-outline-light">Follow</button>
+            <button th:data="${user.id} + ',' + ${sessionUserId}" class="follow-btn btn btn-outline-light">Follow
+            </button>
         </div>
     </div>
     <div sec:authorize="!isAuthenticated()">
@@ -243,28 +271,32 @@
 
     <hr>
 
-<!--    display logged-in user's Follower info-->
+    <!--    display logged-in user's Follower info-->
     <div th:if="${user.followers.size() != 0}" class="d-flex overflow-scrolly py-3">
         <div class="d-flex align-items-center me-2">
             <p class="custom-width" th:text="'Followers: ' + ${user.followers.size()}"></p>
         </div>
         <div th:each="follower : ${user.followers}" class="d-flex flex-wrap justify-content-evenly">
-<!--            <p th:text="${follower.username}"></p>-->
-<!--            <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>-->
-<!--            <p th:text="'User Id: ' + ${follower.id}"></p>-->
+            <!--            <p th:text="${follower.username}"></p>-->
+            <!--            <a th:text="${follower.username}" th:href="'/user/' + ${follower.id}"></a>-->
+            <!--            <p th:text="'User Id: ' + ${follower.id}"></p>-->
             <div th:if="${follower.profilePictureUrl}" class="d-flex flex-wrap flex-column">
                 <a th:href="'/user/' + ${follower.id}">
                     <img class="profile-follower-picture" th:src="${follower.profilePictureUrl}" alt="profile-pic">
                 </a>
-                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(follower.username, 10)}"  th:href="'/user/' + ${follower.id}"></a>
+                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(follower.username, 10)}"
+                   th:href="'/user/' + ${follower.id}"></a>
             </div>
             <div th:if="!${follower.profilePictureUrl}" class="d-flex flex-wrap flex-column">
                 <a th:href="'/user/' + ${follower.id}">
-                    <img class="profile-follower-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="default-profile-picture">
+                    <img class="profile-follower-picture"
+                         src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg"
+                         alt="default-profile-picture">
                 </a>
-                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(follower.username, 10)}"  th:href="'/user/' + ${follower.id}"></a>
+                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(follower.username, 10)}"
+                   th:href="'/user/' + ${follower.id}"></a>
             </div>
-<!--            <p th:text="${user.bio}"></p>-->
+            <!--            <p th:text="${user.bio}"></p>-->
         </div>
     </div>
 
@@ -274,26 +306,32 @@
 
     <hr>
 
-<!--    display users that a logged-in user is Following-->
+    <!--    display users that a logged-in user is Following-->
     <div th:if="${following.size() > 0}" class="d-flex overflow-scrolly py-3">
         <div class="d-flex align-items-center me-2">
             <p class="custom-width" th:text="'Following: ' + ${following.size()}"></p>
         </div>
 
         <div th:each="userTheyFollow : ${following}" class="d-flex flex-wrap justify-content-evenly">
-<!--            <p th:text="${following.username}"></p>-->
+            <!--            <p th:text="${following.username}"></p>-->
 
             <div th:if="${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">
                 <a th:href="'/user/' + ${userTheyFollow.id}">
                     <img class="profile-following-picture" th:src="${userTheyFollow.profilePictureUrl}">
                 </a>
-                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
+                <a class="text-center links-text profile-name-c"
+                   th:text="${#strings.abbreviate(userTheyFollow.username, 10)}"
+                   th:href="'/user/' + ${userTheyFollow.id}"></a>
             </div>
             <div th:if="!${userTheyFollow.profilePictureUrl}" class="d-flex flex-wrap flex-column">
                 <a th:href="'/user/' + ${userTheyFollow.id}">
-                    <img class="profile-following-picture" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
+                    <img class="profile-following-picture"
+                         src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg"
+                         alt="profile-picture">
                 </a>
-                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(userTheyFollow.username, 10)}" th:href="'/user/' + ${userTheyFollow.id}"></a>
+                <a class="text-center links-text profile-name-c"
+                   th:text="${#strings.abbreviate(userTheyFollow.username, 10)}"
+                   th:href="'/user/' + ${userTheyFollow.id}"></a>
             </div>
         </div>
     </div>
@@ -303,23 +341,23 @@
 
     <hr>
 
-<!--    display the logged-in user's Favorite Games info-->
+    <!--    display the logged-in user's Favorite Games info-->
     <div th:if="${user.favoriteGames.size() != 0}" class="d-flex overflow-scrolly py-3">
         <div class="d-flex align-items-center me-2">
             <p class="custom-width" th:text="'Favorite Games: ' + ${user.favoriteGames.size()}"></p>
         </div>
 
 
-
-            <div th:each="game : ${user.favoriteGames}" class="d-flex flex-wrap justify-content-evenly">
-    <!--            <p th:text="${game.title}"></p>-->
-                <div class="d-flex flex-wrap flex-column">
-                    <a th:href="'/game?gameID=' + ${game.gamesApiId}">
-                        <img class="profile-game-picture" th:src="${game.imageUrl}">
-                    </a>
-                    <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(game.title, 10)}" th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
-                </div>
+        <div th:each="game : ${user.favoriteGames}" class="d-flex flex-wrap justify-content-evenly">
+            <!--            <p th:text="${game.title}"></p>-->
+            <div class="d-flex flex-wrap flex-column">
+                <a th:href="'/game?gameID=' + ${game.gamesApiId}">
+                    <img class="profile-game-picture" th:src="${game.imageUrl}">
+                </a>
+                <a class="text-center links-text profile-name-c" th:text="${#strings.abbreviate(game.title, 10)}"
+                   th:href="'/game?gameID=' + ${game.gamesApiId}"></a>
             </div>
+        </div>
 
     </div>
 
@@ -327,108 +365,119 @@
         <p>No favorite games yet!</p>
     </div>
     <hr>
-<!--     display the Platform Links of a logged-in user-->
-<!--    <div th:if="${user.links}">-->
-<!--        <p>Platform Links</p>-->
-<!--        <div th:if="!${user.links.discord.isBlank()}">-->
-<!--            <p th:text="'Discord: ' + ${user.links.discord}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.nintendo.isBlank()}">-->
-<!--            <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.playstation.isBlank()}">-->
-<!--            <p th:text="'Playstation: ' + ${user.links.playstation}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.twitch.isBlank()}">-->
-<!--            <p th:text="'Twitch: ' + ${user.links.twitch}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.xbox.isBlank()}">-->
-<!--            <p th:text="'Xbox: ' + ${user.links.xbox}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.youtube.isBlank()}">-->
-<!--            <p th:text="'YouTube: ' + ${user.links.youtube}"></p>-->
-<!--        </div>-->
+    <!--     display the Platform Links of a logged-in user-->
+    <!--    <div th:if="${user.links}">-->
+    <!--        <p>Platform Links</p>-->
+    <!--        <div th:if="!${user.links.discord.isBlank()}">-->
+    <!--            <p th:text="'Discord: ' + ${user.links.discord}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.nintendo.isBlank()}">-->
+    <!--            <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.playstation.isBlank()}">-->
+    <!--            <p th:text="'Playstation: ' + ${user.links.playstation}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.twitch.isBlank()}">-->
+    <!--            <p th:text="'Twitch: ' + ${user.links.twitch}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.xbox.isBlank()}">-->
+    <!--            <p th:text="'Xbox: ' + ${user.links.xbox}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.youtube.isBlank()}">-->
+    <!--            <p th:text="'YouTube: ' + ${user.links.youtube}"></p>-->
+    <!--        </div>-->
 
-<!--    </div> &ndash;&gt;-->
+    <!--    </div> &ndash;&gt;-->
 
-<!--    <hr>-->
+    <!--    <hr>-->
 
-<!--    display the Platform Links of a logged-in user-->
-<!--    <div th:if="${user.links}">-->
-<!--        <p>Platform Links</p>-->
-<!--        <div th:if="!${user.links.discord.isBlank()}">-->
-<!--            <p th:text="'Discord: ' + ${user.links.discord}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.nintendo}">-->
-<!--            <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.playstation.isBlank()}">-->
-<!--            <p th:text="'Playstation: ' + ${user.links.playstation}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.twitch.isBlank()}">-->
-<!--            <p th:text="'Twitch: ' + ${user.links.twitch}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.xbox.isBlank()}">-->
-<!--            <p th:text="'Xbox: ' + ${user.links.xbox}"></p>-->
-<!--        </div>-->
-<!--        <div th:if="!${user.links.youtube.isBlank()}">-->
-<!--            <p th:text="'YouTube: ' + ${user.links.youtube}"></p>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    display the Platform Links of a logged-in user-->
+    <!--    <div th:if="${user.links}">-->
+    <!--        <p>Platform Links</p>-->
+    <!--        <div th:if="!${user.links.discord.isBlank()}">-->
+    <!--            <p th:text="'Discord: ' + ${user.links.discord}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.nintendo}">-->
+    <!--            <p th:text="'Nintendo: ' + ${user.links.nintendo}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.playstation.isBlank()}">-->
+    <!--            <p th:text="'Playstation: ' + ${user.links.playstation}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.twitch.isBlank()}">-->
+    <!--            <p th:text="'Twitch: ' + ${user.links.twitch}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.xbox.isBlank()}">-->
+    <!--            <p th:text="'Xbox: ' + ${user.links.xbox}"></p>-->
+    <!--        </div>-->
+    <!--        <div th:if="!${user.links.youtube.isBlank()}">-->
+    <!--            <p th:text="'YouTube: ' + ${user.links.youtube}"></p>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
-<!--    <hr>-->
+    <!--    <hr>-->
     <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
-<!--    display all the Posts that the logged-in user has created-->
+    <!--    display all the Posts that the logged-in user has created-->
     <div th:if="${posts}">
         <div th:each="post : ${posts}">
             <div class="card my-4 mx-5 profile-posts px-5">
                 <div class="card-body  my-2">
-<!--                    <h5 class="card-title">Card title</h5>-->
+                    <!--                    <h5 class="card-title">Card title</h5>-->
                     <div class="d-flex justify-content-center post-img-mobile">
                         <div class="mb-4" th:if="${post.postImages.size() != 0}" th:each="image : ${post.postImages}">
-                            <img style="object-fit: cover; height: 200px; width:250px;" class="mx-3 post-img-mobile-images" th:src="${image.url}">
+                            <img style="object-fit: cover; height: 200px; width:250px;"
+                                 class="mx-3 post-img-mobile-images" th:src="${image.url}">
                         </div>
                     </div>
                     <p class="card-text" th:text="${post.body}"></p>
                     <div class="d-flex justify-content-between align-items-end">
                         <div>
-                            <p class="card-text"><small th:text="${postCreationDates[postStat.index]}" class="text-muted"></small></p>
+                            <p class="card-text"><small th:text="${postCreationDates[postStat.index]}"
+                                                        class="text-muted"></small></p>
 
                             <div sec:authorize="isAuthenticated()">
                                 <div th:if="${post.getUser().id == sessionUserId}">
-                                    <button name="edit" th:data-id="${post.id}" class="edit btn btn-outline-light"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button name="edit" th:data-id="${post.id}" class="edit btn btn-outline-light"><i
+                                            class="fa-solid fa-pen-to-square"></i></button>
                                 </div>
                             </div>
 
                         </div>
-
 
 
                         <div class="d-flex flip" style="cursor: pointer">
                             <div>
-                                <button class="flip2 btn btn-outline-light" th:data-id="${post.id}"><i style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View Comments  (<span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)</button>
+                                <button class="flip2 btn btn-outline-light" th:data-id="${post.id}"><i
+                                        style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View Comments
+                                    (<span style="font-weight: lighter" class="comment-count"
+                                           th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)
+                                </button>
                             </div>
-<!--                            <div>-->
-<!--                                <p><span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span></p>-->
-<!--                            </div>-->
+                            <!--                            <div>-->
+                            <!--                                <p><span style="font-weight: lighter" class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span></p>-->
+                            <!--                            </div>-->
                         </div>
 
 
-
-
                         <div>
-                            <p>Likes: <span class="like-count" th:data-id="${post.id}" th:text="${post.usersThatLiked.size()}"></span></p>
+                            <p>Likes: <span class="like-count" th:data-id="${post.id}"
+                                            th:text="${post.usersThatLiked.size()}"></span></p>
 
                             <div sec:authorize="isAuthenticated()">
                                 <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">
-                                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-purple">&#128077;</button>
+                                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}"
+                                            class="like-btn btn btn-purple">&#128077;
+                                    </button>
                                 </div>
                                 <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-outline-light">&#128077;</button>
+                                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}"
+                                            class="like-btn btn btn-outline-light">&#128077;
+                                    </button>
                                 </div>
                             </div>
                             <div sec:authorize="!isAuthenticated()">
-                                <button onclick="redirectToLogin()" class="like-btn-null btn btn-outline-light">&#128077;</button>
+                                <button onclick="redirectToLogin()" class="like-btn-null btn btn-outline-light">
+                                    &#128077;
+                                </button>
                             </div>
 
 
@@ -446,19 +495,22 @@
 
                                 <div sec:authorize="isAuthenticated()">
                                     <div th:if="${findCommentIdsByUserId.contains(comment.id)}" class="pe-3 pt-3">
-                                        <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0" th:data-dl="${comment.id}" th:data-id="${post.id}">x</button>
+                                        <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0"
+                                                th:data-dl="${comment.id}" th:data-id="${post.id}">x
+                                        </button>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl profile-name-c" th:data-dl="${comment.id}"></a>
+                                    <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"
+                                       class="dl profile-name-c" th:data-dl="${comment.id}"></a>
 
                                     <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
                                 </div>
 
-<!--                                <div th:if="${findCommentIdsByUserId.contains(comment.id)}">-->
-<!--                                    <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0" th:data-dl="${comment.id}" th:data-id="${post.id}">x</button>-->
-<!--                                </div>-->
+                                <!--                                <div th:if="${findCommentIdsByUserId.contains(comment.id)}">-->
+                                <!--                                    <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0" th:data-dl="${comment.id}" th:data-id="${post.id}">x</button>-->
+                                <!--                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -471,18 +523,24 @@
 
                     <div>
                         <div class="w-100">
-                            <textarea type="text" th:data-id="${post.id}" name="comment-body" class="comment-body w-100"></textarea>
+                            <textarea type="text" th:data-id="${post.id}" name="comment-body"
+                                      class="comment-body w-100"></textarea>
                         </div>
 
 
                         <div sec:authorize="isAuthenticated()">
                             <div class="w-100 d-flex justify-content-end">
-                                <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-outline-light" th:data-id="${post.id}">Post Comment</button>
+                                <button th:data="${sessionUserId} + ',' + ${post.id}"
+                                        class="post-comment-btn btn btn-outline-light" th:data-id="${post.id}">Post
+                                    Comment
+                                </button>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
                             <div class="w-100 d-flex justify-content-end">
-                                <button class="post-comment-btn btn btn-outline-light" onclick="redirectToLogin()">Post Comment</button>
+                                <button class="post-comment-btn btn btn-outline-light" onclick="redirectToLogin()">Post
+                                    Comment
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -492,100 +550,99 @@
     </div>
 
 
-<!--    <div th:if="${posts}">-->
-<!--&lt;!&ndash;        <form id="like-post" action="/user/like" method="post"></form>&ndash;&gt;-->
-<!--        <div th:each="post : ${posts}">-->
-<!--            <p th:text="'Post #' + ${post.id}"></p>-->
-<!--&lt;!&ndash;            <p th:text="${post.creationDate}"></p>&ndash;&gt;-->
-<!--            <p th:text="${postCreationDates[postStat.index]}"></p>-->
-<!--            <p th:text="${post.body}"></p>-->
-<!--&lt;!&ndash;            <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>&ndash;&gt;-->
-<!--            <p>Likes: <span class="like-count" th:data-id="${post.id}" th:text="${post.usersThatLiked.size()}"></span></p>-->
+    <!--    <div th:if="${posts}">-->
+    <!--&lt;!&ndash;        <form id="like-post" action="/user/like" method="post"></form>&ndash;&gt;-->
+    <!--        <div th:each="post : ${posts}">-->
+    <!--            <p th:text="'Post #' + ${post.id}"></p>-->
+    <!--&lt;!&ndash;            <p th:text="${post.creationDate}"></p>&ndash;&gt;-->
+    <!--            <p th:text="${postCreationDates[postStat.index]}"></p>-->
+    <!--            <p th:text="${post.body}"></p>-->
+    <!--&lt;!&ndash;            <p th:text="'Likes: ' + ${post.usersThatLiked.size()}"></p>&ndash;&gt;-->
+    <!--            <p>Likes: <span class="like-count" th:data-id="${post.id}" th:text="${post.usersThatLiked.size()}"></span></p>-->
 
-<!--            <p><span class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>  Comments</p>-->
-<!--            <div class="flip" style="color: dodgerblue; cursor: pointer;">Click to view comments</div>-->
-<!--                <div class="panel panel-collapsed">-->
+    <!--            <p><span class="comment-count" th:text="${post.comments.size()}" th:data-id="${post.id}"></span>  Comments</p>-->
+    <!--            <div class="flip" style="color: dodgerblue; cursor: pointer;">Click to view comments</div>-->
+    <!--                <div class="panel panel-collapsed">-->
 
-<!--                    <div th:if="${post.comments}" class="comments-container" th:data-id="${post.id}">-->
+    <!--                    <div th:if="${post.comments}" class="comments-container" th:data-id="${post.id}">-->
 
-<!--                        <div th:each="comment : ${post.comments}">-->
+    <!--                        <div th:each="comment : ${post.comments}">-->
 
-<!--            &lt;!&ndash;                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <p th:text="${comment.body}"></p>&ndash;&gt;-->
+    <!--            &lt;!&ndash;                <p th:text="${comment.user.username} + ' said: ' + ${comment.comment}"></p>&ndash;&gt;-->
+    <!--            &lt;!&ndash;                <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"></a>&ndash;&gt;-->
+    <!--            &lt;!&ndash;                <p th:text="${comment.body}"></p>&ndash;&gt;-->
 
-<!--                            <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>-->
-<!--                            <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>-->
-
-
-<!--                            <div th:if="${findCommentIdsByUserId.contains(comment.id)}">-->
-<!--                                <button th:data="${comment.id}" class="delete dl" th:data-dl="${comment.id}" th:data-id="${post.id}">X</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--            <div th:if="!${post.comments}">-->
-<!--                <p>No comments yet, be the first!</p>-->
-<!--            </div>-->
+    <!--                            <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}" class="dl" th:data-dl="${comment.id}"></a>-->
+    <!--                            <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>-->
 
 
-<!--            <div>-->
-<!--                <input type="text" th:data-id="${post.id}" name="comment-body" class="comment-body">-->
-<!--                <button  th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn" th:data-id="${post.id}">Post Comment</button>-->
-<!--            </div>-->
+    <!--                            <div th:if="${findCommentIdsByUserId.contains(comment.id)}">-->
+    <!--                                <button th:data="${comment.id}" class="delete dl" th:data-dl="${comment.id}" th:data-id="${post.id}">X</button>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+
+    <!--            <div th:if="!${post.comments}">-->
+    <!--                <p>No comments yet, be the first!</p>-->
+    <!--            </div>-->
 
 
-<!--            <div th:each="image : ${post.postImages}">-->
-<!--    &lt;!&ndash;            <p th:text="${image.title}"></p>&ndash;&gt;-->
-<!--                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${image.url}">-->
-<!--            </div>-->
+    <!--            <div>-->
+    <!--                <input type="text" th:data-id="${post.id}" name="comment-body" class="comment-body">-->
+    <!--                <button  th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn" th:data-id="${post.id}">Post Comment</button>-->
+    <!--            </div>-->
 
 
-
-<!--            &lt;!&ndash;        JS button to Edit a Post&ndash;&gt;-->
-<!--            <div sec:authorize="isAuthenticated()">-->
-<!--                <div th:if="${post.getUser().id == sessionUserId}">-->
-<!--                <button name="edit" th:data-id="${post.id}" class="edit btn btn-primary">Edit Post</button>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--&lt;!&ndash;            JavaScript listener to Like a Post using an Ajax request&ndash;&gt;-->
-<!--&lt;!&ndash;            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">&ndash;&gt;-->
-<!--            <div sec:authorize="isAuthenticated()">-->
-<!--                <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">-->
-<!--                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">Like Post</button>-->
-<!--                </div>-->
-<!--                <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">-->
-<!--                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">Like Post</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div sec:authorize="!isAuthenticated()">-->
-<!--                <button onclick="redirectToLogin()" class="btn btn-danger">Like Post</button>-->
-<!--            </div>-->
+    <!--            <div th:each="image : ${post.postImages}">-->
+    <!--    &lt;!&ndash;            <p th:text="${image.title}"></p>&ndash;&gt;-->
+    <!--                <img style="object-fit: cover; height: 150px; width:200px;" th:src="${image.url}">-->
+    <!--            </div>-->
 
 
-<!--&lt;!&ndash;            <div th:each="likePostId : ${ListPostIdLikedByUserId}">&ndash;&gt;-->
+    <!--            &lt;!&ndash;        JS button to Edit a Post&ndash;&gt;-->
+    <!--            <div sec:authorize="isAuthenticated()">-->
+    <!--                <div th:if="${post.getUser().id == sessionUserId}">-->
+    <!--                <button name="edit" th:data-id="${post.id}" class="edit btn btn-primary">Edit Post</button>-->
+    <!--                </div>-->
+    <!--            </div>-->
 
-<!--&lt;!&ndash;                <div th:with="condition=${post.id == likePostId}">&ndash;&gt;-->
+    <!--&lt;!&ndash;            JavaScript listener to Like a Post using an Ajax request&ndash;&gt;-->
+    <!--&lt;!&ndash;            <input form="like-post" type="hidden" name="like-post" th:value="${post.id}">&ndash;&gt;-->
+    <!--            <div sec:authorize="isAuthenticated()">-->
+    <!--                <div th:if="${ListPostIdLikedByUserId.contains(post.id)}">-->
+    <!--                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-primary">Like Post</button>-->
+    <!--                </div>-->
+    <!--                <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">-->
+    <!--                    <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-secondary">Like Post</button>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div sec:authorize="!isAuthenticated()">-->
+    <!--                <button onclick="redirectToLogin()" class="btn btn-danger">Like Post</button>-->
+    <!--            </div>-->
 
-<!--&lt;!&ndash;                    <button th:if="${post.id == likePostId}" th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <button th:if="${post.id != likePostId}" th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div th:unless="${post.id == likePostId}">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <button class="like-btn btn btn-secondary" th:classappend="${post.id == likePostId} ? btn-primary : btn-secondary  " th:data="${post.id} + ',' + ${sessionUserId}">Like Post</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                <a href="" class="baseclass" th:classappend="${isAdmin} ? adminclass : userclass"></a>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;            <div th:each="likePostId : ${ListPostIdLikedByUserId}">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                <div th:with="condition=${post.id == likePostId}">&ndash;&gt;-->
+
+    <!--&lt;!&ndash;                    <button th:if="${post.id == likePostId}" th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-primary">Like Post</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <button th:if="${post.id != likePostId}" th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <div th:unless="${post.id == likePostId}">&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <button th:data="${post.id} + ',' + ${sessionUserId}" class="like-btn btn btn-secondary">Like Post</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <button class="like-btn btn btn-secondary" th:classappend="${post.id == likePostId} ? btn-primary : btn-secondary  " th:data="${post.id} + ',' + ${sessionUserId}">Like Post</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;                <a href="" class="baseclass" th:classappend="${isAdmin} ? adminclass : userclass"></a>&ndash;&gt;-->
 
 
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;            </div>&ndash;&gt;-->
 
-<!--            <hr>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--            <hr>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
-<!--</div>-->
+    <!--</div>-->
 
 
 </div>
@@ -596,7 +653,7 @@
 <script>
 
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         // $(".flip").click(function(){
         //     if ($(this).next().hasClass('panel-collapsed')) {
         //         // expand the panel
