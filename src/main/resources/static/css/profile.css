@@ -255,6 +255,51 @@
         width: 150px!important;
     }
 
+    .profile-follower-picture:hover {
+        transform: none!important;
+        z-index: +1;
+    }
+
+
+    .profile-following-picture:hover {
+        transform: none!important;
+        z-index: +1;
+    }
+
+    .profile-game-picture:hover {
+        transform: none!important;
+        z-index: +1;
+    }
+
+    .profile-follower-picture {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 10px;
+        transition: none!important;
+    }
+
+    .profile-following-picture {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 10px;
+        transition: none!important;
+    }
+
+    .profile-game-picture {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 10px;
+        transition: none!important;
+    }
+
+
+
 
 
 
