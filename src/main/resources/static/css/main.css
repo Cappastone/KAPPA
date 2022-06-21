@@ -357,6 +357,7 @@ button:hover {
     .main-container-1 {
         margin-top: 20px!important;
     }
+
 }
 
 
@@ -447,6 +448,11 @@ button:hover {
     .links-input {
         padding: 8px 10px 8px 10px!important;
         margin: 5px 10px 5px 10px!important;
+    }
+
+/*EDIT POSTS*/
+    .post-img-box {
+        overflow-y: scroll;
     }
 
 
