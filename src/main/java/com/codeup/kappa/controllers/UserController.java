@@ -6,12 +6,14 @@ import com.codeup.kappa.models.Post;
 import com.codeup.kappa.models.User;
 import com.codeup.kappa.repositories.*;
 import com.codeup.kappa.services.DateFormatter;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -109,8 +111,12 @@ public class UserController {
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user, BindingResult result, @RequestParam(name = "confirm") String confirm) {
 
-        String username = user.getUsername();
-        String email = user.getEmail();
+
+
+
+        String username = user.getUsername().replaceAll("\\s","");
+        String email = user.getEmail().replaceAll("\\s","");
+
 
         if (userDao.existsByEmail(email)) {
             result.rejectValue("email", "user.email", "This email already exists");
@@ -124,15 +130,15 @@ public class UserController {
             result.rejectValue("password", "user.password", "Password must be at least 6 characters!");
         }
 
-        if (user.getUsername().length() < 3) {
+        if (username.length() < 3) {
             result.rejectValue("username", "user.username", "Username must be at least 3 characters!");
         }
 
-        if (user.getUsername().length() > 15) {
+        if (username.length() > 15) {
             result.rejectValue("username", "user.username", "Username must be less than 15 characters!");
         }
 
-        if (user.getUsername().contains(" ")) {
+        if (username.contains(" ")) {
             result.rejectValue("username", "user.username", "Username cannot include white space!");
         }
 
@@ -193,23 +199,28 @@ public class UserController {
 
         User user2 = userDao.getById(id);
 
-        if (user.getUsername().length() < 3 || user.getUsername().contains(" ")) {
+        String username = user.getUsername().replaceAll("\\s","");
+
+
+
+
+        if (username.length() < 3 || username.contains(" ")) {
             return "redirect:/user/account?user_invalid";
         } else {
-            user2.setUsername(user.getUsername());
+            user2.setUsername(username);
         }
 
-        if (user.getUsername().length() > 15) {
+        if (username.length() > 15) {
             return "redirect:/user/account?user_invalid2";
         } else {
-            user2.setUsername(user.getUsername());
+            user2.setUsername(username);
         }
 
 
-        if (userDao.existsByUsername(user.getUsername())) {
+        if (userDao.existsByUsername(username)) {
             return "redirect:/user/account?user_exists";
         } else {
-            user2.setUsername(user.getUsername());
+            user2.setUsername(username);
         }
 
 
@@ -231,13 +242,15 @@ public class UserController {
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = sessionUser.getId();
 
+        String email = user.getEmail().replaceAll("\\s","");
+
         User user2 = userDao.getById(id);
 
 
-        if (userDao.existsByEmail(user.getEmail())) {
+        if (userDao.existsByEmail(email)) {
             return "redirect:/user/account?email_exists";
         } else {
-            user2.setEmail(user.getEmail());
+            user2.setEmail(email);
         }
 
 
@@ -259,7 +272,8 @@ public class UserController {
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = sessionUser.getId();
         User user2 = userDao.getById(id);
-        user2.setFirstName(user.getFirstName());
+        String firstName = user.getFirstName().replaceAll("\\s","");
+        user2.setFirstName(firstName);
         userDao.save(user2);
 
         return "redirect:/user/account?fn_success";
@@ -271,7 +285,9 @@ public class UserController {
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = sessionUser.getId();
         User user2 = userDao.getById(id);
-        user2.setLastName(user.getLastName());
+        String lastName = user.getLastName().replaceAll("\\s","");
+
+        user2.setLastName(lastName);
         userDao.save(user2);
 
         return "redirect:/user/account?ln_success";
@@ -384,22 +400,29 @@ public class UserController {
 
         User user = userDao.getById(id);
 
-        if (platformLink.getDiscord().length() > 22) {
+        String discord = platformLink.getDiscord().replaceAll("\\s","");
+        String nintendo = platformLink.getNintendo().replaceAll("\\s","");
+        String playstation = platformLink.getPlaystation().replaceAll("\\s","");
+        String twitch = platformLink.getTwitch().replaceAll("\\s","");
+        String xbox = platformLink.getXbox().replaceAll("\\s","");
+        String youtube = platformLink.getYoutube().replaceAll("\\s","");
+
+        if (discord.length() > 22) {
             return "redirect:/user/account?discord";
         }
-        if (platformLink.getNintendo().length() > 22) {
+        if (nintendo.length() > 22) {
             return "redirect:/user/account?nintendo";
         }
-        if (platformLink.getPlaystation().length() > 22) {
+        if (playstation.length() > 22) {
             return "redirect:/user/account?playstation";
         }
-        if (platformLink.getTwitch().length() > 22) {
+        if (twitch.length() > 22) {
             return "redirect:/user/account?twitch";
         }
-        if (platformLink.getXbox().length() > 22) {
+        if (xbox.length() > 22) {
             return "redirect:/user/account?xbox";
         }
-        if (platformLink.getYoutube().length() > 22) {
+        if (youtube.length() > 22) {
             return "redirect:/user/account?youtube";
         }
 
@@ -416,22 +439,29 @@ public class UserController {
 
         User user = userDao.getById(id);
 
-        if (platformLink.getDiscord().length() > 22 || platformLink.getDiscord().isBlank()) {
+        String discord = platformLink.getDiscord().replaceAll("\\s","");
+        String nintendo = platformLink.getNintendo().replaceAll("\\s","");
+        String playstation = platformLink.getPlaystation().replaceAll("\\s","");
+        String twitch = platformLink.getTwitch().replaceAll("\\s","");
+        String xbox = platformLink.getXbox().replaceAll("\\s","");
+        String youtube = platformLink.getYoutube().replaceAll("\\s","");
+
+        if (discord.length() > 22 || discord.isBlank()) {
             return "redirect:/user/account?discord";
         }
-        if (platformLink.getNintendo().length() > 22 || platformLink.getNintendo().isBlank()) {
+        if (nintendo.length() > 22 || nintendo.isBlank()) {
             return "redirect:/user/account?nintendo";
         }
-        if (platformLink.getPlaystation().length() > 22 || platformLink.getPlaystation().isBlank()) {
+        if (playstation.length() > 22 || playstation.isBlank()) {
             return "redirect:/user/account?playstation";
         }
-        if (platformLink.getTwitch().length() > 22 || platformLink.getTwitch().isBlank()) {
+        if (twitch.length() > 22 || twitch.isBlank()) {
             return "redirect:/user/account?twitch";
         }
-        if (platformLink.getXbox().length() > 22 || platformLink.getXbox().isBlank()) {
+        if (xbox.length() > 22 || xbox.isBlank()) {
             return "redirect:/user/account?xbox";
         }
-        if (platformLink.getYoutube().length() > 22 || platformLink.getYoutube().isBlank()) {
+        if (youtube.length() > 22 || youtube.isBlank()) {
             return "redirect:/user/account?youtube";
         }
 
@@ -463,3 +493,4 @@ public class UserController {
 
 
 }
+
