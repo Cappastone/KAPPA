@@ -129,7 +129,11 @@ public class UserController {
         }
 
         if (user.getUsername().length() > 15) {
-            result.rejectValue("username", "user.username", "Username must be less than 15 characters");
+            result.rejectValue("username", "user.username", "Username must be less than 15 characters!");
+        }
+
+        if (user.getUsername().contains(" ")) {
+            result.rejectValue("username", "user.username", "Username cannot include white space!");
         }
 
         if (!user.getPassword().equals(confirm)) {
@@ -189,7 +193,7 @@ public class UserController {
 
         User user2 = userDao.getById(id);
 
-        if (user.getUsername().length() < 3) {
+        if (user.getUsername().length() < 3 || user.getUsername().contains(" ")) {
             return "redirect:/user/account?user_invalid";
         } else {
             user2.setUsername(user.getUsername());
@@ -290,7 +294,7 @@ public class UserController {
             user2.setPassword(passwordEncoder.encode(newPassword));
         }
 
-        if (newPassword.length() < 6){
+        if (newPassword.length() < 6 || newPassword.contains(" ")){
             return "redirect:/user/account?ps_error";
         } else {
             user2.setPassword(passwordEncoder.encode(newPassword));
@@ -412,22 +416,22 @@ public class UserController {
 
         User user = userDao.getById(id);
 
-        if (platformLink.getDiscord().length() > 22) {
+        if (platformLink.getDiscord().length() > 22 || platformLink.getDiscord().isBlank()) {
             return "redirect:/user/account?discord";
         }
-        if (platformLink.getNintendo().length() > 22) {
+        if (platformLink.getNintendo().length() > 22 || platformLink.getNintendo().isBlank()) {
             return "redirect:/user/account?nintendo";
         }
-        if (platformLink.getPlaystation().length() > 22) {
+        if (platformLink.getPlaystation().length() > 22 || platformLink.getPlaystation().isBlank()) {
             return "redirect:/user/account?playstation";
         }
-        if (platformLink.getTwitch().length() > 22) {
+        if (platformLink.getTwitch().length() > 22 || platformLink.getTwitch().isBlank()) {
             return "redirect:/user/account?twitch";
         }
-        if (platformLink.getXbox().length() > 22) {
+        if (platformLink.getXbox().length() > 22 || platformLink.getXbox().isBlank()) {
             return "redirect:/user/account?xbox";
         }
-        if (platformLink.getYoutube().length() > 22) {
+        if (platformLink.getYoutube().length() > 22 || platformLink.getYoutube().isBlank()) {
             return "redirect:/user/account?youtube";
         }
 
