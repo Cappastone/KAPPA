@@ -278,8 +278,6 @@ const mapEleToDiv = (results) => `
 `;
 
 
-
-
 // this function populates the screen based on the search string that the user types
 function stringSearch(GameString) {
     const searchString = {
@@ -421,6 +419,6 @@ $(".edit").on("click", function () {
 
 /// when pushed change
 function redirectToLogin() {
-    // document.location.href = "http://localhost:8080/login"
-    document.location.href = "https://gamerhaven.gg/login"
+    document.location.href = "http://localhost:8080/login"
+    // document.location.href = "https://gamerhaven.gg/login"
 }
