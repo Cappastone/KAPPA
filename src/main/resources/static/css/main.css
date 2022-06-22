@@ -498,6 +498,14 @@ button:hover {
         width: 80%!important;
 
     }
+
+    .post-post-btn {
+        font-size: 14px;
+    }
+    .upload-picture {
+        font-size: 14px;
+        white-space: nowrap;
+    }
 }
 
 

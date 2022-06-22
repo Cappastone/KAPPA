@@ -17,9 +17,14 @@
 
                 <div class="col-sm">
 
-                    <div class="card">
+                    <div class="discover-header">
+                        <h5 class="card-title discover-title">Find a friend</h5>
+                    </div>
+                    <div class="card discover-card-main">
                         <div class="card-body discover-card item-configuration">
-                            <h5 class="card-title discover-title">Find a friend</h5>
+<!--                            <div class="bg-secondary px-0 py-0 my-0 mx-0">-->
+<!--                             <h5 class="card-title discover-title">Find a friend</h5>-->
+<!--                            </div>-->
                             <div class="input-group rounded py-3">
                                 <input form="searched-user" name="search-users" type="search" class="form-control rounded" placeholder="Search Username">
                                 <button form="searched-user" type="submit" class="btn btn-purple">
@@ -60,26 +65,20 @@
 
                                     </div>
                                 </div>
-
-
-
                             </div>
-
-
-
-
-
                         </div>
                     </div>
-
                 </div>
                 <div class="connections-extra-spacing"></div>
                 <div class="col-sm">
-                    <div class="card">
+                    <div class="discover-header">
+                        <h5 class="card-title discover-title">Followers: <span th:text="${user.followers.size()}"></span></h5>
+                    </div>
+                    <div class="card discover-card-main">
                         <div class="card-body discover-card item-configuration">
 
                             <div th:if="${user.followers.size() != 0}">
-                                <h5 class="card-title discover-title">Followers: <span th:text="${user.followers.size()}"></span></h5>
+<!--                                <h5 class="card-title discover-title">Followers: <span th:text="${user.followers.size()}"></span></h5>-->
 
 
                                 <div class="container d-flex flex-wrap justify-content-center">
@@ -133,11 +132,14 @@
                 </div>
                 <div class="connections-extra-spacing"></div>
                 <div class="col-sm">
-                    <div class="card">
+                    <div class="discover-header">
+                        <h5 class="card-title discover-title">Following: <span th:text="${following.size()}"></span></h5>
+                    </div>
+                    <div class="card discover-card-main">
                         <div class="card-body discover-card item-configuration">
 
                             <div th:if="${following.size() != 0}">
-                                <h5 class="card-title discover-title">Following: <span th:text="${following.size()}"></span></h5>
+<!--                                <h5 class="card-title discover-title">Following: <span th:text="${following.size()}"></span></h5>-->
                                 <div class="container d-flex flex-wrap justify-content-center">
                                     <div th:each="following : ${following}" >
                                         <div class="mx-3 my-3">
