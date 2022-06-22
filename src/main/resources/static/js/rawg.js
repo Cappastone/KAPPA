@@ -419,6 +419,6 @@ $(".edit").on("click", function () {
 
 /// when pushed change
 function redirectToLogin() {
-    document.location.href = "http://localhost:8080/login"
-    // document.location.href = "https://gamerhaven.gg/login"
+    // document.location.href = "http://localhost:8080/login"
+    document.location.href = "https://gamerhaven.gg/login"
 }
