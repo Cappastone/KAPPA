@@ -6,12 +6,12 @@
     <nav th:replace="partials/partials.html :: navbar"></nav>
 
     <form action="/aboutUs/about-us" method="POST">
-        <div class="d-flex justify-content-center mt-5 mb-5">
-            <h1>Meet Your Developers</h1>
+        <div class="d-flex justify-content-center my-4">
+            <h1 style="font-weight: lighter">Meet Your Developers</h1>
         </div>
 
+<!--    <div class="d-flex flex-row justify-content-evenly about-us-container">-->
     <div class="d-flex flex-row justify-content-evenly align-items-start about-us-container">
-
         <!--JOHN-->
         <div class="card about-us-card" style="width: 15rem; border-radius: 1rem">
             <div class="d-flex flex-row justify-content-evenly text-center">
@@ -25,9 +25,9 @@
                         <a href="https://github.com/johhncastro"><i class="fab fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/johhncaastro/"><i class="fab fa-linkedin-in"></i></a>
                         <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
-                    </div>
+                    </div >
                         <p class="card-text">Full Stack Web Developer</p>
-                        <p style="font-weight: lighter">Thanks for checking out Gamer Haven! I am very passionate about the next generation of tech, and I'm bussin'. POGGERS.</p>
+                        <p class="p-text" style="font-weight: lighter">Thanks for checking out Gamer Haven! I am very passionate about the next generation of tech, and I'm bussin'. POGGERS.</p>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,15 @@
                         </div>
                         <div>
                             <p class="card-text">Full Stack Web Developer</p>
-                            <p style="font-weight: lighter">Hello and thank you for visiting our site.  I have a great passion for troubleshooting, helping others, and learning more every single day. If you have any questions, please don't hesitate to reach out to me. Thanks!</p>
+                        </div>
+                        <div class="about-us-text-div px-0 py-3">
+                            <p class="text-center" style="font-weight: lighter">I have a great passion for troubleshooting, helping others, and learning more every single day. If you have any questions about our site, or anything else please don't hesitate to reach out to me. Special thanks to our Codeup instructors, we couldn't have done this without you!
+                                <ul class="pt-2 ps-1">
+                                    <li class="text-center">Javier Ruedas</li>
+                                    <li class="text-center">Justin Reich</li>
+                                    <li class="text-center">Dane Miller</li>
+                                </ul>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -71,7 +79,7 @@
                             <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
                         </div>
                         <p class="card-text" >Full Stack Web Developer</p>
-                        <p style="font-weight: lighter">Thanks for stopping by! We put a lot of heart and time into this project, and we hope it shows. Please reach out via the included links if you find any bugs or wish to discuss job opportunities.</p>
+                        <p class="p-text" style="font-weight: lighter">Thanks for stopping by! We put a lot of heart and time into this project, and we hope it shows. Please reach out via the included links if you find any bugs or wish to discuss job opportunities.</p>
                     </div>
                 </div>
             </div>
@@ -92,7 +100,7 @@
                             <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
                         </div>
                         <p class="card-text">Full Stack Web Developer</p>
-                        <p style="font-weight: lighter">Idaho native currently living in San Antonio, Tx. Please reach out via my links if you wish to discuss tech or potential job opportunities. Thank you.</p>
+                        <p class="p-text" style="font-weight: lighter">Idaho native currently living in San Antonio, Tx. Please reach out via my links if you wish to discuss tech or potential job opportunities. Thank you.</p>
                     </div>
                 </div>
             </div>
@@ -113,7 +121,7 @@
                         <img src="https://cdn.discordapp.com/attachments/976137842860384327/987432212867719178/OfficialCodeupLogo.png" style="width: 1.2rem; height: 1.2rem">
                     </div>
                         <p class="card-text">Full Stack Web Developer</p>
-                        <p style="font-weight: lighter">Thank you for exploring our site. I am very passionate about learning different technologies and always challenging myself to do better. If you would like more information don't hesitate to reach out and ask.</p>
+                        <p class="p-text" style="font-weight: lighter">Thank you for exploring our site. I am very passionate about learning different technologies and always challenging myself to do better. If you would like more information don't hesitate to reach out and ask.</p>
                     </div>
                 </div>
             </div>
@@ -121,7 +129,23 @@
         <!--END MATT-->
 
 
-        </div>
+    </div>
+
     </form>
+
+<!--    why the about us in a form????? - Oscar 06-21-2022-->
+
+
+    <div th:replace="partials/partials.html :: scripts"></div>
+<script>
+
+    $('.about-me-btn').click(function (e) {
+        e.preventDefault()
+        $(this).next().slideToggle('fast')
+    })
+
+
+
+</script>
 </body>
 </html>

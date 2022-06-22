@@ -453,9 +453,15 @@ button:hover {
         padding: 8px 10px 8px 10px!important;
         margin: 5px 10px 5px 10px!important;
     }
+
+    /*GAME VIEW*/
+
+    .game-view-title {
+        font-size: 18px!important;
+    }
   
   
-/*   ///////////////////////////  ABOUT US  /////////////////////////////////*/
+
   
 
 
@@ -464,9 +470,34 @@ button:hover {
 }
 
 
+/*   ///////////////////////////  ABOUT US  /////////////////////////////////*/
+
 /*NO MEDIA QUERY!!!!*/
 .about-us-card {
-    height: 36em;
+    /*height: 37em;*/
+    margin-bottom: 50px!important;
+
+}
+.p-text {
+    height: 200px;
+}
+
+.about-us-text-div {
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    height:  232px;
+    overflow-y: scroll;
+}
+
+
+
+@media screen and (max-width: 576px) {
+    .about-us-container {
+        align-items: start!important;
+    }
+    .about-us-card {
+        width: 80%!important;
+
+    }
 }
 
 
@@ -482,4 +513,10 @@ button:hover {
         margin-top: .5em;
     }
   
+}
+
+
+/*COMMENT BTN//////////////*/
+.comment-btn-div {
+    padding-top: 15px;
 }

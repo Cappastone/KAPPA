@@ -248,7 +248,7 @@ function nullResults(results) {
     }
 }
 
-const mapEleToDiv = (results) => `
+const mapEleToDiv2 = (results) => `
            <div class="game-card py-2 px-2">
                 <div class="card searched-game" style="width: 18rem" onclick="gameRedirect(this)" data-id="${results.id}">
                     <img class="card-img-top card-img-top" style="cursor: pointer;" src="${results.background_image}">
@@ -260,6 +260,24 @@ const mapEleToDiv = (results) => `
                     </div>
                 </div>
             </div>`;
+
+const mapEleToDiv = (results) => `
+<div class="d-flex justify-content-center">
+           <div class="game-card justify-content-center d-flex col">
+                <div class="card fav-game-card mt-3 me-3" style="width: 18rem" onclick="gameRedirect(this)" data-id="${results.id}">
+                    <img class="card-img-top" style="cursor: pointer; height: 13rem;" src="${results.background_image}">
+                    <div class="card-body card-txt-bottom d-flex flex-column justify-content-between">
+                        <h4 class="game-title" id="game-title">${results.name}</h4>
+                    </div>
+                    <div>
+                        <h6 class="text-muted text-center">(${nullResults(results).substr(0, 4)})</h6>
+                    </div>
+                </div>
+            </div>
+</div>
+`;
+
+
 
 
 // this function populates the screen based on the search string that the user types

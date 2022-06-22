@@ -168,7 +168,7 @@
                                 <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-purple">&#128077;</button>
                             </div>
                             <div th:if="${!ListPostIdLikedByUserId.contains(post.id)}">
-                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-purple">&#128077;</button>
+                                <button th:data="${post.id} + ',' + ${sessionUserId}" th:data-id="${post.id}" class="like-btn btn btn-outline-light">&#128077;</button>
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
@@ -220,12 +220,12 @@
 
 
                     <div sec:authorize="isAuthenticated()">
-                        <div class="w-100 d-flex justify-content-end">
+                        <div class="comment-btn-div w-100 d-flex justify-content-end">
                             <button th:data="${sessionUserId} + ',' + ${post.id}" class="post-comment-btn btn btn-outline-light" th:data-id="${post.id}">Post Comment</button>
                         </div>
                     </div>
                     <div sec:authorize="!isAuthenticated()">
-                        <div class="w-100 d-flex justify-content-end">
+                        <div class="comment-btn-div w-100 d-flex justify-content-end">
                             <button class="post-comment-btn btn btn-outline-light" onclick="redirectToLogin()">Post Comment</button>
                         </div>
                     </div>
