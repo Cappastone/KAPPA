@@ -154,6 +154,8 @@ public class UserController {
 
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        user.setUsername(username);
+        user.setEmail(email);
 
         userDao.save(user);
 
@@ -426,6 +428,12 @@ public class UserController {
             return "redirect:/user/account?youtube";
         }
 
+        platformLink.setDiscord(discord);
+        platformLink.setNintendo(nintendo);
+        platformLink.setPlaystation(playstation);
+        platformLink.setTwitch(twitch);
+        platformLink.setXbox(xbox);
+        platformLink.setYoutube(youtube);
 
         user.setLinks(platformLink);
         userDao.save(user);
@@ -465,6 +473,12 @@ public class UserController {
             return "redirect:/user/account?youtube";
         }
 
+        platformLink.setDiscord(discord);
+        platformLink.setNintendo(nintendo);
+        platformLink.setPlaystation(playstation);
+        platformLink.setTwitch(twitch);
+        platformLink.setXbox(xbox);
+        platformLink.setYoutube(youtube);
 
         user.setLinks(platformLink);
         userDao.save(user);
