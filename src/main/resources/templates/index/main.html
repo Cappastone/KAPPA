@@ -53,11 +53,12 @@
 <!--            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
             <form th:action="@{/main/create-post}" th:method="POST" th:object="${newPost}">
 
-                <div class="d-flex w-100 ">
-                    <div th:if="${user.profilePictureUrl}" class="main-profile-pic-mobile">
+                <div class="d-flex w-100 align-items-center">
+                    <div th:if="${user.profilePictureUrl}" class="main-profile-pic-mobile d-flex flex-column align-self-center">
                         <a th:href="'/user/' + ${user.id}">
                             <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" th:src="${user.profilePictureUrl}">
                         </a>
+                        <a th:text="${#strings.abbreviate(user.username, 10)}" th:href="'/user/' + ${user.id}" class="profile-name-c text-center"></a>
                     </div>
                     <div th:if="!${user.profilePictureUrl}" class="main-profile-pic-mobile">
                         <a th:href="'/user/' + ${user.id}">
@@ -73,15 +74,16 @@
 
                 <div class="px-4 mx-4 mt-4">
                     <div class="w-100 d-flex justify-content-end px-5 mx-5">
-                        <button type="submit" class="btn btn-outline-light">Post</button>
+                        <button type="button" class="upload-picture btn btn-outline-light me-5">Upload Picture</button>
+                        <button type="submit" class="post-post-btn btn btn-outline-light">Post</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="d-flex justify-content-center">
-            <button type="button" class="upload-picture btn btn-outline-light">Upload Picture</button>
-        </div>
-        <div id="img-output" class="py-3 d-flex justify-content-evenly"></div>
+<!--        <div class="d-flex justify-content-center">-->
+<!--            <button type="button" class="upload-picture btn btn-outline-light">Upload Picture</button>-->
+<!--        </div>-->
+        <div id="img-output" class="pt-2 pb-4 d-flex justify-content-center post-img-mobile"></div>
 
     </div>
 

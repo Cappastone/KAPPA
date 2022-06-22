@@ -57,7 +57,7 @@ h3{
 }
 
 .discover-card{
-    height: 45em;
+    height: 40em;
 }
 
 .discover-title {
@@ -107,3 +107,24 @@ h3{
     }
 
 }
+
+
+.discover-header {
+    background: rgb(50, 50, 50);
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border-top-right-radius:6px;
+    border-top-left-radius: 6px;
+
+}
+
+.discover-card-main {
+    border-top-right-radius: 0!important;
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/*.border-radius-y {*/
+/*    border-radius: 20px!important;*/
+/*}*/
