@@ -9,6 +9,8 @@
 <h3>Link to site</h3>
 [GamerHaven](https://gamerhaven.gg/)
 
+![](https://github.com/Cappastone/KAPPA/blob/main/gamerhaven-gif.gif)
+
 <h3>Built With</h3>
 
 - HTML
