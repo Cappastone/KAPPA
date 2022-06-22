@@ -529,7 +529,7 @@
 
 
                         <div sec:authorize="isAuthenticated()">
-                            <div class="w-100 d-flex justify-content-end">
+                            <div class="comment-btn-div w-100 d-flex justify-content-end">
                                 <button th:data="${sessionUserId} + ',' + ${post.id}"
                                         class="post-comment-btn btn btn-outline-light" th:data-id="${post.id}">Post
                                     Comment
@@ -537,7 +537,7 @@
                             </div>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
-                            <div class="w-100 d-flex justify-content-end">
+                            <div class="comment-btn-div w-100 d-flex justify-content-end">
                                 <button class="post-comment-btn btn btn-outline-light" onclick="redirectToLogin()">Post
                                     Comment
                                 </button>

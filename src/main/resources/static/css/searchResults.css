@@ -10,9 +10,9 @@ body {
 
 .card-txt-bottom {
     width: 100%;
-    height: 8vw;
+    /*height: 8vw;*/
     object-fit: cover;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 
