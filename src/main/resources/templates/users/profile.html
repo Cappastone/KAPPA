@@ -80,31 +80,30 @@
 
                 <div class="links-container ms-5 container d-flex flex-wrap justify-content-between">
                     <!--                    <div class="card">-->
-                    <div th:if="${user.links}" class=" py-3 card">
-                        <div th:if="!${user.links.discord.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-discord"></i><span class="links-text ms-3"
-                                                                         th:text="${user.links.discord}"></span></p>
+                    <div th:if="${user.links}" class=" py-3 card links-card">
+                        <div th:if="!${user.links.discord.isBlank()}" class="card-body my-1 py-0 xx">
+                            <i class="fa-brands fa-discord icon"></i><span class="links-text"
+                                                                         th:text="${user.links.discord}"></span>
                         </div>
-                        <div th:if="!${user.links.nintendo.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="bi bi-nintendo-switch"></i><span class="links-text ms-3"
-                                                                          th:text="${user.links.nintendo}"></span></p>
+                        <div th:if="!${user.links.nintendo.isBlank()}" class="card-body my-1 py-0 xx">
+                            <i class="bi bi-nintendo-switch icon"></i><span class="links-text"
+                                                                          th:text="${user.links.nintendo}"></span>
                         </div>
-                        <div th:if="!${user.links.playstation.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-playstation"></i><span class="links-text ms-3"
+                        <div th:if="!${user.links.playstation.isBlank()}" class="card-body my-1 py-0 xx">
+                            <i class="fa-brands fa-playstation icon"></i><span class="links-text"
                                                                              th:text="${user.links.playstation}"></span>
-                            </p>
                         </div>
-                        <div th:if="!${user.links.twitch.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-twitch"></i><span class="links-text ms-3"
-                                                                        th:text="${user.links.twitch}"></span></p>
+                        <div th:if="!${user.links.twitch.isBlank()}" class="card-body my-1 py-0 xx">
+                            <i class="fa-brands fa-twitch icon"></i><span class="links-text"
+                                                                        th:text="${user.links.twitch}"></span>
                         </div>
-                        <div th:if="!${user.links.xbox.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-xbox"></i><span class="links-text ms-3"
-                                                                      th:text="${user.links.xbox}"></span></p>
+                        <div th:if="!${user.links.xbox.isBlank()}" class="card-body my-1 py-0 xx">
+                           <i class="fa-brands fa-xbox icon"></i><span class="links-text"
+                                                                      th:text="${user.links.xbox}"></span>
                         </div>
-                        <div th:if="!${user.links.youtube.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-youtube"></i><span class="links-text ms-3"
-                                                                         th:text="${user.links.youtube}"></span></p>
+                        <div th:if="!${user.links.youtube.isBlank()}" class="card-body my-1 py-0 xx">
+                            <i class="fa-brands fa-youtube icon"></i><span class="links-text "
+                                                                         th:text="${user.links.youtube}"></span>
                         </div>
 
                         <!--                        </div>-->

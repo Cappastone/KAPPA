@@ -13,8 +13,9 @@
 
 .profile-picture-container {
 
-    position: relative;
-    bottom: 5em;
+    transform: translateY(-80px) translateX(0px);
+    /*position: relative;*/
+    /*bottom: 5em;*/
 }
 
 .profile-banner {
@@ -57,10 +58,12 @@
 }
 
 .profile-username {
+    /*transform: translateY(-80px) translateX(0px);*/
 
     position: relative;
     bottom: 1.5em;
     left: 15px;
+
     font-size: 50px;
 }
 
@@ -116,6 +119,10 @@
     max-width: 30%;
 
 
+}
+
+.icon {
+    width: 30px!important;
 }
 
 .links-text {
@@ -179,7 +186,7 @@
 
 
 
-/*MOBILE VIEW*/
+/*/////////////////////////   MOBILE VIEW  /////////////////////////////*/
 
 
 @media screen and (max-width: 768px) {
@@ -199,14 +206,19 @@
     }
 
     .profile-picture-container {
-        position: revert;
+        transform: translateY(75px);
+
+        /*position: revert;*/
         /*bottom: 2em!important;*/
     }
 
     .profile-username {
-        position: revert;
+        transform: translateY(125px) translateX(-25px);
+        /*position: revert;*/
         /*bottom: 1em;*/
         font-size: 29px;
+        /*word-break: break-all;*/
+
 
     }
 
@@ -215,16 +227,30 @@
         /*flex: none!important;*/
 
     }
+
     .change-banner-btn {
         position: revert;
 
     }
 
     .links-container {
-        position: relative;
-        top: 15em;
-        right: 1em;
+        transform: translateY(235px) translateX(-20px);
+        justify-content: flex-start;
+
     }
+    .links-card {
+        transform: translateX(35px);
+        width: 150px!important;
+    }
+    .xx {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .links-text {
+        word-break: break-all;
+        font-size: 12px;
+    }
+
 
     .mobile-spacing {
         height: 20em;
