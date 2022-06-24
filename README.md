@@ -36,6 +36,15 @@
 - [Clone Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 <h4>Set up Spring Boot</h4>
 - [Spring Boot](https://spring.io/guides/gs/spring-boot/)
+
+
+<h3>API Keys Needed</h3>
+<h5>Rawg API</h5>
+[Game API](https://rawg.io/apidocs)
+<h5>Filestack API</h5>
+[Filestack API](https://www.filestack.com/)
+
+
 <h4>Needed Dependencies</h4>
 ````
 
@@ -108,15 +117,7 @@
         </dependency>
 
     </dependencies>
-    
 ````
-
-<h3>API Keys Needed</h3>
-<h5>Rawg API</h5>
-[Game API](https://rawg.io/apidocs)
-<h5>Filestack API</h5>
-[Filestack API](https://www.filestack.com/)
-
 
 
 
