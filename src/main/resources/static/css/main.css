@@ -4,6 +4,10 @@
     width: 80vw;
 }
 
+.main-header {
+    width: 100%;
+}
+
 /*this is the basic img size for all img on the site*/
 img {
     /*width: 100px;*/
@@ -318,7 +322,7 @@ button:hover {
         padding: 10px!important;
     }
     .main-profile-pic-mobile {
-        display: none;
+        display: none!important;
     }
     .main-text-area-mobile {
         margin: 10px!important;
@@ -328,7 +332,7 @@ button:hover {
         overflow-x: scroll;
     }
     .main-header {
-        margin-left: 45px;
+        width: 100%;
     }
 
 

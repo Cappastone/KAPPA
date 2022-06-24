@@ -10,10 +10,11 @@
 
 
 
-<div class="justify-content-center d-flex mt-4">
-    <h1 class="main-header" style="font-weight: lighter">Most Recent Posts</h1>
-    <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
+<div class="container justify-content-center d-flex mt-4">
+    <h1 class="main-header text-center" style="font-weight: lighter">Most Recent Posts</h1>
+
 </div>
+<span class="my-0 py-0" id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>
 <!--    <p th:text="${user.username} + ' is logged in'"></p>-->
 <!--    <div th:if="${user.profilePictureUrl}">-->
 <!--        <img style="object-fit: cover; height: 150px; width:200px;" th:src="${user.profilePictureUrl}">-->
@@ -64,6 +65,7 @@
                         <a th:href="'/user/' + ${user.id}">
                             <img style="object-fit: cover; height: 75px; width:75px; border-radius: 50%" src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" alt="profile-picture">
                         </a>
+                        <a th:text="${#strings.abbreviate(user.username, 10)}" th:href="'/user/' + ${user.id}" class="profile-name-c text-center"></a>
                     </div>
 
                     <textarea rows="3" type="input" th:field="*{body}" placeholder="What's on your mind?" class="w-100 px-5 mx-5 form-control-lg main-text-area-mobile"></textarea>
