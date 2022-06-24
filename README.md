@@ -38,6 +38,7 @@
 - [Spring Boot](https://spring.io/guides/gs/spring-boot/)
 <h4>Needed Dependencies</h4>
 ````
+
 <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -107,6 +108,7 @@
         </dependency>
 
     </dependencies>
+    
 ````
 
 <h3>API Keys Needed</h3>
