@@ -85,6 +85,8 @@ public class UserController {
         model.addAttribute("postCreationDates", postDates);
 
         return "users/profile";
+//        profile 2 is under construction
+//        return "users/profile2";
     }
 
     @GetMapping("/profile")

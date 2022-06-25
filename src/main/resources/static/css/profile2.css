@@ -1,0 +1,311 @@
+
+/*.profile-picture-container {*/
+
+
+/*}*/
+
+.profile-picture {
+    object-fit: cover;
+    height: 180px;
+    width:180px;
+    border-radius: 50%;
+}
+
+/*.profile-picture-container {*/
+
+/*    position: relative;*/
+/*    bottom: 5em;*/
+/*}*/
+
+.profile-banner {
+    object-fit: cover;
+    height: 396px;
+    width:100%;
+}
+
+/*!*button*!*/
+/*.change-banner-btn {*/
+
+/*    position: relative;*/
+/*    bottom: 3em;*/
+/*    left: 2em;*/
+/*    width: 40px;*/
+/*    height: 33px;*/
+/*    font-size: 15px;*/
+/*    opacity: 80%;*/
+
+/*}*/
+
+/*!*button*!*/
+/*.change-profile-pic-btn {*/
+
+/*    position: relative;*/
+/*    right: 2em;*/
+/*    width: 40px;*/
+/*    height: 40px;*/
+/*    font-size: 15px;*/
+/*    opacity: 80%;*/
+/*}*/
+
+/*.user-info {*/
+
+
+/*}*/
+
+/*.top-profile {*/
+
+/*}*/
+
+.profile-username {
+
+    /*position: relative;*/
+    /*bottom: 1.5em;*/
+    /*left: 15px;*/
+    font-size: 50px;
+}
+
+.profile-follower {
+
+    font-size: 25px;
+
+
+}
+
+.profile-following {
+
+    font-size: 25px;
+
+}
+
+.profile-bio {
+    /*position: relative;*/
+    /*top: 10px;*/
+    /*max-width: 70%;*/
+
+}
+.profile-follower-picture {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.profile-following-picture {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.profile-game-picture {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
+    transition: all .2s ease-in-out;
+}
+
+/*.profile-links {*/
+
+/*    padding-top: 40px;*/
+/*    max-width: 30%;*/
+
+
+/*}*/
+
+/*.links-text {*/
+/*    font-weight: lighter;*/
+/*    font-size: 14px;*/
+/*}*/
+
+.custom-width {
+    width: 120px;
+}
+
+/*.null-bio {*/
+/*   margin-left: 20px;*/
+/*}*/
+
+/*.bio-card-body {*/
+/*    width: 534px;*/
+
+/*}*/
+
+.main-feed-username {
+    /*position: relative;*/
+    /*right: 1.5em;*/
+}
+
+
+
+
+.profile-follower-picture:hover {
+    transform: scale(1.2);
+    z-index: +1;
+}
+
+
+.profile-following-picture:hover {
+    transform: scale(1.2);
+    z-index: +1;
+}
+
+.profile-game-picture:hover {
+    transform: scale(1.2);
+    z-index: +1;
+}
+
+/*.profile-following-btn {*/
+/*    position: relative;*/
+/*    bottom: 30px;*/
+/*    left: 10px;*/
+/*}*/
+
+.btn-purple {
+    background: rebeccapurple;
+    color: white;
+}
+
+.overflow-scrolly {
+    /*-ms-overflow-style: none;*/
+    /*scrollbar-width: none;*/
+    overflow-x: scroll!important;
+}
+
+
+
+/*MOBILE VIEW*/
+
+
+@media screen and (max-width: 768px) {
+
+    /*.banner-container {*/
+    /*    width: 100%;*/
+    /*    height: 5px;*/
+    /*}*/
+
+    .profile-banner {
+        height: 250px!important;
+    }
+
+    .profile-picture {
+        height: 150px;
+        width: 150px;
+    }
+
+/*    .profile-picture-container {*/
+/*        position: revert;*/
+/*        !*bottom: 2em!important;*!*/
+/*    }*/
+
+/*    .profile-username {*/
+/*        position: revert;*/
+/*        !*bottom: 1em;*!*/
+/*        font-size: 29px;*/
+
+/*    }*/
+
+/*    .profile-bio-container {*/
+/*        !*flex-wrap: nowrap!important;*!*/
+/*        !*flex: none!important;*!*/
+
+/*    }*/
+/*    .change-banner-btn {*/
+/*        position: revert;*/
+
+/*    }*/
+
+/*    .links-container {*/
+/*        position: relative;*/
+/*        top: 15em;*/
+/*        right: 1em;*/
+/*    }*/
+
+/*    .mobile-spacing {*/
+/*        height: 20em;*/
+/*    }*/
+
+/*    .profile-bio {*/
+/*        margin-top: 2em;*/
+/*        position: relative;*/
+/*        !*width: 500px;*!*/
+/*        right: 9em;*/
+/*        padding-right: 21em;*/
+/*    }*/
+
+/*    .bio-card-body {*/
+/*        width: 21em;*/
+/*        margin-bottom: 0px;*/
+/*    }*/
+/*    .bio-text {*/
+/*        width: 100% !important;*/
+/*    }*/
+
+    .profile-posts {
+        margin: 10px!important;
+        padding: 10px!important;
+    }
+    .flip2 {
+        margin-top: 80px!important;
+        font-size: 12px!important;
+        width: 150px!important;
+    }
+
+    .profile-follower-picture:hover {
+        transform: none!important;
+        z-index: +1;
+    }
+
+
+    .profile-following-picture:hover {
+        transform: none!important;
+        z-index: +1;
+    }
+
+    .profile-game-picture:hover {
+        transform: none!important;
+        z-index: +1;
+    }
+
+    .profile-follower-picture {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 10px;
+        transition: none!important;
+    }
+
+    .profile-following-picture {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 10px;
+        transition: none!important;
+    }
+
+    .profile-game-picture {
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 10px;
+        transition: none!important;
+    }
+
+
+
+
+
+
+
+
+
+}
+
