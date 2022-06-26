@@ -14,7 +14,7 @@
     <div class="d-flex flex-column justify-content-end">
         <!--    <p th:text="${user.username} + ' \'s profile'"></p>-->
 
-        <!--        <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>-->
+<!--                <span id="username" style="visibility: hidden" th:text="${sessionUsername}"></span>-->
         <!--    <p th:text="${user.username}"></p>-->
 
         <div th:if="${user.bannerUrl}" class="banner-container">
@@ -26,6 +26,11 @@
             <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;"
                  src="https://i0.wp.com/kpsu.org/wp-content/uploads/2017/02/Perfect-Universe-poster-galaxy-planet-outer-space-Purple-landscape-poster-Wide-Wallpaper-silk-Art-Home-Deco.jpg?ssl=1"
                  alt="banner-picture">
+        </div>
+        <div th:if="${sessionUserId == user.id}" class="d-flex justify-content-end change-banner-btn">
+            <button type="button" class="btn btn-dark">
+                <i class="fa-solid fa-image"></i>
+            </button>
         </div>
     </div>
 </div>
@@ -41,23 +46,27 @@
                     <div th:if="${user.profilePictureUrl}" class="profile-picture-container d-flex align-items-end">
                         <img class="profile-picture" th:src="${user.profilePictureUrl}" alt="profile-picture">
                         <!--        <p th:text="${user.bio}"></p>-->
-                        <div th:if="${sessionUserId == user.id}">
-                            <button type="button" class="change-profile-pic-btn btn btn-dark"><i
-                                    class="fa-solid fa-user-pen"></i></button>
-                        </div>
+<!--                        <div th:if="${sessionUserId == user.id}">-->
+<!--                            <button type="button" class="change-profile-pic-btn btn btn-dark"><i-->
+<!--                                    class="fa-solid fa-user-pen"></i></button>-->
+<!--                        </div>-->
                     </div>
                     <div th:if="!${user.profilePictureUrl}" class="profile-picture-container d-flex align-items-end">
                         <img class="profile-picture"
                              src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg"
                              alt="profile-picture">
                         <!--        <p th:text="${user.bio}"></p>-->
-                        <div th:if="${sessionUserId == user.id}">
-                            <button type="button" class="change-profile-pic-btn btn btn-dark"><i
-                                    class="fa-solid fa-user-pen"></i></button>
-                        </div>
+<!--                        <div th:if="${sessionUserId == user.id}">-->
+<!--                            <button type="button" class="change-profile-pic-btn btn btn-dark"><i-->
+<!--                                    class="fa-solid fa-user-pen"></i></button>-->
+<!--                        </div>-->
                     </div>
-                    <div>
-                        <span class="profile-username" th:text="${user.getUsername()}"></span>
+                    <div th:if="${sessionUserId == user.id}">
+                        <button type="button" class="change-profile-pic-btn btn btn-dark"><i
+                                class="fa-solid fa-user-pen"></i></button>
+                    </div>
+                    <div class="profile-username">
+                        <span th:text="${user.getUsername()}"></span>
                     </div>
                 </div>
                 <!--                <div class="profile-username"><span th:text="${user.getUsername()}"></span></div>-->
@@ -77,43 +86,41 @@
 <!--                    </div>-->
 <!--                </div>-->
 
-                <div class="container d-flex flex-wrap justify-content-between">
-                    <!--                    <div class="card">-->
-                    <div th:if="${user.links}" class=" py-3 card">
-                        <div th:if="!${user.links.discord.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-discord"></i><span class="links-text ms-3"
-                                                                         th:text="${user.links.discord}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.nintendo.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="bi bi-nintendo-switch"></i><span class="links-text ms-3"
-                                                                          th:text="${user.links.nintendo}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.playstation.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-playstation"></i><span class="links-text ms-3"
-                                                                             th:text="${user.links.playstation}"></span>
-                            </p>
-                        </div>
-                        <div th:if="!${user.links.twitch.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-twitch"></i><span class="links-text ms-3"
-                                                                        th:text="${user.links.twitch}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.xbox.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-xbox"></i><span class="links-text ms-3"
-                                                                      th:text="${user.links.xbox}"></span></p>
-                        </div>
-                        <div th:if="!${user.links.youtube.isBlank()}" class="card-body my-0 py-0">
-                            <p><i class="fa-brands fa-youtube"></i><span class="links-text ms-3"
-                                                                         th:text="${user.links.youtube}"></span></p>
-                        </div>
+                <div class="container profile-gamer-links-container d-flex justify-content-center">
 
-                        <!--                        </div>-->
+                    <div class="card">
+                        <div th:if="${user.links}" class="py-3 d-flex flex-wrap" style="width: 23rem;">
+                            <div class="pro-links-header w-100 d-flex justify-content-center">
+                                <span class="text-center pb-2">Platform Links</span>
+                            </div>
+                            <div th:if="!${user.links.discord.isBlank()}" class="card-body pro-links-body my-0 py-0">
+                                <div class="pro-links"><i class="fa-brands fa-discord pro-icon"></i><span class="links-text" th:text="${user.links.discord}"></span></div>
+                            </div>
+                            <div th:if="!${user.links.nintendo.isBlank()}" class="card-body pro-links-body my-0 py-0">
+                                <div class="pro-links"><i class="bi bi-nintendo-switch pro-icon"></i><span class="links-text" th:text="${user.links.nintendo}"></span></div>
+                            </div>
+                            <div th:if="!${user.links.playstation.isBlank()}" class="card-body pro-links-body my-0 py-0">
+                                <div class="pro-links"><i class="fa-brands fa-playstation pro-icon"></i><span class="links-text" th:text="${user.links.playstation}"></span>
+                                </div>
+                            </div>
+                            <div th:if="!${user.links.twitch.isBlank()}" class="card-body pro-links-body my-0 py-0">
+                                <div class="pro-links"><i class="fa-brands fa-twitch pro-icon" ></i><span class="links-text" th:text="${user.links.twitch}"></span></div>
+                            </div>
+                            <div th:if="!${user.links.xbox.isBlank()}" class="card-body pro-links-body my-0 py-0">
+                                <div class="pro-links"><i class="fa-brands fa-xbox pro-icon"></i><span class="links-text" th:text="${user.links.xbox}"></span></div>
+                            </div>
+                            <div th:if="!${user.links.youtube.isBlank()}" class="card-body pro-links-body my-0 py-0">
+                                <div class="pro-links"><i class="fa-brands fa-youtube pro-icon"></i><span class="links-text" th:text="${user.links.youtube}"></span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
 
             <div class="col-sm">
-                <div class="card">
+                <div class="d-flex justify-content-center">
+                    <div class="card profile-bio-card-container">
                         <div class="card-body">
                             <h5 class="card-title">Bio</h5>
                             <!--                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
@@ -170,19 +177,17 @@
                         </div>
                     </div>
 
+                    <form id="profile-pic" action="/user/edit-profile-pic" method="POST">
+                        <input form="profile-pic" type="hidden" name="id" th:value="${user.id}">
+                        <input form="profile-pic" type="hidden" class="change-profile-pic" name="profile-picture-url">
+                    </form>
 
+                    <form id="banner" action="/user/edit-banner" method="POST">
+                        <input form="banner" type="hidden" name="id" th:value="${user.id}">
+                        <input form="banner" type="hidden" class="change-banner" name="banner-url">
+                    </form>
 
-                <form id="profile-pic" action="/user/edit-profile-pic" method="POST">
-                    <input form="profile-pic" type="hidden" name="id" th:value="${user.id}">
-                    <input form="profile-pic" type="hidden" class="change-profile-pic" name="profile-picture-url">
-                </form>
-
-                <form id="banner" action="/user/edit-banner" method="POST">
-                    <input form="banner" type="hidden" name="id" th:value="${user.id}">
-                    <input form="banner" type="hidden" class="change-banner" name="banner-url">
-                </form>
-
-
+                </div>
             </div>
         </div>
     </div>

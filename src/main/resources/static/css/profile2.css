@@ -118,14 +118,35 @@
 
 /*}*/
 
-/*.links-text {*/
-/*    font-weight: lighter;*/
-/*    font-size: 14px;*/
+/*.pro-links-header {*/
+/*    width: 80%;*/
 /*}*/
+
+.links-text {
+    font-weight: lighter;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.pro-icon {
+    width: 16px!important;
+    height: 20px!important;
+    margin-right: 20px;
+}
+
+.pro-links {
+    margin-bottom: 10px;
+}
+.pro-links-body {
+
+    width: 50%;
+}
 
 .custom-width {
     width: 120px;
 }
+
+
 
 /*.null-bio {*/
 /*   margin-left: 20px;*/
@@ -198,27 +219,53 @@
         width: 150px;
     }
 
-/*    .profile-picture-container {*/
-/*        position: revert;*/
-/*        !*bottom: 2em!important;*!*/
-/*    }*/
+    .profile-picture-container {
+        border: solid whitesmoke 5px;
+        border-radius: 50%;
+        /*bottom: 2em!important;*/
+        transform: translateY(-50px);
 
-/*    .profile-username {*/
-/*        position: revert;*/
-/*        !*bottom: 1em;*!*/
-/*        font-size: 29px;*/
+    }
 
-/*    }*/
+    .profile-username {
+        transform: translateY(-50px);
+        /*position: revert;*/
+        /*bottom: 1em;*/
+        font-size: 29px;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    .profile-gamer-links-container {
+        transform: translateY(-25px);
+
+    }
+
+    .change-profile-pic-btn {
+        position: relative;
+        top: 40px;
+        right: 10px;
+        padding-right: 8px;
+        opacity: 80%;
+    }
+
+    .profile-bio-card-container {
+        padding: 10px;
+        margin: 10px;
+        width: 90%;
+    }
 
 /*    .profile-bio-container {*/
 /*        !*flex-wrap: nowrap!important;*!*/
 /*        !*flex: none!important;*!*/
 
 /*    }*/
-/*    .change-banner-btn {*/
-/*        position: revert;*/
+    .change-banner-btn {
+        transform: translateY(-45px) translateX(-7px);
 
-/*    }*/
+
+    }
 
 /*    .links-container {*/
 /*        position: relative;*/
@@ -226,9 +273,9 @@
 /*        right: 1em;*/
 /*    }*/
 
-/*    .mobile-spacing {*/
-/*        height: 20em;*/
-/*    }*/
+    .mobile-spacing {
+        height: 1.5em;
+    }
 
 /*    .profile-bio {*/
 /*        margin-top: 2em;*/
