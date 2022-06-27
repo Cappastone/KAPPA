@@ -20,17 +20,21 @@
         <div th:if="${user.bannerUrl}" class="banner-container">
             <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;"
                  th:src="${user.bannerUrl}" alt="banner-picture">
+
         </div>
 
         <div th:if="!${user.bannerUrl}" class="banner-container">
             <img class="profile-banner" style="object-fit: cover; height: 396px; width:100%; border-radius: 5px;"
                  src="https://i0.wp.com/kpsu.org/wp-content/uploads/2017/02/Perfect-Universe-poster-galaxy-planet-outer-space-Purple-landscape-poster-Wide-Wallpaper-silk-Art-Home-Deco.jpg?ssl=1"
                  alt="banner-picture">
+
         </div>
         <div th:if="${sessionUserId == user.id}" class="d-flex justify-content-end change-banner-btn">
             <button type="button" class="btn btn-dark">
                 <i class="fa-solid fa-image"></i>
             </button>
+        </div>
+        <div th:if="${sessionUserId != user.id}" class="blank-banner-btn">
         </div>
     </div>
 </div>
@@ -41,7 +45,7 @@
 
         <div class="row">
 
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <div class="container d-flex flex-wrap justify-content-center">
                     <div th:if="${user.profilePictureUrl}" class="profile-picture-container d-flex align-items-end">
                         <img class="profile-picture" th:src="${user.profilePictureUrl}" alt="profile-picture">
@@ -73,7 +77,7 @@
             </div>
 
 
-            <div class="col-sm">
+            <div class="col-sm-3">
 
 <!--                <div class="container d-flex flex-wrap">-->
 <!--                    <div class="user-info container d-flex flex-wrap justify-content-end">-->
@@ -86,10 +90,10 @@
 <!--                    </div>-->
 <!--                </div>-->
 
-                <div class="container profile-gamer-links-container d-flex justify-content-center">
+                <div class="profile-gamer-links-container d-flex justify-content-sm-start">
 
-                    <div class="card">
-                        <div th:if="${user.links}" class="py-3 d-flex flex-wrap" style="width: 23rem;">
+                    <div class="card profile-links-card-content">
+                        <div th:if="${user.links}" class="py-3 d-flex flex-wrap w-100">
                             <div class="pro-links-header w-100 d-flex justify-content-center">
                                 <span class="text-center pb-2">Platform Links</span>
                             </div>
@@ -257,7 +261,7 @@
             </button>
         </div>
     </div>
-    <div sec:authorize="!isAuthenticated()">
+    <div sec:authorize="!isAuthenticated()" class="profile-following-btn">
         <button onclick="redirectToLogin()" class="btn btn-outline-light">Follow</button>
     </div>
 
