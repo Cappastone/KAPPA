@@ -95,26 +95,26 @@
                     <div th:if="${user.links}" class="card profile-links-card-content">
                         <div  class="py-3 d-flex flex-wrap w-100">
                             <div class="pro-links-header w-100 d-flex justify-content-center">
-                                <span class="text-center pb-2">Platform Links</span>
+                                <span class="text-center pb-2">Platform(s)</span>
                             </div>
                             <div th:if="!${user.links.discord.isBlank()}" class="card-body pro-links-body my-0 py-0">
-                                <div class="pro-links"><i class="fa-brands fa-discord pro-icon"></i><span class="links-text" th:text="${user.links.discord}"></span></div>
+                                <div class="pro-links"><i class="fa-brands fa-discord pro-icon"></i><span class="pro-links-text" th:text="${user.links.discord}"></span></div>
                             </div>
                             <div th:if="!${user.links.nintendo.isBlank()}" class="card-body pro-links-body my-0 py-0">
-                                <div class="pro-links"><i class="bi bi-nintendo-switch pro-icon"></i><span class="links-text" th:text="${user.links.nintendo}"></span></div>
+                                <div class="pro-links"><i class="bi bi-nintendo-switch pro-icon"></i><span class="pro-links-text" th:text="${user.links.nintendo}"></span></div>
                             </div>
                             <div th:if="!${user.links.playstation.isBlank()}" class="card-body pro-links-body my-0 py-0">
-                                <div class="pro-links"><i class="fa-brands fa-playstation pro-icon"></i><span class="links-text" th:text="${user.links.playstation}"></span>
+                                <div class="pro-links"><i class="fa-brands fa-playstation pro-icon"></i><span class="pro-links-text" th:text="${user.links.playstation}"></span>
                                 </div>
                             </div>
                             <div th:if="!${user.links.twitch.isBlank()}" class="card-body pro-links-body my-0 py-0">
-                                <div class="pro-links"><i class="fa-brands fa-twitch pro-icon" ></i><span class="links-text" th:text="${user.links.twitch}"></span></div>
+                                <div class="pro-links"><i class="fa-brands fa-twitch pro-icon" ></i><span class="pro-links-text" th:text="${user.links.twitch}"></span></div>
                             </div>
                             <div th:if="!${user.links.xbox.isBlank()}" class="card-body pro-links-body my-0 py-0">
-                                <div class="pro-links"><i class="fa-brands fa-xbox pro-icon"></i><span class="links-text" th:text="${user.links.xbox}"></span></div>
+                                <div class="pro-links"><i class="fa-brands fa-xbox pro-icon"></i><span class="pro-links-text" th:text="${user.links.xbox}"></span></div>
                             </div>
                             <div th:if="!${user.links.youtube.isBlank()}" class="card-body pro-links-body my-0 py-0">
-                                <div class="pro-links"><i class="fa-brands fa-youtube pro-icon"></i><span class="links-text" th:text="${user.links.youtube}"></span></div>
+                                <div class="pro-links"><i class="fa-brands fa-youtube pro-icon"></i><span class="pro-links-text" th:text="${user.links.youtube}"></span></div>
                             </div>
                         </div>
                     </div>
@@ -126,10 +126,10 @@
                 <div class="d-flex justify-content-center">
                     <div class="card profile-bio-card-container">
                         <div class="card-body">
-                            <h5 class="card-title">Bio</h5>
+                            <h6 class="card-title text-center">Bio</h6>
                             <!--                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
                             <p class="card-text bio-text" style="font-weight: lighter" th:text="${user.bio}"></p>
-                            <p th:if="${user.bio == null}" class="card-text" style="font-weight: lighter">We
+                            <p th:if="${user.bio == null}" class="card-text bio-text" style="font-weight: lighter">We
                                 the People of the United States, in Order to form a more perfect Union, establish
                                 Justice, insure domestic Tranquility, provide for the common defense, promote the
                                 general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do
@@ -148,7 +148,7 @@
                                     <!--EDIT BIO MODAL-->
                                     <div class="modal fade" id="exampleModal" tabindex="-1"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" style="color: black" id="exampleModalLabel">
@@ -390,6 +390,12 @@
                                     <button name="edit" th:data-id="${post.id}" class="edit btn btn-outline-light"><i
                                             class="fa-solid fa-pen-to-square"></i></button>
                                 </div>
+                                <div th:if="${post.getUser().id != sessionUserId}">
+                                    <div style="height: 35px"></div>
+                                </div>
+                            </div>
+                            <div sec:authorize="!isAuthenticated()">
+                                <div style="height: 35px"></div>
                             </div>
 
                         </div>

@@ -458,9 +458,12 @@ button:hover {
        color: blue;
     }
 
+    /*.main-feed-username {*/
+    /*    position: relative;*/
+    /*    bottom: 10px!important;*/
+    /*}*/
     .main-feed-username {
-        position: relative;
-        bottom: 10px!important;
+        transform: translateY(-10px);
     }
   
   /*EDIT POSTS*/
@@ -535,6 +538,10 @@ button:hover {
     .upload-picture {
         font-size: 14px;
         white-space: nowrap;
+    }
+    .btn-outline-light:hover {
+        background: none!important;
+        color: white;
     }
 }
 
