@@ -254,6 +254,42 @@
     position: relative;
     bottom: 20px;
 }
+.delete {
+    font-size: 10px;
+    height: 0;
+    width: 0;
+    border: none;
+
+
+}
+
+.delete:focus,
+.delete:active{
+    box-shadow:none !important;
+    outline:0 !important;
+}
+
+.comment-user-pic {
+    height: 40px; width: 40px; object-fit: cover; border-radius: 50%; margin-right: 20px;
+    transform: translateY(5px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -261,6 +297,13 @@
 
 
 @media screen and (max-width: 576px) {
+
+    .comment-user-pic {
+        height: 30px; width: 30px; object-fit: cover; border-radius: 50%;
+        transform: translateY(10px);
+        margin-right: 10px!important;
+
+    }
 
     .profile-links-card-content{
         width: 100%;

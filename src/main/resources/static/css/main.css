@@ -337,8 +337,8 @@ button:hover {
     }
     .panel-collapsed {
         margin-top: 30px!important;
-        padding-left: 25px!important;
-        padding-right: 25px!important;
+        padding-left: 20px!important;
+        padding-right: 20px!important;
     }
     .create-post-btn-container {
         width: 100% !important;
@@ -346,6 +346,9 @@ button:hover {
         justify-content: space-between!important;
         margin: 15px 5px 0 5px!important;
         padding: 15px 15px 0 5px!important;
+    }
+    .post-comment-btn {
+        font-size: 14px;
     }
 
 
