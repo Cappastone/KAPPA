@@ -440,15 +440,9 @@
                         <div th:each="comment : ${post.comments}">
 
                             <div class="d-flex">
-
-                                <div sec:authorize="isAuthenticated()">
-                                    <div th:if="${findCommentIdsByUserId.contains(comment.id)}" class="pe-3 pt-3">
-                                        <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0"
-                                                th:data-dl="${comment.id}" th:data-id="${post.id}">x
-                                        </button>
-                                    </div>
+                                <div>
+                                    <img id="profile" th:src="${comment.getUser().getProfilePictureUrl()}" class="comment-user-pic dl" th:data-dl="${comment.id}">
                                 </div>
-
                                 <div>
                                     <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"
                                        class="dl profile-name-c" th:data-dl="${comment.id}"></a>
@@ -457,6 +451,13 @@
 <!--                                    <span th:text="${commentCreationDate[commentStat.index]}"></span>-->
 
                                     <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
+                                </div>
+                                <div sec:authorize="isAuthenticated()">
+                                    <div th:if="${findCommentIdsByUserId.contains(comment.id)}" class="pe-3 pt-3">
+                                        <button th:data="${comment.id}" class="delete dl btn"
+                                                th:data-dl="${comment.id}" th:data-id="${post.id}">&#10060
+                                        </button>
+                                    </div>
                                 </div>
 
 

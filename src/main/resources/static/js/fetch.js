@@ -323,8 +323,10 @@ function deleteComment(values) {
 
 
 const addComment = (id, user, body) => {
-    return `<div><a class="profile-name-c" href="/user/ + ${id}">${user}</a>
-                <p>${body}</p></div>`
+    return `<div>
+          <a class="profile-name-c" href="/user/ + ${id}">${user}</a>
+          <p>${body}</p>
+          </div>`
 }
 
 
@@ -358,12 +360,14 @@ $('.post-comment-btn').on('click', function (e) {
 
 $('.delete').on('click', function (e) {
     e.preventDefault();
-    const clickedId = e.target.dataset.id;
-    const commentText = $(`.comment-count[data-id=${clickedId}]`);
-
-    let array = getBtnValue($(this));
-    commentText.text(parseInt(commentText.text()) - 1);
-    deleteComment(array)
-    $(`.dl[data-dl=${e.target.dataset.dl}]`).remove()
+    var check = confirm("Are you sure you want to delete this comment?")
+    if (check === true) {
+        const clickedId = e.target.dataset.id;
+        const commentText = $(`.comment-count[data-id=${clickedId}]`);
+        let array = getBtnValue($(this));
+        commentText.text(parseInt(commentText.text()) - 1);
+        deleteComment(array)
+        $(`.dl[data-dl=${e.target.dataset.dl}]`).remove()
+    }
 
 });
