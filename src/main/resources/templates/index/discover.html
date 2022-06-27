@@ -109,8 +109,12 @@
                     <div th:each="comment : ${post.comments}">
 
                         <div class="d-flex">
-                            <div>
+
+                            <div th:if="${comment.getUser().getProfilePictureUrl()}">
                                 <img id="profile" th:src="${comment.getUser().getProfilePictureUrl()}" class="comment-user-pic dl" th:data-dl="${comment.id}">
+                            </div>
+                            <div th:if="!${comment.getUser().getProfilePictureUrl()}">
+                                <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" class="comment-user-pic dl" th:data-dl="${comment.id}">
                             </div>
 
 <!--                            <div sec:authorize="isAuthenticated()">-->
@@ -127,9 +131,12 @@
 
                             <div sec:authorize="isAuthenticated()">
                                 <div th:if="${findCommentIdsByUserId.contains(comment.id)}" class="pe-3 pt-3">
-                                    <button th:data="${comment.id}" class="delete dl btn"
-                                            th:data-dl="${comment.id}" th:data-id="${post.id}">&#10060
-                                    </button>
+<!--                                    <button th:data="${comment.id}" class="delete dl btn"-->
+<!--                                            th:data-dl="${comment.id}" th:data-id="${post.id}">&#10060-->
+<!--                                    </button>-->
+                                    <a th:data="${comment.id}" class="delete dl btn"
+                                       th:data-dl="${comment.id}" th:data-id="${post.id}">delete
+                                    </a>
                                 </div>
                             </div>
 

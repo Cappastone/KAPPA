@@ -92,8 +92,8 @@
 
                 <div class="profile-gamer-links-container d-flex justify-content-sm-start">
 
-                    <div class="card profile-links-card-content">
-                        <div th:if="${user.links}" class="py-3 d-flex flex-wrap w-100">
+                    <div th:if="${user.links}" class="card profile-links-card-content">
+                        <div  class="py-3 d-flex flex-wrap w-100">
                             <div class="pro-links-header w-100 d-flex justify-content-center">
                                 <span class="text-center pb-2">Platform Links</span>
                             </div>
@@ -371,10 +371,13 @@
                 <div class="card-body  my-2">
                     <!--                    <h5 class="card-title">Card title</h5>-->
                     <div class="d-flex justify-content-center post-img-mobile">
+<!--                        <span th:if="${post.postImages.size() > 1}" class="carousel-control-prev-icon" aria-hidden="true"></span>-->
                         <div class="mb-4" th:if="${post.postImages.size() != 0}" th:each="image : ${post.postImages}">
+
                             <img style="object-fit: cover; height: 200px; width:250px;"
                                  class="mx-3 post-img-mobile-images" th:src="${image.url}">
                         </div>
+<!--                        <span th:if="${post.postImages.size() > 1}" class="carousel-control-next-icon" aria-hidden="true"></span>-->
                     </div>
                     <p class="card-text" th:text="${post.body}"></p>
                     <div class="d-flex justify-content-between align-items-end">
@@ -440,8 +443,11 @@
                         <div th:each="comment : ${post.comments}">
 
                             <div class="d-flex">
-                                <div>
+                                <div th:if="${comment.getUser().getProfilePictureUrl()}">
                                     <img id="profile" th:src="${comment.getUser().getProfilePictureUrl()}" class="comment-user-pic dl" th:data-dl="${comment.id}">
+                                </div>
+                                <div th:if="!${comment.getUser().getProfilePictureUrl()}">
+                                    <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/04/Best-Creations-From-Dexters-Laboratory.jpg" class="comment-user-pic dl" th:data-dl="${comment.id}">
                                 </div>
                                 <div>
                                     <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"
@@ -454,9 +460,10 @@
                                 </div>
                                 <div sec:authorize="isAuthenticated()">
                                     <div th:if="${findCommentIdsByUserId.contains(comment.id)}" class="pe-3 pt-3">
-                                        <button th:data="${comment.id}" class="delete dl btn"
-                                                th:data-dl="${comment.id}" th:data-id="${post.id}">&#10060
-                                        </button>
+                                        <a th:data="${comment.id}" class="delete dl btn"
+                                                th:data-dl="${comment.id}" th:data-id="${post.id}">delete
+                                        </a>
+<!--                                        &#10060;-->
                                     </div>
                                 </div>
 
