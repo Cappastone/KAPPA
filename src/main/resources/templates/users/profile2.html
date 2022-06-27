@@ -453,6 +453,9 @@
                                     <a th:text="${comment.user.username}" th:href="'/user/' + ${comment.user.id}"
                                        class="dl profile-name-c" th:data-dl="${comment.id}"></a>
 
+<!--                                    //        !!!!!!!!   NEEDS THE CHRIS BERRY SPECIAL  :) !!!!!!!-->
+<!--                                    <span th:text="${commentCreationDate[commentStat.index]}"></span>-->
+
                                     <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
                                 </div>
 
