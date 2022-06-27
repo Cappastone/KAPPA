@@ -7,6 +7,9 @@
 .main-header {
     width: 100%;
 }
+.main-text-area-mobile {
+    font-size: 16px;
+}
 
 /*this is the basic img size for all img on the site*/
 img {
@@ -589,4 +592,16 @@ button:hover {
 
 .comment-body {
     margin-top: 20px;
+}
+
+
+/*THIS IS MOBILE VIEW FOR EDIT POSTS*/
+
+.edit-post-card {
+    max-width: 768px;
+}
+
+@media screen and (max-width: 576px) {
+
+
 }

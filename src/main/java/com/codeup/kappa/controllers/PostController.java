@@ -52,7 +52,7 @@ public class PostController {
 
         model.addAttribute("post", postDao.getById(postId));
 
-        return "posts/post";
+        return "posts/post2";
     }
 
 
@@ -102,7 +102,7 @@ public class PostController {
 
         postDao.deleteById(id);
 
-        return "redirect:/user/" + user.getId();
+        return "redirect:/main/";
     }
 
     @PostMapping("delete-image")
