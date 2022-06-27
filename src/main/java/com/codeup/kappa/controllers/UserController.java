@@ -81,11 +81,19 @@ public class UserController {
         List<Date> postCreationDateObjs = dateFormatter.getPostDateObjs(posts);
         List<String> postDates = dateFormatter.getDates(postCreationDateObjs);
 
+
+//        !!!!!!!!   NEEDS THE CHRIS BERRY SPECIAL  :) !!!!!!!
+//        List<Date> commentCreationDateObjs = dateFormatter.getCommentDateObjs(posts);
+//        List<String> commentDates = dateFormatter.getDates(commentCreationDateObjs);
+
+
         model.addAttribute("userCreationDate", userDate);
         model.addAttribute("postCreationDates", postDates);
 
-//        return "users/profile";
-//        profile 2 is under construction
+        //        !!!!!!!!   NEEDS THE CHRIS BERRY SPECIAL  :) !!!!!!!
+//        model.addAttribute("commentCreationDate", commentDates);
+
+
         return "users/profile2";
     }
 

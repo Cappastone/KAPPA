@@ -387,7 +387,7 @@
 /*    }*/
 
     .profile-posts {
-        margin: 10px!important;
+        margin: 10px 0 10px 0!important;
         padding: 10px!important;
     }
     .flip2 {
@@ -439,9 +439,7 @@
         transition: none!important;
     }
 
-    .panel-collapsed {
-        margin-top: 30px!important;
-    }
+
 
 
 }

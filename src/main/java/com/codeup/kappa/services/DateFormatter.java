@@ -71,4 +71,19 @@ public class DateFormatter {
         return dateObjs;
     }
 
+
+    //        !!!!!!!!   NEEDS THE CHRIS BERRY SPECIAL  :) !!!!!!!
+    public List<Date> getCommentDateObjs(List<Post> dates){
+
+        List<Date> dateObjs = new ArrayList<>();
+
+        for (Post post : dates){
+            for (int i = 0; i < post.getComments().size(); i++) {
+                dateObjs.add(post.getComments().get(i).getCreationDate());
+            }
+
+        }
+        return dateObjs;
+    }
+
 }
