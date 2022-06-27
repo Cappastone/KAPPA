@@ -396,7 +396,7 @@
                             <div>
                                 <button class="flip2 btn btn-outline-light" th:data-id="${post.id}"><i
                                         style="font-weight: lighter" class="fa-solid fa-comment me-2"></i>View Comments
-                                    (<span style="font-weight: lighter" class="comment-count"
+                                    (<span class="comment-count"
                                            th:text="${post.comments.size()}" th:data-id="${post.id}"></span>)
                                 </button>
                             </div>
@@ -455,6 +455,7 @@
 
                                     <p th:text="${comment.body}" class="dl" th:data-dl="${comment.id}"></p>
                                 </div>
+
 
                                 <!--                                <div th:if="${findCommentIdsByUserId.contains(comment.id)}">-->
                                 <!--                                    <button th:data="${comment.id}" class="delete dl btn btn-danger px-2 py-0" th:data-dl="${comment.id}" th:data-id="${post.id}">x</button>-->
