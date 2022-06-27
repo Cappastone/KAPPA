@@ -55,7 +55,7 @@
                 <div class="main-container-1 d-flex justify-content-between align-items-end mt-2">
                     <div>
 
-                        <div class="d-flex flex-column main-feed-username" >
+                        <div class="d-flex flex-column main-feed-username">
                             <p class="card-text mb-0"><small class="text-muted pe-1"> Posted by:</small></p>
 
                             <a th:text="${#strings.abbreviate(post.user.username, 10)}" th:href="'/user/' + ${post.user.id}" class="profile-name-c"></a>

@@ -123,11 +123,15 @@
 /*}*/
 
 .links-text {
+
+    font-size: 14px;
+    word-break: break-all;
+}
+.pro-links-text{
     font-weight: lighter;
     font-size: 14px;
     word-break: break-all;
 }
-
 .pro-icon {
     width: 16px!important;
     height: 20px!important;
@@ -263,12 +267,11 @@
 
 
 }
-
-.delete:focus,
-.delete:active{
-    box-shadow:none !important;
-    outline:0 !important;
+.bio-text {
+    font-size: 14px;
 }
+
+
 
 .comment-user-pic {
     height: 40px; width: 40px; object-fit: cover; border-radius: 50%; margin-right: 20px;
@@ -277,13 +280,13 @@
 
 
 
-.carousel-control-next-icon {
-    transform: translateY(-45px);
-    z-index: +2;
-}
-.carousel-control-prev-icon {
-    z-index: +2;
-}
+/*.carousel-control-next-icon {*/
+/*    transform: translateY(-45px);*/
+/*    z-index: +2;*/
+/*}*/
+/*.carousel-control-prev-icon {*/
+/*    z-index: +2;*/
+/*}*/
 
 
 
@@ -304,6 +307,14 @@
 
 
 @media screen and (max-width: 576px) {
+
+    .delete:focus,
+    .delete:active,
+    .delete:hover{
+        box-shadow:none !important;
+        outline:0 !important;
+        color: red;
+    }
 
     .comment-user-pic {
         height: 30px; width: 30px; object-fit: cover; border-radius: 50%;
@@ -382,9 +393,14 @@
 
 
     }
-    .profile-bio-card-container {
-        transform: translateY(-5px);
-    }
+
+
+    /*THIS BREAKS THE MODAL FOR SOME WEIRD REASON*/
+    /*.profile-bio-card-container {*/
+    /*    transform: translateY(-5px);*/
+    /*}*/
+
+
 
     /*.change-profile-pic-btn {*/
     /*    position: relative;*/
