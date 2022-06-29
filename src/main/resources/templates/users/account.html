@@ -120,8 +120,15 @@
                                         <label for="new-password" class="form-label">New Password</label>
                                         <input name="new-password" type="password" class="form-control" id="new-password">
                                     </div>
+                                    <div class="py-3">
+                                        <label for="confirm-password" class="form-label">Confirm Password</label>
+                                        <input name="confirm-password" type="password" class="form-control" id="confirm-password">
+                                    </div>
                                     <div class="pb-1" th:if="${param.ps_error}">
                                         <p class="text-center text-danger">Password must be at least 6 characters</p>
+                                    </div>
+                                    <div class="pb-1" th:if="${param.ps_match_error}">
+                                        <p class="text-center text-danger">Passwords do not match!</p>
                                     </div>
                                     <div class="mt-4 d-flex justify-content-center">
                                         <button class="ms-2 btn btn-outline-light">Update</button>
