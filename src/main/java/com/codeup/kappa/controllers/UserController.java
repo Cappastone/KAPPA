@@ -310,7 +310,7 @@ public class UserController {
 
 
     @PostMapping("edit-password")
-    public String editPassword(@RequestParam(name = "password") String oldPassword, @RequestParam(name = "new-password") String newPassword) {
+    public String editPassword(@RequestParam(name = "password") String oldPassword, @RequestParam(name = "new-password") String newPassword, @RequestParam(name = "confirm-password") String confirmPassword) {
 
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = sessionUser.getId();
@@ -324,6 +324,12 @@ public class UserController {
 
         if (newPassword.length() < 6 || newPassword.contains(" ")){
             return "redirect:/user/account?ps_error";
+        } else {
+            user2.setPassword(passwordEncoder.encode(newPassword));
+        }
+
+        if (!newPassword.equals(confirmPassword)){
+            return "redirect:/user/account?ps_match_error";
         } else {
             user2.setPassword(passwordEncoder.encode(newPassword));
         }
